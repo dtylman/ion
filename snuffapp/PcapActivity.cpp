@@ -26,9 +26,10 @@ void PcapActivity::runActivity()
         pcap_pkthdr* header;
         int ret = pcap_next_ex(_pcap, &header, &packet);
         if (ret == -1) {
-            //error!
+            _logger.error("pcap_next_ex returned error");
             return;
         }
+
         _logger.notice("got packet");
     }
 }

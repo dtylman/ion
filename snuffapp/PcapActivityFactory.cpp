@@ -20,4 +20,7 @@ PcapActivity* PcapActivityFactory::createActivity(pcap_if_t* iface)
         logger.debug("Failed to open pcap iface: %s, error: %s", std::string(iface->description), std::string(errBuf.begin()));
         return nullptr;
     }
+    int datalink = pcap_datalink(pcap);
+    logger.information("Data link is %d", datalink);
+    return new PcapActivity(pcap);
 }
