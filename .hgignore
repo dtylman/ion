@@ -1,0 +1,10 @@
+syntax: glob
+nbproject/private
+snuffapp/build/
+lib/poco-1.6.0-all/lib/Linux/
+lib/poco-1.6.0-all/config.build
+lib/poco-1.6.0-all/config.make
+snuffapp/dist/Debug/
+snuffapp/.dep.inc
+.dep/
+obj/
