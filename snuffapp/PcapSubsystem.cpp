@@ -29,6 +29,7 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
         throw Poco::ApplicationException(Poco::format("pcap_findalldevs failed. Error: %s", std::string(errBuff.begin())));
     }
     while (iface != nullptr) {
+        _logger.information(iface->name);
         PcapActivity::Ptr activity = PcapActivityFactory::createActivity(iface);
         if (!activity.isNull()) {
             _activities.push_back(activity);

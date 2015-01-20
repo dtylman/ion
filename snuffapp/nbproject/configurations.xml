@@ -16,6 +16,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>MAC.cpp</itemPath>
+    <itemPath>MAC.h</itemPath>
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
     <itemPath>PcapActivity.cpp</itemPath>
@@ -55,6 +57,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MAC.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
@@ -109,6 +115,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MAC.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
