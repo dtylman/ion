@@ -16,6 +16,14 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>ARPFrame.cpp</itemPath>
+    <itemPath>ARPFrame.h</itemPath>
+    <itemPath>EtherFrame.cpp</itemPath>
+    <itemPath>EtherFrame.h</itemPath>
+    <itemPath>Frame.cpp</itemPath>
+    <itemPath>Frame.h</itemPath>
+    <itemPath>IPFrame.cpp</itemPath>
+    <itemPath>IPFrame.h</itemPath>
     <itemPath>MAC.cpp</itemPath>
     <itemPath>MAC.h</itemPath>
     <itemPath>Main.cpp</itemPath>
@@ -39,8 +47,11 @@
         <ccTool>
           <standard>8</standard>
           <incDir>
+            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -52,11 +63,28 @@
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a</linkerLibFileItem>
             <linkerLibLibItem>pcap</linkerLibLibItem>
             <linkerLibLibItem>pthread</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="ARPFrame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ARPFrame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EtherFrame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EtherFrame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPFrame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPFrame.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MAC.h" ex="false" tool="3" flavor2="0">
@@ -93,7 +121,10 @@
           <standard>8</standard>
           <incDir>
             <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
           </incDir>
         </ccTool>
         <fortranCompilerTool>
@@ -115,6 +146,22 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="ARPFrame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ARPFrame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EtherFrame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EtherFrame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPFrame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPFrame.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MAC.h" ex="false" tool="3" flavor2="0">

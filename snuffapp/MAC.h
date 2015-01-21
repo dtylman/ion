@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   MAC.h
  * Author: danny
  *
@@ -8,14 +8,14 @@
 #ifndef MAC_H
 #define	MAC_H
 
-class MAC
+#include <Poco/Net/NetworkInterface.h>
+
+class MAC : public Poco::Net::NetworkInterface::MACAddress
 {
 public:
     MAC();
-    MAC(const MAC& orig);
     virtual ~MAC();
 private:
-
 };
 
 #endif	/* MAC_H */

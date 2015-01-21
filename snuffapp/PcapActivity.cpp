@@ -6,6 +6,9 @@
  */
 
 #include "PcapActivity.h"
+#include "EtherFrame.h"
+#include "IPFrame.h"
+#include <Poco/Buffer.h>
 
 PcapActivity::PcapActivity(pcap_t* pcap) :
 _pcap(pcap),
@@ -29,7 +32,15 @@ void PcapActivity::runActivity()
             _logger.error("pcap_next_ex returned error");
             return;
         }
-
+        if (packet != nullptr) {
+            Frame::Ptr frame(EtherFrame::createFrame((const char*) packet, header->len));
+            if (!frame.isNull()) {
+                Poco::AutoPtr<IPFrame> ipFrame = frame.cast<IPFrame>();
+                if (!ipFrame.isNull()) {
+                    _logger.notice(ipFrame->toString());
+                }
+            }
+        }
         _logger.notice("got packet");
     }
 }
