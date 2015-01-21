@@ -1,0 +1,20 @@
+syntax: glob
+nbproject/private
+snuffapp/build/
+lib/poco-1.6.0-all/config.build
+lib/poco-1.6.0-all/config.make
+snuffapp/dist/Debug/
+snuffapp/.dep.inc
+.dep/
+obj/
+lib/poco-1.6.0-all/lib/
+lib/poco-1.6.0-all/Foundation/src/pocomsg.h
+lib/poco-1.6.0-all/Foundation/src/pocomsg.rc
+lib/poco-1.6.0-all/PageCompiler/bin/
+lib/poco-1.6.0-all/PageCompiler/File2Page/bin/
+snuffapp/Debug/
+snuffler.sdf
+snuffler.v12.suo
+snuffler.opensdf
+Debug
+Release
