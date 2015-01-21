@@ -22,5 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />
+    <None Include="pcap.props" />
   </ItemGroup>
 </Project>

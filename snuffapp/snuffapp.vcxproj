@@ -25,6 +25,7 @@
     <ClInclude Include="PcapSubsystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="pcap.props" />
     <None Include="Poco.props" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
