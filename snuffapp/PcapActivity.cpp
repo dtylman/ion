@@ -20,10 +20,12 @@ _activity(this, &PcapActivity::runActivity), _logger(Poco::Logger::get("PcapActi
 PcapActivity::~PcapActivity()
 {
     _activity.stop();
+    _activity.wait(5000);
 }
 
 void PcapActivity::runActivity()
 {
+    _logger.notice("Activity started");
     while (!_activity.isStopped()) {
         const u_char* packet = nullptr;
         pcap_pkthdr* header;
@@ -33,7 +35,8 @@ void PcapActivity::runActivity()
             return;
         }
         if (packet != nullptr) {
-            Frame::Ptr frame(EtherFrame::createFrame((const char*) packet, header->len));
+            //LinkType linkType(pcap_datalink(_pcap));
+            Frame::Ptr frame(EtherFrame::createFrame((const char*) packet, header->caplen));
             if (!frame.isNull()) {
                 Poco::AutoPtr<IPFrame> ipFrame = frame.cast<IPFrame>();
                 if (!ipFrame.isNull()) {
@@ -41,7 +44,7 @@ void PcapActivity::runActivity()
                 }
             }
         }
-        _logger.notice("got packet");
     }
+    _logger.notice("Activity ended");
 }
 

@@ -39,5 +39,5 @@ IPFrame::~IPFrame()
 
 std::string IPFrame::toString() const
 {
-    return Poco::format("%s -> %s", _sourceIP.toString(), _destinationIP.toString());
+    return Poco::format("%s -> %s (%d, %d)", _sourceIP.toString(), _destinationIP.toString(), (int) _headerLen, (int) _version);
 }
