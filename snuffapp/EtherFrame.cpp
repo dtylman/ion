@@ -8,7 +8,13 @@
 #include "EtherFrame.h"
 #include "IPFrame.h"
 #include "ARPFrame.h"
+#include <Poco/Logger.h>
+#include <Poco/HexBinaryEncoder.h>
 #include <arpa/inet.h>
+#include <pcap/pcap.h>
+#include <iostream>
+
+#define LINKTYPE_LINUX_SLL  113
 
 struct EtherHeader
 {
@@ -33,8 +39,13 @@ Frame* EtherFrame::createFrame(const char* data, int len)
     if (len<sizeof (EtherHeader)) {
         return nullptr;
     }
+    Poco::Logger& logger = Poco::Logger::get("EtherFrame");
     const EtherHeader* eth = (const EtherHeader*) data;
     Poco::UInt16 type = ntohs(eth->type);
+    Poco::HexBinaryEncoder encoder(std::cout);
+    encoder.write(data, len);
+    std::cout << std::endl;
+    logger.notice("type: %hX, %d", type, (int) type);
     switch (type) {
     case 0x0800:
         return new IPFrame(data, len);
