@@ -10,7 +10,11 @@
 #include "ARPFrame.h"
 #include <Poco/Logger.h>
 #include <Poco/HexBinaryEncoder.h>
+#ifdef POCO_OS_FAMILY_WINDOWS
+#include <WinSock2.h>
+#else
 #include <arpa/inet.h>
+#endif
 #include <pcap/pcap.h>
 #include <iostream>
 
