@@ -12,6 +12,10 @@
     <ClCompile Include="PcapActivity.cpp" />
     <ClCompile Include="PcapActivityFactory.cpp" />
     <ClCompile Include="PcapSubsystem.cpp" />
+    <ClCompile Include="ARPFrame.cpp" />
+    <ClCompile Include="EtherFrame.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="IPFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAC.h" />
@@ -19,6 +23,10 @@
     <ClInclude Include="PcapActivity.h" />
     <ClInclude Include="PcapActivityFactory.h" />
     <ClInclude Include="PcapSubsystem.h" />
+    <ClInclude Include="ARPFrame.h" />
+    <ClInclude Include="EtherFrame.h" />
+    <ClInclude Include="Frame.h" />
+    <ClInclude Include="IPFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

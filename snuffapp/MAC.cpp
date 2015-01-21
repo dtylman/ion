@@ -11,10 +11,6 @@ MAC::MAC()
 {
 }
 
-MAC::MAC(const Poco::Net::NetworkInterface::MACAddress& address) : _address(address)
-{
-
-}
 
 MAC::~MAC()
 {

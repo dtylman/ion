@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ARPFrame.cpp" />
+    <ClCompile Include="EtherFrame.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="IPFrame.cpp" />
     <ClCompile Include="MAC.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PcapActivity.cpp" />
@@ -18,6 +22,10 @@
     <ClCompile Include="PcapSubsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ARPFrame.h" />
+    <ClInclude Include="EtherFrame.h" />
+    <ClInclude Include="Frame.h" />
+    <ClInclude Include="IPFrame.h" />
     <ClInclude Include="MAC.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="PcapActivity.h" />

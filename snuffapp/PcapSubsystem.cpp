@@ -45,6 +45,6 @@ const char* PcapSubsystem::name() const
 }
 
 void PcapSubsystem::uninitialize()
-{
+{	
     _activities.clear();
 }

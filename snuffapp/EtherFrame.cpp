@@ -8,7 +8,11 @@
 #include "EtherFrame.h"
 #include "IPFrame.h"
 #include "ARPFrame.h"
+#ifdef POCO_OS_FAMILY_WINDOWS
+#include <Winsock2.h>
+#else
 #include <arpa/inet.h>
+#endif
 
 struct EtherHeader
 {
