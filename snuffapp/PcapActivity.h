@@ -11,6 +11,7 @@
 #include <Poco/RefCountedObject.h>
 #include <Poco/Activity.h>
 #include <Poco/Logger.h>
+#include <Poco/AutoPtr.h>
 #include <pcap.h>
 
 class PcapActivity : public Poco::RefCountedObject
