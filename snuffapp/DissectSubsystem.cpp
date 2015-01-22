@@ -28,10 +28,10 @@ const char* DissectSubsystem::name() const
 }
 
 void DissectSubsystem::uninitialize()
-{
+{	
     _activity.stop();
-    _activity.wait(2500);
-    _queue.wakeUpAll();
+	_queue.wakeUpAll();
+    _activity.wait(2500);    
 }
 
 void DissectSubsystem::queueFrame(Frame* frame)
@@ -41,8 +41,8 @@ void DissectSubsystem::queueFrame(Frame* frame)
 
 void DissectSubsystem::runActivity()
 {
-    while (!_activity.isStopped()) {
-        Poco::Notification::Ptr notif(_queue.dequeueNotification(), true);
+    while (!_activity.isStopped()) {		
+        Poco::Notification::Ptr notif(_queue.waitDequeueNotification(2500), true);		
         Frame::Ptr frame = notif.cast<Frame>();
         if (!frame.isNull()) {
             frame->dissect();

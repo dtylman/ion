@@ -17,8 +17,7 @@ _activity(this, &PcapActivity::runActivity), _logger(Poco::Logger::get("PcapActi
 }
 
 PcapActivity::~PcapActivity()
-{
-    stop();
+{    
 }
 
 static void pcap_process(u_char *device, const struct pcap_pkthdr *header, const u_char *bytes)
@@ -82,8 +81,8 @@ void PcapActivity::stop()
 {
     if (_activity.isRunning()) {
         pcap_breakloop(_pcap);
-        _activity.wait(1000);
-        _activity.stop();
         _activity.wait(2500);
+        _activity.stop();
+        _activity.wait(5000);
     }
 }
