@@ -11,26 +11,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ARPFrame.cpp" />
-    <ClCompile Include="EtherFrame.cpp" />
+    <ClCompile Include="DissectSubsystem.cpp" />
     <ClCompile Include="Frame.cpp" />
-    <ClCompile Include="IPFrame.cpp" />
     <ClCompile Include="MAC.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PcapActivity.cpp" />
-    <ClCompile Include="PcapActivityFactory.cpp" />
     <ClCompile Include="PcapSubsystem.cpp" />
+    <ClCompile Include="Protocol.cpp" />
+    <ClCompile Include="ProtocolARP.cpp" />
+    <ClCompile Include="ProtocolEthernet.cpp" />
+    <ClCompile Include="ProtocolIP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ARPFrame.h" />
-    <ClInclude Include="EtherFrame.h" />
+    <ClInclude Include="DissectSubsystem.h" />
     <ClInclude Include="Frame.h" />
-    <ClInclude Include="IPFrame.h" />
     <ClInclude Include="MAC.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="PcapActivity.h" />
-    <ClInclude Include="PcapActivityFactory.h" />
     <ClInclude Include="PcapSubsystem.h" />
+    <ClInclude Include="Protocol.h" />
+    <ClInclude Include="ProtocolARP.h" />
+    <ClInclude Include="ProtocolEthernet.h" />
+    <ClInclude Include="ProtocolIP.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="pcap.props" />
