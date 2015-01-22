@@ -15,7 +15,7 @@ class ProtocolIP : public Protocol
 {
 public:
     ProtocolIP();
-    static std::string Name;
+    static const std::string Name;
     virtual const std::string& name() const;
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual std::string toString() const;

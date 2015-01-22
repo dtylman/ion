@@ -44,7 +44,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Protocol.o \
 	${OBJECTDIR}/ProtocolARP.o \
 	${OBJECTDIR}/ProtocolEthernet.o \
-	${OBJECTDIR}/ProtocolIP.o
+	${OBJECTDIR}/ProtocolIP.o \
+	${OBJECTDIR}/ProtocolNBDatagram.o \
+	${OBJECTDIR}/ProtocolUDP.o
 
 
 # C Compiler Flags
@@ -120,6 +122,16 @@ ${OBJECTDIR}/ProtocolIP.o: ProtocolIP.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolIP.o ProtocolIP.cpp
+
+${OBJECTDIR}/ProtocolNBDatagram.o: ProtocolNBDatagram.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolNBDatagram.o ProtocolNBDatagram.cpp
+
+${OBJECTDIR}/ProtocolUDP.o: ProtocolUDP.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolUDP.o ProtocolUDP.cpp
 
 # Subprojects
 .build-subprojects:

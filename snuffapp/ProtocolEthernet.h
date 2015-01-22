@@ -15,7 +15,7 @@ class ProtocolEthernet : public Protocol
 {
 public:
     ProtocolEthernet();
-    static std::string Name;
+    static const std::string Name;
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual const std::string& name() const;
     virtual std::string toString() const;
@@ -24,7 +24,7 @@ protected:
 private:
     MAC _sourceMAC;
     MAC _destMAC;
-	Poco::UInt16 _ethType = 0;
+    Poco::UInt16 _ethType = 0;
 
 };
 

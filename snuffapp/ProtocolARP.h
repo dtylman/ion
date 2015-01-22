@@ -16,7 +16,7 @@ class ProtocolARP : public Protocol
 {
 public:
     ProtocolARP();
-    static std::string Name;
+    static const std::string Name;
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual const std::string& name() const;
     virtual std::string toString() const;

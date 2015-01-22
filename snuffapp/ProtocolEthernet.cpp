@@ -15,7 +15,7 @@
 #include <netinet/in.h>
 #endif
 
-std::string ProtocolEthernet::Name("ETH");
+const std::string ProtocolEthernet::Name("ETH");
 
 ProtocolEthernet::ProtocolEthernet()
 {
@@ -50,11 +50,14 @@ bool ProtocolEthernet::dissect(const FrameBuffer& buffer, size_t& offset, Protoc
     else if (_ethType == 0x0806) { //ARP
         next = new ProtocolARP();
     }
-    else if (_ethType == 0x8035) { //RARP
-
-    }
-    else if (_ethType == 0x86DD) { //IPv6
-
+        //    else if (_ethType == 0x8035) { //RARP
+        //
+        //    }
+        //    else if (_ethType == 0x86DD) { //IPv6
+        //
+        //    }
+    else {
+        next = nullptr;
     }
     offset += sizeof (EtherHeader);
     return true;
