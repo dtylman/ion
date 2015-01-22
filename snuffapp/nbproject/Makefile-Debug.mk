@@ -35,15 +35,16 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/ARPFrame.o \
-	${OBJECTDIR}/EtherFrame.o \
+	${OBJECTDIR}/DissectSubsystem.o \
 	${OBJECTDIR}/Frame.o \
-	${OBJECTDIR}/IPFrame.o \
 	${OBJECTDIR}/MAC.o \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/PcapActivity.o \
-	${OBJECTDIR}/PcapActivityFactory.o \
-	${OBJECTDIR}/PcapSubsystem.o
+	${OBJECTDIR}/PcapSubsystem.o \
+	${OBJECTDIR}/Protocol.o \
+	${OBJECTDIR}/ProtocolARP.o \
+	${OBJECTDIR}/ProtocolEthernet.o \
+	${OBJECTDIR}/ProtocolIP.o
 
 
 # C Compiler Flags
@@ -80,25 +81,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/ARPFrame.o: ARPFrame.cpp 
+${OBJECTDIR}/DissectSubsystem.o: DissectSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ARPFrame.o ARPFrame.cpp
-
-${OBJECTDIR}/EtherFrame.o: EtherFrame.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EtherFrame.o EtherFrame.cpp
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DissectSubsystem.o DissectSubsystem.cpp
 
 ${OBJECTDIR}/Frame.o: Frame.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Frame.o Frame.cpp
-
-${OBJECTDIR}/IPFrame.o: IPFrame.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IPFrame.o IPFrame.cpp
 
 ${OBJECTDIR}/MAC.o: MAC.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -115,15 +106,30 @@ ${OBJECTDIR}/PcapActivity.o: PcapActivity.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapActivity.o PcapActivity.cpp
 
-${OBJECTDIR}/PcapActivityFactory.o: PcapActivityFactory.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapActivityFactory.o PcapActivityFactory.cpp
-
 ${OBJECTDIR}/PcapSubsystem.o: PcapSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapSubsystem.o PcapSubsystem.cpp
+
+${OBJECTDIR}/Protocol.o: Protocol.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Protocol.o Protocol.cpp
+
+${OBJECTDIR}/ProtocolARP.o: ProtocolARP.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolARP.o ProtocolARP.cpp
+
+${OBJECTDIR}/ProtocolEthernet.o: ProtocolEthernet.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolEthernet.o ProtocolEthernet.cpp
+
+${OBJECTDIR}/ProtocolIP.o: ProtocolIP.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolIP.o ProtocolIP.cpp
 
 # Subprojects
 .build-subprojects:

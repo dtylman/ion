@@ -1,28 +1,34 @@
 /*
- * File:   Frame.h
+ * File:   FrameNotification.h
  * Author: danny
  *
- * Created on January 21, 2015, 12:43 PM
+ * Created on January 21, 2015, 9:12 PM
  */
 
-#ifndef FRAME_H
-#define	FRAME_H
+#ifndef FRAMENOTIFICATION_H
+#define	FRAMENOTIFICATION_H
 
-#include <Poco/BinaryReader.h>
-#include <Poco/RefCountedObject.h>
-#include <Poco/AutoPtr.h>
+#include "MAC.h"
+#include "Protocol.h"
+#include <Poco/Notification.h>
 #include <Poco/Buffer.h>
+#include <Poco/Types.h>
+#include <string>
 
-class Frame : public Poco::RefCountedObject
+class Frame : public Poco::Notification
 {
 public:
-    Frame(const char* data, int len);
+    Frame(const std::string& device, const Poco::UInt8* data, int len);
     typedef Poco::AutoPtr<Frame> Ptr;
-protected:
+    void dissect();
+    std::string toString() const;
+private:
     virtual ~Frame();
-    Poco::Buffer<char> _buffer;
-    Poco::MemoryBinaryReader _reader;
+
+    FrameBuffer _buffer;
+    std::string _device;
+    Protocol::Container _protocols;
 };
 
-#endif	/* FRAME_H */
+#endif	/* FRAMENOTIFICATION_H */
 
