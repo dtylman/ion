@@ -17,13 +17,17 @@
 class PcapActivity : public Poco::RefCountedObject
 {
 public:
-    PcapActivity(pcap_t* pcap);
-    void runActivity();
+    PcapActivity(const std::string& device);
 
     typedef Poco::AutoPtr<PcapActivity> Ptr;
+    void start();
+    void stop();
 protected:
+    void runActivity();
     virtual ~PcapActivity();
 private:
+    void openLive();
+    std::string _device;
     pcap_t* _pcap;
     Poco::Activity<PcapActivity> _activity;
     Poco::Logger& _logger;
