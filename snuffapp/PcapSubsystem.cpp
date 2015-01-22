@@ -6,7 +6,6 @@
  */
 
 #include "PcapSubsystem.h"
-#include "PcapActivityFactory.h"
 #include <Poco/Logger.h>
 #include <Poco/Buffer.h>
 #include <Poco/Exception.h>
@@ -21,6 +20,13 @@ PcapSubsystem::~PcapSubsystem()
 {
 }
 
+void PcapSubsystem::start()
+{
+    for (auto activity : _activities) {
+        activity.second->start();
+    }
+}
+
 void PcapSubsystem::initialize(Poco::Util::Application& app)
 {
     Poco::Buffer<char> errBuff(PCAP_ERRBUF_SIZE);
@@ -29,11 +35,17 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
         throw Poco::ApplicationException(Poco::format("pcap_findalldevs failed. Error: %s", std::string(errBuff.begin())));
     }
     while (iface != nullptr) {
-        _logger.information(iface->name);
-        PcapActivity::Ptr activity = PcapActivityFactory::createActivity(iface);
-        if (!activity.isNull()) {
-            _activities.push_back(activity);
+        if (iface->flags & PCAP_IF_LOOPBACK) {
+            iface = iface->next;
+            continue;
         }
+        std::string device(iface->name);
+        if (device == "any") {
+            iface = iface->next;
+            continue;
+        }
+        _logger.information("Adding device: %s", device);
+        _activities[device] = new PcapActivity(device);
         iface = iface->next;
     }
     pcap_freealldevs(iface);
@@ -45,6 +57,9 @@ const char* PcapSubsystem::name() const
 }
 
 void PcapSubsystem::uninitialize()
-{	
-    _activities.clear();
+{
+	for (auto activity : _activities)
+	{
+		activity.second->stop();
+	}    
 }
