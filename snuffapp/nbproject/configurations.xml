@@ -16,24 +16,26 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>ARPFrame.cpp</itemPath>
-    <itemPath>ARPFrame.h</itemPath>
-    <itemPath>EtherFrame.cpp</itemPath>
-    <itemPath>EtherFrame.h</itemPath>
+    <itemPath>DissectSubsystem.cpp</itemPath>
+    <itemPath>DissectSubsystem.h</itemPath>
     <itemPath>Frame.cpp</itemPath>
     <itemPath>Frame.h</itemPath>
-    <itemPath>IPFrame.cpp</itemPath>
-    <itemPath>IPFrame.h</itemPath>
     <itemPath>MAC.cpp</itemPath>
     <itemPath>MAC.h</itemPath>
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
     <itemPath>PcapActivity.cpp</itemPath>
     <itemPath>PcapActivity.h</itemPath>
-    <itemPath>PcapActivityFactory.cpp</itemPath>
-    <itemPath>PcapActivityFactory.h</itemPath>
     <itemPath>PcapSubsystem.cpp</itemPath>
     <itemPath>PcapSubsystem.h</itemPath>
+    <itemPath>Protocol.cpp</itemPath>
+    <itemPath>Protocol.h</itemPath>
+    <itemPath>ProtocolARP.cpp</itemPath>
+    <itemPath>ProtocolARP.h</itemPath>
+    <itemPath>ProtocolEthernet.cpp</itemPath>
+    <itemPath>ProtocolEthernet.h</itemPath>
+    <itemPath>ProtocolIP.cpp</itemPath>
+    <itemPath>ProtocolIP.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -69,21 +71,13 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="ARPFrame.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ARPFrame.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="EtherFrame.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EtherFrame.h" ex="false" tool="3" flavor2="0">
+      <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="IPFrame.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IPFrame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -97,13 +91,25 @@
       </item>
       <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="PcapActivityFactory.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PcapActivityFactory.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Protocol.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -146,21 +152,13 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="ARPFrame.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ARPFrame.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="EtherFrame.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EtherFrame.h" ex="false" tool="3" flavor2="0">
+      <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="IPFrame.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IPFrame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -174,13 +172,25 @@
       </item>
       <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="PcapActivityFactory.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="PcapActivityFactory.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Protocol.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
