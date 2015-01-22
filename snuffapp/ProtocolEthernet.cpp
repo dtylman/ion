@@ -15,7 +15,7 @@
 #include <netinet/in.h>
 #endif
 
-std::string ProtocolEthernet::Name("eth");
+std::string ProtocolEthernet::Name("ETH");
 
 ProtocolEthernet::ProtocolEthernet()
 {
@@ -25,19 +25,22 @@ ProtocolEthernet::~ProtocolEthernet()
 {
 }
 
+#pragma pack(push, 1)
+
 struct EtherHeader
 {
     Poco::UInt8 dest[6];
     Poco::UInt8 src[6];
     Poco::UInt16 type;
 };
+#pragma pack(pop)
 
 bool ProtocolEthernet::dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next)
 {
     if (!enoughFor(buffer, offset, sizeof (EtherHeader))) {
         return false;
     }
-    struct EtherHeader * header = (struct EtherHeader*) buffer.begin() + offset;
+    struct EtherHeader * header = (struct EtherHeader*) (buffer.begin() + offset);
     _destMAC.assign(header->dest, header->dest + 6);
     _sourceMAC.assign(header->src, header->src + 6);
     _ethType = ntohs(header->type);

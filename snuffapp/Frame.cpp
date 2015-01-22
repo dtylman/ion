@@ -8,6 +8,7 @@
 #include "Frame.h"
 #include "MAC.h"
 #include "ProtocolEthernet.h"
+#include <Poco/Format.h>
 
 Frame::Frame(const std::string& device, const Poco::UInt8* data, int len) :
 _device(device),
@@ -30,19 +31,17 @@ void Frame::dissect()
             _protocols[protocol->name()] = protocol;
             protocol = next;
         }
-		else
-		{
-			return;
-		}
+        else {
+            return;
+        }
     }
 }
 
 std::string Frame::toString() const
 {
-    std::string output = _device + "\n";
+    std::string output = Poco::format("Device %s\nProtocols:\n", _device);
     for (auto protocol : _protocols) {
-        output += protocol.first + "\n";
-        output += protocol.second->toString();
+        output += Poco::format("\t%s: %s\n", protocol.first, protocol.second->toString());
     }
     return output;
 }
