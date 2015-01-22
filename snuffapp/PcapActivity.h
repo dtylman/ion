@@ -26,7 +26,7 @@ protected:
     void runActivity();
     virtual ~PcapActivity();
 private:
-    void openLive();
+    bool openLive();
     std::string _device;
     pcap_t* _pcap;
     Poco::Activity<PcapActivity> _activity;

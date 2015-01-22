@@ -58,8 +58,8 @@ const char* PcapSubsystem::name() const
 
 void PcapSubsystem::uninitialize()
 {
-	for (auto activity : _activities)
-	{
-		activity.second->stop();
-	}    
+    _logger.notice("PcapSubsystem::uninitialize");
+    for (auto activity : _activities) {
+        activity.second->stop();
+    }
 }
