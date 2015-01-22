@@ -11,19 +11,23 @@
 #include "PcapActivity.h"
 #include <Poco/Util/Subsystem.h>
 #include <Poco/Logger.h>
-#include <list>
+#include <string>
+#include <map>
 
 class PcapSubsystem : public Poco::Util::Subsystem
 {
 public:
     PcapSubsystem();
+    void start();
+
 protected:
     virtual void initialize(Poco::Util::Application& app);
     virtual const char* name() const;
     virtual void uninitialize();
     virtual ~PcapSubsystem();
 private:
-    std::list<PcapActivity::Ptr> _activities;
+    typedef std::map<std::string, PcapActivity::Ptr> ActivityContainer;
+    ActivityContainer _activities;
     Poco::Logger& _logger;
 };
 
