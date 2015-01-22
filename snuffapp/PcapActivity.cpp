@@ -17,39 +17,49 @@ _activity(this, &PcapActivity::runActivity), _logger(Poco::Logger::get("PcapActi
 }
 
 PcapActivity::~PcapActivity()
-{    
+{
 }
 
 static void pcap_process(u_char *device, const struct pcap_pkthdr *header, const u_char *bytes)
 {
+
+    if ((device == nullptr) || (header == nullptr) || (bytes == nullptr)) {
+        return;
+    }
     DissectSubsystem& dissect = Poco::Util::Application::instance().getSubsystem<DissectSubsystem>();
     dissect.queueFrame(new Frame(std::string((char*) device), bytes, header->caplen));
 }
 
 void PcapActivity::runActivity()
 {
-    Ptr me(this, true); //make sure not being deleted while in loop
     _logger.notice("Activity started on %s", _device);
-    openLive();
-    while (!_activity.isStopped()) {
-        if (pcap_loop(_pcap, -1, &pcap_process, (u_char*) _device.c_str()) != 0) {
-            break;
+    if (openLive()) {
+        while (!_activity.isStopped()) {
+            if (pcap_loop(_pcap, -1, &pcap_process, (u_char*) _device.c_str()) < 0) {
+
+                break;
+            }
         }
+        pcap_close(_pcap);
+        _pcap = nullptr;
     }
+
     _logger.notice("Activity ended on %s", _device);
 }
 
 void PcapActivity::start()
 {
+
     _activity.start();
 }
 
-void PcapActivity::openLive()
+bool PcapActivity::openLive()
 {
     Poco::Buffer<char> errBuff(PCAP_ERRBUF_SIZE);
     _pcap = pcap_create(_device.c_str(), errBuff.begin());
     if (_pcap == nullptr) {
-        throw Poco::ApplicationException(Poco::format("Couldn't open device %s: %s", _device, std::string(errBuff.begin())));
+        _logger.warning("Couldn't open device %s: %s", _device, std::string(errBuff.begin()));
+        return false;
     }
     int status = pcap_set_snaplen(_pcap, 1500);
     if (status < 0) {
@@ -73,16 +83,21 @@ void PcapActivity::openLive()
     }
     status = pcap_activate(_pcap);
     if (status < 0) {
-        throw Poco::ApplicationException(Poco::format("Couldn't activate device %s: %s", _device, std::string(pcap_strerror(status))));
+
+        _logger.warning("Couldn't activate device %s: %s", _device, std::string(pcap_strerror(status)));
+        return false;
     }
+    return true;
 }
 
 void PcapActivity::stop()
 {
     if (_activity.isRunning()) {
-        pcap_breakloop(_pcap);
-        _activity.wait(2500);
+        _logger.notice("stopping sniff on %s", _device);
         _activity.stop();
-        _activity.wait(5000);
+        if (_pcap != nullptr) {
+            pcap_breakloop(_pcap);
+        }
+        //_activity.wait(500);
     }
 }
