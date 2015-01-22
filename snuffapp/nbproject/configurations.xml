@@ -36,6 +36,10 @@
     <itemPath>ProtocolEthernet.h</itemPath>
     <itemPath>ProtocolIP.cpp</itemPath>
     <itemPath>ProtocolIP.h</itemPath>
+    <itemPath>ProtocolNBDatagram.cpp</itemPath>
+    <itemPath>ProtocolNBDatagram.h</itemPath>
+    <itemPath>ProtocolUDP.cpp</itemPath>
+    <itemPath>ProtocolUDP.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -110,6 +114,14 @@
       <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -191,6 +203,14 @@
       <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

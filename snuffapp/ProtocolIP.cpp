@@ -6,9 +6,10 @@
  */
 
 #include "ProtocolIP.h"
+#include "ProtocolUDP.h"
 #include <Poco/Format.h>
 
-std::string ProtocolIP::Name("IP");
+const std::string ProtocolIP::Name("IP");
 
 ProtocolIP::ProtocolIP()
 {
@@ -44,6 +45,13 @@ bool ProtocolIP::dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Pt
     struct IPHeader* header = (struct IPHeader*) (buffer.begin() + offset);
     _ttl = header->ttl;
     _protocol = header->protocol;
+    if (_protocol == 0x11) // UDP
+    {
+        next = new ProtocolUDP();
+    }
+    else {
+        next = nullptr;
+    }
     _source = Poco::Net::IPAddress(&header->srcaddr, sizeof (header->srcaddr));
     _dest = Poco::Net::IPAddress(&header->destaddr, sizeof (header->destaddr));
     offset += sizeof (IPHeader);

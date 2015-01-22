@@ -9,7 +9,7 @@
 #include <Poco/Format.h>
 #include <netinet/in.h>
 
-std::string ProtocolARP::Name("ARP");
+const std::string ProtocolARP::Name("ARP");
 
 ProtocolARP::ProtocolARP()
 {
@@ -54,6 +54,7 @@ bool ProtocolARP::dissect(const FrameBuffer& buffer, size_t& offset, Protocol::P
     _targetMAC.assign(header->targetMAC, header->targetMAC + 6);
     _targetIP = Poco::Net::IPAddress(&header->targetIP, sizeof (header->targetIP));
     offset += sizeof (ARPHeader);
+    next = nullptr;
     return true;
 }
 
