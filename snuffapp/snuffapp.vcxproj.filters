@@ -17,6 +17,8 @@
     <ClCompile Include="ProtocolARP.cpp" />
     <ClCompile Include="ProtocolEthernet.cpp" />
     <ClCompile Include="ProtocolIP.cpp" />
+    <ClCompile Include="ProtocolNBDatagram.cpp" />
+    <ClCompile Include="ProtocolUDP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MAC.h" />
@@ -29,6 +31,8 @@
     <ClInclude Include="ProtocolARP.h" />
     <ClInclude Include="ProtocolEthernet.h" />
     <ClInclude Include="ProtocolIP.h" />
+    <ClInclude Include="ProtocolNBDatagram.h" />
+    <ClInclude Include="ProtocolUDP.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

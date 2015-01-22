@@ -5,11 +5,15 @@
  * Created on January 22, 2015, 3:18 PM
  */
 
-#include <netinet/in.h>
-
 #include "ProtocolUDP.h"
 #include "ProtocolNBDatagram.h"
 #include <Poco/Format.h>
+
+#ifdef POCO_OS_FAMILY_WINDOWS
+#include <WinSock2.h>
+#else
+#include <netinet/in.h>
+#endif
 
 const std::string ProtocolUDP::Name("UDP");
 
