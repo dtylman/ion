@@ -24,7 +24,7 @@ protected:
 private:
     MAC _sourceMAC;
     MAC _destMAC;
-    Poco::UInt16 _ethType;
+	Poco::UInt16 _ethType = 0;
 
 };
 

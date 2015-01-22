@@ -8,7 +8,6 @@
 #include "Frame.h"
 #include "MAC.h"
 #include "ProtocolEthernet.h"
-#include <netinet/in.h>
 
 Frame::Frame(const std::string& device, const Poco::UInt8* data, int len) :
 _device(device),
@@ -31,6 +30,10 @@ void Frame::dissect()
             _protocols[protocol->name()] = protocol;
             protocol = next;
         }
+		else
+		{
+			return;
+		}
     }
 }
 
