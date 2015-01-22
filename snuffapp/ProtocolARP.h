@@ -9,6 +9,8 @@
 #define	PROTOCOLARP_H
 
 #include "Protocol.h"
+#include "MAC.h"
+#include <Poco/Net/IPAddress.h>
 
 class ProtocolARP : public Protocol
 {
@@ -20,6 +22,12 @@ public:
     virtual std::string toString() const;
 protected:
     virtual ~ProtocolARP();
+private:
+    Poco::UInt16 _opCode;
+    MAC _senderMAC;
+    Poco::Net::IPAddress _senderIP;
+    MAC _targetMAC;
+    Poco::Net::IPAddress _targetIP;
 
 };
 
