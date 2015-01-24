@@ -72,3 +72,13 @@ bool ProtocolIP::isDefaultTTL() const
 {
     return ((_ttl % 64) == 0);
 }
+
+const Poco::Net::IPAddress& ProtocolIP::dest() const
+{
+    return _dest;
+}
+
+const Poco::Net::IPAddress& ProtocolIP::source() const
+{
+    return _source;
+}

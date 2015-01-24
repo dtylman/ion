@@ -21,6 +21,8 @@ public:
     virtual std::string toString() const;
 
     bool isDefaultTTL() const;
+    const Poco::Net::IPAddress& source() const;
+    const Poco::Net::IPAddress& dest() const;
 protected:
     virtual ~ProtocolIP();
 private:

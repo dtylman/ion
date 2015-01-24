@@ -6,10 +6,12 @@
  */
 
 #include "ModelSubsystem.h"
-#include "DissectSubsystem.h"
-
+#include "../Dissect/DissectSubsystem.h"
+#include "IPModel.h"
+#include "HostnameModel.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Delegate.h>
+#include <list>
 
 ModelSubsystem::ModelSubsystem()
 {
@@ -22,6 +24,8 @@ ModelSubsystem::~ModelSubsystem()
 void ModelSubsystem::initialize(Poco::Util::Application& app)
 {
     Poco::Data::SQLite::Connector::registerConnector();
+    addModel(new IPModel());
+    addModel(new HostnameModel());
     //   app.getSubsystem<DissectSubsystem>().onFrame += Poco::Delegate()
 }
 
@@ -35,3 +39,8 @@ void ModelSubsystem::uninitialize()
     Poco::Data::SQLite::Connector::unregisterConnector();
 }
 
+void ModelSubsystem::addModel(Model* model)
+{
+    poco_check_ptr(model);
+    model->initialize();
+}

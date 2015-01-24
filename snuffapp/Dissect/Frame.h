@@ -21,6 +21,7 @@ public:
     Frame(const std::string& device, const Poco::UInt8* data, int len);
     typedef Poco::AutoPtr<Frame> Ptr;
     void dissect();
+    template <class P> const P* getProtocol() const;
     std::string toString() const;
 private:
     virtual ~Frame();
@@ -30,5 +31,15 @@ private:
     Protocol::Container _protocols;
 };
 
+template <class P> const P* Frame::getProtocol() const
+{
+    Protocol::Container::const_iterator iter = _protocols.find(P::Name);
+    if (iter == _protocols.end()) {
+        return nullptr;
+    }
+    else {
+        return iter->second.cast<P>();
+    }
+}
 #endif	/* FRAMENOTIFICATION_H */
 

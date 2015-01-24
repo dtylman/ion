@@ -7,9 +7,9 @@
 
 
 #include "Main.h"
-#include "PcapSubsystem.h"
-#include "DissectSubsystem.h"
-#include "ModelSubsystem.h"
+#include "Sniff/PcapSubsystem.h"
+#include "Dissect/DissectSubsystem.h"
+#include "Model/ModelSubsystem.h"
 #include <iostream>
 
 Main::Main()
