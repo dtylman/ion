@@ -9,10 +9,12 @@
 #include "Main.h"
 #include "PcapSubsystem.h"
 #include "DissectSubsystem.h"
+#include "ModelSubsystem.h"
 #include <iostream>
 
 Main::Main()
 {
+    addSubsystem(new ModelSubsystem());
     addSubsystem(new DissectSubsystem());
     addSubsystem(new PcapSubsystem());
 }

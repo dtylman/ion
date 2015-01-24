@@ -39,7 +39,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Frame.o \
 	${OBJECTDIR}/MAC.o \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/ModelSubsystem.o \
 	${OBJECTDIR}/PcapActivity.o \
+	${OBJECTDIR}/PcapIfaceAddress.o \
 	${OBJECTDIR}/PcapSubsystem.o \
 	${OBJECTDIR}/Protocol.o \
 	${OBJECTDIR}/ProtocolARP.o \
@@ -93,10 +95,20 @@ ${OBJECTDIR}/Main.o: Main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.cpp
 
+${OBJECTDIR}/ModelSubsystem.o: ModelSubsystem.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModelSubsystem.o ModelSubsystem.cpp
+
 ${OBJECTDIR}/PcapActivity.o: PcapActivity.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapActivity.o PcapActivity.cpp
+
+${OBJECTDIR}/PcapIfaceAddress.o: PcapIfaceAddress.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapIfaceAddress.o PcapIfaceAddress.cpp
 
 ${OBJECTDIR}/PcapSubsystem.o: PcapSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}

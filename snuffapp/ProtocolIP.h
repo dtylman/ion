@@ -19,6 +19,8 @@ public:
     virtual const std::string& name() const;
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual std::string toString() const;
+
+    bool isDefaultTTL() const;
 protected:
     virtual ~ProtocolIP();
 private:
