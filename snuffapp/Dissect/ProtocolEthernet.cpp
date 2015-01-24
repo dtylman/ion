@@ -73,3 +73,13 @@ std::string ProtocolEthernet::toString() const
 {
     return Poco::format("SRC: %s, DEST: %s, TYPE: %hX", _sourceMAC.toString(), _destMAC.toString(), _ethType);
 }
+
+const MAC& ProtocolEthernet::dest() const
+{
+    return _destMAC;
+}
+
+const MAC& ProtocolEthernet::source() const
+{
+    return _sourceMAC;
+}

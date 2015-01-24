@@ -6,7 +6,7 @@
  */
 
 #include "PcapActivity.h"
-#include "DissectSubsystem.h"
+#include "../Dissect/DissectSubsystem.h"
 #include <Poco/Util/Application.h>
 
 PcapActivity::PcapActivity(const std::string& device) :

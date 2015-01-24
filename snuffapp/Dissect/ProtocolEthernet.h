@@ -19,6 +19,9 @@ public:
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual const std::string& name() const;
     virtual std::string toString() const;
+
+    const MAC& source() const;
+    const MAC& dest() const;
 protected:
     virtual ~ProtocolEthernet();
 private:

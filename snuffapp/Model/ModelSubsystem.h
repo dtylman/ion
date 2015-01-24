@@ -9,6 +9,7 @@
 #define	MODELSUBSYSTEM_H
 
 #include <Poco/Util/Subsystem.h>
+#include "Model.h"
 
 class ModelSubsystem : public Poco::Util::Subsystem
 {
@@ -19,6 +20,9 @@ protected:
     virtual const char* name() const;
     virtual void initialize(Poco::Util::Application& app);
     virtual void uninitialize();
+private:
+    void addModel(Model* model);
+    Model::Container _models;
 };
 
 #endif	/* MODELSUBSYSTEM_H */
