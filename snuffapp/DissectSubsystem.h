@@ -13,12 +13,14 @@
 #include <Poco/NotificationQueue.h>
 #include <Poco/Activity.h>
 #include <Poco/Logger.h>
+#include <Poco/BasicEvent.h>
 
 class DissectSubsystem : public Poco::Util::Subsystem
 {
 public:
     DissectSubsystem();
     void queueFrame(Frame* frame);
+    Poco::BasicEvent<Frame::Ptr> onFrame;
 protected:
     virtual ~DissectSubsystem();
     virtual const char* name() const;

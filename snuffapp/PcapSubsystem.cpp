@@ -6,10 +6,12 @@
  */
 
 #include "PcapSubsystem.h"
+#include "PcapIfaceAddress.h"
 #include <Poco/Logger.h>
 #include <Poco/Buffer.h>
 #include <Poco/Exception.h>
 #include <Poco/Format.h>
+#include <Poco/Net/IPAddress.h>
 #include <string>
 
 PcapSubsystem::PcapSubsystem() : _logger(Poco::Logger::get("PcapSubsystem"))
@@ -44,8 +46,17 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
             iface = iface->next;
             continue;
         }
-        _logger.information("Adding device: %s", device);
+
+        PcapIfaceAddress::Container addresses;
+        pcap_addr* address = iface->addresses;
+        while (address != nullptr) {
+            addresses.push_back(PcapIfaceAddress(address));
+            address = address->next;
+        }
+        //        if (!addresses.empty()) {
+        _logger.information("Adding device: %s ", device);
         _activities[device] = new PcapActivity(device);
+        //      }
         iface = iface->next;
     }
     pcap_freealldevs(iface);

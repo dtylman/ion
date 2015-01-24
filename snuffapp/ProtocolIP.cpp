@@ -67,3 +67,8 @@ std::string ProtocolIP::toString() const
 {
     return Poco::format("Src: %s, Dest: %s, Protocol: %d, TTL: %d", _source.toString(), _dest.toString(), (int) _protocol, (int) _ttl);
 }
+
+bool ProtocolIP::isDefaultTTL() const
+{
+    return ((_ttl % 64) == 0);
+}

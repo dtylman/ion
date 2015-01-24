@@ -24,8 +24,12 @@
     <itemPath>MAC.h</itemPath>
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
+    <itemPath>ModelSubsystem.cpp</itemPath>
+    <itemPath>ModelSubsystem.h</itemPath>
     <itemPath>PcapActivity.cpp</itemPath>
     <itemPath>PcapActivity.h</itemPath>
+    <itemPath>PcapIfaceAddress.cpp</itemPath>
+    <itemPath>PcapIfaceAddress.h</itemPath>
     <itemPath>PcapSubsystem.cpp</itemPath>
     <itemPath>PcapSubsystem.h</itemPath>
     <itemPath>Protocol.cpp</itemPath>
@@ -53,11 +57,13 @@
         <ccTool>
           <standard>8</standard>
           <incDir>
-            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
             <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Data/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Data/SQLite/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -70,8 +76,11 @@
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a</linkerLibFileItem>
             <linkerLibLibItem>pcap</linkerLibLibItem>
             <linkerLibLibItem>pthread</linkerLibLibItem>
+            <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -91,9 +100,17 @@
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModelSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -180,9 +197,17 @@
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ModelSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
