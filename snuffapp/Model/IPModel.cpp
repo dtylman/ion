@@ -45,12 +45,11 @@ void IPModel::onFrameEvent(Frame::Ptr& frame)
     if (eth == nullptr) {
         return;
     }
-    if (!ip->isDefaultTTL()) {
-        linkRouter(ip->source(), eth->source(), frame->device());
+    if (ip->isDefaultTTL()) {
+		link(ip->source(), eth->source(), frame->device());
     }
     else {
-        link(ip->source(), eth->source(), frame->device());
-        link(ip->dest(), eth->dest(), frame->device());
+		linkRouter(ip->source(), eth->source(), frame->device());
     }
 }
 
@@ -76,7 +75,7 @@ void IPModel::linkRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const s
         return;
     }
     std::string macStr = mac.toString();
-    int family = ip.family();
+	int family = ip.af();
     bool isRouter = false;
     _session << "SELECT 1 FROM router WHERE mac=? AND family=?", use(macStr), use(family), into(isRouter), now;
     if (isRouter) {
@@ -84,7 +83,7 @@ void IPModel::linkRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const s
     }
     else {
         int count = 0;
-        _session << "SELECT count(ip) FROM ip WHERE mac=?", use(macStr), now;
+        _session << "SELECT count(ip) FROM ip WHERE mac=?", use(macStr), into(count), now;
         if (count > 3) {
             _session << "INSERT INTO router (mac, family) VALUES (?,?)", use(macStr), use(family), now;
             _session << "DELETE FROM ip WHERE mac=?", use(macStr), now;

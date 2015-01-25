@@ -70,7 +70,7 @@ std::string ProtocolIP::toString() const
 
 bool ProtocolIP::isDefaultTTL() const
 {
-    return ((_ttl % 64) == 0);
+    return ((_ttl % 32) == 0);
 }
 
 const Poco::Net::IPAddress& ProtocolIP::dest() const

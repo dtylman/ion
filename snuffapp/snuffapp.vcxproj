@@ -22,6 +22,7 @@
     <ClCompile Include="Dissect\ProtocolUDP.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Model\HostnameModel.cpp" />
+    <ClCompile Include="Model\IPCache.cpp" />
     <ClCompile Include="Model\IPModel.cpp" />
     <ClCompile Include="Model\Model.cpp" />
     <ClCompile Include="Model\ModelSubsystem.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="Dissect\ProtocolUDP.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Model\HostnameModel.h" />
+    <ClInclude Include="Model\IPCache.h" />
     <ClInclude Include="Model\IPModel.h" />
     <ClInclude Include="Model\Model.h" />
     <ClInclude Include="Model\ModelSubsystem.h" />

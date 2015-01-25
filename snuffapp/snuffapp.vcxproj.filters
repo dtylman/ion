@@ -65,6 +65,9 @@
     <ClCompile Include="Sniff\PcapSubsystem.cpp">
       <Filter>Sniff</Filter>
     </ClCompile>
+    <ClCompile Include="Model\IPCache.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="Sniff\PcapSubsystem.h">
       <Filter>Sniff</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\IPCache.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

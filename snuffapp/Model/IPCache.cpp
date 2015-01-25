@@ -24,4 +24,5 @@ bool IPCache::exists(const MAC& mac, const Poco::Net::IPAddress& ip, const std::
         return true;
     }
     _cache.add(key, Poco::Timestamp());
+	return false;
 }
