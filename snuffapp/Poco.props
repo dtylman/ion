@@ -7,7 +7,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(POCO_DIR)\Foundation\include;$(POCO_DIR)\Util\include;$(POCO_DIR)\XML\include;$(POCO_DIR)\JSON\include;$(POCO_DIR)\Net\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(POCO_DIR)\Foundation\include;$(POCO_DIR)\Util\include;$(POCO_DIR)\XML\include;$(POCO_DIR)\JSON\include;$(POCO_DIR)\Data\include;$(POCO_DIR)\Data\SQLite\include;$(POCO_DIR)\Net\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(POCO_DIR)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
