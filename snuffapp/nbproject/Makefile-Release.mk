@@ -46,6 +46,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Dissect/ProtocolUDP.o \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/Model/HostnameModel.o \
+	${OBJECTDIR}/Model/IPCache.o \
 	${OBJECTDIR}/Model/IPModel.o \
 	${OBJECTDIR}/Model/Model.o \
 	${OBJECTDIR}/Model/ModelSubsystem.o \
@@ -132,6 +133,11 @@ ${OBJECTDIR}/Model/HostnameModel.o: Model/HostnameModel.cpp
 	${MKDIR} -p ${OBJECTDIR}/Model
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Model/HostnameModel.o Model/HostnameModel.cpp
+
+${OBJECTDIR}/Model/IPCache.o: Model/IPCache.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Model
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Model/IPCache.o Model/IPCache.cpp
 
 ${OBJECTDIR}/Model/IPModel.o: Model/IPModel.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Model

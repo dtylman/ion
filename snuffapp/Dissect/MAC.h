@@ -21,6 +21,10 @@ public:
     std::string toString(const std::string& byteFormat = "%02x") const;
     std::string toString(const std::string& byteFormat, size_t size) const;
     std::string vendorPrefix() const;
+    bool isUnicast() const;
+    bool isWildcard() const;
+    bool isMulticast() const;
+    bool isBroadcast() const;
 };
 
 #endif	/* MAC_H */

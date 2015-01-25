@@ -45,3 +45,8 @@ std::string Frame::toString() const
     }
     return output;
 }
+
+const std::string& Frame::device() const
+{
+    return _device;
+}

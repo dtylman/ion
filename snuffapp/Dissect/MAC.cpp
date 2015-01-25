@@ -51,3 +51,38 @@ std::string MAC::vendorPrefix() const
     return toString("%02x", 3);
 }
 
+bool MAC::isUnicast() const
+{
+    return (!isBroadcast() && !isMulticast() && (!isWildcard()));
+}
+
+bool MAC::isWildcard() const
+{
+    for (unsigned char c : * this) {
+        if (c != 0x00) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool MAC::isBroadcast() const
+{
+    for (unsigned char c : * this) {
+        if (c != 0xFF) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool MAC::isMulticast() const
+{
+    if ((at(0) == 0x5e) && (at(1) == 0x00) && (at(2) == 0x01)) {
+        return true; // IPv4 ;
+    }
+    if ((at(0) == 0x33) && (at(1) == 0x33)) {
+        return true; // IPv6
+    }
+    return false;
+}

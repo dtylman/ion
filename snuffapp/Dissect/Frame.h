@@ -22,6 +22,7 @@ public:
     typedef Poco::AutoPtr<Frame> Ptr;
     void dissect();
     template <class P> const P* getProtocol() const;
+    const std::string& device() const;
     std::string toString() const;
 private:
     virtual ~Frame();
