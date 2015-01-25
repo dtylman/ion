@@ -20,3 +20,5 @@ Debug
 Release
 inst/win/output
 zakif.db
+mabat/mabat.v12.suo
+mabat/mabat/mabat.csproj.user

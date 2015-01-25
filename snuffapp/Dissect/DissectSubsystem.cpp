@@ -47,7 +47,7 @@ void DissectSubsystem::runActivity()
         Frame::Ptr frame = notif.cast<Frame>();
         if (!frame.isNull()) {
             frame->dissect();
-            _logger.notice("Frame: %s", frame->toString());
+            _logger.debug("Frame: %s", frame->toString());
             onFrame.notifyAsync(this, frame);
         }
     }
