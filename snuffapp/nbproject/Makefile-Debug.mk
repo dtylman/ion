@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Arper.o \
 	${OBJECTDIR}/Dissect/DissectSubsystem.o \
 	${OBJECTDIR}/Dissect/Frame.o \
 	${OBJECTDIR}/Dissect/MAC.o \
@@ -92,6 +93,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/L
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Arper.o: Arper.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Arper.o Arper.cpp
 
 ${OBJECTDIR}/Dissect/DissectSubsystem.o: Dissect/DissectSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Dissect

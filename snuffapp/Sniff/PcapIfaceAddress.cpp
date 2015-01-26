@@ -9,24 +9,22 @@
 
 PcapIfaceAddress::PcapIfaceAddress(const pcap_addr* address)
 {
-    //    if (address->addr != nullptr) {
-    //        _ip = Poco::Net::IPAddress(address->addr->sa_data, sizeof (address->addr->sa_data));
-    //    }
-    //    if (address->broadaddr != nullptr) {
-    //        printf(" %d \n", (int) address->broadaddr->sa_family);
-    //        _bcast = Poco::Net::IPAddress(*address->broadaddr);
-    //    }
-    //    if (address->netmask != nullptr) {
-    //        printf(" %d \n", (int) address->netmask->sa_family);
-    //        _netmask = Poco::Net::IPAddress(*address->netmask);
-    //    }
-    //    if (address->dstaddr != nullptr) {
-    //        printf(" %d \n", (int) address->dstaddr->sa_family);
-    //        _dest = Poco::Net::IPAddress(*address->dstaddr);
-    //    }
+    setAddress(_ip, address->addr);
+    setAddress(_bcast, address->broadaddr);
+    setAddress(_netmask, address->netmask);
+    setAddress(_dest, address->dstaddr);
 }
 
 PcapIfaceAddress::~PcapIfaceAddress()
 {
 }
 
+void PcapIfaceAddress::setAddress(Poco::Net::IPAddress& poco, const sockaddr* address)
+{
+    if (address == nullptr) {
+        return;
+    }
+    if ((address->sa_family == AF_INET) || (address->sa_family == AF_INET6)) {
+        poco = Poco::Net::IPAddress(*address);
+    }
+}

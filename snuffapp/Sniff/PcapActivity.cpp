@@ -9,9 +9,8 @@
 #include "../Dissect/DissectSubsystem.h"
 #include <Poco/Util/Application.h>
 
-PcapActivity::PcapActivity(const std::string& device) :
-_device(device),
-_pcap(nullptr),
+PcapActivity::PcapActivity(const std::string& device, const PcapIfaceAddress::Container& addresses) :
+_device(device), _addresses(addresses),
 _activity(this, &PcapActivity::runActivity), _logger(Poco::Logger::get("PcapActivity"))
 {
 }
@@ -20,7 +19,7 @@ PcapActivity::~PcapActivity()
 {
 }
 
-static void pcap_process(u_char *device, const struct pcap_pkthdr *header, const u_char *bytes)
+static void pcap_process(u_char *device, const struct pcap_pkthdr *header, const u_char * bytes)
 {
 
     if ((device == nullptr) || (header == nullptr) || (bytes == nullptr)) {
@@ -100,4 +99,19 @@ void PcapActivity::stop()
         }
         //_activity.wait(500);
     }
+}
+
+bool PcapActivity::inject(const Poco::UInt8* data, int len)
+{
+    poco_check_ptr(_pcap);
+    if (pcap_sendpacket(_pcap, data, len) == -1) {
+        _logger.error("pcap_inject failed, error: %s", std::string(pcap_geterr(_pcap)));
+        return false;
+    }
+    return true;
+}
+
+const PcapIfaceAddress::Container& PcapActivity::addresses() const
+{
+    return _addresses;
 }
