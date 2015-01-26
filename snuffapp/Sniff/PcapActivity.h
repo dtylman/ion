@@ -14,21 +14,25 @@
 #include <Poco/AutoPtr.h>
 #include <pcap.h>
 
+#include "PcapIfaceAddress.h"
+
 class PcapActivity : public Poco::RefCountedObject
 {
 public:
-    PcapActivity(const std::string& device);
-
+    PcapActivity(const std::string& device, const PcapIfaceAddress::Container& addresses);
     typedef Poco::AutoPtr<PcapActivity> Ptr;
     void start();
     void stop();
+    bool inject(const Poco::UInt8* data, int len);
+    const PcapIfaceAddress::Container& addresses() const;
 protected:
     void runActivity();
     virtual ~PcapActivity();
 private:
     bool openLive();
     std::string _device;
-    pcap_t* _pcap;
+    PcapIfaceAddress::Container _addresses;
+    pcap_t* _pcap = nullptr;
     Poco::Activity<PcapActivity> _activity;
     Poco::Logger& _logger;
 };

@@ -22,12 +22,12 @@ class IPModel : public Model
 public:
     IPModel();
     virtual void initialize();
-    void onFrameEvent(Frame::Ptr& frame);
-protected:
-    virtual ~IPModel();
-private:
     void link(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void linkRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
+protected:
+    void onFrameEvent(Frame::Ptr& frame);
+    virtual ~IPModel();
+private:
     IPCache _cache;
 };
 

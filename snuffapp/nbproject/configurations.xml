@@ -56,6 +56,8 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>Arper.cpp</itemPath>
+    <itemPath>Arper.h</itemPath>
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
   </logicalFolder>
@@ -98,6 +100,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="Arper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Arper.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Dissect/DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Dissect/DissectSubsystem.h" ex="false" tool="3" flavor2="0">
@@ -211,6 +217,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="Arper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Arper.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Dissect/DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Dissect/DissectSubsystem.h" ex="false" tool="3" flavor2="0">

@@ -24,6 +24,7 @@ PcapSubsystem::~PcapSubsystem()
 
 void PcapSubsystem::start()
 {
+    Poco::FastMutex::ScopedLock lock(_mutex);
     for (auto activity : _activities) {
         activity.second->start();
     }
@@ -31,6 +32,7 @@ void PcapSubsystem::start()
 
 void PcapSubsystem::initialize(Poco::Util::Application& app)
 {
+    Poco::FastMutex::ScopedLock lock(_mutex);
     Poco::Buffer<char> errBuff(PCAP_ERRBUF_SIZE);
     pcap_if_t *iface = nullptr;
     if (pcap_findalldevs(&iface, errBuff.begin()) < 0) {
@@ -53,10 +55,8 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
             addresses.push_back(PcapIfaceAddress(address));
             address = address->next;
         }
-        //        if (!addresses.empty()) {
         _logger.information("Adding device: %s ", device);
-        _activities[device] = new PcapActivity(device);
-        //      }
+        _activities[device] = new PcapActivity(device, addresses);
         iface = iface->next;
     }
     pcap_freealldevs(iface);
@@ -69,8 +69,35 @@ const char* PcapSubsystem::name() const
 
 void PcapSubsystem::uninitialize()
 {
+    Poco::FastMutex::ScopedLock lock(_mutex);
     _logger.notice("PcapSubsystem::uninitialize");
     for (auto activity : _activities) {
         activity.second->stop();
+    }
+}
+
+bool PcapSubsystem::inject(const std::string& iface, const Poco::UInt8* data, int len)
+{
+    Poco::FastMutex::ScopedLock lock(_mutex);
+    ActivityContainer::iterator activity = _activities.find(iface);
+    if (activity == _activities.end()) {
+        return false;
+    }
+    return activity->second->inject(data, len);
+}
+
+void PcapSubsystem::injectAll(const Poco::UInt8* data, int len)
+{
+    Poco::FastMutex::ScopedLock lock(_mutex);
+    for (auto activity : _activities) {
+        activity.second->inject(data, len);
+    }
+}
+
+void PcapSubsystem::getDevices(Devices& devices)
+{
+    Poco::FastMutex::ScopedLock lock(_mutex);
+    for (auto activity : _activities) {
+        devices[activity.first] = activity.second->addresses();
     }
 }
