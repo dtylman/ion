@@ -40,7 +40,7 @@ Source: "..\..\mabat\mabat\bin\release\System.Data.SQLite.dll" ; DestDir: "{app}
 Source: "..\..\mabat\mabat\bin\release\x86\SQLite.Interop.dll" ; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#AppName}"; Filename: "{app}\mabat.exe"
+Name: "{group}\Mabat"; Filename: "{app}\mabat.exe"; Flags: 
 Name: "{commondesktop}\{#AppName}"; Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
 
 [Run]
