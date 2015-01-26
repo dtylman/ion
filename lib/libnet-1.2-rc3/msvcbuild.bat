@@ -1,14 +1,14 @@
 @rem Script to build libnet under "Visual Studio .NET Command Prompt".
 @rem Dependencies are:
 @rem   winpcap, specifically, the winpcap developer pack
-
+call "%VS120COMNTOOLS%..\..\VC\vcvarsall.bat" x86
 @setlocal
 @set MYCOMPILE=cl /nologo /MD /O2 /W3 /c /D_CRT_SECURE_NO_DEPRECATE
 @set MYLINK=link /nologo
 @set MYMT=mt /nologo
 
 @rem relative to C code in src/
-@set WINPCAP=..\..\..\WpdPack
+@set WINPCAP=..\..\WpdPack_4_1_2\WpdPack
 
 copy win32\libnet.h include\
 copy win32\stdint.h include\libnet\
