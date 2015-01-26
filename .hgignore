@@ -20,5 +20,13 @@ Debug
 Release
 inst/win/output
 zakif.db
-mabat/mabat.v12.suo
-mabat/mabat/mabat.csproj.user
+*.obj
+*.dll
+lib/libnet-1.2-rc3/src/libnet.lib
+lib/libnet-1.2-rc3/src/libnet.exp
+lib/libnet-1.2-rc3/include/config.h
+lib/libnet-1.2-rc3/include/getopt.h
+lib/libnet-1.2-rc3/include/libnet.h
+lib/libnet-1.2-rc3/include/libnet/stdint.h
+*.suo
+*.user
