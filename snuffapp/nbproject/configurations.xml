@@ -97,6 +97,7 @@
             <linkerLibLibItem>pcap</linkerLibLibItem>
             <linkerLibLibItem>pthread</linkerLibLibItem>
             <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
+            <linkerLibLibItem>net</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
