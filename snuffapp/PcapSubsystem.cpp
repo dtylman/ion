@@ -49,14 +49,21 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
             continue;
         }
 
-        PcapIfaceAddress::Container addresses;
+        PcapDevice pcapDevice;
+        if (iface->description == nullptr) {
+            pcapDevice.setName(device, device);
+        }
+        else {
+            pcapDevice.setName(device, iface->description);
+        }
         pcap_addr* address = iface->addresses;
         while (address != nullptr) {
-            addresses.push_back(PcapIfaceAddress(address));
+            pcapDevice.addAddress(PcapIfaceAddress(address));
             address = address->next;
         }
         _logger.information("Adding device: %s ", device);
-        _activities[device] = new PcapActivity(device, addresses);
+        _activities[device] = new PcapActivity(device);
+        _devices[device] = pcapDevice;
         iface = iface->next;
     }
     pcap_freealldevs(iface);
@@ -76,30 +83,12 @@ void PcapSubsystem::uninitialize()
     }
 }
 
-//bool PcapSubsystem::inject(const std::string& iface, const Poco::UInt8* data, int len)
-//{
-//    Poco::FastMutex::ScopedLock lock(_mutex);
-//    ActivityContainer::iterator activity = _activities.find(iface);
-//    if (activity == _activities.end()) {
-//        return false;
-//    }
-//    return activity->second->inject(data, len);
-//}
-//
-//void PcapSubsystem::injectAll(const Poco::UInt8* data, int len)
-//{
-//    Poco::FastMutex::ScopedLock lock(_mutex);
-//    for (auto activity : _activities) {
-//        activity.second->inject(data, len);
-//    }
-//}
-//
-
-void PcapSubsystem::getDevices(Devices& devices)
+PcapDevice PcapSubsystem::getDevice(const std::string& name) const
 {
     Poco::FastMutex::ScopedLock lock(_mutex);
-    for (auto activity : _activities) {
-        devices[activity.first] = activity.second->addresses();
+    Devices::const_iterator device = _devices.find(name);
+    if (device == _devices.end()) {
+        throw Poco::NotFoundException(Poco::format("Device %s not found", name));
     }
+    return device->second;
 }
-

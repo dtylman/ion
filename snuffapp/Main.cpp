@@ -14,6 +14,7 @@
 #include "Arper.h"
 #include "Injector.h"
 #include "Arping.h"
+#include "Routing.h"
 #include <iostream>
 
 Main::Main()
@@ -31,21 +32,16 @@ int Main::main(const std::vector<std::string>& args)
 {
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     pcap.start();
-    PcapSubsystem::Devices devices;
-    pcap.getDevices(devices);
-    for (auto device : devices) {
-        logger().notice("Looking for routers on %s", device.first);
-        for (auto pcapAddr : device.second) {
-            const Poco::Net::IPAddress& broadcastAddr = pcapAddr.broadcast();
-            if (broadcastAddr.isUnicast()) {
-                if (broadcastAddr.af() == Poco::Net::IPAddress::IPv4) {
-                    Injector injector(device.first, pcapAddr.ip());
-                    Arping arping(injector, broadcastAddr);
-                    if (arping.ping()) {
-                        logger().notice("Device %s broadcast ip %s mac %s", device.first, broadcastAddr.toString(), arping.targetMAC().toString());
-                    }
-                }
-            }
+    Routing routing;
+    const Routing::Gateways& gateways = routing.gateways();
+    for (auto gateway : gateways) {
+        const std::string& device = gateway.second;
+        const Poco::Net::IPAddress& gw = gateway.first;
+        Poco::Net::IPAddress src = pcap.getDevice(device).getIPAddress(Poco::Net::IPAddress::IPv4);
+        Injector injector(device, src);
+        Arping arping(injector, gw);
+        if (arping.ping()) {
+            logger().notice("Device %s %s Gw IP %s mac %s", device, src.toString(), gw.toString(), arping.targetMAC().toString());
         }
     }
     waitForTerminationRequest();

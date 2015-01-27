@@ -8,9 +8,10 @@
 #include "PcapActivity.h"
 #include "DissectSubsystem.h"
 #include <Poco/Util/Application.h>
+#include <Poco/Platform.h>
 
-PcapActivity::PcapActivity(const std::string& device, const PcapIfaceAddress::Container& addresses) :
-_device(device), _addresses(addresses),
+PcapActivity::PcapActivity(const std::string& device) :
+_device(device),
 _activity(this, &PcapActivity::runActivity), _logger(Poco::Logger::get("PcapActivity"))
 {
 }
@@ -21,8 +22,8 @@ PcapActivity::~PcapActivity()
 
 static void pcap_process(u_char *device, const struct pcap_pkthdr *header, const u_char * bytes)
 {
-
     if ((device == nullptr) || (header == nullptr) || (bytes == nullptr)) {
+
         return;
     }
     DissectSubsystem& dissect = Poco::Util::Application::instance().getSubsystem<DissectSubsystem>();
@@ -95,22 +96,8 @@ void PcapActivity::stop()
         _logger.notice("stopping sniff on %s", _device);
         _activity.stop();
         if (_pcap != nullptr) {
+
             pcap_breakloop(_pcap);
         }
     }
-}
-//
-//bool PcapActivity::inject(const Poco::UInt8* data, int len)
-//{
-//    poco_check_ptr(_pcap);
-//    if (pcap_sendpacket(_pcap, data, len) == -1) {
-//        _logger.error("pcap_inject failed, error: %s", std::string(pcap_geterr(_pcap)));
-//        return false;
-//    }
-//    return true;
-//}
-
-const PcapIfaceAddress::Container& PcapActivity::addresses() const
-{
-    return _addresses;
 }

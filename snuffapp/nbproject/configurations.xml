@@ -36,6 +36,8 @@
     <logicalFolder name="f1" displayName="Pcap" projectFiles="true">
       <itemPath>PcapActivity.cpp</itemPath>
       <itemPath>PcapActivity.h</itemPath>
+      <itemPath>PcapDevice.cpp</itemPath>
+      <itemPath>PcapDevice.h</itemPath>
       <itemPath>PcapIfaceAddress.cpp</itemPath>
       <itemPath>PcapIfaceAddress.h</itemPath>
       <itemPath>PcapSubsystem.cpp</itemPath>
@@ -68,6 +70,9 @@
     <itemPath>Main.h</itemPath>
     <itemPath>Makefile</itemPath>
     <itemPath>Poco.props</itemPath>
+    <itemPath>Rouing.cpp</itemPath>
+    <itemPath>Routing.h</itemPath>
+    <itemPath>Routing_LINUX.cpp</itemPath>
     <itemPath>pcap.props</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -164,6 +169,10 @@
       </item>
       <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="PcapDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
@@ -197,6 +206,12 @@
       <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Rouing.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Routing.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
@@ -295,6 +310,10 @@
       </item>
       <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="PcapDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
@@ -328,6 +347,12 @@
       <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Rouing.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Routing.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
