@@ -11,7 +11,8 @@
 #include <Poco/Bugcheck.h>
 #include <vector>
 
-Injector::Injector(const std::string& device) : _device(device)
+Injector::Injector(const std::string& device, const Poco::Net::IPAddress& sourceIP) :
+_device(device), _srcIP(sourceIP)
 {
     Poco::Buffer<char> errBuff(LIBNET_ERRBUF_SIZE);
     _libnet = libnet_init(LIBNET_LINK, device.c_str(), errBuff.begin());
@@ -19,8 +20,6 @@ Injector::Injector(const std::string& device) : _device(device)
         throw Poco::ApplicationException(Poco::format("Cannot init libnet with %s %s", device, std::string(errBuff.begin())));
     }
     _srcMAC = libnet_get_hwaddr(_libnet);
-    _srcIP = libnet_get_ipaddr4(_libnet);
-    _srcIPv6 = libnet_get_ipaddr6(_libnet);
 }
 
 Injector::~Injector()
@@ -37,7 +36,7 @@ void Injector::arpRequest(const Poco::Net::IPAddress& targetIP, const MAC& targe
 {
     Poco::FastMutex::ScopedLock lock(_mutex);
     libnet_clear_packet(_libnet);
-    libnet_ptag_t tag = libnet_autobuild_arp(ARPOP_REQUEST, _srcMAC->ether_addr_octet, (const uint8_t *) &_srcIP, targetMAC.data(), (uint8_t*) targetIP.addr(), _libnet);
+    libnet_ptag_t tag = libnet_autobuild_arp(ARPOP_REQUEST, _srcMAC->ether_addr_octet, (const uint8_t *) _srcIP.addr(), targetMAC.data(), (uint8_t*) targetIP.addr(), _libnet);
     if (tag == -1) {
         throw Poco::ApplicationException(Poco::format("Failed to build arp request: %s", libnet_geterror(_libnet)));
 
