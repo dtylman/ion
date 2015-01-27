@@ -19,7 +19,7 @@
 class Arping
 {
 public:
-    Arping(Injector& injector, const Poco::Net::IPAddress& targetIP, MAC& targetMAC = MAC::Broadcast);
+    Arping(Injector& injector, const Poco::Net::IPAddress& targetIP, const MAC& targetMAC = MAC::Broadcast);
     virtual ~Arping();
 
     bool ping(int retries = 3, const Poco::Timespan& interval = Poco::Timespan::SECONDS);

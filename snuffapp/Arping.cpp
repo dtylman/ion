@@ -12,7 +12,7 @@
 #include <Poco/Util/Application.h>
 #include <Poco/Delegate.h>
 
-Arping::Arping(Injector& injector, const Poco::Net::IPAddress& targetIP, MAC& targetMAC) : _injector(injector),
+Arping::Arping(Injector& injector, const Poco::Net::IPAddress& targetIP, const MAC& targetMAC) : _injector(injector),
 _targetIP(targetIP), _targetMAC(targetMAC)
 {
     Poco::Util::Application::instance().getSubsystem<DissectSubsystem>().onFrame += Poco::delegate(this, &Arping::onFrameEvent);
@@ -28,7 +28,7 @@ void Arping::onFrameEvent(Frame::Ptr& frame)
     if (frame->device() == _injector.device()) {
         const ProtocolARP* arp = frame->getProtocol<ProtocolARP>();
         if (arp != nullptr) {
-            if ((arp->opCode() == ARPOP_REPLY) && (arp->targetIP() == _targetIP)) {
+            if ((arp->opCode() == ARPOP_REPLY) && (arp->senderIP() == _targetIP)) {
                 _targetMAC = arp->targetMAC();
                 _counter++;
             }
@@ -45,7 +45,7 @@ bool Arping::ping(int retries, const Poco::Timespan& interval)
         else {
             _injector.arpRequest(_targetIP);
         }
-        Poco::Thread::sleep(interval.totalMilliseconds());
+        Poco::Thread::sleep((long)interval.totalMilliseconds());
         if (_counter > 0) {
             return true;
         }

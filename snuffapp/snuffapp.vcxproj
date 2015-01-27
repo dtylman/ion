@@ -11,48 +11,60 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dissect\DissectSubsystem.cpp" />
-    <ClCompile Include="Dissect\Frame.cpp" />
-    <ClCompile Include="Dissect\MAC.cpp" />
-    <ClCompile Include="Dissect\Protocol.cpp" />
-    <ClCompile Include="Dissect\ProtocolARP.cpp" />
-    <ClCompile Include="Dissect\ProtocolEthernet.cpp" />
-    <ClCompile Include="Dissect\ProtocolIP.cpp" />
-    <ClCompile Include="Dissect\ProtocolNBDatagram.cpp" />
-    <ClCompile Include="Dissect\ProtocolUDP.cpp" />
+    <ClCompile Include="Arper.cpp" />
+    <ClCompile Include="Arping.cpp" />
+    <ClCompile Include="DissectSubsystem.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="HostnameModel.cpp" />
+    <ClCompile Include="Injector.cpp" />
+    <ClCompile Include="IPCache.cpp" />
+    <ClCompile Include="IPModel.cpp" />
+    <ClCompile Include="MAC.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Model\HostnameModel.cpp" />
-    <ClCompile Include="Model\IPCache.cpp" />
-    <ClCompile Include="Model\IPModel.cpp" />
-    <ClCompile Include="Model\Model.cpp" />
-    <ClCompile Include="Model\ModelSubsystem.cpp" />
-    <ClCompile Include="Sniff\PcapActivity.cpp" />
-    <ClCompile Include="Sniff\PcapIfaceAddress.cpp" />
-    <ClCompile Include="Sniff\PcapSubsystem.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelSubsystem.cpp" />
+    <ClCompile Include="PcapActivity.cpp" />
+    <ClCompile Include="PcapIfaceAddress.cpp" />
+    <ClCompile Include="PcapSubsystem.cpp" />
+    <ClCompile Include="Protocol.cpp" />
+    <ClCompile Include="ProtocolARP.cpp" />
+    <ClCompile Include="ProtocolEthernet.cpp" />
+    <ClCompile Include="ProtocolIP.cpp" />
+    <ClCompile Include="ProtocolNBDatagram.cpp" />
+    <ClCompile Include="ProtocolUDP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Dissect\DissectSubsystem.h" />
-    <ClInclude Include="Dissect\Frame.h" />
-    <ClInclude Include="Dissect\MAC.h" />
-    <ClInclude Include="Dissect\Protocol.h" />
-    <ClInclude Include="Dissect\ProtocolARP.h" />
-    <ClInclude Include="Dissect\ProtocolEthernet.h" />
-    <ClInclude Include="Dissect\ProtocolIP.h" />
-    <ClInclude Include="Dissect\ProtocolNBDatagram.h" />
-    <ClInclude Include="Dissect\ProtocolUDP.h" />
+    <ClInclude Include="Arper.h" />
+    <ClInclude Include="Arping.h" />
+    <ClInclude Include="DissectSubsystem.h" />
+    <ClInclude Include="Frame.h" />
+    <ClInclude Include="HostnameModel.h" />
+    <ClInclude Include="Injector.h" />
+    <ClInclude Include="IPCache.h" />
+    <ClInclude Include="IPModel.h" />
+    <ClInclude Include="MAC.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="Model\HostnameModel.h" />
-    <ClInclude Include="Model\IPCache.h" />
-    <ClInclude Include="Model\IPModel.h" />
-    <ClInclude Include="Model\Model.h" />
-    <ClInclude Include="Model\ModelSubsystem.h" />
-    <ClInclude Include="Sniff\PcapActivity.h" />
-    <ClInclude Include="Sniff\PcapIfaceAddress.h" />
-    <ClInclude Include="Sniff\PcapSubsystem.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelSubsystem.h" />
+    <ClInclude Include="PcapActivity.h" />
+    <ClInclude Include="PcapIfaceAddress.h" />
+    <ClInclude Include="PcapSubsystem.h" />
+    <ClInclude Include="Protocol.h" />
+    <ClInclude Include="ProtocolARP.h" />
+    <ClInclude Include="ProtocolEthernet.h" />
+    <ClInclude Include="ProtocolIP.h" />
+    <ClInclude Include="ProtocolNBDatagram.h" />
+    <ClInclude Include="ProtocolUDP.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="libnet.props" />
     <None Include="pcap.props" />
     <None Include="Poco.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lib\libnet-1.2-rc3\win32\libnet.vcxproj">
+      <Project>{d53fce9f-25d4-447a-98f7-6d4aef3644c8}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{670191CA-6C52-4E53-BBB9-3A6BA7A01601}</ProjectGuid>
@@ -80,11 +92,13 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="Poco.props" />
     <Import Project="pcap.props" />
+    <Import Project="libnet.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="Poco.props" />
     <Import Project="pcap.props" />
+    <Import Project="libnet.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "snuffapp", "snuffapp\snuffapp.vcxproj", "{670191CA-6C52-4E53-BBB9-3A6BA7A01601}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libnet", "lib\libnet-1.2-rc3\win32\libnet.vcxproj", "{D53FCE9F-25D4-447A-98F7-6D4AEF3644C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{670191CA-6C52-4E53-BBB9-3A6BA7A01601}.Debug|Win32.Build.0 = Debug|Win32
 		{670191CA-6C52-4E53-BBB9-3A6BA7A01601}.Release|Win32.ActiveCfg = Release|Win32
 		{670191CA-6C52-4E53-BBB9-3A6BA7A01601}.Release|Win32.Build.0 = Release|Win32
+		{D53FCE9F-25D4-447A-98F7-6D4AEF3644C8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D53FCE9F-25D4-447A-98F7-6D4AEF3644C8}.Debug|Win32.Build.0 = Debug|Win32
+		{D53FCE9F-25D4-447A-98F7-6D4AEF3644C8}.Release|Win32.ActiveCfg = Release|Win32
+		{D53FCE9F-25D4-447A-98F7-6D4AEF3644C8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
