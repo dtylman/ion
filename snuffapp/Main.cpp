@@ -28,7 +28,8 @@ int Main::main(const std::vector<std::string>& args)
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     pcap.start();
 
-
+    MAC mac("aa-bb:CC:03:04:05");
+    logger().notice(mac.toString());
     waitForTerminationRequest();
     return EXIT_OK;
 }

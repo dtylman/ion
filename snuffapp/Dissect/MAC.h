@@ -17,6 +17,7 @@ class MAC : public Poco::Net::NetworkInterface::MACAddress
 public:
     MAC();
     MAC(const Poco::UInt8* address);
+    MAC(const std::string& address);
     virtual ~MAC();
     std::string toString(const std::string& byteFormat = "%02x") const;
     std::string toString(const std::string& byteFormat, size_t size) const;

@@ -7,6 +7,8 @@
 
 #include "MAC.h"
 #include <Poco/Format.h>
+#include <Poco/HexBinaryDecoder.h>
+#include <Poco/MemoryStream.h>
 
 #define MAC_ADDRESS_SIZE 6
 
@@ -20,11 +22,26 @@ MAC::MAC(const Poco::UInt8* address)
     assign(address, address + MAC_ADDRESS_SIZE);
 }
 
+MAC::MAC(const std::string& address)
+{
+    if (address.size() < 17) {
+        throw Poco::InvalidArgumentException(Poco::format("Invalid mac address %s", address));
+    }
+    Poco::MemoryInputStream mis(address.c_str(), address.size());
+    Poco::HexBinaryDecoder decoder(mis);
+    Poco::UInt8 byte;
+    for (int i = 0; i < MAC_ADDRESS_SIZE; i++) {
+        decoder>>byte;
+        push_back(byte);
+        mis.get(); // the delimiter
+    }
+}
+
 MAC::~MAC()
 {
 }
 
-std::string MAC::toString(const std::string& byteFormat) const
+std::string MAC::toString(const std::string & byteFormat) const
 {
     return toString(byteFormat, size());
 }
@@ -86,3 +103,4 @@ bool MAC::isMulticast() const
     }
     return false;
 }
+
