@@ -31,7 +31,7 @@ private:
     typedef std::map<std::string, PcapActivity::Ptr> ActivityContainer;
     mutable Poco::FastMutex _mutex;
     ActivityContainer _activities;
-    typedef std::map<std::string, PcapDevice> Devices;
+    typedef std::list<PcapDevice> Devices;
     Devices _devices;
     Poco::Logger& _logger;
 };

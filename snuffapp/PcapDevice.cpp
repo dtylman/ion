@@ -36,3 +36,11 @@ Poco::Net::IPAddress PcapDevice::getIPAddress(Poco::Net::IPAddress::Family famil
     }
 }
 
+const std::string& PcapDevice::systemName() const
+{
+	return _name;
+}
+const std::string& PcapDevice::pcapName() const
+{
+	return _pcapName;
+}
