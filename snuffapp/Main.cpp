@@ -7,9 +7,13 @@
 
 
 #include "Main.h"
-#include "Sniff/PcapSubsystem.h"
-#include "Dissect/DissectSubsystem.h"
-#include "Model/ModelSubsystem.h"
+#include "PcapSubsystem.h"
+#include "DissectSubsystem.h"
+#include "ModelSubsystem.h"
+#include "MAC.h"
+#include "Arper.h"
+#include "Injector.h"
+#include "Arping.h"
 #include <iostream>
 
 Main::Main()
@@ -29,7 +33,20 @@ int Main::main(const std::vector<std::string>& args)
     pcap.start();
 
     MAC mac("aa-bb:CC:03:04:05");
-    logger().notice(mac.toString());
+    logger().notice(MAC::Broadcast.toString());
+    {
+        Injector injector("wlan0");
+        {
+            Arping arping(injector, Poco::Net::IPAddress("10.0.0.1"));
+            arping.ping();
+            logger().notice(arping.targetMAC().toString());
+        }
+        {
+            Arping arping(injector, Poco::Net::IPAddress("192.168.10.1"));
+            arping.ping();
+            logger().notice(arping.targetMAC().toString());
+        }
+    }
     waitForTerminationRequest();
     return EXIT_OK;
 }

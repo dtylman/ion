@@ -20,6 +20,12 @@ public:
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual const std::string& name() const;
     virtual std::string toString() const;
+
+    Poco::UInt16 opCode() const;
+    const MAC& senderMAC() const;
+    const Poco::Net::IPAddress& senderIP() const;
+    const MAC& targetMAC() const;
+    const Poco::Net::IPAddress& targetIP() const;
 protected:
     virtual ~ProtocolARP();
 private:

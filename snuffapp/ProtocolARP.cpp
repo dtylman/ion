@@ -73,3 +73,30 @@ std::string ProtocolARP::toString() const
     return Poco::format("Opcode: %hu Sender: %s %s Target: %s %s", _opCode, _senderMAC.toString(), _senderIP.toString(),
                         _targetMAC.toString(), _targetIP.toString());
 }
+
+Poco::UInt16 ProtocolARP::opCode() const
+{
+    return _opCode;
+}
+
+const Poco::Net::IPAddress& ProtocolARP::senderIP() const
+{
+    return _senderIP;
+}
+
+const MAC& ProtocolARP::senderMAC() const
+{
+    return _senderMAC;
+}
+
+const Poco::Net::IPAddress& ProtocolARP::targetIP() const
+{
+    return _targetIP;
+}
+
+const MAC& ProtocolARP::targetMAC() const
+{
+    return _targetMAC;
+}
+
+
