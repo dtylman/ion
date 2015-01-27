@@ -69,6 +69,11 @@
     <ClCompile Include="ProtocolUDP.cpp">
       <Filter>Dissect</Filter>
     </ClCompile>
+    <ClCompile Include="Rouing.cpp" />
+    <ClCompile Include="Routing_WIN32.cpp" />
+    <ClCompile Include="PcapDevice.cpp">
+      <Filter>Pcap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -123,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="ProtocolUDP.h">
       <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="PcapDevice.h">
+      <Filter>Pcap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

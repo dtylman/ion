@@ -35,13 +35,13 @@ int Main::main(const std::vector<std::string>& args)
     Routing routing;
     const Routing::Gateways& gateways = routing.gateways();
     for (auto gateway : gateways) {
-        const std::string& device = gateway.second;
+		PcapDevice pcapDevice = pcap.getDevice(gateway.second);
         const Poco::Net::IPAddress& gw = gateway.first;
-        Poco::Net::IPAddress src = pcap.getDevice(device).getIPAddress(Poco::Net::IPAddress::IPv4);
-        Injector injector(device, src);
+        Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
+		Injector injector(pcapDevice.pcapName(), src);
         Arping arping(injector, gw);
         if (arping.ping()) {
-            logger().notice("Device %s %s Gw IP %s mac %s", device, src.toString(), gw.toString(), arping.targetMAC().toString());
+            logger().notice("Device %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gw.toString(), arping.targetMAC().toString());
         }
     }
     waitForTerminationRequest();

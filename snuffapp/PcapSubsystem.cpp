@@ -63,7 +63,7 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
         }
         _logger.information("Adding device: %s ", device);
         _activities[device] = new PcapActivity(device);
-        _devices[device] = pcapDevice;
+		_devices.push_back(pcapDevice);
         iface = iface->next;
     }
     pcap_freealldevs(iface);
@@ -86,9 +86,12 @@ void PcapSubsystem::uninitialize()
 PcapDevice PcapSubsystem::getDevice(const std::string& name) const
 {
     Poco::FastMutex::ScopedLock lock(_mutex);
-    Devices::const_iterator device = _devices.find(name);
-    if (device == _devices.end()) {
-        throw Poco::NotFoundException(Poco::format("Device %s not found", name));
-    }
-    return device->second;
+	for (auto device : _devices)
+	{
+		if (device.systemName() == name)
+		{
+			return device;
+		}
+	}    
+	throw Poco::NotFoundException(Poco::format("Device %s not found", name));    	    
 }

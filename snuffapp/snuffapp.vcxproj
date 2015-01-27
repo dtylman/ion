@@ -24,6 +24,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelSubsystem.cpp" />
     <ClCompile Include="PcapActivity.cpp" />
+    <ClCompile Include="PcapDevice.cpp" />
     <ClCompile Include="PcapIfaceAddress.cpp" />
     <ClCompile Include="PcapSubsystem.cpp" />
     <ClCompile Include="Protocol.cpp" />
@@ -32,6 +33,8 @@
     <ClCompile Include="ProtocolIP.cpp" />
     <ClCompile Include="ProtocolNBDatagram.cpp" />
     <ClCompile Include="ProtocolUDP.cpp" />
+    <ClCompile Include="Rouing.cpp" />
+    <ClCompile Include="Routing_WIN32.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arper.h" />
@@ -47,6 +50,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelSubsystem.h" />
     <ClInclude Include="PcapActivity.h" />
+    <ClInclude Include="PcapDevice.h" />
     <ClInclude Include="PcapIfaceAddress.h" />
     <ClInclude Include="PcapSubsystem.h" />
     <ClInclude Include="Protocol.h" />
