@@ -31,21 +31,21 @@ int Main::main(const std::vector<std::string>& args)
 {
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     pcap.start();
-
-    MAC mac("aa-bb:CC:03:04:05");
-    logger().notice(MAC::Broadcast.toString());
-    {
-        //Injector injector("wlan0", Poco::Net::IPAddress("10.0.0.1"));
-		Injector injector("\\Device\\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}", Poco::Net::IPAddress("10.0.0.1"));		
-        {
-            Arping arping(injector, Poco::Net::IPAddress("10.0.0.1"));
-            arping.ping();
-            logger().notice(arping.targetMAC().toString());
-        }
-        {
-            Arping arping(injector, Poco::Net::IPAddress("192.168.10.1"));
-            arping.ping();
-            logger().notice(arping.targetMAC().toString());
+    PcapSubsystem::Devices devices;
+    pcap.getDevices(devices);
+    for (auto device : devices) {
+        logger().notice("Looking for routers on %s", device.first);
+        for (auto pcapAddr : device.second) {
+            const Poco::Net::IPAddress& broadcastAddr = pcapAddr.broadcast();
+            if (broadcastAddr.isUnicast()) {
+                if (broadcastAddr.af() == Poco::Net::IPAddress::IPv4) {
+                    Injector injector(device.first, pcapAddr.ip());
+                    Arping arping(injector, broadcastAddr);
+                    if (arping.ping()) {
+                        logger().notice("Device %s broadcast ip %s mac %s", device.first, broadcastAddr.toString(), arping.targetMAC().toString());
+                    }
+                }
+            }
         }
     }
     waitForTerminationRequest();

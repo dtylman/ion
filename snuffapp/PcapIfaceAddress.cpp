@@ -28,3 +28,23 @@ void PcapIfaceAddress::setAddress(Poco::Net::IPAddress& poco, const sockaddr* ad
         poco = Poco::Net::IPAddress(*address);
     }
 }
+
+const Poco::Net::IPAddress& PcapIfaceAddress::broadcast() const
+{
+    return _bcast;
+}
+
+const Poco::Net::IPAddress& PcapIfaceAddress::ip() const
+{
+    return _ip;
+}
+
+const Poco::Net::IPAddress& PcapIfaceAddress::netmask() const
+{
+    return _netmask;
+}
+
+const Poco::Net::IPAddress& PcapIfaceAddress::p2pdest() const
+{
+    return _dest;
+}

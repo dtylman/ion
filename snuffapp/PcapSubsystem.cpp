@@ -76,23 +76,24 @@ void PcapSubsystem::uninitialize()
     }
 }
 
-bool PcapSubsystem::inject(const std::string& iface, const Poco::UInt8* data, int len)
-{
-    Poco::FastMutex::ScopedLock lock(_mutex);
-    ActivityContainer::iterator activity = _activities.find(iface);
-    if (activity == _activities.end()) {
-        return false;
-    }
-    return activity->second->inject(data, len);
-}
-
-void PcapSubsystem::injectAll(const Poco::UInt8* data, int len)
-{
-    Poco::FastMutex::ScopedLock lock(_mutex);
-    for (auto activity : _activities) {
-        activity.second->inject(data, len);
-    }
-}
+//bool PcapSubsystem::inject(const std::string& iface, const Poco::UInt8* data, int len)
+//{
+//    Poco::FastMutex::ScopedLock lock(_mutex);
+//    ActivityContainer::iterator activity = _activities.find(iface);
+//    if (activity == _activities.end()) {
+//        return false;
+//    }
+//    return activity->second->inject(data, len);
+//}
+//
+//void PcapSubsystem::injectAll(const Poco::UInt8* data, int len)
+//{
+//    Poco::FastMutex::ScopedLock lock(_mutex);
+//    for (auto activity : _activities) {
+//        activity.second->inject(data, len);
+//    }
+//}
+//
 
 void PcapSubsystem::getDevices(Devices& devices)
 {
@@ -101,3 +102,4 @@ void PcapSubsystem::getDevices(Devices& devices)
         devices[activity.first] = activity.second->addresses();
     }
 }
+

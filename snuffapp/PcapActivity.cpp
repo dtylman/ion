@@ -97,19 +97,18 @@ void PcapActivity::stop()
         if (_pcap != nullptr) {
             pcap_breakloop(_pcap);
         }
-        //_activity.wait(500);
     }
 }
-
-bool PcapActivity::inject(const Poco::UInt8* data, int len)
-{
-    poco_check_ptr(_pcap);
-    if (pcap_sendpacket(_pcap, data, len) == -1) {
-        _logger.error("pcap_inject failed, error: %s", std::string(pcap_geterr(_pcap)));
-        return false;
-    }
-    return true;
-}
+//
+//bool PcapActivity::inject(const Poco::UInt8* data, int len)
+//{
+//    poco_check_ptr(_pcap);
+//    if (pcap_sendpacket(_pcap, data, len) == -1) {
+//        _logger.error("pcap_inject failed, error: %s", std::string(pcap_geterr(_pcap)));
+//        return false;
+//    }
+//    return true;
+//}
 
 const PcapIfaceAddress::Container& PcapActivity::addresses() const
 {

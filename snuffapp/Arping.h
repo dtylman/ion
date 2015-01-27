@@ -11,7 +11,7 @@
 #include "Frame.h"
 #include <Poco/Net/IPAddress.h>
 #include <Poco/Timespan.h>
-#include <Poco/AtomicCounter.h>
+#include <Poco/Event.h>
 #include "MAC.h"
 #include "Injector.h"
 #include <string>
@@ -30,7 +30,8 @@ private:
     Injector& _injector;
     Poco::Net::IPAddress _targetIP;
     MAC _targetMAC;
-    Poco::AtomicCounter _counter;
+    mutable Poco::FastMutex _mutex;
+    Poco::Event _event;
 };
 
 #endif	/* ARPING_H */

@@ -19,6 +19,11 @@ public:
     PcapIfaceAddress(const pcap_addr* address);
     virtual ~PcapIfaceAddress();
     typedef std::list<PcapIfaceAddress> Container;
+
+    const Poco::Net::IPAddress& ip() const;
+    const Poco::Net::IPAddress& broadcast() const;
+    const Poco::Net::IPAddress& netmask() const;
+    const Poco::Net::IPAddress& p2pdest() const;
 private:
     void setAddress(Poco::Net::IPAddress& poco, const sockaddr* address);
     Poco::Net::IPAddress _ip;
