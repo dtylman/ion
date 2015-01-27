@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <logicalFolder name="f1" displayName="Dissect" projectFiles="true">
-      <itemPath>Dissect/DissectSubsystem.cpp</itemPath>
-      <itemPath>Dissect/DissectSubsystem.h</itemPath>
-      <itemPath>Dissect/Frame.cpp</itemPath>
-      <itemPath>Dissect/Frame.h</itemPath>
-      <itemPath>Dissect/MAC.cpp</itemPath>
-      <itemPath>Dissect/MAC.h</itemPath>
-      <itemPath>Dissect/Protocol.cpp</itemPath>
-      <itemPath>Dissect/Protocol.h</itemPath>
-      <itemPath>Dissect/ProtocolARP.cpp</itemPath>
-      <itemPath>Dissect/ProtocolARP.h</itemPath>
-      <itemPath>Dissect/ProtocolEthernet.cpp</itemPath>
-      <itemPath>Dissect/ProtocolEthernet.h</itemPath>
-      <itemPath>Dissect/ProtocolIP.cpp</itemPath>
-      <itemPath>Dissect/ProtocolIP.h</itemPath>
-      <itemPath>Dissect/ProtocolNBDatagram.cpp</itemPath>
-      <itemPath>Dissect/ProtocolNBDatagram.h</itemPath>
-      <itemPath>Dissect/ProtocolUDP.cpp</itemPath>
-      <itemPath>Dissect/ProtocolUDP.h</itemPath>
+    <logicalFolder name="f4" displayName="Data" projectFiles="true">
+      <itemPath>HostnameModel.cpp</itemPath>
+      <itemPath>HostnameModel.h</itemPath>
+      <itemPath>IPCache.cpp</itemPath>
+      <itemPath>IPCache.h</itemPath>
+      <itemPath>IPModel.cpp</itemPath>
+      <itemPath>IPModel.h</itemPath>
+      <itemPath>Model.cpp</itemPath>
+      <itemPath>Model.h</itemPath>
+      <itemPath>ModelSubsystem.cpp</itemPath>
+      <itemPath>ModelSubsystem.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="f2" displayName="Model" projectFiles="true">
-      <itemPath>Model/HostnameModel.cpp</itemPath>
-      <itemPath>Model/HostnameModel.h</itemPath>
-      <itemPath>Model/IPCache.cpp</itemPath>
-      <itemPath>Model/IPCache.h</itemPath>
-      <itemPath>Model/IPModel.cpp</itemPath>
-      <itemPath>Model/IPModel.h</itemPath>
-      <itemPath>Model/Model.cpp</itemPath>
-      <itemPath>Model/Model.h</itemPath>
-      <itemPath>Model/ModelSubsystem.cpp</itemPath>
-      <itemPath>Model/ModelSubsystem.h</itemPath>
+    <logicalFolder name="f3" displayName="Dissect" projectFiles="true">
+      <itemPath>DissectSubsystem.cpp</itemPath>
+      <itemPath>DissectSubsystem.h</itemPath>
+      <itemPath>Frame.cpp</itemPath>
+      <itemPath>Frame.h</itemPath>
+      <itemPath>Protocol.cpp</itemPath>
+      <itemPath>Protocol.h</itemPath>
+      <itemPath>ProtocolARP.cpp</itemPath>
+      <itemPath>ProtocolARP.h</itemPath>
+      <itemPath>ProtocolEthernet.cpp</itemPath>
+      <itemPath>ProtocolEthernet.h</itemPath>
+      <itemPath>ProtocolIP.cpp</itemPath>
+      <itemPath>ProtocolIP.h</itemPath>
+      <itemPath>ProtocolNBDatagram.cpp</itemPath>
+      <itemPath>ProtocolNBDatagram.h</itemPath>
+      <itemPath>ProtocolUDP.cpp</itemPath>
+      <itemPath>ProtocolUDP.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f2" displayName="Libnet" projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="f1" displayName="Pcap" projectFiles="true">
+      <itemPath>PcapActivity.cpp</itemPath>
+      <itemPath>PcapActivity.h</itemPath>
+      <itemPath>PcapIfaceAddress.cpp</itemPath>
+      <itemPath>PcapIfaceAddress.h</itemPath>
+      <itemPath>PcapSubsystem.cpp</itemPath>
+      <itemPath>PcapSubsystem.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-    </logicalFolder>
-    <logicalFolder name="f3" displayName="Sniff" projectFiles="true">
-      <itemPath>Sniff/PcapActivity.cpp</itemPath>
-      <itemPath>Sniff/PcapActivity.h</itemPath>
-      <itemPath>Sniff/PcapIfaceAddress.cpp</itemPath>
-      <itemPath>Sniff/PcapIfaceAddress.h</itemPath>
-      <itemPath>Sniff/PcapSubsystem.cpp</itemPath>
-      <itemPath>Sniff/PcapSubsystem.h</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -58,8 +58,13 @@
     </logicalFolder>
     <itemPath>Arper.cpp</itemPath>
     <itemPath>Arper.h</itemPath>
+    <itemPath>MAC.cpp</itemPath>
+    <itemPath>MAC.h</itemPath>
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
+    <itemPath>Makefile</itemPath>
+    <itemPath>Poco.props</itemPath>
+    <itemPath>pcap.props</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -105,77 +110,83 @@
       </item>
       <item path="Arper.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/Frame.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/Frame.h" ex="false" tool="3" flavor2="0">
+      <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/MAC.cpp" ex="false" tool="1" flavor2="0">
+      <item path="HostnameModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/MAC.h" ex="false" tool="3" flavor2="0">
+      <item path="HostnameModel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/Protocol.cpp" ex="false" tool="1" flavor2="0">
+      <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/Protocol.h" ex="false" tool="3" flavor2="0">
+      <item path="IPCache.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
+      <item path="IPModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      <item path="IPModel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolIP.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      <item path="MAC.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/HostnameModel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/HostnameModel.h" ex="false" tool="3" flavor2="0">
+      <item path="Model.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/IPCache.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Model.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/IPCache.h" ex="false" tool="3" flavor2="0">
+      <item path="ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/IPModel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ModelSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/IPModel.h" ex="false" tool="3" flavor2="0">
+      <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/Model.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/Model.h" ex="false" tool="3" flavor2="0">
+      <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/ModelSubsystem.h" ex="false" tool="3" flavor2="0">
+      <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sniff/PcapActivity.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sniff/PcapActivity.h" ex="false" tool="3" flavor2="0">
+      <item path="Poco.props" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sniff/PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sniff/PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
+      <item path="Protocol.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sniff/PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sniff/PcapSubsystem.h" ex="false" tool="3" flavor2="0">
+      <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -222,77 +233,83 @@
       </item>
       <item path="Arper.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/Frame.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/Frame.h" ex="false" tool="3" flavor2="0">
+      <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/MAC.cpp" ex="false" tool="1" flavor2="0">
+      <item path="HostnameModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/MAC.h" ex="false" tool="3" flavor2="0">
+      <item path="HostnameModel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/Protocol.cpp" ex="false" tool="1" flavor2="0">
+      <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/Protocol.h" ex="false" tool="3" flavor2="0">
+      <item path="IPCache.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
+      <item path="IPModel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      <item path="IPModel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Dissect/ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolIP.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Dissect/ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      <item path="MAC.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/HostnameModel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/HostnameModel.h" ex="false" tool="3" flavor2="0">
+      <item path="Model.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/IPCache.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Model.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/IPCache.h" ex="false" tool="3" flavor2="0">
+      <item path="ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/IPModel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ModelSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/IPModel.h" ex="false" tool="3" flavor2="0">
+      <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/Model.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/Model.h" ex="false" tool="3" flavor2="0">
+      <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Model/ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Model/ModelSubsystem.h" ex="false" tool="3" flavor2="0">
+      <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sniff/PcapActivity.cpp" ex="false" tool="1" flavor2="0">
+      <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sniff/PcapActivity.h" ex="false" tool="3" flavor2="0">
+      <item path="Poco.props" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sniff/PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sniff/PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
+      <item path="Protocol.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Sniff/PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Sniff/PcapSubsystem.h" ex="false" tool="3" flavor2="0">
+      <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

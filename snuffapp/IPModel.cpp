@@ -6,9 +6,9 @@
  */
 
 #include "IPModel.h"
-#include "../Dissect/DissectSubsystem.h"
-#include "../Dissect/ProtocolIP.h"
-#include "../Dissect/ProtocolEthernet.h"
+#include "DissectSubsystem.h"
+#include "ProtocolIP.h"
+#include "ProtocolEthernet.h"
 #include <Poco/Data/Session.h>
 #include <Poco/Delegate.h>
 #include <Poco/Util/Application.h>
@@ -46,10 +46,10 @@ void IPModel::onFrameEvent(Frame::Ptr& frame)
         return;
     }
     if (ip->isDefaultTTL()) {
-		link(ip->source(), eth->source(), frame->device());
+        link(ip->source(), eth->source(), frame->device());
     }
     else {
-		linkRouter(ip->source(), eth->source(), frame->device());
+        linkRouter(ip->source(), eth->source(), frame->device());
     }
 }
 
@@ -75,7 +75,7 @@ void IPModel::linkRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const s
         return;
     }
     std::string macStr = mac.toString();
-	int family = ip.af();
+    int family = ip.af();
     bool isRouter = false;
     _session << "SELECT 1 FROM router WHERE mac=? AND family=?", use(macStr), use(family), into(isRouter), now;
     if (isRouter) {

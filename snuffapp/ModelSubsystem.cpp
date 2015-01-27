@@ -6,7 +6,7 @@
  */
 
 #include "ModelSubsystem.h"
-#include "../Dissect/DissectSubsystem.h"
+#include "DissectSubsystem.h"
 #include "IPModel.h"
 #include "HostnameModel.h"
 #include <Poco/Data/SQLite/Connector.h>

@@ -8,7 +8,7 @@
 #ifndef IPCACHE_H
 #define	IPCACHE_H
 
-#include "../Dissect/MAC.h"
+#include "MAC.h"
 #include <Poco/Net/IPAddress.h>
 #include <Poco/ExpireCache.h>
 #include <Poco/Timestamp.h>
