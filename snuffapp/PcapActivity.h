@@ -23,7 +23,7 @@ public:
     typedef Poco::AutoPtr<PcapActivity> Ptr;
     void start();
     void stop();
-    bool inject(const Poco::UInt8* data, int len);
+    //    bool inject(const Poco::UInt8* data, int len);
     const PcapIfaceAddress::Container& addresses() const;
 protected:
     void runActivity();

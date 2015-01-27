@@ -20,8 +20,8 @@ class PcapSubsystem : public Poco::Util::Subsystem
 public:
     PcapSubsystem();
     void start();
-    bool inject(const std::string& iface, const Poco::UInt8* data, int len);
-    void injectAll(const Poco::UInt8* data, int len);
+    //    bool inject(const std::string& iface, const Poco::UInt8* data, int len);
+    //    void injectAll(const Poco::UInt8* data, int len);
     typedef std::map<std::string, PcapIfaceAddress::Container> Devices;
     void getDevices(Devices& devices);
 protected:

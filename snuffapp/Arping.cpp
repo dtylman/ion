@@ -29,8 +29,9 @@ void Arping::onFrameEvent(Frame::Ptr& frame)
         const ProtocolARP* arp = frame->getProtocol<ProtocolARP>();
         if (arp != nullptr) {
             if ((arp->opCode() == ARPOP_REPLY) && (arp->senderIP() == _targetIP)) {
+                Poco::FastMutex::ScopedLock lock(_mutex);
                 _targetMAC = arp->targetMAC();
-                _counter++;
+                _event.set();
             }
         }
     }
@@ -39,14 +40,16 @@ void Arping::onFrameEvent(Frame::Ptr& frame)
 bool Arping::ping(int retries, const Poco::Timespan& interval)
 {
     for (int i = 0; i < retries; ++i) {
-        if (_targetMAC.isUnicast()) {
-            _injector.arpRequest(_targetIP, _targetMAC);
+        {
+            Poco::FastMutex::ScopedLock lock(_mutex);
+            if (_targetMAC.isUnicast()) {
+                _injector.arpRequest(_targetIP, _targetMAC);
+            }
+            else {
+                _injector.arpRequest(_targetIP);
+            }
         }
-        else {
-            _injector.arpRequest(_targetIP);
-        }
-        Poco::Thread::sleep((long)interval.totalMilliseconds());
-        if (_counter > 0) {
+        if (_event.tryWait((long) interval.totalMilliseconds())) {
             return true;
         }
     }
@@ -55,5 +58,6 @@ bool Arping::ping(int retries, const Poco::Timespan& interval)
 
 const MAC& Arping::targetMAC() const
 {
+    Poco::FastMutex::ScopedLock lock(_mutex);
     return _targetMAC;
 }
