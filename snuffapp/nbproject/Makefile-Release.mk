@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Model.o \
 	${OBJECTDIR}/ModelSubsystem.o \
 	${OBJECTDIR}/PcapActivity.o \
+	${OBJECTDIR}/PcapDevice.o \
 	${OBJECTDIR}/PcapIfaceAddress.o \
 	${OBJECTDIR}/PcapSubsystem.o \
 	${OBJECTDIR}/Protocol.o \
@@ -55,7 +56,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/ProtocolEthernet.o \
 	${OBJECTDIR}/ProtocolIP.o \
 	${OBJECTDIR}/ProtocolNBDatagram.o \
-	${OBJECTDIR}/ProtocolUDP.o
+	${OBJECTDIR}/ProtocolUDP.o \
+	${OBJECTDIR}/Rouing.o \
+	${OBJECTDIR}/Routing_LINUX.o
 
 
 # C Compiler Flags
@@ -147,6 +150,11 @@ ${OBJECTDIR}/PcapActivity.o: PcapActivity.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapActivity.o PcapActivity.cpp
 
+${OBJECTDIR}/PcapDevice.o: PcapDevice.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PcapDevice.o PcapDevice.cpp
+
 ${OBJECTDIR}/PcapIfaceAddress.o: PcapIfaceAddress.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -186,6 +194,16 @@ ${OBJECTDIR}/ProtocolUDP.o: ProtocolUDP.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolUDP.o ProtocolUDP.cpp
+
+${OBJECTDIR}/Rouing.o: Rouing.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Rouing.o Rouing.cpp
+
+${OBJECTDIR}/Routing_LINUX.o: Routing_LINUX.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Routing_LINUX.o Routing_LINUX.cpp
 
 # Subprojects
 .build-subprojects:

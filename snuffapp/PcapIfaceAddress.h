@@ -30,7 +30,6 @@ private:
     Poco::Net::IPAddress _bcast;
     Poco::Net::IPAddress _netmask;
     Poco::Net::IPAddress _dest; //p2p
-    std::string _face;
 };
 
 #endif	/* PCAPIFACEADDRESS_H */

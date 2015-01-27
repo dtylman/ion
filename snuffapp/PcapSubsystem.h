@@ -9,6 +9,7 @@
 #define	PCAPSUBSYSTEM_H
 
 #include "PcapActivity.h"
+#include "PcapDevice.h"
 #include <Poco/Util/Subsystem.h>
 #include <Poco/Logger.h>
 #include <Poco/Mutex.h>
@@ -20,10 +21,7 @@ class PcapSubsystem : public Poco::Util::Subsystem
 public:
     PcapSubsystem();
     void start();
-    //    bool inject(const std::string& iface, const Poco::UInt8* data, int len);
-    //    void injectAll(const Poco::UInt8* data, int len);
-    typedef std::map<std::string, PcapIfaceAddress::Container> Devices;
-    void getDevices(Devices& devices);
+    PcapDevice getDevice(const std::string& name) const;
 protected:
     virtual void initialize(Poco::Util::Application& app);
     virtual const char* name() const;
@@ -31,8 +29,10 @@ protected:
     virtual ~PcapSubsystem();
 private:
     typedef std::map<std::string, PcapActivity::Ptr> ActivityContainer;
-    Poco::FastMutex _mutex;
+    mutable Poco::FastMutex _mutex;
     ActivityContainer _activities;
+    typedef std::map<std::string, PcapDevice> Devices;
+    Devices _devices;
     Poco::Logger& _logger;
 };
 
