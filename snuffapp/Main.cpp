@@ -35,7 +35,8 @@ int Main::main(const std::vector<std::string>& args)
     MAC mac("aa-bb:CC:03:04:05");
     logger().notice(MAC::Broadcast.toString());
     {
-        Injector injector("wlan0", Poco::Net::IPAddress("10.0.0.1"));
+        //Injector injector("wlan0", Poco::Net::IPAddress("10.0.0.1"));
+		Injector injector("\\Device\\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}", Poco::Net::IPAddress("10.0.0.1"));		
         {
             Arping arping(injector, Poco::Net::IPAddress("10.0.0.1"));
             arping.ping();
