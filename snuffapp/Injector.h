@@ -17,7 +17,7 @@
 class Injector
 {
 public:
-    Injector(const std::string& device);
+    Injector(const std::string& device, const Poco::Net::IPAddress& sourceIP);
     virtual ~Injector();
 
     void arpRequest(const Poco::Net::IPAddress& targetIP);
@@ -29,8 +29,7 @@ private:
     Poco::FastMutex _mutex;
     libnet_t* _libnet = nullptr;
     libnet_ether_addr* _srcMAC = nullptr;
-    uint32_t _srcIP;
-    libnet_in6_addr _srcIPv6;
+    Poco::Net::IPAddress _srcIP;
 };
 
 #endif	/* INJECTOR_H */
