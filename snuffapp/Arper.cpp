@@ -12,7 +12,7 @@
 #include <Poco/Buffer.h>
 #include "MAC.h"
 
-Arper::Arper()
+Arper::Arper() : _logger(Poco::Logger::get("Arper"))
 {
 }
 
@@ -37,8 +37,20 @@ void Arper::arp()
     const libnet_ether_addr* src = libnet_get_hwaddr(libnet);
     //parameters are: sender mac, sender ip, target mac (if unicast or fffffff if unknown), target ip
     Poco::Net::IPAddress srcIP("192.168.10.4");
-
+    MAC srcMAC("00:00:00:00:00:01");
     Poco::Net::IPAddress targetIP("192.168.10.8");
-    uint8_t bcast[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-    //    libnet_ptag_t tag = libnet_autobuild_arp(ARPOP_REQUEST, bcast, (uint8_t*) srcIP.addr(), bcast, libnet);
+    libnet_ptag_t tag = libnet_autobuild_arp(ARPOP_REQUEST, srcMAC.data(), (const uint8_t*) srcIP.addr(), MAC::Broadcast.data(), (uint8_t*) targetIP.addr(), libnet);
+    if (tag == -1) {
+        _logger.error(libnet_geterror(libnet));
+    }
+    tag = libnet_autobuild_ethernet(MAC::Broadcast.data(), ETHERTYPE_ARP, libnet);
+    if (tag == -1) {
+        _logger.error(libnet_geterror(libnet));
+    }
+    int ret = libnet_write(libnet);
+    if (ret == -1) {
+        _logger.error(libnet_geterror(libnet));
+        //error
+    }
+    libnet_destroy(libnet);
 }

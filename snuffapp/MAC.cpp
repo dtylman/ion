@@ -12,6 +12,12 @@
 
 #define MAC_ADDRESS_SIZE 6
 
+MAC MAC::Broadcast(
+                   (Poco::UInt8[])
+{
+                   0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
+});
+
 MAC::MAC()
 {
     assign(MAC_ADDRESS_SIZE, 0);
