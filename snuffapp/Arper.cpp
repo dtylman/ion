@@ -6,11 +6,11 @@
  */
 
 #include "Arper.h"
-#include "Sniff/PcapSubsystem.h"
+#include "PcapSubsystem.h"
 #include <Poco/Util/Application.h>
 #include <libnet.h>
 #include <Poco/Buffer.h>
-#include "Dissect/MAC.h"
+#include "MAC.h"
 
 Arper::Arper()
 {

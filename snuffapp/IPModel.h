@@ -9,8 +9,8 @@
 #define	IPMODEL_H
 
 #include "Model.h"
-#include "../Dissect/Frame.h"
-#include "../Dissect/MAC.h"
+#include "Frame.h"
+#include "MAC.h"
 #include "IPCache.h"
 #include <Poco/Net/IPAddress.h>
 #include <Poco/ExpireCache.h>
