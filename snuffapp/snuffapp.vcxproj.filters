@@ -27,19 +27,7 @@
     <ClCompile Include="Frame.cpp">
       <Filter>Dissect</Filter>
     </ClCompile>
-    <ClCompile Include="HostnameModel.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
     <ClCompile Include="IPCache.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
-    <ClCompile Include="IPModel.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelSubsystem.cpp">
       <Filter>Data</Filter>
     </ClCompile>
     <ClCompile Include="PcapActivity.cpp">
@@ -74,6 +62,21 @@
     <ClCompile Include="PcapDevice.cpp">
       <Filter>Pcap</Filter>
     </ClCompile>
+    <ClCompile Include="DataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DataObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSubsystem.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="IPDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="IPDataObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -87,19 +90,7 @@
     <ClInclude Include="Frame.h">
       <Filter>Dissect</Filter>
     </ClInclude>
-    <ClInclude Include="HostnameModel.h">
-      <Filter>Data</Filter>
-    </ClInclude>
     <ClInclude Include="IPCache.h">
-      <Filter>Data</Filter>
-    </ClInclude>
-    <ClInclude Include="IPModel.h">
-      <Filter>Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Data</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelSubsystem.h">
       <Filter>Data</Filter>
     </ClInclude>
     <ClInclude Include="PcapActivity.h">
@@ -131,6 +122,21 @@
     </ClInclude>
     <ClInclude Include="PcapDevice.h">
       <Filter>Pcap</Filter>
+    </ClInclude>
+    <ClInclude Include="DataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataObserver.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSubsystem.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IPDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IPDataObserver.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

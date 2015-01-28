@@ -30,7 +30,7 @@ void Arping::onFrameEvent(Frame::Ptr& frame)
         if (arp != nullptr) {
             if ((arp->opCode() == ARPOP_REPLY) && (arp->senderIP() == _targetIP)) {
                 Poco::FastMutex::ScopedLock lock(_mutex);
-                _targetMAC = arp->targetMAC();
+                _targetMAC = arp->senderMAC();
                 _event.set();
             }
         }
