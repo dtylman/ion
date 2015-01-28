@@ -56,3 +56,8 @@ std::string PcapDevice::toString() const
                         getIPAddress(Poco::Net::IPAddress::Family::IPv4).toString(),
                         getIPAddress(Poco::Net::IPAddress::Family::IPv6).toString());
 }
+
+const PcapIfaceAddress::Container& PcapDevice::addresses()
+{
+    return _addresses;
+}

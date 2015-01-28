@@ -99,4 +99,12 @@ const MAC& ProtocolARP::targetMAC() const
     return _targetMAC;
 }
 
+bool ProtocolARP::isReply() const
+{
+    return _opCode == 2;
+}
 
+bool ProtocolARP::isRequest() const
+{
+    return _opCode == 1;
+}

@@ -24,6 +24,7 @@ public:
     void arpRequest(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
 
     const std::string& device() const;
+    MAC deviceMACAddress() const;
 private:
     std::string _device;
     Poco::FastMutex _mutex;

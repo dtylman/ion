@@ -95,3 +95,10 @@ PcapDevice PcapSubsystem::getDevice(const std::string& name) const
     }
     throw Poco::NotFoundException(Poco::format("Device %s not found", name));
 }
+
+void PcapSubsystem::getAllDevices(Devices& devices)
+{
+    devices.clear();
+    Poco::FastMutex::ScopedLock lock(_mutex);
+    devices.insert(devices.begin(), _devices.begin(), _devices.end());
+}

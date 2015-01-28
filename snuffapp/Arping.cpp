@@ -28,7 +28,7 @@ void Arping::onFrameEvent(Frame::Ptr& frame)
     if (frame->device() == _injector.device()) {
         const ProtocolARP* arp = frame->getProtocol<ProtocolARP>();
         if (arp != nullptr) {
-            if ((arp->opCode() == ARPOP_REPLY) && (arp->senderIP() == _targetIP)) {
+            if ((arp->isReply()) && (arp->senderIP() == _targetIP)) {
                 Poco::FastMutex::ScopedLock lock(_mutex);
                 _targetMAC = arp->senderMAC();
                 _event.set();

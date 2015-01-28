@@ -49,3 +49,25 @@ const Poco::Net::IPAddress& PcapIfaceAddress::p2pdest() const
 {
     return _dest;
 }
+
+void PcapIfaceAddress::fillAllIPs(IPContainer& container, unsigned max) const
+{
+    container.clear();
+    if (_ip.family() != Poco::Net::IPAddress::IPv4) {
+        return;
+    }
+    Poco::Net::IPAddress ip = _ip;
+    ip.mask(_netmask);
+    Poco::UInt32 baseAddress;
+    memcpy(&baseAddress, ip.addr(), sizeof (Poco::UInt32));
+    baseAddress = ntohl(baseAddress);
+    unsigned count = pow(2, (32 - _netmask.prefixLength()));
+    if (count > max) {
+        count = max;
+    }
+    for (unsigned i = 0; i < count; ++i) {
+        Poco::UInt32 address = ntohl(baseAddress);
+        container.push_back(Poco::Net::IPAddress(&address, sizeof (Poco::UInt32)));
+        baseAddress++;
+    }
+}
