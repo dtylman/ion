@@ -38,16 +38,16 @@ void Injector::arpRequest(const Poco::Net::IPAddress& targetIP, const MAC& targe
     libnet_clear_packet(_libnet);
     libnet_ptag_t tag = libnet_autobuild_arp(ARPOP_REQUEST, _srcMAC->ether_addr_octet, (const uint8_t *) _srcIP.addr(), targetMAC.data(), (uint8_t*) targetIP.addr(), _libnet);
     if (tag == -1) {
-        throw Poco::ApplicationException(Poco::format("Failed to build arp request: %s", libnet_geterror(_libnet)));
+		throw Poco::ApplicationException(Poco::format("Failed to build arp request: %s", std::string(libnet_geterror(_libnet))));
 
     }
     tag = libnet_autobuild_ethernet(targetMAC.data(), ETHERTYPE_ARP, _libnet);
     if (tag == -1) {
-        throw Poco::ApplicationException(Poco::format("Failed to build arp eth header: %s", libnet_geterror(_libnet)));
+		throw Poco::ApplicationException(Poco::format("Failed to build arp eth header: %s", std::string(libnet_geterror(_libnet))));
     }
     int ret = libnet_write(_libnet);
     if (ret == -1) {
-        throw Poco::ApplicationException(Poco::format("Failed to write arp request: %s", libnet_geterror(_libnet)));
+		throw Poco::ApplicationException(Poco::format("Failed to write arp request: %s", std::string(libnet_geterror(_libnet))));
     }
 }
 

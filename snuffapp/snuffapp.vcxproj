@@ -11,13 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Arper.cpp" />
     <ClCompile Include="Arping.cpp" />
     <ClCompile Include="DataObject.cpp" />
     <ClCompile Include="DataObserver.cpp" />
     <ClCompile Include="DataSubsystem.cpp" />
     <ClCompile Include="DissectSubsystem.cpp" />
     <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="HostDataObject.cpp" />
+    <ClCompile Include="HostObserver.cpp" />
     <ClCompile Include="Injector.cpp" />
     <ClCompile Include="IPCache.cpp" />
     <ClCompile Include="IPDataObject.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="PcapSubsystem.cpp" />
     <ClCompile Include="Protocol.cpp" />
     <ClCompile Include="ProtocolARP.cpp" />
+    <ClCompile Include="ProtocolDHCP.cpp" />
     <ClCompile Include="ProtocolEthernet.cpp" />
     <ClCompile Include="ProtocolIP.cpp" />
     <ClCompile Include="ProtocolNBDatagram.cpp" />
@@ -38,13 +40,14 @@
     <ClCompile Include="Routing_WIN32.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arper.h" />
     <ClInclude Include="Arping.h" />
     <ClInclude Include="DataObject.h" />
     <ClInclude Include="DataObserver.h" />
     <ClInclude Include="DataSubsystem.h" />
     <ClInclude Include="DissectSubsystem.h" />
     <ClInclude Include="Frame.h" />
+    <ClInclude Include="HostDataObject.h" />
+    <ClInclude Include="HostObserver.h" />
     <ClInclude Include="Injector.h" />
     <ClInclude Include="IPCache.h" />
     <ClInclude Include="IPDataObject.h" />
@@ -57,6 +60,7 @@
     <ClInclude Include="PcapSubsystem.h" />
     <ClInclude Include="Protocol.h" />
     <ClInclude Include="ProtocolARP.h" />
+    <ClInclude Include="ProtocolDHCP.h" />
     <ClInclude Include="ProtocolEthernet.h" />
     <ClInclude Include="ProtocolIP.h" />
     <ClInclude Include="ProtocolNBDatagram.h" />
