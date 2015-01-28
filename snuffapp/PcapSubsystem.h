@@ -21,7 +21,10 @@ class PcapSubsystem : public Poco::Util::Subsystem
 public:
     PcapSubsystem();
     void start();
+
+    typedef std::list<PcapDevice> Devices;
     PcapDevice getDevice(const std::string& name) const;
+    void getAllDevices(Devices& devices);
 protected:
     virtual void initialize(Poco::Util::Application& app);
     virtual const char* name() const;
@@ -31,7 +34,7 @@ private:
     typedef std::map<std::string, PcapActivity::Ptr> ActivityContainer;
     mutable Poco::FastMutex _mutex;
     ActivityContainer _activities;
-    typedef std::list<PcapDevice> Devices;
+
     Devices _devices;
     Poco::Logger& _logger;
 };

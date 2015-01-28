@@ -21,6 +21,7 @@ protected:
 
 private:
     void addRouters();
+    void arpAll();
 };
 
 #endif	/* ZAKIFAPP_H */

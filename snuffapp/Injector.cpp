@@ -55,3 +55,8 @@ const std::string& Injector::device() const
 {
     return _device;
 }
+
+MAC Injector::deviceMACAddress() const
+{
+    return MAC(_srcMAC->ether_addr_octet);
+}

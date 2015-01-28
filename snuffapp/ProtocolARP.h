@@ -21,6 +21,8 @@ public:
     virtual const std::string& name() const;
     virtual std::string toString() const;
 
+    bool isReply() const;
+    bool isRequest() const;
     Poco::UInt16 opCode() const;
     const MAC& senderMAC() const;
     const Poco::Net::IPAddress& senderIP() const;

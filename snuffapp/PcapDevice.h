@@ -23,6 +23,7 @@ public:
     const std::string& pcapName() const;
 
     std::string toString() const;
+    const PcapIfaceAddress::Container& addresses();
 private:
     PcapIfaceAddress::Container _addresses;
     std::string _name;

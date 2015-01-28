@@ -25,6 +25,9 @@ public:
     const Poco::Net::IPAddress& broadcast() const;
     const Poco::Net::IPAddress& netmask() const;
     const Poco::Net::IPAddress& p2pdest() const;
+
+    typedef std::list<Poco::Net::IPAddress> IPContainer;
+    void fillAllIPs(IPContainer& container, unsigned max = 1024) const;
 private:
     void setAddress(Poco::Net::IPAddress& poco, const sockaddr* address);
     Poco::Net::IPAddress _ip;

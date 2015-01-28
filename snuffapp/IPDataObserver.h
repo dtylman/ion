@@ -26,6 +26,8 @@ protected:
     void onFrameEvent(Frame::Ptr& frame);
     virtual ~IPDataObserver();
 private:
+    bool handleIP(Frame::Ptr& frame);
+    bool handleARP(Frame::Ptr& frame);
     void link(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
 
