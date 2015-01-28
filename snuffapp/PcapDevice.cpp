@@ -6,6 +6,7 @@
  */
 
 #include "PcapDevice.h"
+#include <Poco/Format.h>
 
 PcapDevice::PcapDevice()
 {
@@ -30,17 +31,28 @@ void PcapDevice::setName(const std::string& pcapName, const std::string& name)
 Poco::Net::IPAddress PcapDevice::getIPAddress(Poco::Net::IPAddress::Family family) const
 {
     for (auto address : _addresses) {
-        if (address.ip().family() == family) {
+        const Poco::Net::IPAddress& ip = address.ip();
+        if ((ip.family() == family) && (ip.isUnicast())) {
             return address.ip();
         }
     }
+    return Poco::Net::IPAddress(family);
 }
 
 const std::string& PcapDevice::systemName() const
 {
-	return _name;
+
+    return _name;
 }
+
 const std::string& PcapDevice::pcapName() const
 {
-	return _pcapName;
+    return _pcapName;
+}
+
+std::string PcapDevice::toString() const
+{
+    return Poco::format("%s pcapName: %s. IPv4: %s IPv6: %s", _name, _pcapName,
+                        getIPAddress(Poco::Net::IPAddress::Family::IPv4).toString(),
+                        getIPAddress(Poco::Net::IPAddress::Family::IPv6).toString());
 }

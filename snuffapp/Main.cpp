@@ -9,17 +9,18 @@
 #include "Main.h"
 #include "PcapSubsystem.h"
 #include "DissectSubsystem.h"
-#include "ModelSubsystem.h"
+#include "DataSubsystem.h"
 #include "MAC.h"
 #include "Arper.h"
 #include "Injector.h"
 #include "Arping.h"
 #include "Routing.h"
+#include "IPDataObserver.h"
 #include <iostream>
 
 Main::Main()
 {
-    addSubsystem(new ModelSubsystem());
+    addSubsystem(new DataSubsystem());
     addSubsystem(new DissectSubsystem());
     addSubsystem(new PcapSubsystem());
 }
@@ -32,20 +33,36 @@ int Main::main(const std::vector<std::string>& args)
 {
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     pcap.start();
-    Routing routing;
-    const Routing::Gateways& gateways = routing.gateways();
-    for (auto gateway : gateways) {
-		PcapDevice pcapDevice = pcap.getDevice(gateway.second);
-        const Poco::Net::IPAddress& gw = gateway.first;
-        Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
-		Injector injector(pcapDevice.pcapName(), src);
-        Arping arping(injector, gw);
-        if (arping.ping()) {
-            logger().notice("Device %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gw.toString(), arping.targetMAC().toString());
-        }
-    }
+    addRouters();
     waitForTerminationRequest();
     return EXIT_OK;
+}
+
+void Main::addRouters()
+{
+    Routing routing;
+    const Routing::Gateways& gateways = routing.gateways();
+    PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
+    DataSubsystem& data = getSubsystem<DataSubsystem>();
+
+    for (auto gateway : gateways) {
+        try {
+            PcapDevice pcapDevice = pcap.getDevice(gateway.second);
+            const Poco::Net::IPAddress& gwIP = gateway.first;
+            Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
+            Injector injector(pcapDevice.pcapName(), src);
+            Arping arping(injector, gwIP);
+            if (arping.ping()) {
+                const MAC& gwMAC = arping.targetMAC();
+                logger().notice("Device %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gwIP.toString(), gwMAC.toString());
+                IPDataObject dao(data.createSession());
+                dao.addRouter(gwIP, gwMAC, pcapDevice.pcapName());
+            }
+        }
+        catch (Poco::Exception& ex) {
+            logger().error(ex.displayText());
+        }
+    }
 }
 
 POCO_SERVER_MAIN(Main)

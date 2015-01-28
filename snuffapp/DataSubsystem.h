@@ -8,21 +8,23 @@
 #ifndef MODELSUBSYSTEM_H
 #define	MODELSUBSYSTEM_H
 
+#include <Poco/Data/Session.h>
 #include <Poco/Util/Subsystem.h>
-#include "Model.h"
+#include "DataObserver.h"
 
-class ModelSubsystem : public Poco::Util::Subsystem
+class DataSubsystem : public Poco::Util::Subsystem
 {
 public:
-    ModelSubsystem();
+    DataSubsystem();
+    Poco::Data::Session createSession();
 protected:
-    virtual ~ModelSubsystem();
+    virtual ~DataSubsystem();
     virtual const char* name() const;
     virtual void initialize(Poco::Util::Application& app);
     virtual void uninitialize();
 private:
-    void addModel(Model* model);
-    Model::Container _models;
+    void addObserver(DataObserver* model);
+    DataObserver::Container _observers;
 };
 
 #endif	/* MODELSUBSYSTEM_H */
