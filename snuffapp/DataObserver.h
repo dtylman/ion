@@ -19,7 +19,6 @@ public:
     DataObserver();
     typedef Poco::AutoPtr<DataObserver> Ptr;
     typedef std::list<Ptr> Container;
-    virtual void initialize() = 0;
 protected:
     virtual ~DataObserver();
 };

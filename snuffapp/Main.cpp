@@ -11,7 +11,6 @@
 #include "DissectSubsystem.h"
 #include "DataSubsystem.h"
 #include "MAC.h"
-#include "Arper.h"
 #include "Injector.h"
 #include "Arping.h"
 #include "Routing.h"
@@ -45,20 +44,20 @@ void Main::addRouters()
     const Routing::Gateways& gateways = routing.gateways();
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     DataSubsystem& data = getSubsystem<DataSubsystem>();
-    IPDataObject ipDao(data.createSession());
+    IPDataObject ipDAO(data.createSession());
     for (auto gateway : gateways) {
         try {
             PcapDevice pcapDevice = pcap.getDevice(gateway.second);
             const Poco::Net::IPAddress& gwIP = gateway.first;
             Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
             Injector injector(pcapDevice.pcapName(), src);
-            ipDao.addAddress(src, injector.deviceMACAddress(), pcapDevice.pcapName());
+            ipDAO.addAddress(src, injector.deviceMACAddress(), pcapDevice.pcapName());
             logger().notice("Adding address %s %s %s", src.toString(), injector.deviceMACAddress().toString(), pcapDevice.pcapName());
             Arping arping(injector, gwIP);
             if (arping.ping()) {
                 const MAC& gwMAC = arping.targetMAC();
                 logger().notice("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gwIP.toString(), gwMAC.toString());
-                ipDao.addRouter(gwIP, gwMAC, pcapDevice.pcapName());
+                ipDAO.addRouter(gwIP, gwMAC, pcapDevice.pcapName());
             }
         }
         catch (Poco::Exception& ex) {
@@ -89,3 +88,4 @@ void Main::arpAll()
 }
 
 POCO_SERVER_MAIN(Main)
+

@@ -8,6 +8,10 @@
       <itemPath>DataObserver.h</itemPath>
       <itemPath>DataSubsystem.cpp</itemPath>
       <itemPath>DataSubsystem.h</itemPath>
+      <itemPath>HostDataObject.cpp</itemPath>
+      <itemPath>HostDataObject.h</itemPath>
+      <itemPath>HostObserver.cpp</itemPath>
+      <itemPath>HostObserver.h</itemPath>
       <itemPath>IPCache.cpp</itemPath>
       <itemPath>IPCache.h</itemPath>
       <itemPath>IPDataObject.cpp</itemPath>
@@ -24,6 +28,8 @@
       <itemPath>Protocol.h</itemPath>
       <itemPath>ProtocolARP.cpp</itemPath>
       <itemPath>ProtocolARP.h</itemPath>
+      <itemPath>ProtocolDHCP.cpp</itemPath>
+      <itemPath>ProtocolDHCP.h</itemPath>
       <itemPath>ProtocolEthernet.cpp</itemPath>
       <itemPath>ProtocolEthernet.h</itemPath>
       <itemPath>ProtocolIP.cpp</itemPath>
@@ -60,8 +66,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>Arper.cpp</itemPath>
-    <itemPath>Arper.h</itemPath>
     <itemPath>Arping.cpp</itemPath>
     <itemPath>Arping.h</itemPath>
     <itemPath>Injector.cpp</itemPath>
@@ -117,10 +121,6 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="Arper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Arper.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
@@ -144,6 +144,14 @@
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HostDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HostDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HostObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HostObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -196,6 +204,10 @@
       <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -262,10 +274,6 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="Arper.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Arper.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
@@ -289,6 +297,14 @@
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HostDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HostDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HostObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HostObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -341,6 +357,10 @@
       <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
       </item>
