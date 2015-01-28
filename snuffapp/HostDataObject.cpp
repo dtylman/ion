@@ -32,7 +32,7 @@ void HostDataObject::addHostInfo(const MAC& mac, const std::string& hostName, co
     std::string osStr = dhcpVendor;
     Poco::UInt64 ts = Poco::Timestamp().epochMicroseconds();
     std::string ifaceStr = iface;
-    _session << "INSERT OF REPLACE INTO host (mac,hostname,os,last_seen,iface VALUES (?,?,?,?,?)",
+    _session << "INSERT OR REPLACE INTO host (mac,hostname,os,last_seen,iface) VALUES (?,?,?,?,?)",
             use(macStr), use(hostStr), use(osStr), use(ts), use(ifaceStr), now;
 }
 

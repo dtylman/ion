@@ -62,16 +62,25 @@ bool ProtocolDHCP::dissect(const FrameBuffer& buffer, size_t& offset, Protocol::
 
 bool ProtocolDHCP::parseOption(const FrameBuffer& buffer, size_t& offset)
 {
-    if (buffer.sizeBytes() <= offset + 1) {
+    if (buffer.sizeBytes() <= offset) {
         return false;
     }
     Poco::UInt8 type = buffer[offset];
+	if (type == 0xff)
+	{
+		return false;
+	}
+	if (buffer.sizeBytes() <= offset) {
+		return false;
+	}
+	offset++;
     Poco::UInt8 length = buffer[offset];
-    offset += 2;
+	offset++;
     if (!enoughFor(buffer, offset, length)) {
         return false;
-    }
-    std::string data(buffer[offset], length);
+    }	
+	
+    std::string data((const char*)(buffer.begin()+offset), length);
     offset += length;
     _options[type] = data;
     return true;
@@ -84,7 +93,7 @@ const std::string& ProtocolDHCP::name() const
 
 std::string ProtocolDHCP::toString() const
 {
-    return Poco::format("type: %c Client MAC: %s Assigned IP: %s", _type, _clientMAC.toString(), _assignedIP.toString());
+    return Poco::format("type: %d Client MAC: %s Assigned IP: %s", (int)_type, _clientMAC.toString(), _assignedIP.toString());
 }
 
 std::string ProtocolDHCP::getOption(Poco::UInt8 type) const
