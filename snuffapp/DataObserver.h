@@ -13,16 +13,15 @@
 #include <Poco/Data/Session.h>
 #include <list>
 
-class Model : public Poco::RefCountedObject
+class DataObserver : public Poco::RefCountedObject
 {
 public:
-    Model();
-    typedef Poco::AutoPtr<Model> Ptr;
+    DataObserver();
+    typedef Poco::AutoPtr<DataObserver> Ptr;
     typedef std::list<Ptr> Container;
     virtual void initialize() = 0;
 protected:
-    virtual ~Model();
-    Poco::Data::Session _session;
+    virtual ~DataObserver();
 };
 
 #endif	/* MODEL_H */

@@ -19,8 +19,10 @@ public:
     void setName(const std::string& pcapName, const std::string& name);
     void addAddress(const PcapIfaceAddress& address);
     Poco::Net::IPAddress getIPAddress(Poco::Net::IPAddress::Family family) const;
-	const std::string& systemName() const;
-	const std::string& pcapName() const;
+    const std::string& systemName() const;
+    const std::string& pcapName() const;
+
+    std::string toString() const;
 private:
     PcapIfaceAddress::Container _addresses;
     std::string _name;

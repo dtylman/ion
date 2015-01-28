@@ -2,16 +2,18 @@
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="f4" displayName="Data" projectFiles="true">
-      <itemPath>HostnameModel.cpp</itemPath>
-      <itemPath>HostnameModel.h</itemPath>
+      <itemPath>DataObject.cpp</itemPath>
+      <itemPath>DataObject.h</itemPath>
+      <itemPath>DataObserver.cpp</itemPath>
+      <itemPath>DataObserver.h</itemPath>
+      <itemPath>DataSubsystem.cpp</itemPath>
+      <itemPath>DataSubsystem.h</itemPath>
       <itemPath>IPCache.cpp</itemPath>
       <itemPath>IPCache.h</itemPath>
-      <itemPath>IPModel.cpp</itemPath>
-      <itemPath>IPModel.h</itemPath>
-      <itemPath>Model.cpp</itemPath>
-      <itemPath>Model.h</itemPath>
-      <itemPath>ModelSubsystem.cpp</itemPath>
-      <itemPath>ModelSubsystem.h</itemPath>
+      <itemPath>IPDataObject.cpp</itemPath>
+      <itemPath>IPDataObject.h</itemPath>
+      <itemPath>IPDataObserver.cpp</itemPath>
+      <itemPath>IPDataObserver.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f3" displayName="Dissect" projectFiles="true">
       <itemPath>DissectSubsystem.cpp</itemPath>
@@ -123,6 +125,18 @@
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
@@ -131,17 +145,17 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="HostnameModel.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HostnameModel.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="IPModel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="IPModel.h" ex="false" tool="3" flavor2="0">
+      <item path="IPDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPDataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPDataObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Injector.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -156,14 +170,6 @@
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -264,6 +270,18 @@
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
@@ -272,17 +290,17 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="HostnameModel.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HostnameModel.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="IPModel.cpp" ex="false" tool="1" flavor2="0">
+      <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="IPModel.h" ex="false" tool="3" flavor2="0">
+      <item path="IPDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPDataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPDataObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Injector.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -297,14 +315,6 @@
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Model.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Model.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModelSubsystem.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModelSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
       </item>

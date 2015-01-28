@@ -9,6 +9,7 @@
 #define	PCAPIFACEADDRESS_H
 
 #include <Poco/Net/IPAddress.h>
+#include <Poco/Logger.h>
 #include <list>
 #include <string>
 #include <pcap.h>
@@ -30,6 +31,7 @@ private:
     Poco::Net::IPAddress _bcast;
     Poco::Net::IPAddress _netmask;
     Poco::Net::IPAddress _dest; //p2p
+    Poco::Logger& _logger;
 };
 
 #endif	/* PCAPIFACEADDRESS_H */

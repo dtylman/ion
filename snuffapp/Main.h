@@ -20,7 +20,7 @@ protected:
     virtual int main(const std::vector<std::string>& args);
 
 private:
-
+    void addRouters();
 };
 
 #endif	/* ZAKIFAPP_H */

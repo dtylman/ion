@@ -43,27 +43,29 @@ void PcapSubsystem::initialize(Poco::Util::Application& app)
             iface = iface->next;
             continue;
         }
-        std::string device(iface->name);
-        if (device == "any") {
+        if (iface->name == nullptr) {
             iface = iface->next;
             continue;
         }
-
         PcapDevice pcapDevice;
         if (iface->description == nullptr) {
-            pcapDevice.setName(device, device);
+            pcapDevice.setName(iface->name, iface->name);
         }
         else {
-            pcapDevice.setName(device, iface->description);
+            pcapDevice.setName(iface->name, iface->description);
+        }
+        if (pcapDevice.pcapName() == "any") {
+            iface = iface->next;
+            continue;
         }
         pcap_addr* address = iface->addresses;
         while (address != nullptr) {
             pcapDevice.addAddress(PcapIfaceAddress(address));
             address = address->next;
         }
-        _logger.information("Adding device: %s ", device);
-        _activities[device] = new PcapActivity(device);
-		_devices.push_back(pcapDevice);
+        _logger.information("Adding device: %s ", pcapDevice.toString());
+        _activities[pcapDevice.pcapName()] = new PcapActivity(pcapDevice.pcapName());
+        _devices.push_back(pcapDevice);
         iface = iface->next;
     }
     pcap_freealldevs(iface);
@@ -86,12 +88,10 @@ void PcapSubsystem::uninitialize()
 PcapDevice PcapSubsystem::getDevice(const std::string& name) const
 {
     Poco::FastMutex::ScopedLock lock(_mutex);
-	for (auto device : _devices)
-	{
-		if (device.systemName() == name)
-		{
-			return device;
-		}
-	}    
-	throw Poco::NotFoundException(Poco::format("Device %s not found", name));    	    
+    for (auto device : _devices) {
+        if (device.systemName() == name) {
+            return device;
+        }
+    }
+    throw Poco::NotFoundException(Poco::format("Device %s not found", name));
 }
