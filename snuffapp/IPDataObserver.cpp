@@ -18,16 +18,12 @@ using namespace Poco::Data::Keywords;
 
 IPDataObserver::IPDataObserver(const Poco::Data::Session& session) : _dao(session)
 {
-
+    Poco::Util::Application::instance().getSubsystem<DissectSubsystem>().onFrame += Poco::delegate(this, &IPDataObserver::onFrameEvent);
 }
 
 IPDataObserver::~IPDataObserver()
 {
-}
-
-void IPDataObserver::initialize()
-{
-    Poco::Util::Application::instance().getSubsystem<DissectSubsystem>().onFrame += Poco::delegate(this, &IPDataObserver::onFrameEvent);
+    Poco::Util::Application::instance().getSubsystem<DissectSubsystem>().onFrame -= Poco::delegate(this, &IPDataObserver::onFrameEvent);
 }
 
 void IPDataObserver::onFrameEvent(Frame::Ptr& frame)
@@ -41,6 +37,7 @@ void IPDataObserver::onFrameEvent(Frame::Ptr& frame)
     }
 
     handleARP(frame);
+
 }
 
 bool IPDataObserver::handleARP(Frame::Ptr& frame)

@@ -7,6 +7,7 @@
 
 #include "ProtocolUDP.h"
 #include "ProtocolNBDatagram.h"
+#include "ProtocolDHCP.h"
 #include <Poco/Format.h>
 
 #ifdef POCO_OS_FAMILY_WINDOWS
@@ -47,13 +48,12 @@ bool ProtocolUDP::dissect(const FrameBuffer& buffer, size_t& offset, Protocol::P
     _length = ntohs(header->len);
     _checksum = ntohs(header->checksum);
     offset += sizeof (UDPHeader);
-    //    if (_source == 138) {
-    //        next = new ProtocolNBDatagram();
-    //    }
-    //    else
-    //    {
+    if (_source == 68) //boop-client
+    {
+        next = new ProtocolDHCP();
+        return true;
+    }
     next = nullptr;
-    //    }
     return true;
 }
 

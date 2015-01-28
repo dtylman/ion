@@ -16,12 +16,12 @@ class IPDataObject : public DataObject
 {
 public:
     IPDataObject(const Poco::Data::Session& session);
+    virtual ~IPDataObject();
     void createTable();
     void addAddress(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac);
     bool isRouter(const MAC& mac, int af);
-    virtual ~IPDataObject();
 private:
 
 };

@@ -23,7 +23,6 @@ protected:
     virtual void initialize(Poco::Util::Application& app);
     virtual void uninitialize();
 private:
-    void addObserver(DataObserver* model);
     DataObserver::Container _observers;
 };
 

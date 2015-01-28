@@ -14,14 +14,10 @@
 #include "IPDataObject.h"
 #include <Poco/ExpireCache.h>
 
-//mac-ip
-
 class IPDataObserver : public DataObserver
 {
 public:
     IPDataObserver(const Poco::Data::Session& session);
-    virtual void initialize();
-
 protected:
     void onFrameEvent(Frame::Ptr& frame);
     virtual ~IPDataObserver();
