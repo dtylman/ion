@@ -17,7 +17,26 @@ namespace mabat
         }
 
         private void createTables()
-        {            
+        {
+            createHostDescTable();
+            createMACVendorTable();
+        }
+
+        private void createMACVendorTable()
+        {
+            if (!tableExists("mac_vendor"))
+            {
+                SQLiteCommand command = this.connection.CreateCommand();
+                command.CommandText = "CREATE TABLE mac_vendor (prefix TEXT NOT NULL, vendor TEXT NOT NULL)";
+                command.ExecuteNonQuery();
+                command = this.connection.CreateCommand();
+                command.CommandText = "CREATE UNIQUE INDEX pk_mac_vendor ON mac_vendor (prefix ASC)";
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private void createHostDescTable()
+        {
             if (!tableExists("host_desc"))
             {
                 SQLiteCommand command = this.connection.CreateCommand();
@@ -43,10 +62,13 @@ namespace mabat
 
         public void GetDevices(DataTable table)
         {
-            String sql = "SELECT ip.mac,ip.ip, ip.last_seen,host.hostname, host.os, host_desc.type, " +
-            "host_desc.vendor, host_desc.os, host_desc.desc FROM ip LEFT JOIN host ON ip.mac=host.mac " +
+            String sql = "SELECT host_desc.type as type, "+
+            "host_desc.vendor, host_desc.os as os, "+
+            "host.hostname, host.os as host_os, ip.last_seen, " +
+            "ip.mac ,ip.ip , host_desc.desc " +
+            "FROM ip LEFT JOIN host ON ip.mac=host.mac " +
             "LEFT JOIN host_desc ON ip.mac=host_desc.mac";
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);            
             adapter.Fill(table);
         }
     }
