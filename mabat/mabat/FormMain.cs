@@ -16,7 +16,9 @@ namespace mabat
         public FormMain()
         {
             InitializeComponent();
-            this.tabPageDevices.Controls.Add(new DevicesControl());
+            DevicesControl dc = new DevicesControl();
+            dc.Dock = DockStyle.Fill;
+            this.tabPageDevices.Controls.Add(dc);
         }
      
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
