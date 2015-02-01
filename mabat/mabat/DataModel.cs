@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Windows.Forms;
 
 namespace mabat
 {
@@ -8,13 +10,23 @@ namespace mabat
     {
         private static DataModel instance = new DataModel();
         private SQLiteConnection connection = null;
+        private DeviceTypeBindingSource deviceTypesBindingSource = null;
+        private DeviceVendorBindingSource deviceVendorBindingSource = null;
 
         private DataModel()
         {
             this.connection = new SQLiteConnection("Data Source=C:\\Users\\danny\\src\\snuffler\\snuffapp\\zakif.db");
             this.connection.Open();
             createTables();
+            createBindingSources();
         }
+
+        private void createBindingSources()
+        {
+            this.deviceTypesBindingSource = new DeviceTypeBindingSource();
+            this.deviceVendorBindingSource = new DeviceVendorBindingSource();
+        }
+
 
         private void createTables()
         {
@@ -55,9 +67,12 @@ namespace mabat
             return (command.ExecuteScalar() != null);
         }
 
-        internal static DataModel Instance()
+        internal static DataModel Instance
         {
-            return instance;
+            get
+            {
+                return instance;
+            }
         }
 
         public void GetDevices(DataTable table)
@@ -71,5 +86,25 @@ namespace mabat
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);            
             adapter.Fill(table);
         }
+
+
+
+        public DeviceTypeBindingSource DeviceTypeDataSource
+        { 
+            get
+            {
+                return this.deviceTypesBindingSource;
+            }
+        }
+
+
+        public DeviceVendorBindingSource DeviceVendorDataSource
+        {
+            get
+            {
+                return this.deviceVendorBindingSource;
+            }
+        }
+            
     }
 }

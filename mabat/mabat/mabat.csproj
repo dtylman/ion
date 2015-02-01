@@ -76,11 +76,24 @@
       <DependentUpon>ConfigurationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModel.cs" />
+    <Compile Include="DeviceDataRow.cs" />
     <Compile Include="DevicesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DevicesControl.Designer.cs">
       <DependentUpon>DevicesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceTypeBindingSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DeviceVendorBindingSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EditDeviceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDeviceDialog.Designer.cs">
+      <DependentUpon>EditDeviceDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -99,6 +112,9 @@
     <EmbeddedResource Include="DevicesControl.resx">
       <DependentUpon>DevicesControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditDeviceDialog.resx">
+      <DependentUpon>EditDeviceDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +128,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DataModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

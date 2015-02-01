@@ -34,7 +34,7 @@ namespace mabat
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataModel.Instance();
+            
         }
 
         
