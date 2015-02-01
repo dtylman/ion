@@ -22,30 +22,22 @@ namespace mabat
         private void loadDevices()
         {
             DataTable table = new DataTable();
-            DataModel.Instance().GetDevices(table);
-            this.gridViewDevices.AutoGenerateColumns = false;
+            DataModel.Instance.GetDevices(table);            
             this.gridViewDevices.DataSource = table;
         }
 
-        private void gridViewDevices_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            ComboBox cb = e.Control as ComboBox;
-            if (cb != null)
-            {
-                cb.DropDownStyle = ComboBoxStyle.DropDown;
-            }
-        }
+        
 
-        private void gridViewDevices_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void gridViewDevices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-             DataGridViewComboBoxColumn column = (this.gridViewDevices.Columns[e.ColumnIndex] as DataGridViewComboBoxColumn);
-            if (column==null)
+            if (e.RowIndex==-1)
             {
                 return;
             }
-            if (!column.Items.Contains(e.FormattedValue)) {
-                column.Items.Add(e.FormattedValue);
-            }
+            EditDeviceDialog dialog = new EditDeviceDialog();
+            DataGridViewRow row = this.gridViewDevices.Rows[e.RowIndex];
+            dialog.setFromRow(row, this.gridViewDevices.Columns);
+            dialog.ShowDialog(this);
         }
     }
 }
