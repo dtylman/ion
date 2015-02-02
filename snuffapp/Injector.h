@@ -12,6 +12,7 @@
 #include <libnet.h>
 #include <Poco/Net/IPAddress.h>
 #include <Poco/Mutex.h>
+#include <Poco/Logger.h>
 #include "MAC.h"
 
 class Injector
@@ -31,6 +32,7 @@ private:
     libnet_t* _libnet = nullptr;
     libnet_ether_addr* _srcMAC = nullptr;
     Poco::Net::IPAddress _srcIP;
+    Poco::Logger& _logger;
 };
 
 #endif	/* INJECTOR_H */
