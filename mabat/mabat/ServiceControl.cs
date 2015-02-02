@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace mabat
 {
-    public partial class ConfigurationControl : UserControl
+    public partial class ServiceControl : UserControl
     {
-        public ConfigurationControl()
+        public ServiceControl()
         {
             InitializeComponent();
+            LogTailControl ltc = new LogTailControl(AppDomain.CurrentDomain.BaseDirectory, "ion.log");
+            ltc.Dock = DockStyle.Fill;
+            groupBoxLogger.Controls.Add(ltc);
         }
     }
 }

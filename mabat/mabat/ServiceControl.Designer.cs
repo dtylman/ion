@@ -1,6 +1,6 @@
 ﻿namespace mabat
 {
-    partial class ConfigurationControl
+    partial class ServiceControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.groupBoxLogger = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
-            // ConfigurationControl
+            // groupBoxLogger
+            // 
+            this.groupBoxLogger.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBoxLogger.Location = new System.Drawing.Point(0, 299);
+            this.groupBoxLogger.Name = "groupBoxLogger";
+            this.groupBoxLogger.Size = new System.Drawing.Size(683, 204);
+            this.groupBoxLogger.TabIndex = 0;
+            this.groupBoxLogger.TabStop = false;
+            this.groupBoxLogger.Text = "Server Log";
+            // 
+            // ServiceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ConfigurationControl";
+            this.Controls.Add(this.groupBoxLogger);
+            this.Name = "ServiceControl";
             this.Size = new System.Drawing.Size(683, 503);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox groupBoxLogger;
     }
 }

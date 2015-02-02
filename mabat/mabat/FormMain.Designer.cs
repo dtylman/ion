@@ -36,7 +36,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageDevices = new System.Windows.Forms.TabPage();
-            this.tabPageConfig = new System.Windows.Forms.TabPage();
+            this.tabPageService = new System.Windows.Forms.TabPage();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +92,7 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabPageDevices);
-            this.tabControl.Controls.Add(this.tabPageConfig);
+            this.tabControl.Controls.Add(this.tabPageService);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Name = "tabControl";
@@ -110,15 +110,15 @@
             this.tabPageDevices.Text = "Devices";
             this.tabPageDevices.UseVisualStyleBackColor = true;
             // 
-            // tabPageConfig
+            // tabPageService
             // 
-            this.tabPageConfig.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConfig.Name = "tabPageConfig";
-            this.tabPageConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfig.Size = new System.Drawing.Size(709, 370);
-            this.tabPageConfig.TabIndex = 1;
-            this.tabPageConfig.Text = "Configuration";
-            this.tabPageConfig.UseVisualStyleBackColor = true;
+            this.tabPageService.Location = new System.Drawing.Point(4, 22);
+            this.tabPageService.Name = "tabPageService";
+            this.tabPageService.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageService.Size = new System.Drawing.Size(738, 370);
+            this.tabPageService.TabIndex = 1;
+            this.tabPageService.Text = "Service";
+            this.tabPageService.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -143,7 +143,7 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageDevices;
-        private System.Windows.Forms.TabPage tabPageConfig;
+        private System.Windows.Forms.TabPage tabPageService;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
