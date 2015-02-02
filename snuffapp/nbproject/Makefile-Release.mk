@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Arping.o \
+	${OBJECTDIR}/AutoJSONConfiguration.o \
 	${OBJECTDIR}/DataObject.o \
 	${OBJECTDIR}/DataObserver.o \
 	${OBJECTDIR}/DataSubsystem.o \
@@ -92,6 +93,11 @@ ${OBJECTDIR}/Arping.o: Arping.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Arping.o Arping.cpp
+
+${OBJECTDIR}/AutoJSONConfiguration.o: AutoJSONConfiguration.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AutoJSONConfiguration.o AutoJSONConfiguration.cpp
 
 ${OBJECTDIR}/DataObject.o: DataObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}
