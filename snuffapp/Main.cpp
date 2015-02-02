@@ -15,6 +15,7 @@
 #include "Arping.h"
 #include "Routing.h"
 #include "IPDataObserver.h"
+#include "AutoJSONConfiguration.h"
 #include <iostream>
 
 Main::Main()
@@ -87,5 +88,20 @@ void Main::arpAll()
     }
 }
 
-POCO_SERVER_MAIN(Main)
+void Main::initialize(Poco::Util::Application& self)
+{
+    loadConfiguration();
+    Poco::Util::ServerApplication::initialize(self);
+}
 
+int Main::loadConfiguration(int priority)
+{
+    Poco::Path path = config().getString("application.configDir");
+    path.pushDirectory("config");
+    Poco::File file(path);
+    file.createDirectories();
+    config().setString("application.configDir", path.toString());
+    config().add(new AutoJSONConfiguration(path, "ion.config.json"));
+}
+
+POCO_SERVER_MAIN(Main)

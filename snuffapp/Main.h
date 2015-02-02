@@ -18,7 +18,8 @@ public:
 
 protected:
     virtual int main(const std::vector<std::string>& args);
-
+    void initialize(Poco::Util::Application& self);
+    int loadConfiguration(int priority = PRIO_DEFAULT);
 private:
     void addRouters();
     void arpAll();

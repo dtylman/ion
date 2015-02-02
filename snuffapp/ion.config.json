@@ -1,0 +1,26 @@
+{
+    "logging": {
+        "channels": {
+            "c1": {
+                "archive": "timestamp",
+                "class": "FileChannel",
+                "compress": true,
+                "formatter": {
+                    "class": "PatternFormatter",
+                    "pattern": "%d-%b-%y %H:%M:%S.%i %s: [%p] %t",
+                    "times": "local"
+                },
+                "path": "ion.log",
+                "purgeAge": "1 months",
+                "purgeCount": 3,
+                "rotation": "10 M"
+            }
+        },
+        "loggers": {
+            "root": {
+                "channel": "c1",
+                "level": "debug"
+            }
+        }
+    }
+}

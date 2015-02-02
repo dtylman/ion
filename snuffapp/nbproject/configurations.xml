@@ -68,6 +68,8 @@
     </logicalFolder>
     <itemPath>Arping.cpp</itemPath>
     <itemPath>Arping.h</itemPath>
+    <itemPath>AutoJSONConfiguration.cpp</itemPath>
+    <itemPath>AutoJSONConfiguration.h</itemPath>
     <itemPath>Injector.cpp</itemPath>
     <itemPath>Injector.h</itemPath>
     <itemPath>MAC.cpp</itemPath>
@@ -79,6 +81,7 @@
     <itemPath>Rouing.cpp</itemPath>
     <itemPath>Routing.h</itemPath>
     <itemPath>Routing_LINUX.cpp</itemPath>
+    <itemPath>ion.config.json</itemPath>
     <itemPath>pcap.props</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -124,6 +127,10 @@
       <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AutoJSONConfiguration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AutoJSONConfiguration.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -230,6 +237,8 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ion.config.json" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
@@ -278,6 +287,10 @@
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AutoJSONConfiguration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AutoJSONConfiguration.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataObject.h" ex="false" tool="3" flavor2="0">
@@ -383,6 +396,8 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ion.config.json" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
