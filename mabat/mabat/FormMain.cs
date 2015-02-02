@@ -19,6 +19,9 @@ namespace mabat
             DevicesControl dc = new DevicesControl();
             dc.Dock = DockStyle.Fill;
             this.tabPageDevices.Controls.Add(dc);
+            ServiceControl sc = new ServiceControl();
+            sc.Dock = DockStyle.Fill;
+            this.tabPageService.Controls.Add(sc);
         }
      
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

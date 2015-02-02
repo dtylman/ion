@@ -85,6 +85,7 @@
     <ClCompile Include="ProtocolDHCP.cpp">
       <Filter>Dissect</Filter>
     </ClCompile>
+    <ClCompile Include="AutoJSONConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="ProtocolDHCP.h">
       <Filter>Dissect</Filter>
     </ClInclude>
+    <ClInclude Include="AutoJSONConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

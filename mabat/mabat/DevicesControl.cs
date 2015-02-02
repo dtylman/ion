@@ -16,7 +16,6 @@ namespace mabat
         {
             InitializeComponent();
             loadDevices();
-
         }
 
         private void loadDevices()

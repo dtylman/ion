@@ -106,7 +106,8 @@ int Main::loadConfiguration(int priority)
     Poco::File file(path);
     file.createDirectories();
     config().setString("application.configDir", path.toString());
-    config().add(new AutoJSONConfiguration(path, "ion.config.json"));
+    config().add(new AutoJSONConfiguration(path, "ion.config.json"),priority);
+	return 1;
 }
 
 POCO_SERVER_MAIN(Main)

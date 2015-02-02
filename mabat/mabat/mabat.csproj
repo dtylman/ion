@@ -33,7 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -69,11 +69,11 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfigurationControl.cs">
+    <Compile Include="ServiceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConfigurationControl.Designer.cs">
-      <DependentUpon>ConfigurationControl.cs</DependentUpon>
+    <Compile Include="ServiceControl.Designer.cs">
+      <DependentUpon>ServiceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModel.cs" />
     <Compile Include="DeviceDataRow.cs" />
@@ -101,13 +101,19 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogTailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LogTailControl.Designer.cs">
+      <DependentUpon>LogTailControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConfigurationControl.resx">
-      <DependentUpon>ConfigurationControl.cs</DependentUpon>
+    <EmbeddedResource Include="ServiceControl.resx">
+      <DependentUpon>ServiceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DevicesControl.resx">
       <DependentUpon>DevicesControl.cs</DependentUpon>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogTailControl.resx">
+      <DependentUpon>LogTailControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
