@@ -76,12 +76,17 @@ void Main::arpAll()
         for (auto address : pcapDevice.addresses()) {
             const Poco::Net::IPAddress& ip = address.ip();
             if ((ip.family() == Poco::Net::IPAddress::IPv4) && (ip.isUnicast()) && (!ip.isLinkLocal())) {
-                Injector injector(pcapDevice.pcapName(), ip);
-                PcapIfaceAddress::IPContainer ips;
-                address.fillAllIPs(ips);
-                for (auto ip : ips) {
-                    injector.arpRequest(ip);
-                    Poco::Thread::sleep(50); //throttle this a bit
+                try {
+                    Injector injector(pcapDevice.pcapName(), ip);
+                    PcapIfaceAddress::IPContainer ips;
+                    address.fillAllIPs(ips);
+                    for (auto ip : ips) {
+                        injector.arpRequest(ip);
+                        Poco::Thread::sleep(50); //throttle this a bit
+                    }
+                }
+                catch (Poco::Exception&ex) {
+                    logger().error("Failed to send ARP for device %s: %s", pcapDevice.toString(), ex.displayText());
                 }
             }
         }
