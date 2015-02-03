@@ -12,6 +12,7 @@
 #include "ThingObserver.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Delegate.h>
+#include <Poco/Util/Application.h>
 #include <list>
 
 using namespace Poco::Data::Keywords;
@@ -44,7 +45,9 @@ void DataSubsystem::uninitialize()
 
 Poco::Data::Session DataSubsystem::createSession()
 {
-    Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, "ion.db");
+	Poco::Path dbFile(Poco::Util::Application::instance().config().getString("application.dir"));
+	dbFile.setFileName("ion.db");
+    Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, dbFile.absolute().toString());
     session.setConnectionTimeout(30000); // 30 seconds
     session << "PRAGMA synchronous = OFF", now;
     session << "PRAGMA journal_mode = MEMORY", now;

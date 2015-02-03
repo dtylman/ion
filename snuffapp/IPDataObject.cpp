@@ -34,7 +34,7 @@ void IPDataObject::addAddress(const Poco::Net::IPAddress& ip, const MAC& mac, co
     std::string ipstr = ip.toString();
     std::string macstr = mac.toString();
     std::string ifacestr = iface;
-	std::size_t ts = Poco::Timestamp().epochTime();
+	std::time_t ts = Poco::Timestamp().epochTime();
     bool alreadyExists = false;
     _session << "SELECT 1 FROM ip WHERE mac=?", use(macstr), into(alreadyExists), now;
     _session << "INSERT OR REPLACE INTO ip (mac,ip,last_seen,iface) VALUES (?,?,?,?)",
@@ -75,7 +75,7 @@ void IPDataObject::addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, con
     std::string macstr = mac.toString();
     std::string ipstr = ip.toString();
     _session << "DELETE FROM ip WHERE mac=? and ip!=?", use(macstr), use(ipstr), now;
-    std::size_t ts = Poco::Timestamp().epochTime();
+    std::time_t ts = Poco::Timestamp().epochTime();
     std::string deviceStr = device;
     _session << "INSERT OR REPLACE INTO ip (mac,ip,last_seen,iface) VALUES (?,?,?,?)",
             use(macstr), use(ipstr), use(ts), use(deviceStr), now;
