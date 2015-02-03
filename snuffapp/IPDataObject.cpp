@@ -102,6 +102,7 @@ void IPDataObject::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& ma
 void IPDataObject::addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device)
 {
     if ((!ip.isUnicast()) || (!mac.isUnicast())) {
+
         return;
     }
     std::string macstr = mac.toString();
@@ -136,10 +137,10 @@ void IPDataObject::findAll(IPData::Container& container)
 void IPDataObject::findOnline(IPData::Container& container)
 {
     Poco::Timespan interval = Poco::Timespan::MINUTES * Poco::Util::Application::instance().config().getUInt("ion.offline-interval", 10);
-    Poco::Timestamp now;
-    now -= interval;
-    std::time_t last = now.epochTime();
-    _session << "SELECT mac, ip, last_seen,iface FROM ip WHERE last_seen>?", use(last), into(container), now;
+    Poco::Timestamp ts;
+    ts -= interval;
+	std::time_t last = ts.epochTime();
+	_session << "SELECT mac, ip, last_seen,iface FROM ip WHERE last_seen>?", use(last), into(container), now;
 }
 
 bool IPDataObject::exists(const Poco::Net::IPAddress& ip, const MAC& mac)
