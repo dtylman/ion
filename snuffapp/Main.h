@@ -24,6 +24,7 @@ protected:
     int loadConfiguration(int priority = PRIO_DEFAULT);
 private:
     void onOnlineScan(Poco::Util::TimerTask& timerTask);
+    void addSelf();
     void addRouters();
     Poco::Util::Timer _timer;
     Solicitator _solicitator;

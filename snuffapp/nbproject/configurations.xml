@@ -4,14 +4,20 @@
     <logicalFolder name="f4" displayName="Data" projectFiles="true">
       <itemPath>DHCPOSDataObject.cpp</itemPath>
       <itemPath>DHCPOSDataObject.h</itemPath>
-      <itemPath>DataNotificaation.cpp</itemPath>
-      <itemPath>DataNotificaation.h</itemPath>
       <itemPath>DataObject.cpp</itemPath>
       <itemPath>DataObject.h</itemPath>
       <itemPath>DataObserver.cpp</itemPath>
       <itemPath>DataObserver.h</itemPath>
       <itemPath>DataSubsystem.cpp</itemPath>
       <itemPath>DataSubsystem.h</itemPath>
+      <itemPath>EventData.cpp</itemPath>
+      <itemPath>EventData.h</itemPath>
+      <itemPath>EventDataObject.cpp</itemPath>
+      <itemPath>EventDataObject.h</itemPath>
+      <itemPath>EventNotification.cpp</itemPath>
+      <itemPath>EventNotification.h</itemPath>
+      <itemPath>EventObserver.cpp</itemPath>
+      <itemPath>EventObserver.h</itemPath>
       <itemPath>IPCache.cpp</itemPath>
       <itemPath>IPCache.h</itemPath>
       <itemPath>IPData.cpp</itemPath>
@@ -146,10 +152,6 @@
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DataNotificaation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DataNotificaation.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataObject.h" ex="false" tool="3" flavor2="0">
@@ -165,6 +167,22 @@
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventNotification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -325,10 +343,6 @@
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DataNotificaation.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DataNotificaation.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataObject.h" ex="false" tool="3" flavor2="0">
@@ -344,6 +358,22 @@
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventNotification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
