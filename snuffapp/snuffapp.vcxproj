@@ -16,12 +16,12 @@
     <ClCompile Include="DataObject.cpp" />
     <ClCompile Include="DataObserver.cpp" />
     <ClCompile Include="DataSubsystem.cpp" />
+    <ClCompile Include="DHCPOSDataObject.cpp" />
     <ClCompile Include="DissectSubsystem.cpp" />
     <ClCompile Include="Frame.cpp" />
-    <ClCompile Include="HostDataObject.cpp" />
-    <ClCompile Include="HostObserver.cpp" />
     <ClCompile Include="Injector.cpp" />
     <ClCompile Include="IPCache.cpp" />
+    <ClCompile Include="IPData.cpp" />
     <ClCompile Include="IPDataObject.cpp" />
     <ClCompile Include="IPDataObserver.cpp" />
     <ClCompile Include="MAC.cpp" />
@@ -39,6 +39,9 @@
     <ClCompile Include="ProtocolUDP.cpp" />
     <ClCompile Include="Rouing.cpp" />
     <ClCompile Include="Routing_WIN32.cpp" />
+    <ClCompile Include="Solicitator.cpp" />
+    <ClCompile Include="ThingDataObject.cpp" />
+    <ClCompile Include="ThingObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arping.h" />
@@ -46,12 +49,12 @@
     <ClInclude Include="DataObject.h" />
     <ClInclude Include="DataObserver.h" />
     <ClInclude Include="DataSubsystem.h" />
+    <ClInclude Include="DHCPOSDataObject.h" />
     <ClInclude Include="DissectSubsystem.h" />
     <ClInclude Include="Frame.h" />
-    <ClInclude Include="HostDataObject.h" />
-    <ClInclude Include="HostObserver.h" />
     <ClInclude Include="Injector.h" />
     <ClInclude Include="IPCache.h" />
+    <ClInclude Include="IPData.h" />
     <ClInclude Include="IPDataObject.h" />
     <ClInclude Include="IPDataObserver.h" />
     <ClInclude Include="MAC.h" />
@@ -67,6 +70,9 @@
     <ClInclude Include="ProtocolIP.h" />
     <ClInclude Include="ProtocolNBDatagram.h" />
     <ClInclude Include="ProtocolUDP.h" />
+    <ClInclude Include="Solicitator.h" />
+    <ClInclude Include="ThingDataObject.h" />
+    <ClInclude Include="ThingObserver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libnet.props" />

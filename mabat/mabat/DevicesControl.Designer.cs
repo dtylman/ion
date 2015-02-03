@@ -30,9 +30,9 @@
         {
             this.panelMaster = new System.Windows.Forms.Panel();
             this.gridViewDevices = new System.Windows.Forms.DataGridView();
+            this.ColumnImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelDetail = new System.Windows.Forms.Panel();
             this.gridViewEvents = new System.Windows.Forms.DataGridView();
-            this.ColumnImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDevices)).BeginInit();
             this.panelDetail.SuspendLayout();
@@ -50,8 +50,8 @@
             // 
             // gridViewDevices
             // 
-            this.gridViewDevices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridViewDevices.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.gridViewDevices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.gridViewDevices.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.gridViewDevices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewDevices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnImage});
@@ -62,6 +62,13 @@
             this.gridViewDevices.Size = new System.Drawing.Size(744, 300);
             this.gridViewDevices.TabIndex = 0;
             this.gridViewDevices.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridViewDevices_CellDoubleClick);
+            // 
+            // ColumnImage
+            // 
+            this.ColumnImage.HeaderText = "";
+            this.ColumnImage.Name = "ColumnImage";
+            this.ColumnImage.ReadOnly = true;
+            this.ColumnImage.Width = 21;
             // 
             // panelDetail
             // 
@@ -79,12 +86,6 @@
             this.gridViewEvents.Name = "gridViewEvents";
             this.gridViewEvents.Size = new System.Drawing.Size(727, 185);
             this.gridViewEvents.TabIndex = 0;
-            // 
-            // ColumnImage
-            // 
-            this.ColumnImage.HeaderText = "";
-            this.ColumnImage.Name = "ColumnImage";
-            this.ColumnImage.ReadOnly = true;
             // 
             // DevicesControl
             // 
