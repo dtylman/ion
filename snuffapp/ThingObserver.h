@@ -9,18 +9,20 @@
 #define	HOSTOBSERVER_H
 
 #include "DataObserver.h"
-#include "HostDataObject.h"
+#include "ThingDataObject.h"
 #include "Frame.h"
+#include "DHCPOSDataObject.h"
 
-class HostObserver : public DataObserver
+class ThingObserver : public DataObserver
 {
 public:
-    HostObserver(const Poco::Data::Session& session);
+    ThingObserver(const Poco::Data::Session& session);
 protected:
-    virtual ~HostObserver();
+    virtual ~ThingObserver();
     void onFrameEvent(Frame::Ptr& frame);
 private:
-    HostDataObject _dao;
+    ThingDataObject _things;
+    DHCPOSDataObject _dhcp;
 };
 
 #endif	/* HOSTOBSERVER_H */

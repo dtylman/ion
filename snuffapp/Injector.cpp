@@ -50,7 +50,7 @@ void Injector::arpRequest(const Poco::Net::IPAddress& targetIP, const MAC& targe
     if (ret == -1) {
         throw Poco::ApplicationException(Poco::format("Failed to write arp request: %s", std::string(libnet_geterror(_libnet))));
     }
-    _logger.debug("Sent ARP request to %s %s", targetMAC.toString(), targetIP.toString());
+    _logger.trace("Sent ARP request to %s %s", targetMAC.toString(), targetIP.toString());
 }
 
 const std::string& Injector::device() const

@@ -2,22 +2,26 @@
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="f4" displayName="Data" projectFiles="true">
+      <itemPath>DHCPOSDataObject.cpp</itemPath>
+      <itemPath>DHCPOSDataObject.h</itemPath>
       <itemPath>DataObject.cpp</itemPath>
       <itemPath>DataObject.h</itemPath>
       <itemPath>DataObserver.cpp</itemPath>
       <itemPath>DataObserver.h</itemPath>
       <itemPath>DataSubsystem.cpp</itemPath>
       <itemPath>DataSubsystem.h</itemPath>
-      <itemPath>HostDataObject.cpp</itemPath>
-      <itemPath>HostDataObject.h</itemPath>
-      <itemPath>HostObserver.cpp</itemPath>
-      <itemPath>HostObserver.h</itemPath>
       <itemPath>IPCache.cpp</itemPath>
       <itemPath>IPCache.h</itemPath>
+      <itemPath>IPData.cpp</itemPath>
+      <itemPath>IPData.h</itemPath>
       <itemPath>IPDataObject.cpp</itemPath>
       <itemPath>IPDataObject.h</itemPath>
       <itemPath>IPDataObserver.cpp</itemPath>
       <itemPath>IPDataObserver.h</itemPath>
+      <itemPath>ThingDataObject.cpp</itemPath>
+      <itemPath>ThingDataObject.h</itemPath>
+      <itemPath>ThingObserver.cpp</itemPath>
+      <itemPath>ThingObserver.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f3" displayName="Dissect" projectFiles="true">
       <itemPath>DissectSubsystem.cpp</itemPath>
@@ -81,6 +85,8 @@
     <itemPath>Rouing.cpp</itemPath>
     <itemPath>Routing.h</itemPath>
     <itemPath>Routing_LINUX.cpp</itemPath>
+    <itemPath>Solicitator.cpp</itemPath>
+    <itemPath>Solicitator.h</itemPath>
     <itemPath>ion.config.json</itemPath>
     <itemPath>pcap.props</itemPath>
   </logicalFolder>
@@ -132,6 +138,10 @@
       </item>
       <item path="AutoJSONConfiguration.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataObject.h" ex="false" tool="3" flavor2="0">
@@ -152,17 +162,13 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="HostDataObject.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HostDataObject.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HostObserver.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HostObserver.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPData.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -237,6 +243,18 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ion.config.json" ex="false" tool="3" flavor2="0">
       </item>
@@ -291,6 +309,10 @@
       </item>
       <item path="AutoJSONConfiguration.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataObject.h" ex="false" tool="3" flavor2="0">
@@ -311,17 +333,13 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="HostDataObject.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HostDataObject.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="HostObserver.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HostObserver.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPData.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -396,6 +414,18 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ion.config.json" ex="false" tool="3" flavor2="0">
       </item>

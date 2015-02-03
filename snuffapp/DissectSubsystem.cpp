@@ -42,13 +42,26 @@ void DissectSubsystem::queueFrame(Frame* frame)
 
 void DissectSubsystem::runActivity()
 {
+    _logger.information("Activity Started");
     while (!_activity.isStopped()) {
-        Poco::Notification::Ptr notif(_queue.waitDequeueNotification(2500), true);
-        Frame::Ptr frame = notif.cast<Frame>();
-        if (!frame.isNull()) {
-            frame->dissect();
-            _logger.debug("Frame: %s", frame->toString());
-            onFrame.notify(this, frame);
+        try {
+            Poco::Notification::Ptr notif(_queue.waitDequeueNotification(2500), true);
+            Frame::Ptr frame = notif.cast<Frame>();
+            if (!frame.isNull()) {
+                frame->dissect();
+                _logger.trace("Frame: %s", frame->toString());
+                onFrame.notify(this, frame);
+            }
+        }
+        catch (Poco::Exception& ex) {
+            _logger.error(ex.displayText());
+        }
+        catch (std::exception& ex) {
+            _logger.error(std::string(ex.what()));
+        }
+        catch (...) {
+            _logger.error("Unknown exception in DissectSubsystem::runActivity");
         }
     }
+    _logger.information("Activity Ended");
 }
