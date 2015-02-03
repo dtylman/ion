@@ -33,8 +33,8 @@ Main::~Main()
 int Main::main(const std::vector<std::string>& args)
 {
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
-    pcap.start();
-    addRouters();
+    pcap.start();	
+    addRouters();	
     _solicitator.arpAll();
     waitForTerminationRequest();
     return EXIT_OK;

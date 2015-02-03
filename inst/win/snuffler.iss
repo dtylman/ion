@@ -6,6 +6,7 @@
 #define AppPublisher "Bolsheviks.com"
 #define AppURL "http://www.bolsheviks.com/"
 #define AppExeName "snuffapp.exe"
+#define BINDIR "..\..\Release"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -33,11 +34,14 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\..\Release\snuffapp.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BINDIR}\snuffapp.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "WinPcap_4_1_3.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\mabat\mabat\bin\release\mabat.exe" ; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\mabat\mabat\bin\release\System.Data.SQLite.dll" ; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\mabat\mabat\bin\release\x86\SQLite.Interop.dll" ; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BINDIR}\mabat.exe" ; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BINDIR}\System.Data.SQLite.dll" ; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#BINDIR}\x86\SQLite.Interop.dll" ; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\dbtool\ion.db"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\snuffapp\ion.config.json"; DestDir: "{app}\config"; Flags: ignoreversion
+
 
 [Icons]
 Name: "{group}\Mabat"; Filename: "{app}\mabat.exe"; Flags: 
