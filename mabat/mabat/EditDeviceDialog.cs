@@ -26,7 +26,7 @@ namespace mabat
             this.cmbOS.Text = getText(row, columns, DeviceDataRow.OS);
             this.txtDesc.Text = getText(row, columns, DeviceDataRow.DESC);
             this.txtMAC.Text = getText(row, columns, DeviceDataRow.MAC);
-            this.txtName.Text = getText(row, columns, DeviceDataRow.Hostname);
+            this.txtName.Text = getText(row, columns, DeviceDataRow.Name);
         }
 
         private string getText(DataGridViewRow row, DataGridViewColumnCollection columns, string columnName)

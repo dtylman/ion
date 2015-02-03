@@ -76,16 +76,23 @@
     <ClCompile Include="IPDataObserver.cpp">
       <Filter>Data</Filter>
     </ClCompile>
-    <ClCompile Include="HostDataObject.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
-    <ClCompile Include="HostObserver.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
     <ClCompile Include="ProtocolDHCP.cpp">
       <Filter>Dissect</Filter>
     </ClCompile>
     <ClCompile Include="AutoJSONConfiguration.cpp" />
+    <ClCompile Include="ThingDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ThingObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Solicitator.cpp" />
+    <ClCompile Include="DHCPOSDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="IPData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -146,16 +153,23 @@
     <ClInclude Include="IPDataObserver.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="HostDataObject.h">
-      <Filter>Data</Filter>
-    </ClInclude>
-    <ClInclude Include="HostObserver.h">
-      <Filter>Data</Filter>
-    </ClInclude>
     <ClInclude Include="ProtocolDHCP.h">
       <Filter>Dissect</Filter>
     </ClInclude>
     <ClInclude Include="AutoJSONConfiguration.h" />
+    <ClInclude Include="ThingDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ThingObserver.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Solicitator.h" />
+    <ClInclude Include="DHCPOSDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IPData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />
