@@ -10,11 +10,11 @@
 
 #include <Poco/Data/Session.h>
 
-class TableIP
+class Tables
 {
 public:
-    TableIP(Poco::Data::Session& session);
-    virtual ~TableIP();
+    Tables(Poco::Data::Session& session);
+    virtual ~Tables();
     void create();
 private:
     Poco::Data::Session& _session;

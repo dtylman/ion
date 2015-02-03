@@ -8,11 +8,11 @@
 #include "DBTool.h"
 #include "TableOUI.h"
 #include "TableOSDHCP.h"
-#include "TableIP.h"
-#include "TableThing.h"
+#include "Tables.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Data/Session.h>
 #include <Poco/Util/HelpFormatter.h>
+#include <Poco/File.h>
 
 using namespace Poco::Data::Keywords;
 using Poco::Util::OptionCallback;
@@ -36,6 +36,13 @@ int DBTool::main(const std::vector<std::string>& args)
 {
     if (config().hasOption("dbfile")) {
         std::string dbFile = config().getString("dbfile");
+        if (config().hasOption("overwrite")) {
+            Poco::File file(dbFile);
+            if (file.exists()) {
+                logger().notice("Removing existing database file");
+                file.remove(false);
+            }
+        }
         Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, dbFile);
         session.setConnectionTimeout(30000); // 30 seconds
         session << "PRAGMA synchronous = OFF", now;
@@ -45,10 +52,9 @@ int DBTool::main(const std::vector<std::string>& args)
         oui.create(ouifile);
         TableOSDHCP dhcp(session);
         dhcp.create();
-        TableIP ip(session);
-        ip.create();
-        TableThing thing(session);
-        thing.create();
+        Tables tables(session);
+        tables.create();
+
     }
     else {
         std::cout << "Missing parameters. Try -h or /?" << std::endl;
@@ -61,6 +67,7 @@ void DBTool::defineOptions(Poco::Util::OptionSet& options)
     options.addOption(Option("help", "h", "display help ").required(false).repeatable(false).callback(OptionCallback<DBTool>(this, &DBTool::handleHelp)));
     options.addOption(Option("oui", "i", "oui file").repeatable(false).argument("name").binding("ouifile"));
     options.addOption(Option("db", "o", "db file").repeatable(false).argument("name").binding("dbfile"));
+    options.addOption(Option("overwrite", "o", "overwrite existing db file").repeatable(false).binding("overwrite"));
 }
 
 void DBTool::handleHelp(const std::string& name, const std::string& value)

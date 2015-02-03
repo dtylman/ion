@@ -18,7 +18,6 @@ public:
     virtual ~TableOUI();
 
     void create(const std::string& ouiFile);
-
 private:
     void populate(const std::string& ouiFile);
     void insert(const std::string& prefix, const std::string& vendor);
