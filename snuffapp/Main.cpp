@@ -16,6 +16,7 @@
 #include "Routing.h"
 #include "IPDataObserver.h"
 #include "AutoJSONConfiguration.h"
+#include "ThingDataObject.h"
 #include <iostream>
 #include <Poco/Util/TimerTaskAdapter.h>
 
@@ -33,11 +34,17 @@ Main::~Main()
 int Main::main(const std::vector<std::string>& args)
 {
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
+    addSelf();
     pcap.start();
     addRouters();
     _solicitator.arpAll();
     waitForTerminationRequest();
     return EXIT_OK;
+}
+
+void Main::addSelf()
+{
+    //TODO:
 }
 
 void Main::addRouters()
@@ -47,19 +54,23 @@ void Main::addRouters()
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     DataSubsystem& data = getSubsystem<DataSubsystem>();
     IPDataObject ipDAO(data.createSession());
+    ThingDataObject thingDAO(data.createSession());
     for (auto gateway : gateways) {
         try {
             PcapDevice pcapDevice = pcap.getDevice(gateway.second);
             const Poco::Net::IPAddress& gwIP = gateway.first;
             Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
             Injector injector(pcapDevice.pcapName(), src);
+            //move from here
             ipDAO.addIP(src, injector.deviceMACAddress(), pcapDevice.pcapName());
             logger().information("Adding address %s %s %s", src.toString(), injector.deviceMACAddress().toString(), pcapDevice.pcapName());
+            //move from here -- end
             Arping arping(injector, gwIP);
             if (arping.ping()) {
                 const MAC& gwMAC = arping.targetMAC();
                 logger().information("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gwIP.toString(), gwMAC.toString());
                 ipDAO.addRouter(gwIP, gwMAC, pcapDevice.pcapName());
+                thingDAO.setType(gwMAC, "Router");
             }
         }
         catch (Poco::Exception& ex) {

@@ -16,10 +16,12 @@ class ThingDataObject : public DataObject
 {
 public:
     ThingDataObject(const Poco::Data::Session& session);
-
-    void setName(const MAC& mac, const std::string& name);
-    void setOS(const MAC& mac, const std::string& os, bool overwrite);
     virtual ~ThingDataObject();
+
+    void setType(const MAC& mac, const std::string& type);
+    void setName(const MAC& mac, const std::string& name);
+    void setOS(const MAC& mac, const std::string& os);
+    bool exists(const MAC& mac);
 private:
     Poco::Logger& _logger;
 };

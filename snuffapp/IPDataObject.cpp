@@ -6,9 +6,11 @@
  */
 
 #include "IPDataObject.h"
+#include "EventNotification.h"
 #include <Poco/Timestamp.h>
 #include <Poco/Util/Application.h>
 #include <Poco/Timespan.h>
+#include <Poco/NotificationCenter.h>
 
 using namespace Poco::Data::Keywords;
 
@@ -36,11 +38,19 @@ void IPDataObject::addIP(const Poco::Net::IPAddress& ip, const MAC& mac, const s
     std::string ifacestr = iface;
     std::time_t ts = Poco::Timestamp().epochTime();
     bool macExists = exists(mac);
+    bool ipExists = exists(ip, mac);
     _session << "INSERT OR REPLACE INTO ip (mac,ip,last_seen,iface) VALUES (?,?,?,?)",
             use(macstr), use(ipstr), use(ts), use(ifacestr), now;
-    _logger.information("IP updated %s %s %s", macstr, ipstr, ifacestr);
+    if (!ipExists) {
+        _logger.notice("IP online %s %s %s", macstr, ipstr, ifacestr);
+        Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::IP_ONLINE, mac, ip));
+    }
+    else {
+        _logger.information("IP updated %s %s %s", macstr, ipstr, ifacestr);
+    }
     if (!macExists) {
-        _logger.notice("IP added %s %s %s", macstr, ipstr, ifacestr);
+        _logger.notice("Device added %s %s %s", macstr, ipstr, ifacestr);
+        Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::THING_ONLINE, mac, ip));
     }
 }
 
@@ -52,11 +62,12 @@ void IPDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC& mac)
     _session << "DELETE FROM ip WHERE mac=? AND ip=?", use(macstr), use(ipstr), now;
     if (ipExists) {
         _logger.notice("IP offline %s %s", macstr, ipstr);
+        Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::IP_OFFLINE, mac, ip));
         if (!exists(ip, mac)) {
             _logger.notice("Device offline: %s", macstr);
+            Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::THING_OFFLINE, mac, ip));
         }
     }
-
 }
 
 void IPDataObject::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac)
@@ -75,7 +86,15 @@ void IPDataObject::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& ma
         if (count > 3) {
             _session << "INSERT OR REPLACE INTO router (mac, family) VALUES (?,?)", use(macstr), use(family), now;
             _session << "DELETE FROM ip WHERE mac=?", use(macstr), now;
-            _logger.information("Router added: %s", macstr);
+            _logger.notice("Router added: %s", macstr);
+            EventNotification::Ptr notif = new EventNotification(EventNotification::THING_ONLINE, mac);
+            if (ip.family() == Poco::Net::IPAddress::IPv4) {
+                notif->setDetails("Router for IPv4");
+            }
+            else {
+                notif->setDetails("Router for IPv6");
+            }
+            Poco::NotificationCenter::defaultCenter().postNotification(notif);
         }
     }
 }
@@ -83,7 +102,6 @@ void IPDataObject::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& ma
 void IPDataObject::addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device)
 {
     if ((!ip.isUnicast()) || (!mac.isUnicast())) {
-
         return;
     }
     std::string macstr = mac.toString();
@@ -96,7 +114,10 @@ void IPDataObject::addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, con
     int family = ip.af();
     _session << "INSERT OR REPLACE INTO router (mac, family) VALUES (?,?)",
             use(macstr), use(family), now;
-    _logger.information("Router address added: %s %s", macstr, ipstr);
+    _logger.notice("Router address added: %s %s", macstr, ipstr);
+    EventNotification::Ptr notif = new EventNotification(EventNotification::THING_ONLINE, mac, ip);
+    notif->setDetails("Router");
+    Poco::NotificationCenter::defaultCenter().postNotification(notif);
 }
 
 bool IPDataObject::isRouter(const MAC& mac, int af)
