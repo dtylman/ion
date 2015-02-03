@@ -18,6 +18,8 @@
       <itemPath>IPDataObject.h</itemPath>
       <itemPath>IPDataObserver.cpp</itemPath>
       <itemPath>IPDataObserver.h</itemPath>
+      <itemPath>ScopedTransaciton.cpp</itemPath>
+      <itemPath>ScopedTransaciton.h</itemPath>
       <itemPath>ThingDataObject.cpp</itemPath>
       <itemPath>ThingDataObject.h</itemPath>
       <itemPath>ThingObserver.cpp</itemPath>
@@ -244,6 +246,10 @@
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
@@ -414,6 +420,10 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
       </item>
