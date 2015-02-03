@@ -36,10 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/DBTool.o \
-	${OBJECTDIR}/TableIP.o \
 	${OBJECTDIR}/TableOSDHCP.o \
 	${OBJECTDIR}/TableOUI.o \
-	${OBJECTDIR}/TableThing.o
+	${OBJECTDIR}/Tables.o
 
 
 # C Compiler Flags
@@ -71,11 +70,6 @@ ${OBJECTDIR}/DBTool.o: DBTool.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DBTool.o DBTool.cpp
 
-${OBJECTDIR}/TableIP.o: TableIP.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableIP.o TableIP.cpp
-
 ${OBJECTDIR}/TableOSDHCP.o: TableOSDHCP.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -86,10 +80,10 @@ ${OBJECTDIR}/TableOUI.o: TableOUI.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableOUI.o TableOUI.cpp
 
-${OBJECTDIR}/TableThing.o: TableThing.cpp 
+${OBJECTDIR}/Tables.o: Tables.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableThing.o TableThing.cpp
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Tables.o Tables.cpp
 
 # Subprojects
 .build-subprojects:

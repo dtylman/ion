@@ -18,14 +18,12 @@
     </logicalFolder>
     <itemPath>DBTool.cpp</itemPath>
     <itemPath>DBTool.h</itemPath>
-    <itemPath>TableIP.cpp</itemPath>
-    <itemPath>TableIP.h</itemPath>
     <itemPath>TableOSDHCP.cpp</itemPath>
     <itemPath>TableOSDHCP.h</itemPath>
     <itemPath>TableOUI.cpp</itemPath>
     <itemPath>TableOUI.h</itemPath>
-    <itemPath>TableThing.cpp</itemPath>
-    <itemPath>TableThing.h</itemPath>
+    <itemPath>Tables.cpp</itemPath>
+    <itemPath>Tables.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -66,10 +64,6 @@
       </item>
       <item path="DBTool.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="TableIP.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TableIP.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="TableOSDHCP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TableOSDHCP.h" ex="false" tool="3" flavor2="0">
@@ -78,9 +72,9 @@
       </item>
       <item path="TableOUI.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="TableThing.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Tables.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="TableThing.h" ex="false" tool="3" flavor2="0">
+      <item path="Tables.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -108,10 +102,6 @@
       </item>
       <item path="DBTool.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="TableIP.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TableIP.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="TableOSDHCP.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TableOSDHCP.h" ex="false" tool="3" flavor2="0">
@@ -120,9 +110,9 @@
       </item>
       <item path="TableOUI.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="TableThing.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Tables.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="TableThing.h" ex="false" tool="3" flavor2="0">
+      <item path="Tables.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
