@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <POCO_DIR>..\lib\poco-1.6.0-all</POCO_DIR>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(POCO_DIR)\Foundation\include;$(POCO_DIR)\Util\include;$(POCO_DIR)\XML\include;$(POCO_DIR)\JSON\include;$(POCO_DIR)\Data\include;$(POCO_DIR)\Data\SQLite\include;$(POCO_DIR)\Net\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(POCO_DIR)/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="POCO_DIR">
+      <Value>$(POCO_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

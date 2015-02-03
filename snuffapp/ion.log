@@ -1,0 +1,40 @@
+03-Feb-15 10:28:46.840 ApplicationStartup: [Debug] Initializing subsystem: Logging Subsystem
+03-Feb-15 10:28:46.841 Application: [Debug] Initializing subsystem: DataSubsystem
+03-Feb-15 10:28:46.842 Application: [Debug] Initializing subsystem: DissectSubsystem
+03-Feb-15 10:28:46.842 Application: [Debug] Initializing subsystem: PcapSubsystem
+03-Feb-15 10:28:46.847 PcapSubsystem: [Information] Adding device: Bluetooth adapter number 0 pcapName: bluetooth0. IPv4: 0.0.0.0 IPv6: ::0.0.0.0 
+03-Feb-15 10:28:46.847 PcapActivity: [Notice] Activity started on bluetooth0
+03-Feb-15 10:28:46.848 Application: [Error] Not found: Device wlan0 not found
+03-Feb-15 10:28:51.120 Application: [Debug] Uninitializing subsystem: PcapSubsystem
+03-Feb-15 10:28:51.120 PcapSubsystem: [Notice] PcapSubsystem::uninitialize
+03-Feb-15 10:28:51.120 PcapActivity: [Notice] stopping sniff on bluetooth0
+03-Feb-15 10:28:51.120 Application: [Debug] Uninitializing subsystem: DissectSubsystem
+03-Feb-15 10:28:51.120 DissectSubsystem: [Notice] DissectSubsystem::uninitialize
+03-Feb-15 10:28:51.120 Application: [Debug] Uninitializing subsystem: DataSubsystem
+03-Feb-15 10:28:51.121 Application: [Debug] Uninitializing subsystem: Logging Subsystem
+03-Feb-15 02:54:25.931 ApplicationStartup: [Debug] Initializing subsystem: Logging Subsystem
+03-Feb-15 02:54:25.962 Application: [Debug] Initializing subsystem: DataSubsystem
+03-Feb-15 02:54:26.212 Application: [Debug] Initializing subsystem: DissectSubsystem
+03-Feb-15 02:54:26.227 Application: [Debug] Initializing subsystem: PcapSubsystem
+03-Feb-15 02:54:26.227 DissectSubsystem: [Information] Activity Started
+03-Feb-15 02:54:26.556 PcapIfaceAddress: [Notice] Setting address fe80::9910:36bc:ff40:f23e%11
+03-Feb-15 02:54:26.571 PcapIfaceAddress: [Notice] Setting address 192.168.10.2
+03-Feb-15 02:54:26.587 PcapIfaceAddress: [Notice] Setting address 255.255.255.255
+03-Feb-15 02:54:26.587 PcapIfaceAddress: [Notice] Setting address 255.255.255.0
+03-Feb-15 02:54:26.587 PcapSubsystem: [Information] Adding device: Intel(R) PRO/1000 MT Desktop Adapter pcapName: \Device\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}. IPv4: 192.168.10.2 IPv6: fe80::9910:36bc:ff40:f23e%11 
+03-Feb-15 02:54:26.602 PcapActivity: [Information] Activity started on \Device\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}
+03-Feb-15 02:54:26.602 PcapActivity: [Warning] Can't set pcap buffer size: Unknown error
+03-Feb-15 02:54:26.665 Injector: [Debug] Created inject for \Device\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}: source: 192.168.10.2 
+03-Feb-15 02:55:57.818 ApplicationStartup: [Debug] Initializing subsystem: Logging Subsystem
+03-Feb-15 02:55:57.829 Application: [Debug] Initializing subsystem: DataSubsystem
+03-Feb-15 02:55:57.846 Application: [Debug] Initializing subsystem: DissectSubsystem
+03-Feb-15 02:55:57.849 Application: [Debug] Initializing subsystem: PcapSubsystem
+03-Feb-15 02:55:57.849 DissectSubsystem: [Information] Activity Started
+03-Feb-15 02:55:57.905 PcapIfaceAddress: [Notice] Setting address fe80::9910:36bc:ff40:f23e%11
+03-Feb-15 02:55:57.907 PcapIfaceAddress: [Notice] Setting address 192.168.10.2
+03-Feb-15 02:55:57.909 PcapIfaceAddress: [Notice] Setting address 255.255.255.255
+03-Feb-15 02:55:57.910 PcapIfaceAddress: [Notice] Setting address 255.255.255.0
+03-Feb-15 02:55:57.911 PcapSubsystem: [Information] Adding device: Intel(R) PRO/1000 MT Desktop Adapter pcapName: \Device\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}. IPv4: 192.168.10.2 IPv6: fe80::9910:36bc:ff40:f23e%11 
+03-Feb-15 02:55:57.916 PcapActivity: [Information] Activity started on \Device\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}
+03-Feb-15 02:55:57.918 PcapActivity: [Warning] Can't set pcap buffer size: Unknown error
+03-Feb-15 02:55:57.926 Injector: [Debug] Created inject for \Device\NPF_{078C4C05-99A7-4B2E-A3E8-1F9544656015}: source: 192.168.10.2 
