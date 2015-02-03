@@ -8,8 +8,8 @@
 #include "DataSubsystem.h"
 #include "DissectSubsystem.h"
 #include "IPDataObserver.h"
-#include "HostDataObject.h"
-#include "HostObserver.h"
+#include "ThingDataObject.h"
+#include "ThingObserver.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Delegate.h>
 #include <list>
@@ -27,13 +27,8 @@ DataSubsystem::~DataSubsystem()
 void DataSubsystem::initialize(Poco::Util::Application& app)
 {
     Poco::Data::SQLite::Connector::registerConnector();
-
-    Poco::Data::Session session = createSession();
-    IPDataObject(session).createTable();
-    HostDataObject(session).createTable();
-
     _observers.push_back(new IPDataObserver(createSession()));
-    _observers.push_back(new HostObserver(createSession()));
+    _observers.push_back(new ThingObserver(createSession()));
 }
 
 const char* DataSubsystem::name() const
@@ -49,7 +44,7 @@ void DataSubsystem::uninitialize()
 
 Poco::Data::Session DataSubsystem::createSession()
 {
-    Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, "zakif.db");
+    Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, "ion.db");
     session.setConnectionTimeout(30000); // 30 seconds
     session << "PRAGMA synchronous = OFF", now;
     session << "PRAGMA journal_mode = MEMORY", now;

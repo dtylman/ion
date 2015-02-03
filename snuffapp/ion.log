@@ -1,0 +1,14 @@
+03-Feb-15 10:28:46.840 ApplicationStartup: [Debug] Initializing subsystem: Logging Subsystem
+03-Feb-15 10:28:46.841 Application: [Debug] Initializing subsystem: DataSubsystem
+03-Feb-15 10:28:46.842 Application: [Debug] Initializing subsystem: DissectSubsystem
+03-Feb-15 10:28:46.842 Application: [Debug] Initializing subsystem: PcapSubsystem
+03-Feb-15 10:28:46.847 PcapSubsystem: [Information] Adding device: Bluetooth adapter number 0 pcapName: bluetooth0. IPv4: 0.0.0.0 IPv6: ::0.0.0.0 
+03-Feb-15 10:28:46.847 PcapActivity: [Notice] Activity started on bluetooth0
+03-Feb-15 10:28:46.848 Application: [Error] Not found: Device wlan0 not found
+03-Feb-15 10:28:51.120 Application: [Debug] Uninitializing subsystem: PcapSubsystem
+03-Feb-15 10:28:51.120 PcapSubsystem: [Notice] PcapSubsystem::uninitialize
+03-Feb-15 10:28:51.120 PcapActivity: [Notice] stopping sniff on bluetooth0
+03-Feb-15 10:28:51.120 Application: [Debug] Uninitializing subsystem: DissectSubsystem
+03-Feb-15 10:28:51.120 DissectSubsystem: [Notice] DissectSubsystem::uninitialize
+03-Feb-15 10:28:51.120 Application: [Debug] Uninitializing subsystem: DataSubsystem
+03-Feb-15 10:28:51.121 Application: [Debug] Uninitializing subsystem: Logging Subsystem

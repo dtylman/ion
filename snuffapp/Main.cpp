@@ -17,6 +17,7 @@
 #include "IPDataObserver.h"
 #include "AutoJSONConfiguration.h"
 #include <iostream>
+#include <Poco/Util/TimerTaskAdapter.h>
 
 Main::Main()
 {
@@ -34,7 +35,7 @@ int Main::main(const std::vector<std::string>& args)
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     pcap.start();
     addRouters();
-    arpAll();
+    _solicitator.arpAll();
     waitForTerminationRequest();
     return EXIT_OK;
 }
@@ -53,11 +54,11 @@ void Main::addRouters()
             Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
             Injector injector(pcapDevice.pcapName(), src);
             ipDAO.addAddress(src, injector.deviceMACAddress(), pcapDevice.pcapName());
-            logger().notice("Adding address %s %s %s", src.toString(), injector.deviceMACAddress().toString(), pcapDevice.pcapName());
+            logger().information("Adding address %s %s %s", src.toString(), injector.deviceMACAddress().toString(), pcapDevice.pcapName());
             Arping arping(injector, gwIP);
             if (arping.ping()) {
                 const MAC& gwMAC = arping.targetMAC();
-                logger().notice("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gwIP.toString(), gwMAC.toString());
+                logger().information("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gwIP.toString(), gwMAC.toString());
                 ipDAO.addRouter(gwIP, gwMAC, pcapDevice.pcapName());
             }
         }
@@ -67,36 +68,17 @@ void Main::addRouters()
     }
 }
 
-void Main::arpAll()
-{
-    PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
-    PcapSubsystem::Devices pcapDevices;
-    pcap.getAllDevices(pcapDevices);
-    for (auto pcapDevice : pcapDevices) {
-        for (auto address : pcapDevice.addresses()) {
-            const Poco::Net::IPAddress& ip = address.ip();
-            if ((ip.family() == Poco::Net::IPAddress::IPv4) && (ip.isUnicast()) && (!ip.isLinkLocal())) {
-                try {
-                    Injector injector(pcapDevice.pcapName(), ip);
-                    PcapIfaceAddress::IPContainer ips;
-                    address.fillAllIPs(ips);
-                    for (auto ip : ips) {
-                        injector.arpRequest(ip);
-                        Poco::Thread::sleep(50); //throttle this a bit
-                    }
-                }
-                catch (Poco::Exception&ex) {
-                    logger().error("Failed to send ARP for device %s: %s", pcapDevice.toString(), ex.displayText());
-                }
-            }
-        }
-    }
-}
-
 void Main::initialize(Poco::Util::Application& self)
 {
     loadConfiguration();
     Poco::Util::ServerApplication::initialize(self);
+    unsigned interval = config().getUInt("ion.offline-interval", 10) * 60 * 1000;
+    _timer.scheduleAtFixedRate(new Poco::Util::TimerTaskAdapter<Main>(*this, &Main::onOnlineScan), interval, interval);
+}
+
+void Main::onOnlineScan(Poco::Util::TimerTask& timerTask)
+{
+    _solicitator.arpOnline();
 }
 
 int Main::loadConfiguration(int priority)
@@ -106,8 +88,8 @@ int Main::loadConfiguration(int priority)
     Poco::File file(path);
     file.createDirectories();
     config().setString("application.configDir", path.toString());
-    config().add(new AutoJSONConfiguration(path, "ion.config.json"),priority);
-	return 1;
+    config().add(new AutoJSONConfiguration(path, "ion.config.json"), priority);
+    return 1;
 }
 
 POCO_SERVER_MAIN(Main)

@@ -9,6 +9,8 @@
 #define	ZAKIFAPP_H
 
 #include <Poco/Util/ServerApplication.h>
+#include <Poco/Util/Timer.h>
+#include "Solicitator.h"
 
 class Main : public Poco::Util::ServerApplication
 {
@@ -21,8 +23,10 @@ protected:
     void initialize(Poco::Util::Application& self);
     int loadConfiguration(int priority = PRIO_DEFAULT);
 private:
+    void onOnlineScan(Poco::Util::TimerTask& timerTask);
     void addRouters();
-    void arpAll();
+    Poco::Util::Timer _timer;
+    Solicitator _solicitator;
 };
 
 #endif	/* ZAKIFAPP_H */

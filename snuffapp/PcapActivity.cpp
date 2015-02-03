@@ -32,7 +32,7 @@ static void pcap_process(u_char *device, const struct pcap_pkthdr *header, const
 
 void PcapActivity::runActivity()
 {
-    _logger.notice("Activity started on %s", _device);
+    _logger.information("Activity started on %s", _device);
     if (openLive()) {
         while (!_activity.isStopped()) {
             if (pcap_loop(_pcap, -1, &pcap_process, (u_char*) _device.c_str()) < 0) {
@@ -44,7 +44,7 @@ void PcapActivity::runActivity()
         _pcap = nullptr;
     }
 
-    _logger.notice("Activity ended on %s", _device);
+    _logger.information("Activity ended on %s", _device);
 }
 
 void PcapActivity::start()
