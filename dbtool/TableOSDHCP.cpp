@@ -22,7 +22,7 @@ void TableOSDHCP::create()
     _session << "CREATE TABLE os_dhcp (vendor TEXT NOT NULL, hostname TEXT NOT NULL, os TEXT NOT NULL)", now;
     _session << "CREATE UNIQUE INDEX pk_os_dhcp on os_dhcp (vendor ASC, hostname ASC)", now;
 
-    insert("MFST 5.0", "*", "microsoft windows");
+    insert("MSFT 5.0", "*", "microsoft windows");
     insert("dhcpcd*", "android*", "google android");
 }
 
