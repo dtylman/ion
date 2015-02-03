@@ -6,6 +6,7 @@
  */
 
 #include "ThingDataObject.h"
+#include "ScopedTransaciton.h"
 
 using namespace Poco::Data::Keywords;
 
@@ -24,7 +25,16 @@ void ThingDataObject::setName(const MAC& mac, const std::string& name)
 {
     std::string macstr(mac.toString());
     std::string namestr(name);
-    _session << "INSERT OR REPLACE INTO thing (mac,name) VALUES (?,?)", use(macstr), use(namestr), now;
+    ScopedTransaciton transaction(_session);
+    bool exists = false;
+    _session << "SELECT 1 FROM thing WHERE mac=?", use(macstr), into(exists), now;
+    if (!exists) {
+        _session << "INSERT INTO thing (mac, name) VALUES (?,?)", use(macstr), use(namestr), now;
+    }
+    else {
+        _session << "UPDATE thing SET name=? WHERE mac=?", use(namestr), use(macstr), now;
+    }
+
     _logger.information("Thing %s name set to %s", macstr, namestr);
 }
 
@@ -32,14 +42,22 @@ void ThingDataObject::setOS(const MAC& mac, const std::string& os, bool overwrit
 {
     std::string macstr(mac.toString());
     std::string osstr(os);
-    if (!overwrite) {
-        bool hasOS = false;
-        _session << "SELECT 1 FROM thing WHERE mac=? AND os is not null", use(macstr), into(hasOS), now;
-        if (hasOS) {
-            return;
+    ScopedTransaciton transaction(_session);
+    bool exists = false;
+    _session << "SELECT 1 FROM thing WHERE mac=?", use(macstr), into(exists), now;
+    if (!exists) {
+        _session << "INSERT INTO thing (mac,os) VALUES (?,?)", use(macstr), use(osstr), now;
+        _logger.information("Thing %s os set to %s", macstr, osstr);
+    }
+    else {
+        if (overwrite) {
+            _session << "UPDATE thing SET os=? WHERE mac=? ", use(osstr), use(macstr), now;
+            _logger.information("Thing %s os set to %s", macstr, osstr);
+        }
+        else {
+            _session << "UPDATE thing SET os=? WHERE mac=? AND os IS NOT NULL", use(osstr), use(macstr), now;
         }
     }
-    _session << "INSERT OR REPLACE INTO thing (mac,os) VALUES (?,?)", use(macstr), use(osstr), now;
-    _logger.information("Thing %s os set to %s", macstr, osstr);
+
 }
 
