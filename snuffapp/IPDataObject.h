@@ -19,12 +19,15 @@ class IPDataObject : public DataObject
 public:
     IPDataObject(const Poco::Data::Session& session);
     virtual ~IPDataObject();
-    void addAddress(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
+    void addIP(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
+    void removeIP(const Poco::Net::IPAddress& ip, const MAC& mac);
     void addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac);
     bool isRouter(const MAC& mac, int af);
     void findAll(IPData::Container& container);
     void findOnline(IPData::Container& container);
+    bool exists(const Poco::Net::IPAddress& ip, const MAC& mac);
+    bool exists(const MAC& mac);
 private:
     Poco::Logger& _logger;
 };

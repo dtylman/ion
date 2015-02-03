@@ -4,6 +4,8 @@
     <logicalFolder name="f4" displayName="Data" projectFiles="true">
       <itemPath>DHCPOSDataObject.cpp</itemPath>
       <itemPath>DHCPOSDataObject.h</itemPath>
+      <itemPath>DataNotificaation.cpp</itemPath>
+      <itemPath>DataNotificaation.h</itemPath>
       <itemPath>DataObject.cpp</itemPath>
       <itemPath>DataObject.h</itemPath>
       <itemPath>DataObserver.cpp</itemPath>
@@ -143,6 +145,10 @@
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataNotificaation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataNotificaation.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -318,6 +324,10 @@
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataNotificaation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataNotificaation.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>

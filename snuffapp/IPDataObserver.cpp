@@ -80,7 +80,7 @@ void IPDataObserver::link(const Poco::Net::IPAddress& ip, const MAC& mac, const 
 
         return;
     }
-    _dao.addAddress(ip, mac, device);
+    _dao.addIP(ip, mac, device);
 }
 
 void IPDataObserver::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device)

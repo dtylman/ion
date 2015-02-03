@@ -22,7 +22,7 @@ IPDataObject::~IPDataObject()
 {
 }
 
-void IPDataObject::addAddress(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& iface)
+void IPDataObject::addIP(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& iface)
 {
     if ((!ip.isUnicast()) || (!mac.isUnicast())) {
         return;
@@ -34,15 +34,29 @@ void IPDataObject::addAddress(const Poco::Net::IPAddress& ip, const MAC& mac, co
     std::string ipstr = ip.toString();
     std::string macstr = mac.toString();
     std::string ifacestr = iface;
-	std::time_t ts = Poco::Timestamp().epochTime();
-    bool alreadyExists = false;
-    _session << "SELECT 1 FROM ip WHERE mac=?", use(macstr), into(alreadyExists), now;
+    std::time_t ts = Poco::Timestamp().epochTime();
+    bool macExists = exists(mac);
     _session << "INSERT OR REPLACE INTO ip (mac,ip,last_seen,iface) VALUES (?,?,?,?)",
             use(macstr), use(ipstr), use(ts), use(ifacestr), now;
-    _logger.information("Address updated %s %s %s", macstr, ipstr, ifacestr);
-    if (!alreadyExists) {
-        _logger.notice("New address updated %s %s %s", macstr, ipstr, ifacestr);
+    _logger.information("IP updated %s %s %s", macstr, ipstr, ifacestr);
+    if (!macExists) {
+        _logger.notice("IP added %s %s %s", macstr, ipstr, ifacestr);
     }
+}
+
+void IPDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC& mac)
+{
+    std::string ipstr = ip.toString();
+    std::string macstr = mac.toString();
+    bool ipExists = exists(ip, mac);
+    _session << "DELETE FROM ip WHERE mac=? AND ip=?", use(macstr), use(ipstr), now;
+    if (ipExists) {
+        _logger.notice("IP offline %s %s", macstr, ipstr);
+        if (!exists(ip, mac)) {
+            _logger.notice("Device offline: %s", macstr);
+        }
+    }
+
 }
 
 void IPDataObject::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac)
@@ -103,6 +117,24 @@ void IPDataObject::findOnline(IPData::Container& container)
     Poco::Timespan interval = Poco::Timespan::MINUTES * Poco::Util::Application::instance().config().getUInt("ion.offline-interval", 10);
     Poco::Timestamp now;
     now -= interval;
-	std::time_t last = now.epochTime();
+    std::time_t last = now.epochTime();
     _session << "SELECT mac, ip, last_seen,iface FROM ip WHERE last_seen>?", use(last), into(container), now;
+}
+
+bool IPDataObject::exists(const Poco::Net::IPAddress& ip, const MAC& mac)
+{
+    std::string ipstr = ip.toString();
+    std::string macstr = mac.toString();
+    bool exists = false;
+    _session << "SELECT DISTINCT 1 FROM ip WHERE mac=? AND ip=?", use(macstr), use(ipstr), into(exists), now;
+    return exists;
+}
+
+bool IPDataObject::exists(const MAC& mac)
+{
+    std::string macstr(mac.toString());
+    bool exists = false;
+    _session << "SELECT DISTINCT 1 FROM ip WHERE mac=?", use(macstr), into(exists), now;
+    return exists;
+
 }

@@ -53,7 +53,7 @@ void Main::addRouters()
             const Poco::Net::IPAddress& gwIP = gateway.first;
             Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
             Injector injector(pcapDevice.pcapName(), src);
-            ipDAO.addAddress(src, injector.deviceMACAddress(), pcapDevice.pcapName());
+            ipDAO.addIP(src, injector.deviceMACAddress(), pcapDevice.pcapName());
             logger().information("Adding address %s %s %s", src.toString(), injector.deviceMACAddress().toString(), pcapDevice.pcapName());
             Arping arping(injector, gwIP);
             if (arping.ping()) {
