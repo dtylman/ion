@@ -10,7 +10,6 @@
 #include <Poco/Timestamp.h>
 #include <Poco/Util/Application.h>
 #include <Poco/Timespan.h>
-#include <Poco/NotificationCenter.h>
 
 using namespace Poco::Data::Keywords;
 
@@ -43,14 +42,14 @@ void IPDataObject::addIP(const Poco::Net::IPAddress& ip, const MAC& mac, const s
             use(macstr), use(ipstr), use(ts), use(ifacestr), now;
     if (!ipExists) {
         _logger.notice("IP online %s %s %s", macstr, ipstr, ifacestr);
-        Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::IP_ONLINE, mac, ip));
+        EventNotification::notify(EventNotification::IP_ONLINE, mac, ip);
     }
     else {
         _logger.information("IP updated %s %s %s", macstr, ipstr, ifacestr);
     }
     if (!macExists) {
         _logger.notice("Device added %s %s %s", macstr, ipstr, ifacestr);
-        Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::THING_ONLINE, mac, ip));
+        EventNotification::notify(EventNotification::THING_ONLINE, mac, ip);
     }
 }
 
@@ -62,10 +61,10 @@ void IPDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC& mac)
     _session << "DELETE FROM ip WHERE mac=? AND ip=?", use(macstr), use(ipstr), now;
     if (ipExists) {
         _logger.notice("IP offline %s %s", macstr, ipstr);
-        Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::IP_OFFLINE, mac, ip));
+        EventNotification::notify(EventNotification::IP_OFFLINE, mac, ip);
         if (!exists(ip, mac)) {
             _logger.notice("Device offline: %s", macstr);
-            Poco::NotificationCenter::defaultCenter().postNotification(new EventNotification(EventNotification::THING_OFFLINE, mac, ip));
+            EventNotification::notify(EventNotification::THING_OFFLINE, mac, ip);
         }
     }
 }
@@ -87,14 +86,13 @@ void IPDataObject::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& ma
             _session << "INSERT OR REPLACE INTO router (mac, family) VALUES (?,?)", use(macstr), use(family), now;
             _session << "DELETE FROM ip WHERE mac=?", use(macstr), now;
             _logger.notice("Router added: %s", macstr);
-            EventNotification::Ptr notif = new EventNotification(EventNotification::THING_ONLINE, mac);
+
             if (ip.family() == Poco::Net::IPAddress::IPv4) {
-                notif->setDetails("Router for IPv4");
+                EventNotification::notify(EventNotification::THING_ONLINE, mac, "Router for IPv4");
             }
             else {
-                notif->setDetails("Router for IPv6");
+                EventNotification::notify(EventNotification::THING_ONLINE, mac, "Router for IPv6");
             }
-            Poco::NotificationCenter::defaultCenter().postNotification(notif);
         }
     }
 }
@@ -116,9 +114,7 @@ void IPDataObject::addRouter(const Poco::Net::IPAddress& ip, const MAC& mac, con
     _session << "INSERT OR REPLACE INTO router (mac, family) VALUES (?,?)",
             use(macstr), use(family), now;
     _logger.notice("Router address added: %s %s", macstr, ipstr);
-    EventNotification::Ptr notif = new EventNotification(EventNotification::THING_ONLINE, mac, ip);
-    notif->setDetails("Router");
-    Poco::NotificationCenter::defaultCenter().postNotification(notif);
+    EventNotification::notify(EventNotification::THING_ONLINE, mac, ip, "Router");
 }
 
 bool IPDataObject::isRouter(const MAC& mac, int af)
@@ -139,8 +135,8 @@ void IPDataObject::findOnline(IPData::Container& container)
     Poco::Timespan interval = Poco::Timespan::MINUTES * Poco::Util::Application::instance().config().getUInt("ion.offline-interval", 10);
     Poco::Timestamp ts;
     ts -= interval;
-	std::time_t last = ts.epochTime();
-	_session << "SELECT mac, ip, last_seen,iface FROM ip WHERE last_seen>?", use(last), into(container), now;
+    std::time_t last = ts.epochTime();
+    _session << "SELECT mac, ip, last_seen,iface FROM ip WHERE last_seen>?", use(last), into(container), now;
 }
 
 bool IPDataObject::exists(const Poco::Net::IPAddress& ip, const MAC& mac)

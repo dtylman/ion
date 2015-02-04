@@ -10,7 +10,6 @@
 #include "IPDataObserver.h"
 #include "ThingDataObject.h"
 #include "ThingObserver.h"
-#include "EventObserver.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Delegate.h>
 #include <Poco/Util/Application.h>
@@ -31,7 +30,6 @@ void DataSubsystem::initialize(Poco::Util::Application& app)
     Poco::Data::SQLite::Connector::registerConnector();
     _observers.push_back(new IPDataObserver(createSession()));
     _observers.push_back(new ThingObserver(createSession()));
-    _observers.push_back(new EventObserver(createSession()));
 }
 
 const char* DataSubsystem::name() const

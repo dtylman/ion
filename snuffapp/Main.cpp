@@ -17,12 +17,14 @@
 #include "IPDataObserver.h"
 #include "AutoJSONConfiguration.h"
 #include "ThingDataObject.h"
+#include "EventsSubsystem.h"
 #include <iostream>
 #include <Poco/Util/TimerTaskAdapter.h>
 
 Main::Main()
 {
     addSubsystem(new DataSubsystem());
+    addSubsystem(new EventsSubsystem());
     addSubsystem(new DissectSubsystem());
     addSubsystem(new PcapSubsystem());
 }
@@ -37,13 +39,14 @@ int Main::main(const std::vector<std::string>& args)
     addSelf();
     pcap.start();
     addRouters();
-    _solicitator.arpAll();
+    _solicitator.solicitateAl();
     waitForTerminationRequest();
     return EXIT_OK;
 }
 
 void Main::addSelf()
 {
+    logger().warning("Error: Add self not implemented");
     //TODO:
 }
 
@@ -89,7 +92,7 @@ void Main::initialize(Poco::Util::Application& self)
 
 void Main::onOnlineScan(Poco::Util::TimerTask& timerTask)
 {
-    _solicitator.arpOnline();
+    _solicitator.solicitateOnline();
 }
 
 int Main::loadConfiguration(int priority)

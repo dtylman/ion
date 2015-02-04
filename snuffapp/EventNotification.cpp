@@ -7,23 +7,17 @@
 
 #include "EventNotification.h"
 #include "MAC.h"
+#include "EventsSubsystem.h"
+#include <Poco/Util/Application.h>
 
 const std::string EventNotification::IP_OFFLINE("IPOFFLINE");
 const std::string EventNotification::IP_ONLINE("IPONLINE");
 const std::string EventNotification::THING_ONLINE("THINGONLINE");
 const std::string EventNotification::THING_OFFLINE("THINGOFFLINE");
 
-EventNotification::EventNotification(const std::string& name, const MAC& mac)
+EventNotification::EventNotification()
 {
-    _data.setName(name);
-    _data.setMAC(mac);
-}
 
-EventNotification::EventNotification(const std::string& name, const MAC& mac, const Poco::Net::IPAddress& ip)
-{
-    _data.setName(name);
-    _data.setMAC(mac);
-    _data.setIP(ip);
 }
 
 EventNotification::~EventNotification()
@@ -38,4 +32,22 @@ const EventData& EventNotification::event() const
 void EventNotification::setDetails(const std::string& details)
 {
     _data.setDetails(details);
+}
+
+void EventNotification::notify(const std::string& name, const MAC& mac, const std::string& details)
+{
+    EventNotification::Ptr notif = new EventNotification();
+    notif->_data.setName(name);
+    notif->_data.setMAC(mac);
+    notif->_data.setDetails(details);
+    Poco::Util::Application::instance().getSubsystem<EventsSubsystem>().notify(notif);
+}
+
+void EventNotification::notify(const std::string& name, const MAC& mac, const Poco::Net::IPAddress& ip, const std::string& details)
+{
+    EventNotification::Ptr notif = new EventNotification();
+    notif->_data.setName(name);
+    notif->_data.setMAC(mac);
+    notif->_data.setIP(ip);
+    Poco::Util::Application::instance().getSubsystem<EventsSubsystem>().notify(notif);
 }

@@ -9,6 +9,7 @@
 #define	SCOPEDTRANSACITON_H
 
 #include <Poco/Data/Session.h>
+#include <Poco/Logger.h>
 
 class ScopedTransaciton
 {
@@ -17,6 +18,7 @@ public:
     virtual ~ScopedTransaciton();
 private:
     Poco::Data::Session& _session;
+    Poco::Logger& _logger;
 };
 
 #endif	/* SCOPEDTRANSACITON_H */

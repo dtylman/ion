@@ -10,14 +10,17 @@
 
 #include <Poco/Logger.h>
 
+#include "IPData.h"
+
 class Solicitator
 {
 public:
     Solicitator();
     virtual ~Solicitator();
-    void arpAll();
-    void arpOnline();
+    void solicitateAl();
+    void solicitateOnline();
 private:
+    bool arpPing(const IPData& ip);
     Poco::Logger& _logger;
 };
 
