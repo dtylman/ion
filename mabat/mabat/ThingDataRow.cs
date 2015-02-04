@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mabat
 {
-    class DeviceDataRow
+    class ThingDataRow
     {
         public static readonly string Type = "type";
         public static readonly string Vendor = "vendor";

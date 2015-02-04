@@ -18,6 +18,10 @@
     <ClCompile Include="DataSubsystem.cpp" />
     <ClCompile Include="DHCPOSDataObject.cpp" />
     <ClCompile Include="DissectSubsystem.cpp" />
+    <ClCompile Include="EventData.cpp" />
+    <ClCompile Include="EventDataObject.cpp" />
+    <ClCompile Include="EventNotification.cpp" />
+    <ClCompile Include="EventsSubsystem.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Injector.cpp" />
     <ClCompile Include="IPCache.cpp" />
@@ -40,6 +44,8 @@
     <ClCompile Include="Rouing.cpp" />
     <ClCompile Include="Routing_WIN32.cpp" />
     <ClCompile Include="ScopedTransaciton.cpp" />
+    <ClCompile Include="Selfy.cpp" />
+    <ClCompile Include="SendMail.cpp" />
     <ClCompile Include="Solicitator.cpp" />
     <ClCompile Include="ThingDataObject.cpp" />
     <ClCompile Include="ThingObserver.cpp" />
@@ -52,6 +58,10 @@
     <ClInclude Include="DataSubsystem.h" />
     <ClInclude Include="DHCPOSDataObject.h" />
     <ClInclude Include="DissectSubsystem.h" />
+    <ClInclude Include="EventData.h" />
+    <ClInclude Include="EventDataObject.h" />
+    <ClInclude Include="EventNotification.h" />
+    <ClInclude Include="EventsSubsystem.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Injector.h" />
     <ClInclude Include="IPCache.h" />
@@ -72,6 +82,8 @@
     <ClInclude Include="ProtocolNBDatagram.h" />
     <ClInclude Include="ProtocolUDP.h" />
     <ClInclude Include="ScopedTransaciton.h" />
+    <ClInclude Include="Selfy.h" />
+    <ClInclude Include="SendMail.h" />
     <ClInclude Include="Solicitator.h" />
     <ClInclude Include="ThingDataObject.h" />
     <ClInclude Include="ThingObserver.h" />
@@ -133,7 +145,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;POCO_STATIC;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>

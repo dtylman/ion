@@ -22,7 +22,7 @@ EventDataObject::~EventDataObject()
 void EventDataObject::insert(const EventData& data)
 {
     EventData event = data;
-    _session << "INSERT INTO event (time,name,mac,ip,details) VALUES (?,?,?,?,?)", use(event), now;
+	_session << "INSERT INTO event (time,name,mac,ip,details) VALUES (?,?,?,?,?)", use(event), now;
     deleteOld();
 }
 

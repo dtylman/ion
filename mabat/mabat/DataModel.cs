@@ -10,23 +10,14 @@ namespace mabat
     {
         private static DataModel instance = new DataModel();
         private SQLiteConnection connection = null;
-        private DeviceTypeBindingSource deviceTypesBindingSource = null;
-        private DeviceVendorBindingSource deviceVendorBindingSource = null;
-
+        
         private DataModel()
         {
             string dbFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ion.db");
             this.connection = new SQLiteConnection("Data Source=" + dbFile);
             this.connection.Open();
-            createBindingSources();
-        }
 
-        private void createBindingSources()
-        {
-            this.deviceTypesBindingSource = new DeviceTypeBindingSource();
-            this.deviceVendorBindingSource = new DeviceVendorBindingSource();
         }
-
 
         internal static DataModel Instance
         {
@@ -36,34 +27,58 @@ namespace mabat
             }
         }
 
-        public void GetDevices(DataTable table)
+        public void GetThings(DataTable table)
         {
             String sql = "SELECT ip.mac, ip, last_seen, thing.type, thing.name, thing.vendor, " +
             "thing.os, desc, oui.vendor as hw_vendor " +
                 "FROM ip LEFT JOIN thing ON ip.mac=thing.mac " +
-                "LEFT JOIN oui ON substr(ip.mac,0,9)=oui.prefix";
+                "LEFT JOIN oui ON substr(ip.mac,0,9)=oui.prefix " +
+                "ORDER BY ip.mac";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
             adapter.Fill(table);
         }
 
-
-
-        public DeviceTypeBindingSource DeviceTypeDataSource
+        internal void GetEvents(DataTable table, string mac)
         {
-            get
+            String sql = "SELECT * FROM event WHERE mac = '" + mac + "'";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
+            adapter.Fill(table);
+        }
+
+        internal void UpdateThing(string mac, string type, string vendor, string os, string desc)
+        {
+            //TABLE thing (mac TEXT NOT NULL,type TEXT, name TEXT, vendor TEXT, os TEXT, desc TEXT)", now;
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = "UPDATE thing SET type=?, vendor=?, os=?, desc=? WHERE mac=?";
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)type));            
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)vendor));
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)os));
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)desc));
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
+            int rows = command.ExecuteNonQuery();
+            if (rows == 0 )
             {
-                return this.deviceTypesBindingSource;
+                command = this.connection.CreateCommand();
+                command.CommandText = "INSERT INTO thing (mac,type,vendor,os,desc) VALUES (?,?,?,?,?)";
+                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
+                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)type));
+                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)vendor));
+                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)os));
+                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)desc));                
+                command.ExecuteNonQuery();
             }
         }
 
-
-        public DeviceVendorBindingSource DeviceVendorDataSource
+        internal void DeleteThing(string mac)
         {
-            get
-            {
-                return this.deviceVendorBindingSource;
-            }
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = "DELETE FROM thing WHERE mac=?";            
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
+            command.ExecuteNonQuery();
+            command = this.connection.CreateCommand();
+            command.CommandText = "DELETE FROM ip WHERE mac=?";
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
+            command.ExecuteNonQuery();            
         }
-
     }
 }

@@ -16,9 +16,9 @@ namespace mabat
         public FormMain()
         {
             InitializeComponent();
-            DevicesControl dc = new DevicesControl();
+            ThingsControl dc = new ThingsControl();
             dc.Dock = DockStyle.Fill;
-            this.tabPageDevices.Controls.Add(dc);
+            this.tabPageThings.Controls.Add(dc);
             ServiceControl sc = new ServiceControl();
             sc.Dock = DockStyle.Fill;
             this.tabPageService.Controls.Add(sc);
@@ -35,12 +35,6 @@ namespace mabat
             Close();
         }
 
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        
         
     }
 }

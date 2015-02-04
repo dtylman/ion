@@ -29,8 +29,8 @@ void Tables::create()
     _session << "CREATE UNIQUE INDEX pk_thing on thing (mac ASC)", now;
 
     _session << "CREATE TABLE event (time INTEGER NOT NULL, name TEXT NOT NULL, mac TEXT ,ip TEXT, details TEXT)", now;
-    _session << "CREATE INDEX pk_event on event (time ASC, name ASC)", now;
+    _session << "CREATE INDEX pk_event on event (time ASC, name ASC, mac ASC, ip ASC, details ASC)", now;
 
     _session << "CREATE TABLE authorized (mac TEXT NOT NULL)", now;
-    _session << "CREATE UNIQUE INDEX pk_authorized on event (mac ASC)", now;
+    _session << "CREATE UNIQUE INDEX pk_authorized on authorized (mac ASC)", now;
 }
