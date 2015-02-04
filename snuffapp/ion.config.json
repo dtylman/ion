@@ -10,7 +10,7 @@
                     "pattern": "%d-%b-%y %H:%M:%S.%i %s: [%p] %t",
                     "times": "local"
                 },
-                "path": "${application.dir}/ion.log",
+                "path": "ion.log",
                 "purgeAge": "1 months",
                 "purgeCount": 3,
                 "rotation": "10 M"
