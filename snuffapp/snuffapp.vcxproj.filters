@@ -14,6 +14,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{2a4977a3-a593-4133-b8d6-62b18cdcd598}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{aa9e6758-ac59-43e5-aea2-1c9c91e1fa48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -96,6 +99,22 @@
     <ClCompile Include="ScopedTransaciton.cpp">
       <Filter>Data</Filter>
     </ClCompile>
+    <ClCompile Include="EventData.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventDataObject.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventNotification.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventsSubsystem.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SendMail.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Selfy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -176,6 +195,22 @@
     <ClInclude Include="ScopedTransaciton.h">
       <Filter>Data</Filter>
     </ClInclude>
+    <ClInclude Include="EventData.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDataObject.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventNotification.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventsSubsystem.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SendMail.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Selfy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

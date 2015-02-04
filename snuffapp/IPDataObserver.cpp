@@ -49,6 +49,7 @@ bool IPDataObserver::handleARP(Frame::Ptr& frame)
     if (arp->isReply()) {
         link(arp->senderIP(), arp->senderMAC(), frame->device());
     }
+	return true;
 }
 
 bool IPDataObserver::handleIP(Frame::Ptr& frame)

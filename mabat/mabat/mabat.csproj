@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
@@ -76,24 +79,19 @@
       <DependentUpon>ServiceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModel.cs" />
-    <Compile Include="DeviceDataRow.cs" />
-    <Compile Include="DevicesControl.cs">
+    <Compile Include="ThingDataRow.cs" />
+    <Compile Include="ThingOS.cs" />
+    <Compile Include="ThingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DevicesControl.Designer.cs">
-      <DependentUpon>DevicesControl.cs</DependentUpon>
+    <Compile Include="ThingsControl.Designer.cs">
+      <DependentUpon>ThingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeviceTypeBindingSource.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DeviceVendorBindingSource.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="EditDeviceDialog.cs">
+    <Compile Include="EditThingDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditDeviceDialog.Designer.cs">
-      <DependentUpon>EditDeviceDialog.cs</DependentUpon>
+    <Compile Include="EditThingDialog.Designer.cs">
+      <DependentUpon>EditThingDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -109,17 +107,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThingTypes.cs" />
+    <Compile Include="ThingVendors.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServiceControl.resx">
       <DependentUpon>ServiceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DevicesControl.resx">
-      <DependentUpon>DevicesControl.cs</DependentUpon>
+    <EmbeddedResource Include="ThingsControl.resx">
+      <DependentUpon>ThingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditDeviceDialog.resx">
-      <DependentUpon>EditDeviceDialog.cs</DependentUpon>
+    <EmbeddedResource Include="EditThingDialog.resx">
+      <DependentUpon>EditThingDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

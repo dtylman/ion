@@ -57,8 +57,9 @@ int DBTool::main(const std::vector<std::string>& args)
 
     }
     else {
-        std::cout << "Missing parameters. Try -h or /?" << std::endl;
+        std::cout << "Missing parameters. Try -h or /h" << std::endl;
     }
+	return EXIT_OK;
 }
 
 void DBTool::defineOptions(Poco::Util::OptionSet& options)
