@@ -56,3 +56,6 @@ Filename: "sc.exe"; Parameters: "start snuffapp";
 [UninstallRun]
 Filename: "sc.exe"; Parameters: "stop snuffapp";
 Filename: "{app}\{#AppExeName}"; Parameters: "/unregisterService";
+
+[UninstallDelete]
+Type: filesandordirs; Name: "{app}"

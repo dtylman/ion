@@ -152,6 +152,11 @@ namespace mabat
             MessageBox.Show("Not implemented");
         }
 
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadThings();
+        }
+
      
 
         
