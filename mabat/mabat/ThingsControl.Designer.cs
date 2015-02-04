@@ -35,23 +35,25 @@
             this.groupBoxThings = new System.Windows.Forms.GroupBox();
             this.gridViewThings = new System.Windows.Forms.DataGridView();
             this.ColumnImage = new System.Windows.Forms.DataGridViewImageColumn();
-            this.groupBoxEvents = new System.Windows.Forms.GroupBox();
-            this.gridViewEvents = new System.Windows.Forms.DataGridView();
             this.contextMenuStripThings = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxEvents = new System.Windows.Forms.GroupBox();
+            this.gridViewEvents = new System.Windows.Forms.DataGridView();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toggleAuthorizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.groupBoxThings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewThings)).BeginInit();
+            this.contextMenuStripThings.SuspendLayout();
             this.groupBoxEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEvents)).BeginInit();
-            this.contextMenuStripThings.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer
@@ -119,6 +121,52 @@
             this.ColumnImage.ReadOnly = true;
             this.ColumnImage.Width = 5;
             // 
+            // contextMenuStripThings
+            // 
+            this.contextMenuStripThings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.deleteAllToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.reloadToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.toggleAuthorizeToolStripMenuItem});
+            this.contextMenuStripThings.Name = "contextMenuStripThings";
+            this.contextMenuStripThings.Size = new System.Drawing.Size(166, 148);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem1.Text = "Delete";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // deleteAllToolStripMenuItem
+            // 
+            this.deleteAllToolStripMenuItem.Name = "deleteAllToolStripMenuItem";
+            this.deleteAllToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.deleteAllToolStripMenuItem.Text = "Delete All";
+            this.deleteAllToolStripMenuItem.Click += new System.EventHandler(this.deleteAllToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            // 
+            // reloadToolStripMenuItem
+            // 
+            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.reloadToolStripMenuItem.Text = "Reload";
+            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            // 
             // groupBoxEvents
             // 
             this.groupBoxEvents.Controls.Add(this.gridViewEvents);
@@ -150,49 +198,16 @@
             this.gridViewEvents.Size = new System.Drawing.Size(738, 246);
             this.gridViewEvents.TabIndex = 0;
             // 
-            // contextMenuStripThings
+            // toolStripSeparator2
             // 
-            this.contextMenuStripThings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.deleteAllToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.reloadToolStripMenuItem});
-            this.contextMenuStripThings.Name = "contextMenuStripThings";
-            this.contextMenuStripThings.Size = new System.Drawing.Size(153, 120);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
             // 
-            // toolStripMenuItem1
+            // toggleAuthorizeToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "Delete";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // deleteAllToolStripMenuItem
-            // 
-            this.deleteAllToolStripMenuItem.Name = "deleteAllToolStripMenuItem";
-            this.deleteAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteAllToolStripMenuItem.Text = "Delete All";
-            this.deleteAllToolStripMenuItem.Click += new System.EventHandler(this.deleteAllToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // reloadToolStripMenuItem
-            // 
-            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reloadToolStripMenuItem.Text = "Reload";
-            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            this.toggleAuthorizeToolStripMenuItem.Name = "toggleAuthorizeToolStripMenuItem";
+            this.toggleAuthorizeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.toggleAuthorizeToolStripMenuItem.Text = "Toggle Authorize";
             // 
             // ThingsControl
             // 
@@ -207,9 +222,9 @@
             this.splitContainer.ResumeLayout(false);
             this.groupBoxThings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewThings)).EndInit();
+            this.contextMenuStripThings.ResumeLayout(false);
             this.groupBoxEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEvents)).EndInit();
-            this.contextMenuStripThings.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -228,6 +243,8 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toggleAuthorizeToolStripMenuItem;
 
     }
 }

@@ -40,7 +40,7 @@ namespace mabat
 
         internal void GetEvents(DataTable table, string mac)
         {
-            String sql = "SELECT * FROM event WHERE mac = '" + mac + "'";
+            String sql = "SELECT time,name,ip,details FROM event WHERE mac = '" + mac + "' ORDER BY time";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
             adapter.Fill(table);
         }
