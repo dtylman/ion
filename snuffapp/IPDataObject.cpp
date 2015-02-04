@@ -29,7 +29,6 @@ void IPDataObject::addIP(const Poco::Net::IPAddress& ip, const MAC& mac, const s
         return;
     }
     if (isRouter(mac, ip.af())) {
-
         return;
     }
     std::string ipstr = ip.toString();
@@ -43,6 +42,9 @@ void IPDataObject::addIP(const Poco::Net::IPAddress& ip, const MAC& mac, const s
     if (!ipExists) {
         _logger.notice("IP online %s %s %s", macstr, ipstr, ifacestr);
         EventNotification::notify(EventNotification::IP_ONLINE, mac, ip);
+        if (!authorized(mac)) {
+            EventNotification::notify(EventNotification::NOT_AUTHORIZED, mac);
+        }
     }
     else {
         _logger.information("IP updated %s %s %s", macstr, ipstr, ifacestr);
@@ -155,4 +157,12 @@ bool IPDataObject::exists(const MAC& mac)
     _session << "SELECT DISTINCT 1 FROM ip WHERE mac=?", use(macstr), into(exists), now;
     return exists;
 
+}
+
+bool IPDataObject::authorized(const MAC& mac)
+{
+    std::string macstr(mac.toString());
+    bool authorized = false;
+    _session << "SELECT DISTINCT 1 FROM authorized WHERE mac=?", use(macstr), into(authorized), now;
+    return authorized;
 }

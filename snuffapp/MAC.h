@@ -15,9 +15,10 @@
 class MAC : public Poco::Net::NetworkInterface::MACAddress
 {
 public:
-	const static MAC Broadcast;
-	
+    const static MAC Broadcast;
+
     MAC();
+    MAC(const Poco::Net::NetworkInterface::MACAddress& address);
     MAC(const Poco::UInt8* address);
     MAC(const std::string& address);
     virtual ~MAC();

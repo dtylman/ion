@@ -28,6 +28,7 @@ private:
     void runActivity();
     void processEvent(const EventData& eventData);
     void persistEvent(const EventData& eventData);
+    void mailEvent(const EventData& eventData);
     Poco::NotificationQueue _queue;
     Poco::Activity<EventsSubsystem> _activity;
     Poco::Logger& _logger;

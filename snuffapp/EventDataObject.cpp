@@ -22,17 +22,14 @@ EventDataObject::~EventDataObject()
 void EventDataObject::insert(const EventData& data)
 {
     EventData event = data;
-    //time INTEGER NOT NULL, name TEXT NOT NULL, mac TEXT ,ip TEXT, details TEXT
     _session << "INSERT INTO event (time,name,mac,ip,details) VALUES (?,?,?,?,?)", use(event), now;
-
     deleteOld();
 }
 
 void EventDataObject::deleteOld()
 {
     Poco::Timestamp achshav;
-    unsigned days = Poco::Util::Application::instance().config().getUInt("ion.eventsage", 7);
-    Poco::Timespan::DAYS * days;
+    Poco::Timespan days = Poco::Timespan::DAYS * Poco::Util::Application::instance().config().getUInt("ion.eventsage", 7);
     achshav -= days;
     std::time_t age = achshav.epochTime();
     _session << "DELETE FROM event WHERE time<?", use(age), now;

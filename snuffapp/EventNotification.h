@@ -19,6 +19,7 @@ public:
     static const std::string IP_OFFLINE;
     static const std::string THING_ONLINE;
     static const std::string THING_OFFLINE;
+    static const std::string NOT_AUTHORIZED;
 
     EventNotification();
 

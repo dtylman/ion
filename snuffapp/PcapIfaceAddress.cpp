@@ -26,7 +26,7 @@ void PcapIfaceAddress::setAddress(Poco::Net::IPAddress& poco, const sockaddr* ad
     }
     if ((address->sa_family == AF_INET) || (address->sa_family == AF_INET6)) {
         poco = Poco::Net::IPAddress(*address);
-        _logger.notice("Setting address %s", poco.toString());
+        _logger.trace("Setting address %s", poco.toString());
     }
 }
 

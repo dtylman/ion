@@ -61,3 +61,4 @@ const PcapIfaceAddress::Container& PcapDevice::addresses()
 {
     return _addresses;
 }
+

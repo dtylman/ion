@@ -23,15 +23,20 @@ MAC::MAC(const Poco::UInt8* address)
     assign(address, address + MAC_ADDRESS_SIZE);
 }
 
+MAC::MAC(const Poco::Net::NetworkInterface::MACAddress& address) : Poco::Net::NetworkInterface::MACAddress(address)
+{
+
+}
+
 MAC::MAC(const std::string& address)
 {
     if (address.size() < 17) {
         throw Poco::InvalidArgumentException(Poco::format("Invalid mac address %s", address));
-    }		
+    }
     Poco::UInt8 byte;
     for (int i = 0; i < MAC_ADDRESS_SIZE; i++) {
-		byte = Poco::NumberParser::parseHex(address.substr(i*3,2));        
-        push_back(byte);		
+        byte = Poco::NumberParser::parseHex(address.substr(i * 3, 2));
+        push_back(byte);
     }
 }
 
