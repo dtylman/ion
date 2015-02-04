@@ -89,11 +89,11 @@ PcapDevice PcapSubsystem::getDevice(const std::string& name) const
 {
     Poco::FastMutex::ScopedLock lock(_mutex);
     for (auto device : _devices) {
-		if ( (device.pcapName() == name) || (device.systemName()==name) ){
+        if ((device.pcapName() == name) || (device.systemName() == name)) {
             return device;
         }
     }
-	throw Poco::NotFoundException(Poco::format("Device %s not found", name));
+    throw Poco::NotFoundException(Poco::format("Device %s not found", name));
 }
 
 void PcapSubsystem::getAllDevices(Devices& devices)

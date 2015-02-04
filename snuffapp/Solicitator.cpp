@@ -21,7 +21,7 @@ Solicitator::~Solicitator()
 {
 }
 
-void Solicitator::solicitateAl()
+void Solicitator::solicitateAll()
 {
     PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
     PcapSubsystem::Devices pcapDevices;

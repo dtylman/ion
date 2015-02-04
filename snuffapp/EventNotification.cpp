@@ -10,10 +10,11 @@
 #include "EventsSubsystem.h"
 #include <Poco/Util/Application.h>
 
-const std::string EventNotification::IP_OFFLINE("IPOFFLINE");
-const std::string EventNotification::IP_ONLINE("IPONLINE");
-const std::string EventNotification::THING_ONLINE("THINGONLINE");
-const std::string EventNotification::THING_OFFLINE("THINGOFFLINE");
+const std::string EventNotification::IP_OFFLINE("ip_offline");
+const std::string EventNotification::IP_ONLINE("ip_online");
+const std::string EventNotification::THING_ONLINE("thing_online");
+const std::string EventNotification::THING_OFFLINE("thing_offline");
+const std::string EventNotification::NOT_AUTHORIZED("not_authorized");
 
 EventNotification::EventNotification()
 {

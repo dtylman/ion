@@ -39,6 +39,9 @@ void Arping::onFrameEvent(Frame::Ptr& frame)
 
 bool Arping::ping(int retries, const Poco::Timespan& interval)
 {
+    if (_targetMAC == _injector.deviceMACAddress()) {
+        return true; // ping ourselves?
+    }
     for (int i = 0; i < retries; ++i) {
         {
             Poco::FastMutex::ScopedLock lock(_mutex);

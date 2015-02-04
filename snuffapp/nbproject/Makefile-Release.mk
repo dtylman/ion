@@ -68,6 +68,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Rouing.o \
 	${OBJECTDIR}/Routing_LINUX.o \
 	${OBJECTDIR}/ScopedTransaciton.o \
+	${OBJECTDIR}/Selfy.o \
+	${OBJECTDIR}/SendMail.o \
 	${OBJECTDIR}/Solicitator.o \
 	${OBJECTDIR}/ThingDataObject.o \
 	${OBJECTDIR}/ThingObserver.o
@@ -261,6 +263,16 @@ ${OBJECTDIR}/ScopedTransaciton.o: ScopedTransaciton.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ScopedTransaciton.o ScopedTransaciton.cpp
+
+${OBJECTDIR}/Selfy.o: Selfy.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Selfy.o Selfy.cpp
+
+${OBJECTDIR}/SendMail.o: SendMail.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SendMail.o SendMail.cpp
 
 ${OBJECTDIR}/Solicitator.o: Solicitator.cpp 
 	${MKDIR} -p ${OBJECTDIR}

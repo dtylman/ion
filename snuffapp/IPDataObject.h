@@ -28,6 +28,7 @@ public:
     void findOnline(IPData::Container& container);
     bool exists(const Poco::Net::IPAddress& ip, const MAC& mac);
     bool exists(const MAC& mac);
+    bool authorized(const MAC& mac);
 private:
     Poco::Logger& _logger;
 };

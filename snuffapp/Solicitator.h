@@ -17,7 +17,7 @@ class Solicitator
 public:
     Solicitator();
     virtual ~Solicitator();
-    void solicitateAl();
+    void solicitateAll();
     void solicitateOnline();
 private:
     bool arpPing(const IPData& ip);

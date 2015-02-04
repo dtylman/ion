@@ -54,6 +54,8 @@
       <itemPath>EventNotification.h</itemPath>
       <itemPath>EventsSubsystem.cpp</itemPath>
       <itemPath>EventsSubsystem.h</itemPath>
+      <itemPath>SendMail.cpp</itemPath>
+      <itemPath>SendMail.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f2" displayName="Libnet" projectFiles="true">
     </logicalFolder>
@@ -97,6 +99,8 @@
     <itemPath>Rouing.cpp</itemPath>
     <itemPath>Routing.h</itemPath>
     <itemPath>Routing_LINUX.cpp</itemPath>
+    <itemPath>Selfy.cpp</itemPath>
+    <itemPath>Selfy.h</itemPath>
     <itemPath>Solicitator.cpp</itemPath>
     <itemPath>Solicitator.h</itemPath>
     <itemPath>ion.config.json</itemPath>
@@ -117,6 +121,7 @@
             <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
             <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
             <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Data/include</pElem>
@@ -128,11 +133,11 @@
             <pElem>../lib/poco-1.6.0-all/lib/Linux/x86_64</pElem>
           </linkerAddLib>
           <linkerLibItems>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a</linkerLibFileItem>
-            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a</linkerLibFileItem>
             <linkerLibLibItem>pcap</linkerLibLibItem>
@@ -275,6 +280,14 @@
       <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ScopedTransaciton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Selfy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Selfy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SendMail.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SendMail.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -466,6 +479,14 @@
       <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ScopedTransaciton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Selfy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Selfy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SendMail.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SendMail.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
       </item>

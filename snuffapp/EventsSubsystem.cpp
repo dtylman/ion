@@ -8,6 +8,7 @@
 #include "EventsSubsystem.h"
 #include "EventDataObject.h"
 #include "DataSubsystem.h"
+#include "SendMail.h"
 #include <Poco/NObserver.h>
 #include <Poco/NotificationCenter.h>
 #include <Poco/Util/Application.h>
@@ -59,7 +60,14 @@ void EventsSubsystem::processEvent(const EventData& eventData)
     if (_logger.debug()) {
         _logger.debug("Event: %s", eventData.toString());
     }
-    persistEvent(eventData);
+    Poco::Util::AbstractConfiguration& config = Poco::Util::Application::instance().config();
+
+    if (config.getBool(Poco::format("ion.events.%s.save", eventData.name()), true)) {
+        persistEvent(eventData);
+    }
+    if (config.getBool(Poco::format("ion.events.%s.mail", eventData.name()), false)) {
+        mailEvent(eventData);
+    }
 }
 
 void EventsSubsystem::runActivity()
@@ -84,4 +92,15 @@ void EventsSubsystem::runActivity()
         }
     }
     _logger.information("Activity Ended");
+}
+
+void EventsSubsystem::mailEvent(const EventData& eventData)
+{
+    try {
+        SendMail mail;
+        mail.send(eventData);
+    }
+    catch (Poco::Exception& ex) {
+        _logger.error("Failed to send mail: %s", ex.displayText());
+    }
 }
