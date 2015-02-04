@@ -21,7 +21,7 @@ Solicitator::~Solicitator()
 {
 }
 
-void Solicitator::arpAll()
+void Solicitator::solicitateAl()
 {
     PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
     PcapSubsystem::Devices pcapDevices;
@@ -47,27 +47,37 @@ void Solicitator::arpAll()
     }
 }
 
-void Solicitator::arpOnline()
+void Solicitator::solicitateOnline()
 {
     DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
-    IPDataObject dao(data.createSession());
+    IPDataObject ipDao(data.createSession());
     IPData::Container ipContainer;
-    dao.findOnline(ipContainer);
-    PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
+    ipDao.findOnline(ipContainer);
     for (auto data : ipContainer) {
+        bool pong = false;
         if (data.ip().family() == Poco::Net::IPAddress::IPv4) {
-            PcapDevice device = pcap.getDevice(data.iface());
-            Poco::Net::IPAddress srcIP = device.getIPAddress(data.ip().family());
-            Injector injector(device.pcapName(), srcIP);
-            Arping arping(injector, data.ip(), data.mac());
-            if (!arping.ping()) {
-                //device offline!
-                _logger.notice("IP %s offline", data.ip().toString());
-            }
-            else {
-                _logger.debug("IP %s online", data.ip().toString());
-            }
+            _logger.debug("Arping %s", data.toString());
+            pong = arpPing(data);
+        }
+        else {
+            //nsr(data); //neighbour solicitation request?
+        }
+        if (!pong) {
+            _logger.debug("No reply from %s", data.toString());
+            ipDao.removeIP(data.ip(), data.mac());
+        }
+        else {
+            _logger.debug("Pong from %s", data.toString());
         }
     }
+}
 
+bool Solicitator::arpPing(const IPData& data)
+{
+    PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
+    PcapDevice device = pcap.getDevice(data.iface());
+    Poco::Net::IPAddress srcIP = device.getIPAddress(data.ip().family());
+    Injector injector(device.pcapName(), srcIP);
+    Arping arping(injector, data.ip(), data.mac());
+    return arping.ping();
 }

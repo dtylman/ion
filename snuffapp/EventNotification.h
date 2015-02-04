@@ -20,14 +20,16 @@ public:
     static const std::string THING_ONLINE;
     static const std::string THING_OFFLINE;
 
-    EventNotification(const std::string& name, const MAC& mac);
-    EventNotification(const std::string& name, const MAC& mac, const Poco::Net::IPAddress& ip);
+    EventNotification();
 
     typedef Poco::AutoPtr<EventNotification> Ptr;
 
     const EventData& event() const;
 
     void setDetails(const std::string& details);
+
+    static void notify(const std::string& name, const MAC& mac, const std::string& details = "");
+    static void notify(const std::string& name, const MAC& mac, const Poco::Net::IPAddress& ip, const std::string& details = "");
 protected:
     virtual ~EventNotification();
 private:

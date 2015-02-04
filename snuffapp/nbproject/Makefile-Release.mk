@@ -45,7 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/EventData.o \
 	${OBJECTDIR}/EventDataObject.o \
 	${OBJECTDIR}/EventNotification.o \
-	${OBJECTDIR}/EventObserver.o \
+	${OBJECTDIR}/EventsSubsystem.o \
 	${OBJECTDIR}/Frame.o \
 	${OBJECTDIR}/IPCache.o \
 	${OBJECTDIR}/IPData.o \
@@ -147,10 +147,10 @@ ${OBJECTDIR}/EventNotification.o: EventNotification.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventNotification.o EventNotification.cpp
 
-${OBJECTDIR}/EventObserver.o: EventObserver.cpp 
+${OBJECTDIR}/EventsSubsystem.o: EventsSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventObserver.o EventObserver.cpp
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventsSubsystem.o EventsSubsystem.cpp
 
 ${OBJECTDIR}/Frame.o: Frame.cpp 
 	${MKDIR} -p ${OBJECTDIR}

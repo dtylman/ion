@@ -10,14 +10,6 @@
       <itemPath>DataObserver.h</itemPath>
       <itemPath>DataSubsystem.cpp</itemPath>
       <itemPath>DataSubsystem.h</itemPath>
-      <itemPath>EventData.cpp</itemPath>
-      <itemPath>EventData.h</itemPath>
-      <itemPath>EventDataObject.cpp</itemPath>
-      <itemPath>EventDataObject.h</itemPath>
-      <itemPath>EventNotification.cpp</itemPath>
-      <itemPath>EventNotification.h</itemPath>
-      <itemPath>EventObserver.cpp</itemPath>
-      <itemPath>EventObserver.h</itemPath>
       <itemPath>IPCache.cpp</itemPath>
       <itemPath>IPCache.h</itemPath>
       <itemPath>IPData.cpp</itemPath>
@@ -52,6 +44,16 @@
       <itemPath>ProtocolNBDatagram.h</itemPath>
       <itemPath>ProtocolUDP.cpp</itemPath>
       <itemPath>ProtocolUDP.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f5" displayName="Events" projectFiles="true" kind="ROOT">
+      <itemPath>EventData.cpp</itemPath>
+      <itemPath>EventData.h</itemPath>
+      <itemPath>EventDataObject.cpp</itemPath>
+      <itemPath>EventDataObject.h</itemPath>
+      <itemPath>EventNotification.cpp</itemPath>
+      <itemPath>EventNotification.h</itemPath>
+      <itemPath>EventsSubsystem.cpp</itemPath>
+      <itemPath>EventsSubsystem.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f2" displayName="Libnet" projectFiles="true">
     </logicalFolder>
@@ -180,9 +182,9 @@
       </item>
       <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EventObserver.cpp" ex="false" tool="1" flavor2="0">
+      <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="EventObserver.h" ex="false" tool="3" flavor2="0">
+      <item path="EventsSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -371,9 +373,9 @@
       </item>
       <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EventObserver.cpp" ex="false" tool="1" flavor2="0">
+      <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="EventObserver.h" ex="false" tool="3" flavor2="0">
+      <item path="EventsSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>

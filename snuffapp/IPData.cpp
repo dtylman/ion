@@ -6,6 +6,7 @@
  */
 
 #include "IPData.h"
+#include <Poco/Format.h>
 
 IPData::IPData()
 {
@@ -55,3 +56,7 @@ void IPData::setMAC(const MAC& mac)
     _mac = mac;
 }
 
+std::string IPData::toString() const
+{
+    return Poco::format("%s %s %s", _mac.toString(), _ip.toString(), _iface);
+}

@@ -19,6 +19,7 @@ DissectSubsystem::~DissectSubsystem()
 
 void DissectSubsystem::initialize(Poco::Util::Application& app)
 {
+    _logger.debug("DissectSubsystem::initialize");
     _activity.start();
 }
 
@@ -29,7 +30,7 @@ const char* DissectSubsystem::name() const
 
 void DissectSubsystem::uninitialize()
 {
-    _logger.notice("DissectSubsystem::uninitialize");
+    _logger.debug("DissectSubsystem::uninitialize");
     _activity.stop();
     _queue.wakeUpAll();
     _activity.wait(2500);
@@ -49,7 +50,9 @@ void DissectSubsystem::runActivity()
             Frame::Ptr frame = notif.cast<Frame>();
             if (!frame.isNull()) {
                 frame->dissect();
-                _logger.trace("Frame: %s", frame->toString());
+                if (_logger.trace()) {
+                    _logger.trace("Frame: %s", frame->toString());
+                }
                 onFrame.notify(this, frame);
             }
         }

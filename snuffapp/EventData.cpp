@@ -6,6 +6,8 @@
  */
 
 #include "EventData.h"
+#include <Poco/Format.h>
+#include <Poco/DateTimeFormatter.h>
 
 EventData::EventData()
 {
@@ -64,4 +66,10 @@ void EventData::setTime(const Poco::Timestamp& time)
 const Poco::Timestamp& EventData::time() const
 {
     return _time;
+}
+
+std::string EventData::toString() const
+{
+    return Poco::format("%s %s %s %s %s", Poco::DateTimeFormatter::format(_time, Poco::DateTimeFormat::HTTP_FORMAT, 0),
+                        _name, _mac.toString(), _ip.toString(), _details);
 }

@@ -30,6 +30,7 @@ public:
     const std::string& details() const;
     void setDetails(const std::string& details);
 
+    std::string toString() const;
 private:
     Poco::Timestamp _time;
     std::string _name;

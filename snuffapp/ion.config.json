@@ -10,7 +10,7 @@
                     "pattern": "%d-%b-%y %H:%M:%S.%i %s: [%p] %t",
                     "times": "local"
                 },
-                "path": "ion.log",
+                "path": "${application.dir}/ion.log",
                 "purgeAge": "1 months",
                 "purgeCount": 3,
                 "rotation": "10 M"
@@ -22,5 +22,9 @@
                 "level": "debug"
             }
         }
+    },
+    "ion": {
+        "offline-interval": 10,
+        "eventsage": 7
     }
 }
