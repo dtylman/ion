@@ -10,7 +10,7 @@ namespace mabat
     {
         private static DataModel instance = new DataModel();
         private SQLiteConnection connection = null;
-        
+
         private DataModel()
         {
             string dbFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ion.db");
@@ -30,9 +30,10 @@ namespace mabat
         public void GetThings(DataTable table)
         {
             String sql = "SELECT ip.mac, ip, last_seen, thing.type, thing.name, thing.vendor, " +
-            "thing.os, desc, oui.vendor as hw_vendor " +
-                "FROM ip LEFT JOIN thing ON ip.mac=thing.mac " +
-                "LEFT JOIN oui ON substr(ip.mac,0,9)=oui.prefix " +
+            "thing.os, desc, oui.vendor as hw_vendor , authorized.mac is not null as auth " +
+            "    FROM ip LEFT JOIN thing ON ip.mac=thing.mac " +
+            "    LEFT JOIN oui ON substr(ip.mac,0,9)=oui.prefix " +
+        "LEFT JOIN authorized on ip.mac=authorized.mac " +
                 "ORDER BY ip.mac";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
             adapter.Fill(table);
@@ -50,13 +51,13 @@ namespace mabat
             //TABLE thing (mac TEXT NOT NULL,type TEXT, name TEXT, vendor TEXT, os TEXT, desc TEXT)", now;
             SQLiteCommand command = this.connection.CreateCommand();
             command.CommandText = "UPDATE thing SET type=?, vendor=?, os=?, desc=? WHERE mac=?";
-            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)type));            
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)type));
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)vendor));
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)os));
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)desc));
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
             int rows = command.ExecuteNonQuery();
-            if (rows == 0 )
+            if (rows == 0)
             {
                 command = this.connection.CreateCommand();
                 command.CommandText = "INSERT INTO thing (mac,type,vendor,os,desc) VALUES (?,?,?,?,?)";
@@ -64,7 +65,7 @@ namespace mabat
                 command.Parameters.Add(new SQLiteParameter(DbType.String, (object)type));
                 command.Parameters.Add(new SQLiteParameter(DbType.String, (object)vendor));
                 command.Parameters.Add(new SQLiteParameter(DbType.String, (object)os));
-                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)desc));                
+                command.Parameters.Add(new SQLiteParameter(DbType.String, (object)desc));
                 command.ExecuteNonQuery();
             }
         }
@@ -72,13 +73,13 @@ namespace mabat
         internal void DeleteThing(string mac)
         {
             SQLiteCommand command = this.connection.CreateCommand();
-            command.CommandText = "DELETE FROM thing WHERE mac=?";            
+            command.CommandText = "DELETE FROM thing WHERE mac=?";
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
             command.ExecuteNonQuery();
             command = this.connection.CreateCommand();
             command.CommandText = "DELETE FROM ip WHERE mac=?";
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
-            command.ExecuteNonQuery();            
+            command.ExecuteNonQuery();
         }
     }
 }
