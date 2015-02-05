@@ -139,7 +139,7 @@
     <value>Not Authorized</value>
   </data>
   <data name="things_auth" xml:space="preserve">
-    <value>Authenticated?</value>
+    <value>Authorized?</value>
   </data>
   <data name="things_desc" xml:space="preserve">
     <value>Description</value>
@@ -173,5 +173,20 @@
   </data>
   <data name="thing_online" xml:space="preserve">
     <value>Thing Online</value>
+  </data>
+  <data name="ip_offline_desc" xml:space="preserve">
+    <value>Notify when IP goes offline</value>
+  </data>
+  <data name="ip_online_desc" xml:space="preserve">
+    <value>Notify when IP connects to the network</value>
+  </data>
+  <data name="not_authorized_desc" xml:space="preserve">
+    <value>When new thing appears which is not authorized</value>
+  </data>
+  <data name="thing_offline_desc" xml:space="preserve">
+    <value>Notify when mac offline</value>
+  </data>
+  <data name="thing_online_desc" xml:space="preserve">
+    <value>Notify when thing online</value>
   </data>
 </root>

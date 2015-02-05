@@ -105,5 +105,16 @@ namespace mabat
             this.watcher.EnableRaisingEvents = !this.checkBoxStop.Checked;
         }
 
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Object s in listBoxLog.SelectedItems)
+            {
+                sb.Append(s.ToString());
+                sb.Append("\r\n");
+            }
+            Clipboard.SetText(sb.ToString());
+        }
+
     }
 }

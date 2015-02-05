@@ -35,7 +35,7 @@ namespace mabat
         {
             DataTable table = new DataTable();
             DataModel.Instance.GetThings(table);            
-            this.gridViewThings.DataSource = table;
+            this.gridViewThings.DataSource = table;            
         }
         
         private void loadEvents(string mac)

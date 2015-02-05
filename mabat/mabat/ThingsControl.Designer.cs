@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThingsControl));
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.groupBoxThings = new System.Windows.Forms.GroupBox();
             this.gridViewThings = new System.Windows.Forms.DataGridView();
@@ -47,6 +48,7 @@
             this.toggleAuthorizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxEvents = new System.Windows.Forms.GroupBox();
             this.gridViewEvents = new System.Windows.Forms.DataGridView();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -231,6 +233,12 @@
             this.gridViewEvents.Size = new System.Drawing.Size(738, 246);
             this.gridViewEvents.TabIndex = 0;
             // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "tv.png");
+            // 
             // ThingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +275,7 @@
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toggleAuthorizeToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList;
 
     }
 }
