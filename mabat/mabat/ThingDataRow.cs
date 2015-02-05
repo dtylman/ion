@@ -17,6 +17,7 @@ namespace mabat
         public static readonly string IP = "ip";
         public static readonly string DESC = "desc";
         public static readonly string HWVendor = "hw_vendor";
+        public static readonly string Auth = "auth";
 
         public static String DisplayName(string name)
         {

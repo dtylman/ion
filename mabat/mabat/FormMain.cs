@@ -22,6 +22,9 @@ namespace mabat
             ConfigControl sc = new ConfigControl();
             sc.Dock = DockStyle.Fill;
             this.tabPageService.Controls.Add(sc);
+            AuthorizationControl ac = new AuthorizationControl();
+            ac.Dock = DockStyle.Fill;
+            this.tabPageAuthorization.Controls.Add(ac);
         }
      
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

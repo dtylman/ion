@@ -191,6 +191,7 @@
             this.toggleAuthorizeToolStripMenuItem.Name = "toggleAuthorizeToolStripMenuItem";
             this.toggleAuthorizeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.toggleAuthorizeToolStripMenuItem.Text = "Toggle Authorize";
+            this.toggleAuthorizeToolStripMenuItem.Click += new System.EventHandler(this.toggleAuthorizeToolStripMenuItem_Click);
             // 
             // groupBoxEvents
             // 

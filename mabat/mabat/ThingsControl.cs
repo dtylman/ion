@@ -17,9 +17,15 @@ namespace mabat
             InitializeComponent();
             this.gridViewThings.ColumnAdded += gridViewThings_ColumnAdded;
             this.gridViewEvents.ColumnAdded += gridViewEvents_ColumnAdded;
+            this.Paint += ThingsControl_Paint;            
             loadThings();
         }
 
+        void ThingsControl_Paint(object sender, PaintEventArgs e)
+        {
+            loadThings();
+        }
+        
 
         void gridViewEvents_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
@@ -170,6 +176,27 @@ namespace mabat
             loadThings();
         }
 
+        private void toggleAuthorizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = GetSelectedThing();
+            if (index==-1)
+            {
+                return;
+            }
+            string mac = SelectedThing(index, ThingDataRow.MAC);
+            string auth = SelectedThing(index, ThingDataRow.Auth);
+            if (auth=="no")
+            {
+                DataModel.Instance.AuthorizeMAC(mac);
+            }
+            else
+            {
+                DataModel.Instance.UnAuthorizeMAC(mac);
+            }
+            loadThings();
+            
+        }
+        
 
     }
 }

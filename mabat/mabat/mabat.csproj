@@ -72,6 +72,12 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthorizationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AuthorizationControl.Designer.cs">
+      <DependentUpon>AuthorizationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventConfigControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     <Compile Include="ThingVendors.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorizationControl.resx">
+      <DependentUpon>AuthorizationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventConfigControl.resx">
       <DependentUpon>EventConfigControl.cs</DependentUpon>

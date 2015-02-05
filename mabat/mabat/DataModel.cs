@@ -86,5 +86,28 @@ namespace mabat
             command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
             command.ExecuteNonQuery();
         }
+
+        internal void GetAuthorized(DataTable table)
+        {
+            String sql = "SELECT mac FROM authorized";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
+            adapter.Fill(table);      
+        }
+
+        internal void AuthorizeMAC(string mac)
+        {
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = "INSERT INTO authorized (mac) VALUES (?)";
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
+            command.ExecuteNonQuery();
+        }
+
+        internal void UnAuthorizeMAC(string mac)
+        {
+            SQLiteCommand command = this.connection.CreateCommand();
+            command.CommandText = "DELETE FROM authorized WHERE mac=?";
+            command.Parameters.Add(new SQLiteParameter(DbType.String, (object)mac));
+            command.ExecuteNonQuery();
+        }
     }
 }
