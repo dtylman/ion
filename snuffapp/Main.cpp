@@ -15,7 +15,7 @@
 #include "Arping.h"
 #include "Routing.h"
 #include "IPDataObserver.h"
-#include "AutoJSONConfiguration.h"
+#include "AutoConfiguration.h"
 #include "ThingDataObject.h"
 #include "EventsSubsystem.h"
 #include "Selfy.h"
@@ -66,7 +66,7 @@ int Main::loadConfiguration(int priority)
     Poco::File file(path);
     file.createDirectories();
     config().setString("application.configDir", path.toString());
-    config().add(new AutoJSONConfiguration(path, "ion.config.json"), priority);
+    config().add(new AutoConfiguration(path, "ion.properties"), priority);
     return 1;
 }
 

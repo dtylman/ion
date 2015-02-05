@@ -45,7 +45,7 @@
       <itemPath>ProtocolUDP.cpp</itemPath>
       <itemPath>ProtocolUDP.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="f5" displayName="Events" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f5" displayName="Events" projectFiles="true">
       <itemPath>EventData.cpp</itemPath>
       <itemPath>EventData.h</itemPath>
       <itemPath>EventDataObject.cpp</itemPath>
@@ -86,8 +86,8 @@
     </logicalFolder>
     <itemPath>Arping.cpp</itemPath>
     <itemPath>Arping.h</itemPath>
-    <itemPath>AutoJSONConfiguration.cpp</itemPath>
-    <itemPath>AutoJSONConfiguration.h</itemPath>
+    <itemPath>AutoConfiguration.cpp</itemPath>
+    <itemPath>AutoConfiguration.h</itemPath>
     <itemPath>Injector.cpp</itemPath>
     <itemPath>Injector.h</itemPath>
     <itemPath>MAC.cpp</itemPath>
@@ -103,7 +103,7 @@
     <itemPath>Selfy.h</itemPath>
     <itemPath>Solicitator.cpp</itemPath>
     <itemPath>Solicitator.h</itemPath>
-    <itemPath>ion.config.json</itemPath>
+    <itemPath>ion.properties</itemPath>
     <itemPath>pcap.props</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -151,9 +151,9 @@
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AutoJSONConfiguration.cpp" ex="false" tool="1" flavor2="0">
+      <item path="AutoConfiguration.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="AutoJSONConfiguration.h" ex="false" tool="3" flavor2="0">
+      <item path="AutoConfiguration.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -301,7 +301,7 @@
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ion.config.json" ex="false" tool="3" flavor2="0">
+      <item path="ion.properties" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
@@ -350,9 +350,9 @@
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AutoJSONConfiguration.cpp" ex="false" tool="1" flavor2="0">
+      <item path="AutoConfiguration.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="AutoJSONConfiguration.h" ex="false" tool="3" flavor2="0">
+      <item path="AutoConfiguration.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -500,7 +500,7 @@
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ion.config.json" ex="false" tool="3" flavor2="0">
+      <item path="ion.properties" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
