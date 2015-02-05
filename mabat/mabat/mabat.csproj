@@ -72,6 +72,14 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventConfigItem.cs" />
+    <Compile Include="EventConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EventConfigControl.Designer.cs">
+      <DependentUpon>EventConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IonProperties.cs" />
     <Compile Include="ServiceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +87,11 @@
       <DependentUpon>ServiceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModel.cs" />
+    <Compile Include="Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="ThingDataRow.cs" />
     <Compile Include="ThingOS.cs" />
     <Compile Include="ThingsControl.cs">
@@ -112,8 +125,15 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EventConfigControl.resx">
+      <DependentUpon>EventConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServiceControl.resx">
       <DependentUpon>ServiceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ThingsControl.resx">
       <DependentUpon>ThingsControl.cs</DependentUpon>

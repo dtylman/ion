@@ -19,26 +19,29 @@ namespace mabat
         public ServiceControl()
         {
             InitializeComponent();
+            IonProperties properties = new IonProperties();
+            AddEventsConfigControl(new EventConfigItem("ip_online", properties));
+            AddEventsConfigControl(new EventConfigItem("not_authorized", properties));
+            AddEventsConfigControl(new EventConfigItem("thing_online", properties));
+            AddEventsConfigControl(new EventConfigItem("thing_offline", properties));
+
             LogTailControl ltc = new LogTailControl(AppDomain.CurrentDomain.BaseDirectory, "ion.log");
             ltc.Dock = DockStyle.Fill;
             groupBoxLogger.Controls.Add(ltc);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddEventsConfigControl(EventConfigItem eventConfigItem)
         {
-            string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"config","ion.config.json");
-            StreamReader reader = new StreamReader(configFile);            
-            JsonSerializer serializer = new JsonSerializer();
-            JObject json =(JObject)serializer.Deserialize(reader, typeof(JObject));
-            json["logging"]["loggers"]["root"]["level"] = "debug";
-            reader.Close();
-
-            StreamWriter writer = new StreamWriter(configFile);
-            serializer.Serialize(writer, json);
-            //MyAccount.EmployeeID = (string)o["employeeid"][0];
-
-            
-            
+            EventConfigControl eventConfigControl = new EventConfigControl(eventConfigItem);
+            eventConfigControl.Dock = DockStyle.Top;
+            this.groupBoxEvents.Controls.Add(eventConfigControl);
         }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

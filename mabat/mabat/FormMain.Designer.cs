@@ -36,6 +36,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageThings = new System.Windows.Forms.TabPage();
             this.tabPageService = new System.Windows.Forms.TabPage();
+            this.tabPageAuthorization = new System.Windows.Forms.TabPage();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -85,6 +86,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPageThings);
             this.tabControl.Controls.Add(this.tabPageService);
+            this.tabControl.Controls.Add(this.tabPageAuthorization);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.Location = new System.Drawing.Point(0, 24);
@@ -115,6 +117,15 @@
             this.tabPageService.TabIndex = 1;
             this.tabPageService.Text = "Service";
             this.tabPageService.UseVisualStyleBackColor = true;
+            // 
+            // tabPageAuthorization
+            // 
+            this.tabPageAuthorization.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAuthorization.Name = "tabPageAuthorization";
+            this.tabPageAuthorization.Size = new System.Drawing.Size(776, 509);
+            this.tabPageAuthorization.TabIndex = 2;
+            this.tabPageAuthorization.Text = "Authorization";
+            this.tabPageAuthorization.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -147,6 +158,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPageAuthorization;
     }
 }
 
