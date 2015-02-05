@@ -61,6 +61,51 @@ namespace mabat {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authenticated?.
+        /// </summary>
+        internal static string auth {
+            get {
+                return ResourceManager.GetString("auth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string desc {
+            get {
+                return ResourceManager.GetString("desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string details {
+            get {
+                return ResourceManager.GetString("details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardware Vendor.
+        /// </summary>
+        internal static string hw_vendor {
+            get {
+                return ResourceManager.GetString("hw_vendor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IP Address.
+        /// </summary>
+        internal static string ip {
+            get {
+                return ResourceManager.GetString("ip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP Offline.
         /// </summary>
         internal static string ip_offline {
@@ -79,11 +124,47 @@ namespace mabat {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Seen.
+        /// </summary>
+        internal static string last_seen {
+            get {
+                return ResourceManager.GetString("last_seen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAC Address.
+        /// </summary>
+        internal static string mac {
+            get {
+                return ResourceManager.GetString("mac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Authorized.
         /// </summary>
         internal static string not_authorized {
             get {
                 return ResourceManager.GetString("not_authorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operating System.
+        /// </summary>
+        internal static string os {
+            get {
+                return ResourceManager.GetString("os", resourceCulture);
             }
         }
         
@@ -102,6 +183,33 @@ namespace mabat {
         internal static string thing_online {
             get {
                 return ResourceManager.GetString("thing_online", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        internal static string time {
+            get {
+                return ResourceManager.GetString("time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string type {
+            get {
+                return ResourceManager.GetString("type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendor.
+        /// </summary>
+        internal static string vendor {
+            get {
+                return ResourceManager.GetString("vendor", resourceCulture);
             }
         }
     }

@@ -15,6 +15,8 @@ namespace mabat
         public ThingsControl()
         {
             InitializeComponent();
+            this.gridViewThings.ColumnAdded += gridView_ColumnAdded;
+            this.gridViewEvents.ColumnAdded += gridView_ColumnAdded;
             loadThings();
         }
 
@@ -22,14 +24,21 @@ namespace mabat
         {
             DataTable table = new DataTable();
             DataModel.Instance.GetThings(table);            
-            this.gridViewThings.DataSource = table;
+            this.gridViewThings.DataSource = table;            
         }
+
+        void gridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {            
+            e.Column.HeaderText = Strings.ResourceManager.GetString(e.Column.Name);
+        }
+
+        
 
         private void loadEvents(string mac)
         {
             DataTable table = new DataTable();
             DataModel.Instance.GetEvents(table,mac);
-            this.gridViewEvents.DataSource = table;
+            this.gridViewEvents.DataSource = table;            
         }
 
         private void gridViewDevices_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -157,8 +166,6 @@ namespace mabat
             loadThings();
         }
 
-     
 
-        
     }
 }

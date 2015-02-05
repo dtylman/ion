@@ -80,11 +80,11 @@
       <DependentUpon>EventConfigControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IonProperties.cs" />
-    <Compile Include="ServiceControl.cs">
+    <Compile Include="ConfigControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ServiceControl.Designer.cs">
-      <DependentUpon>ServiceControl.cs</DependentUpon>
+    <Compile Include="ConfigControl.Designer.cs">
+      <DependentUpon>ConfigControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DataModel.cs" />
     <Compile Include="Strings.Designer.cs">
@@ -128,8 +128,8 @@
     <EmbeddedResource Include="EventConfigControl.resx">
       <DependentUpon>EventConfigControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ServiceControl.resx">
-      <DependentUpon>ServiceControl.cs</DependentUpon>
+    <EmbeddedResource Include="ConfigControl.resx">
+      <DependentUpon>ConfigControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>

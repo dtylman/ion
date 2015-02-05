@@ -82,7 +82,6 @@
     <ClCompile Include="ProtocolDHCP.cpp">
       <Filter>Dissect</Filter>
     </ClCompile>
-    <ClCompile Include="AutoJSONConfiguration.cpp" />
     <ClCompile Include="ThingDataObject.cpp">
       <Filter>Data</Filter>
     </ClCompile>
@@ -115,6 +114,7 @@
       <Filter>Event</Filter>
     </ClCompile>
     <ClCompile Include="Selfy.cpp" />
+    <ClCompile Include="AutoConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -178,7 +178,6 @@
     <ClInclude Include="ProtocolDHCP.h">
       <Filter>Dissect</Filter>
     </ClInclude>
-    <ClInclude Include="AutoJSONConfiguration.h" />
     <ClInclude Include="ThingDataObject.h">
       <Filter>Data</Filter>
     </ClInclude>
@@ -211,6 +210,7 @@
       <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="Selfy.h" />
+    <ClInclude Include="AutoConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

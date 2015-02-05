@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arping.cpp" />
-    <ClCompile Include="AutoJSONConfiguration.cpp" />
+    <ClCompile Include="AutoConfiguration.cpp" />
     <ClCompile Include="DataObject.cpp" />
     <ClCompile Include="DataObserver.cpp" />
     <ClCompile Include="DataSubsystem.cpp" />
@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arping.h" />
-    <ClInclude Include="AutoJSONConfiguration.h" />
+    <ClInclude Include="AutoConfiguration.h" />
     <ClInclude Include="DataObject.h" />
     <ClInclude Include="DataObserver.h" />
     <ClInclude Include="DataSubsystem.h" />

@@ -14,9 +14,9 @@ using Newtonsoft.Json.Linq;
 
 namespace mabat
 {
-    public partial class ServiceControl : UserControl
+    public partial class ConfigControl : UserControl
     {
-        public ServiceControl()
+        public ConfigControl()
         {
             InitializeComponent();
             IonProperties properties = new IonProperties();

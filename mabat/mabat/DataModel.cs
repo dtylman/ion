@@ -43,7 +43,7 @@ namespace mabat
         {
             String sql = "SELECT time,name,ip,details FROM event WHERE mac = '" + mac + "' ORDER BY time";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
-            adapter.Fill(table);
+            adapter.Fill(table);            
         }
 
         internal void UpdateThing(string mac, string type, string vendor, string os, string desc)

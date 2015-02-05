@@ -19,7 +19,7 @@ namespace mabat
             ThingsControl dc = new ThingsControl();
             dc.Dock = DockStyle.Fill;
             this.tabPageThings.Controls.Add(dc);
-            ServiceControl sc = new ServiceControl();
+            ConfigControl sc = new ConfigControl();
             sc.Dock = DockStyle.Fill;
             this.tabPageService.Controls.Add(sc);
         }

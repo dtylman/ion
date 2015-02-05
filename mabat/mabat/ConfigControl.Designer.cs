@@ -1,6 +1,6 @@
 ﻿namespace mabat
 {
-    partial class ServiceControl
+    partial class ConfigControl
     {
         /// <summary> 
         /// Required designer variable.

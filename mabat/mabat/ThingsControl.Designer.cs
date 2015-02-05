@@ -43,10 +43,10 @@
             this.deleteAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBoxEvents = new System.Windows.Forms.GroupBox();
-            this.gridViewEvents = new System.Windows.Forms.DataGridView();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toggleAuthorizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBoxEvents = new System.Windows.Forms.GroupBox();
+            this.gridViewEvents = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -179,6 +179,17 @@
             this.reloadToolStripMenuItem.Text = "Reload";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
+            // 
+            // toggleAuthorizeToolStripMenuItem
+            // 
+            this.toggleAuthorizeToolStripMenuItem.Name = "toggleAuthorizeToolStripMenuItem";
+            this.toggleAuthorizeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.toggleAuthorizeToolStripMenuItem.Text = "Toggle Authorize";
+            // 
             // groupBoxEvents
             // 
             this.groupBoxEvents.Controls.Add(this.gridViewEvents);
@@ -219,17 +230,6 @@
             this.gridViewEvents.ShowRowErrors = false;
             this.gridViewEvents.Size = new System.Drawing.Size(738, 246);
             this.gridViewEvents.TabIndex = 0;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
-            // 
-            // toggleAuthorizeToolStripMenuItem
-            // 
-            this.toggleAuthorizeToolStripMenuItem.Name = "toggleAuthorizeToolStripMenuItem";
-            this.toggleAuthorizeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.toggleAuthorizeToolStripMenuItem.Text = "Toggle Authorize";
             // 
             // ThingsControl
             // 
