@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f4" displayName="Data" projectFiles="true">
+      <itemPath>DHCPOSDataObject.cpp</itemPath>
+      <itemPath>DHCPOSDataObject.h</itemPath>
+      <itemPath>DataObject.cpp</itemPath>
+      <itemPath>DataObject.h</itemPath>
+      <itemPath>DataObserver.cpp</itemPath>
+      <itemPath>DataObserver.h</itemPath>
+      <itemPath>DataSubsystem.cpp</itemPath>
+      <itemPath>DataSubsystem.h</itemPath>
+      <itemPath>IPCache.cpp</itemPath>
+      <itemPath>IPCache.h</itemPath>
+      <itemPath>IPData.cpp</itemPath>
+      <itemPath>IPData.h</itemPath>
+      <itemPath>IPDataObject.cpp</itemPath>
+      <itemPath>IPDataObject.h</itemPath>
+      <itemPath>IPDataObserver.cpp</itemPath>
+      <itemPath>IPDataObserver.h</itemPath>
+      <itemPath>ScopedTransaciton.cpp</itemPath>
+      <itemPath>ScopedTransaciton.h</itemPath>
+      <itemPath>ThingDataObject.cpp</itemPath>
+      <itemPath>ThingDataObject.h</itemPath>
+      <itemPath>ThingObserver.cpp</itemPath>
+      <itemPath>ThingObserver.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f3" displayName="Dissect" projectFiles="true">
+      <itemPath>DissectSubsystem.cpp</itemPath>
+      <itemPath>DissectSubsystem.h</itemPath>
+      <itemPath>Frame.cpp</itemPath>
+      <itemPath>Frame.h</itemPath>
+      <itemPath>Protocol.cpp</itemPath>
+      <itemPath>Protocol.h</itemPath>
+      <itemPath>ProtocolARP.cpp</itemPath>
+      <itemPath>ProtocolARP.h</itemPath>
+      <itemPath>ProtocolDHCP.cpp</itemPath>
+      <itemPath>ProtocolDHCP.h</itemPath>
+      <itemPath>ProtocolEthernet.cpp</itemPath>
+      <itemPath>ProtocolEthernet.h</itemPath>
+      <itemPath>ProtocolIP.cpp</itemPath>
+      <itemPath>ProtocolIP.h</itemPath>
+      <itemPath>ProtocolNBDatagram.cpp</itemPath>
+      <itemPath>ProtocolNBDatagram.h</itemPath>
+      <itemPath>ProtocolUDP.cpp</itemPath>
+      <itemPath>ProtocolUDP.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f5" displayName="Events" projectFiles="true">
+      <itemPath>EventData.cpp</itemPath>
+      <itemPath>EventData.h</itemPath>
+      <itemPath>EventDataObject.cpp</itemPath>
+      <itemPath>EventDataObject.h</itemPath>
+      <itemPath>EventNotification.cpp</itemPath>
+      <itemPath>EventNotification.h</itemPath>
+      <itemPath>EventsSubsystem.cpp</itemPath>
+      <itemPath>EventsSubsystem.h</itemPath>
+      <itemPath>SendMail.cpp</itemPath>
+      <itemPath>SendMail.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f2" displayName="Libnet" projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="f1" displayName="Pcap" projectFiles="true">
+      <itemPath>PcapActivity.cpp</itemPath>
+      <itemPath>PcapActivity.h</itemPath>
+      <itemPath>PcapDevice.cpp</itemPath>
+      <itemPath>PcapDevice.h</itemPath>
+      <itemPath>PcapIfaceAddress.cpp</itemPath>
+      <itemPath>PcapIfaceAddress.h</itemPath>
+      <itemPath>PcapSubsystem.cpp</itemPath>
+      <itemPath>PcapSubsystem.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <itemPath>Arping.cpp</itemPath>
+    <itemPath>Arping.h</itemPath>
+    <itemPath>AutoConfiguration.cpp</itemPath>
+    <itemPath>AutoConfiguration.h</itemPath>
+    <itemPath>Injector.cpp</itemPath>
+    <itemPath>Injector.h</itemPath>
+    <itemPath>MAC.cpp</itemPath>
+    <itemPath>MAC.h</itemPath>
+    <itemPath>Main.cpp</itemPath>
+    <itemPath>Main.h</itemPath>
+    <itemPath>Makefile</itemPath>
+    <itemPath>Poco.props</itemPath>
+    <itemPath>Rouing.cpp</itemPath>
+    <itemPath>Routing.h</itemPath>
+    <itemPath>Routing_LINUX.cpp</itemPath>
+    <itemPath>Selfy.cpp</itemPath>
+    <itemPath>Selfy.h</itemPath>
+    <itemPath>Solicitator.cpp</itemPath>
+    <itemPath>Solicitator.h</itemPath>
+    <itemPath>ion.properties</itemPath>
+    <itemPath>pcap.props</itemPath>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Data/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Data/SQLite/include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>../lib/poco-1.6.0-all/lib/Linux/x86_64</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a</linkerLibFileItem>
+            <linkerLibLibItem>pcap</linkerLibLibItem>
+            <linkerLibLibItem>pthread</linkerLibLibItem>
+            <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
+            <linkerLibLibItem>net</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Arping.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AutoConfiguration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AutoConfiguration.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventNotification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventsSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPCache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPDataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPDataObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Injector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Injector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MAC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Main.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Poco.props" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Protocol.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Rouing.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Routing.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Selfy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Selfy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SendMail.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SendMail.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ion.properties" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pcap.props" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>../lib/poco-1.6.0-all/lib/Linux/x86_64</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>PocoFoundation.a</linkerLibLibItem>
+            <linkerLibLibItem>PocoUtil.a</linkerLibLibItem>
+            <linkerLibLibItem>PocoXML.a</linkerLibLibItem>
+            <linkerLibLibItem>PocoJSON.a</linkerLibLibItem>
+            <linkerLibLibItem>pcap</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Arping.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AutoConfiguration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AutoConfiguration.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DataSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventNotification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventsSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Frame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPCache.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="IPDataObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IPDataObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Injector.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Injector.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MAC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Main.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapActivity.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapActivity.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapDevice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapIfaceAddress.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PcapSubsystem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Poco.props" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Protocol.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolARP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolARP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolDHCP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolEthernet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolIP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolIP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolNBDatagram.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Rouing.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Routing.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ScopedTransaciton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Selfy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Selfy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SendMail.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SendMail.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ion.properties" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="pcap.props" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <itemPath>DBTool.cpp</itemPath>
+    <itemPath>DBTool.h</itemPath>
+    <itemPath>TableOSDHCP.cpp</itemPath>
+    <itemPath>TableOSDHCP.h</itemPath>
+    <itemPath>TableOUI.cpp</itemPath>
+    <itemPath>TableOUI.h</itemPath>
+    <itemPath>Tables.cpp</itemPath>
+    <itemPath>Tables.h</itemPath>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Data/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Data/SQLite/include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>../lib/poco-1.6.0-all/lib/Linux/x86_64</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>PocoUtil</linkerLibLibItem>
+            <linkerLibLibItem>PocoData</linkerLibLibItem>
+            <linkerLibLibItem>PocoDataSQLite</linkerLibLibItem>
+            <linkerLibLibItem>PocoFoundation</linkerLibLibItem>
+            <linkerLibLibItem>PocoJSON</linkerLibLibItem>
+            <linkerLibLibItem>PocoXML</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="DBTool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DBTool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TableOSDHCP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TableOSDHCP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TableOUI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TableOUI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tables.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Tables.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="DBTool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DBTool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TableOSDHCP.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TableOSDHCP.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TableOUI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TableOUI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Tables.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Tables.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
