@@ -72,12 +72,17 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventConfigItem.cs" />
     <Compile Include="EventConfigControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EventConfigControl.Designer.cs">
       <DependentUpon>EventConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EventsControl.Designer.cs">
+      <DependentUpon>EventsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IonProperties.cs" />
     <Compile Include="ConfigControl.cs">
@@ -130,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigControl.resx">
       <DependentUpon>ConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventsControl.resx">
+      <DependentUpon>EventsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -191,8 +199,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="icons\" />
+    <Content Include="icons\tv.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.94.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.94.0\build\net45\System.Data.SQLite.Core.targets')" />

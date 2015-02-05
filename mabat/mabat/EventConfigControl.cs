@@ -11,16 +11,28 @@ using System.Windows.Forms;
 namespace mabat
 {
     public partial class EventConfigControl : UserControl
-    {        
-        public EventConfigControl(EventConfigItem eventConfigItem)
+    {
+        private IonProperties properties;
+        private string name; 
+       
+        public EventConfigControl(String name, IonProperties properties)
         {
             InitializeComponent();
-            this.lblName.Text = eventConfigItem.DisplayName;            
-            this.toolTip.SetToolTip(this, eventConfigItem.DisplayName);
-            this.chkMail.Checked = eventConfigItem.Mail;
-            this.chkSave.Checked = eventConfigItem.Save;
-            this.chkSyslog.Checked = eventConfigItem.Syslog;
+            this.properties = properties;
+            this.name = name;            
+            this.lblName.Text = Strings.ResourceManager.GetString(name);
+            this.toolTip.SetToolTip(this, Strings.ResourceManager.GetString(name + "_desc"));
+            this.chkMail.Checked = Boolean.Parse(properties.Get(String.Format("ion.events.{0}.mail", name)));
+            this.chkSave.Checked = Boolean.Parse(properties.Get(String.Format("ion.events.{0}.save", name)));
+            this.chkSyslog.Checked = Boolean.Parse(properties.Get(String.Format("ion.events.{0}.syslog", name)));
         }
 
+
+        internal void apply()
+        {
+            properties.Set(String.Format("ion.events.{0}.mail", name), this.chkMail.Checked);
+            properties.Set(String.Format("ion.events.{0}.save", name), this.chkSave.Checked);
+            properties.Set(String.Format("ion.events.{0}.syslog", name), this.chkSyslog.Checked);
+        }
     }
 }

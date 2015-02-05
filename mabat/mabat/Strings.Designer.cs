@@ -106,11 +106,29 @@ namespace mabat {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notify when IP goes offline.
+        /// </summary>
+        internal static string ip_offline_desc {
+            get {
+                return ResourceManager.GetString("ip_offline_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP Online.
         /// </summary>
         internal static string ip_online {
             get {
                 return ResourceManager.GetString("ip_online", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notify when IP connects to the network.
+        /// </summary>
+        internal static string ip_online_desc {
+            get {
+                return ResourceManager.GetString("ip_online_desc", resourceCulture);
             }
         }
         
@@ -124,11 +142,29 @@ namespace mabat {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When new thing appears which is not authorized.
+        /// </summary>
+        internal static string not_authorized_desc {
+            get {
+                return ResourceManager.GetString("not_authorized_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thing Offline.
         /// </summary>
         internal static string thing_offline {
             get {
                 return ResourceManager.GetString("thing_offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notify when mac offline.
+        /// </summary>
+        internal static string thing_offline_desc {
+            get {
+                return ResourceManager.GetString("thing_offline_desc", resourceCulture);
             }
         }
         
@@ -142,7 +178,16 @@ namespace mabat {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authenticated?.
+        ///   Looks up a localized string similar to Notify when thing online.
+        /// </summary>
+        internal static string thing_online_desc {
+            get {
+                return ResourceManager.GetString("thing_online_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorized?.
         /// </summary>
         internal static string things_auth {
             get {
