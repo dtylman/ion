@@ -15,25 +15,29 @@ namespace mabat
         public ThingsControl()
         {
             InitializeComponent();
-            this.gridViewThings.ColumnAdded += gridView_ColumnAdded;
-            this.gridViewEvents.ColumnAdded += gridView_ColumnAdded;
+            this.gridViewThings.ColumnAdded += gridViewThings_ColumnAdded;
+            this.gridViewEvents.ColumnAdded += gridViewEvents_ColumnAdded;
             loadThings();
+        }
+
+
+        void gridViewEvents_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.HeaderText = Strings.ResourceManager.GetString("events_"+e.Column.Name);
+        }
+
+        void gridViewThings_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.HeaderText = Strings.ResourceManager.GetString("things_"+e.Column.Name);
         }
 
         private void loadThings()
         {
             DataTable table = new DataTable();
             DataModel.Instance.GetThings(table);            
-            this.gridViewThings.DataSource = table;            
+            this.gridViewThings.DataSource = table;
         }
-
-        void gridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {            
-            e.Column.HeaderText = Strings.ResourceManager.GetString(e.Column.Name);
-        }
-
         
-
         private void loadEvents(string mac)
         {
             DataTable table = new DataTable();

@@ -61,47 +61,38 @@ namespace mabat {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authenticated?.
-        /// </summary>
-        internal static string auth {
-            get {
-                return ResourceManager.GetString("auth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        internal static string desc {
-            get {
-                return ResourceManager.GetString("desc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
-        internal static string details {
+        internal static string events_details {
             get {
-                return ResourceManager.GetString("details", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hardware Vendor.
-        /// </summary>
-        internal static string hw_vendor {
-            get {
-                return ResourceManager.GetString("hw_vendor", resourceCulture);
+                return ResourceManager.GetString("events_details", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to IP Address.
         /// </summary>
-        internal static string ip {
+        internal static string events_ip {
             get {
-                return ResourceManager.GetString("ip", resourceCulture);
+                return ResourceManager.GetString("events_ip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Name.
+        /// </summary>
+        internal static string events_name {
+            get {
+                return ResourceManager.GetString("events_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        internal static string events_time {
+            get {
+                return ResourceManager.GetString("events_time", resourceCulture);
             }
         }
         
@@ -124,47 +115,11 @@ namespace mabat {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Seen.
-        /// </summary>
-        internal static string last_seen {
-            get {
-                return ResourceManager.GetString("last_seen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MAC Address.
-        /// </summary>
-        internal static string mac {
-            get {
-                return ResourceManager.GetString("mac", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        internal static string name {
-            get {
-                return ResourceManager.GetString("name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Not Authorized.
         /// </summary>
         internal static string not_authorized {
             get {
                 return ResourceManager.GetString("not_authorized", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Operating System.
-        /// </summary>
-        internal static string os {
-            get {
-                return ResourceManager.GetString("os", resourceCulture);
             }
         }
         
@@ -187,29 +142,92 @@ namespace mabat {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time.
+        ///   Looks up a localized string similar to Authenticated?.
         /// </summary>
-        internal static string time {
+        internal static string things_auth {
             get {
-                return ResourceManager.GetString("time", resourceCulture);
+                return ResourceManager.GetString("things_auth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string things_desc {
+            get {
+                return ResourceManager.GetString("things_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardware Vendor.
+        /// </summary>
+        internal static string things_hw_vendor {
+            get {
+                return ResourceManager.GetString("things_hw_vendor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IP Address.
+        /// </summary>
+        internal static string things_ip {
+            get {
+                return ResourceManager.GetString("things_ip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Seen.
+        /// </summary>
+        internal static string things_last_seen {
+            get {
+                return ResourceManager.GetString("things_last_seen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAC Address.
+        /// </summary>
+        internal static string things_mac {
+            get {
+                return ResourceManager.GetString("things_mac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string things_name {
+            get {
+                return ResourceManager.GetString("things_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operating System.
+        /// </summary>
+        internal static string things_os {
+            get {
+                return ResourceManager.GetString("things_os", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
-        internal static string type {
+        internal static string things_type {
             get {
-                return ResourceManager.GetString("type", resourceCulture);
+                return ResourceManager.GetString("things_type", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Vendor.
         /// </summary>
-        internal static string vendor {
+        internal static string things_vendor {
             get {
-                return ResourceManager.GetString("vendor", resourceCulture);
+                return ResourceManager.GetString("things_vendor", resourceCulture);
             }
         }
     }
