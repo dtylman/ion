@@ -5,21 +5,21 @@
  * Created on February 2, 2015, 10:23 AM
  */
 
-#ifndef AUTOJSONCONFIGURATION_H
-#define	AUTOJSONCONFIGURATION_H
+#ifndef AUTOCONFIGURATION_H
+#define	AUTOCONFIGURATION_H
 
-#include <Poco/Util/JSONConfiguration.h>
+#include <Poco/Util/PropertyFileConfiguration.h>
 #include <Poco/Path.h>
 #include <Poco/Logger.h>
 #include <Poco/DirectoryWatcher.h>
 #include <string>
 
-class AutoJSONConfiguration : public Poco::Util::JSONConfiguration
+class AutoConfiguration : public Poco::Util::PropertyFileConfiguration
 {
 public:
-    AutoJSONConfiguration(const Poco::Path& folder, const std::string& fileName);
+    AutoConfiguration(const Poco::Path& folder, const std::string& fileName);
 protected:
-    virtual ~AutoJSONConfiguration();
+    virtual ~AutoConfiguration();
 private:
     void onItemModified(const Poco::DirectoryWatcher::DirectoryEvent& event);
     void reload();
@@ -28,5 +28,5 @@ private:
     Poco::Logger& _logger;
 };
 
-#endif	/* AUTOJSONCONFIGURATION_H */
+#endif	/* AUTOCONFIGURATION_H */
 
