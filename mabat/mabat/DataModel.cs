@@ -29,21 +29,26 @@ namespace mabat
 
         public void GetThings(DataTable table)
         {
-            String sql = "SELECT ip.mac, ip, last_seen, thing.type, thing.name, thing.vendor, " +
-            "thing.os, desc, oui.vendor as hw_vendor , authorized.mac is not null as auth " +
+            String sql = "SELECT ip.mac, ip, datetime(last_seen,'unixepoch','localtime') as last_seen, "+
+            "thing.type, thing.name, thing.vendor, " +
+            "thing.os, desc, oui.vendor as hw_vendor , case when  authorized.mac is null then 'no' else 'yes' end as auth " +
             "    FROM ip LEFT JOIN thing ON ip.mac=thing.mac " +
             "    LEFT JOIN oui ON substr(ip.mac,0,9)=oui.prefix " +
-        "LEFT JOIN authorized on ip.mac=authorized.mac " +
-                "ORDER BY ip.mac";
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
-            adapter.Fill(table);
+            "LEFT JOIN authorized on ip.mac=authorized.mac " +
+            "ORDER BY ip.mac";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);            
+            adapter.Fill(table);            
         }
 
         internal void GetEvents(DataTable table, string mac)
         {
-            String sql = "SELECT time,name,ip,details FROM event WHERE mac = '" + mac + "' ORDER BY time";
+            String sql = "SELECT datetime(time,'unixepoch','localtime') as time,name,ip,details FROM event WHERE mac = '" + mac + "' ORDER BY time";
             SQLiteDataAdapter adapter = new SQLiteDataAdapter(sql, this.connection);
             adapter.Fill(table);            
+            foreach (DataRow row in table.Rows)            
+            {
+                row["name"]=Strings.ResourceManager.GetString(row["name"].ToString());
+            }
         }
 
         internal void UpdateThing(string mac, string type, string vendor, string os, string desc)
