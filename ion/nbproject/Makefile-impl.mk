@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=snuffapp
+PROJECTNAME=ion
 
 # Active Configuration
 DEFAULTCONF=Debug

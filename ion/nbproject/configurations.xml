@@ -95,7 +95,6 @@
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
     <itemPath>Makefile</itemPath>
-    <itemPath>Poco.props</itemPath>
     <itemPath>Rouing.cpp</itemPath>
     <itemPath>Routing.h</itemPath>
     <itemPath>Routing_LINUX.cpp</itemPath>
@@ -104,7 +103,6 @@
     <itemPath>Solicitator.cpp</itemPath>
     <itemPath>Solicitator.h</itemPath>
     <itemPath>ion.properties</itemPath>
-    <itemPath>pcap.props</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -241,8 +239,6 @@
       </item>
       <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Poco.props" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Protocol.h" ex="false" tool="3" flavor2="0">
@@ -302,8 +298,6 @@
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ion.properties" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -440,8 +434,6 @@
       </item>
       <item path="PcapSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Poco.props" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Protocol.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Protocol.h" ex="false" tool="3" flavor2="0">
@@ -501,8 +493,6 @@
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ion.properties" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="pcap.props" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

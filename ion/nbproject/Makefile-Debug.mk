@@ -93,25 +93,25 @@ LDLIBSOPTIONS=-L../lib/poco-1.6.0-all/lib/Linux/x86_64 ../lib/poco-1.6.0-all/lib
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Arping.o: Arping.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -309,7 +309,7 @@ ${OBJECTDIR}/ThingObserver.o: ThingObserver.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/snuffapp
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion
 
 # Subprojects
 .clean-subprojects:

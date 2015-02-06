@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=snuffapp
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/snuffapp
+CND_ARTIFACT_NAME_Debug=ion
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/ion
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=snuffapp.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/snuffapp.tar
+CND_PACKAGE_NAME_Debug=ion.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/ion.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=snuffapp
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/snuffapp
+CND_ARTIFACT_NAME_Release=ion
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/ion
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=snuffapp.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/snuffapp.tar
+CND_PACKAGE_NAME_Release=ion.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/ion.tar
 #
 # include compiler specific variables
 #
