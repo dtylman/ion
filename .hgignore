@@ -12,13 +12,9 @@ lib/poco-1.6.0-all/Foundation/src/pocomsg.h
 lib/poco-1.6.0-all/Foundation/src/pocomsg.rc
 lib/poco-1.6.0-all/PageCompiler/bin/
 lib/poco-1.6.0-all/PageCompiler/File2Page/bin/
-snuffapp/Debug/
-snuffler.sdf
-snuffler.opensdf
 Debug
 Release
 inst/win/output
-zakif.db
 *.obj
 *.dll
 lib/libnet-1.2-rc3/src/libnet.lib
@@ -30,4 +26,5 @@ lib/libnet-1.2-rc3/include/libnet/stdint.h
 *.suo
 *.user
 packages/
-mabat/mabat/Properties/DataSources/DataModel.datasource
+ion.opensdf
+*.sdf
