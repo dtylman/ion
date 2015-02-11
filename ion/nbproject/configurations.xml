@@ -74,6 +74,12 @@
                    projectFiles="true">
     </logicalFolder>
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
+      <itemPath>DevicesRequestHandler.cpp</itemPath>
+      <itemPath>DevicesRequestHandler.h</itemPath>
+      <itemPath>EventsRequestsHandler.cpp</itemPath>
+      <itemPath>EventsRequestsHandler.h</itemPath>
+      <itemPath>FileRequestHandler.cpp</itemPath>
+      <itemPath>FileRequestHandler.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
       <itemPath>WebRequestHandlerFactory.cpp</itemPath>
@@ -178,6 +184,10 @@
       </item>
       <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DevicesRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DevicesRequestHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
@@ -194,9 +204,17 @@
       </item>
       <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="EventsRequestsHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventsRequestsHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EventsSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileRequestHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -385,6 +403,10 @@
       </item>
       <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="DevicesRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DevicesRequestHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
@@ -401,9 +423,17 @@
       </item>
       <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="EventsRequestsHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EventsRequestsHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EventsSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FileRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FileRequestHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Frame.cpp" ex="false" tool="1" flavor2="0">
       </item>

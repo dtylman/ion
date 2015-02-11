@@ -6,8 +6,9 @@
  */
 
 #include "WebRequestHandlerFactory.h"
-#include "PageRequestHandler.h"
-#include "RestRequestHandler.h"
+#include "FileRequestHandler.h"
+#include "DevicesRequestHandler.h"
+#include "EventsRequestsHandler.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
@@ -23,8 +24,12 @@ Poco::Net::HTTPRequestHandler* WebRequestHandlerFactory::createRequestHandler(co
     _logger.debug("Handling request from %s: %s (%s)", request.getHost(), request.getURI(), request.getMethod());
 
     Poco::URI uri(request.getURI());
-    if (uri.getPath() == "/bin/devices") {
-        // return new RestRequestHandler();
+    std::string path = uri.getPath();
+    if (path == "/devices.bin") {
+        return new DevicesRequestHandler();
     }
-    return new PageRequestHandler();
+    else if (path == "/events.bin") {
+        return new EventsRequestsHandler();
+    }
+    return new FileRequestHandler();
 }

@@ -5,8 +5,8 @@
  * Created on February 10, 2015, 8:46 AM
  */
 
-#ifndef IONREQUESTHANDLERFACTORY_H
-#define	IONREQUESTHANDLERFACTORY_H
+#ifndef WEBREQUESTHANDLERFACTORY_H
+#define	WEBREQUESTHANDLERFACTORY_H
 
 #include <Poco/Net/HTTPRequestHandlerFactory.h>
 #include <Poco/Net/HTTPRequestHandler.h>
