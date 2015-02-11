@@ -55,15 +55,29 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L../lib/poco-1.6.0-all/lib/Linux/x86_64 -lPocoUtil -lPocoData -lPocoDataSQLite -lPocoFoundation -lPocoJSON -lPocoXML
+LDLIBSOPTIONS=-L../lib/poco-1.6.0-all/lib/Linux/x86_64 ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a -lpthread -ldl
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dbtool
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ../${CND_CONF}/dbtool
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dbtool: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dbtool ${OBJECTFILES} ${LDLIBSOPTIONS}
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a
+
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a
+
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a
+
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a
+
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a
+
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a
+
+../${CND_CONF}/dbtool: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a
+
+../${CND_CONF}/dbtool: ${OBJECTFILES}
+	${MKDIR} -p ../${CND_CONF}
+	${LINK.cc} -o ../${CND_CONF}/dbtool ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/DBTool.o: DBTool.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -91,7 +105,7 @@ ${OBJECTDIR}/Tables.o: Tables.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dbtool
+	${RM} ../${CND_CONF}/dbtool
 
 # Subprojects
 .clean-subprojects:

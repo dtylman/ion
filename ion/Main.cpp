@@ -19,6 +19,7 @@
 #include "ThingDataObject.h"
 #include "EventsSubsystem.h"
 #include "Selfy.h"
+#include "WebSubsystem.h"
 #include <iostream>
 #include <Poco/Util/TimerTaskAdapter.h>
 #include <Poco/Net/NetworkInterface.h>
@@ -29,6 +30,7 @@ Main::Main()
     addSubsystem(new EventsSubsystem());
     addSubsystem(new DissectSubsystem());
     addSubsystem(new PcapSubsystem());
+    addSubsystem(new WebSubsystem());
 }
 
 Main::~Main()

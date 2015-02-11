@@ -47,16 +47,20 @@
           </incDir>
         </ccTool>
         <linkerTool>
+          <output>../${CND_CONF}/dbtool</output>
           <linkerAddLib>
             <pElem>../lib/poco-1.6.0-all/lib/Linux/x86_64</pElem>
           </linkerAddLib>
           <linkerLibItems>
-            <linkerLibLibItem>PocoUtil</linkerLibLibItem>
-            <linkerLibLibItem>PocoData</linkerLibLibItem>
-            <linkerLibLibItem>PocoDataSQLite</linkerLibLibItem>
-            <linkerLibLibItem>PocoFoundation</linkerLibLibItem>
-            <linkerLibLibItem>PocoJSON</linkerLibLibItem>
-            <linkerLibLibItem>PocoXML</linkerLibLibItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a</linkerLibFileItem>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
