@@ -47,6 +47,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/EventNotification.o \
 	${OBJECTDIR}/EventsSubsystem.o \
 	${OBJECTDIR}/Frame.o \
+	${OBJECTDIR}/IONRequestHandlerFactory.o \
 	${OBJECTDIR}/IPCache.o \
 	${OBJECTDIR}/IPData.o \
 	${OBJECTDIR}/IPDataObject.o \
@@ -54,6 +55,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Injector.o \
 	${OBJECTDIR}/MAC.o \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/PageRequestHandler.o \
 	${OBJECTDIR}/PcapActivity.o \
 	${OBJECTDIR}/PcapDevice.o \
 	${OBJECTDIR}/PcapIfaceAddress.o \
@@ -65,6 +67,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ProtocolIP.o \
 	${OBJECTDIR}/ProtocolNBDatagram.o \
 	${OBJECTDIR}/ProtocolUDP.o \
+	${OBJECTDIR}/RestRequestHandler.o \
 	${OBJECTDIR}/Rouing.o \
 	${OBJECTDIR}/Routing_LINUX.o \
 	${OBJECTDIR}/ScopedTransaciton.o \
@@ -72,7 +75,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/SendMail.o \
 	${OBJECTDIR}/Solicitator.o \
 	${OBJECTDIR}/ThingDataObject.o \
-	${OBJECTDIR}/ThingObserver.o
+	${OBJECTDIR}/ThingObserver.o \
+	${OBJECTDIR}/WebSubsystem.o
 
 
 # C Compiler Flags
@@ -93,25 +97,25 @@ LDLIBSOPTIONS=-L../lib/poco-1.6.0-all/lib/Linux/x86_64 ../lib/poco-1.6.0-all/lib
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ../${CND_CONF}/ion
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoUtild.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoJSONd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoXMLd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a
+../${CND_CONF}/ion: ../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion ${OBJECTFILES} ${LDLIBSOPTIONS}
+../${CND_CONF}/ion: ${OBJECTFILES}
+	${MKDIR} -p ../${CND_CONF}
+	${LINK.cc} -o ../${CND_CONF}/ion ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Arping.o: Arping.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -173,6 +177,11 @@ ${OBJECTDIR}/Frame.o: Frame.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Frame.o Frame.cpp
 
+${OBJECTDIR}/IONRequestHandlerFactory.o: IONRequestHandlerFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IONRequestHandlerFactory.o IONRequestHandlerFactory.cpp
+
 ${OBJECTDIR}/IPCache.o: IPCache.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -207,6 +216,11 @@ ${OBJECTDIR}/Main.o: Main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.cpp
+
+${OBJECTDIR}/PageRequestHandler.o: PageRequestHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PageRequestHandler.o PageRequestHandler.cpp
 
 ${OBJECTDIR}/PcapActivity.o: PcapActivity.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -263,6 +277,11 @@ ${OBJECTDIR}/ProtocolUDP.o: ProtocolUDP.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolUDP.o ProtocolUDP.cpp
 
+${OBJECTDIR}/RestRequestHandler.o: RestRequestHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RestRequestHandler.o RestRequestHandler.cpp
+
 ${OBJECTDIR}/Rouing.o: Rouing.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -303,13 +322,18 @@ ${OBJECTDIR}/ThingObserver.o: ThingObserver.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingObserver.o ThingObserver.cpp
 
+${OBJECTDIR}/WebSubsystem.o: WebSubsystem.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WebSubsystem.o WebSubsystem.cpp
+
 # Subprojects
 .build-subprojects:
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ion
+	${RM} ../${CND_CONF}/ion
 
 # Subprojects
 .clean-subprojects:
