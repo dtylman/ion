@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-combobox.css" rel="stylesheet">
+        <link href="css/dashboard.css" rel="stylesheet">
+        <link href="css/jquery.dataTables.min.css" rel="stylesheet" >
+        <title>lala</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="active">
+                            <a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Reports</a></li>
+                        <li><a href="#">Analytics</a></li>
+                        <li><a href="#">Export</a></li>
+                    </ul>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="">Nav item</a></li>
+                        <li><a href="">Nav item again</a></li>
+                        <li><a href="">One more nav</a></li>
+                        <li><a href="">Another nav item</a></li>
+                        <li><a href="">More navigation</a></li>
+                    </ul>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="">Nav item again</a></li>
+                        <li><a href="">One more nav</a></li>
+                        <li><a href="">Another nav item</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h2 class="sub-header">Things</h2>
+                    <div class="table-responsive">
+
+                        <table id="things" class="table table-responsive" >
+                            <thead>
+                                <tr>
+                                    <td>Actions</td>
+                                    <th>MAC</th>
+                                    <th>IP</th>
+                                    <th>Last</th>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Vendor</th>
+                                    <th>OS</th>
+                                    <th>HW</th>
+                                    <th>Description</th>
+                                    <th>Authorized</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a data-toggle="modal" href="#modush" class="btn btn-primary"
+                                           data-mac="00:00:00:00:00:01" data-type="Type" data-desc="my laptop" data-os="windows">
+                                            <span class="glyphicon glyphicon-edit" ></span> Edit</a>
+                                    </td>
+                                    <td >00:00:00:00:00:01</td>
+                                    <td>10.0.0.1</td>
+                                    <td>17:42</td>
+                                    <td>Phone</td>
+                                    <td>Danny</td>
+                                    <td>Samsung</td>
+                                    <td>android</td>
+                                    <td>Samsung Corp</td>
+                                    <td>My laptop</td>
+                                    <td>No</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div id='modush' class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline" name="form-thing">
+                            <fieldset>
+                                <label class="label label-info">Type: </label><br/>
+                                <select class="combobox form-control" name="type" id="modush-type">
+                                    <option value=""></option>
+                                    <option value="Type">Type</option>
+                                    <option value="Camera">Camera</option>
+                                </select>
+                                <br/>
+                                <label class="label label-info">Vendor: </label><br/>
+                                <select class="combobox form-control" name="vendor">
+                                    <option value="Microsoft">Microsoft</option>
+                                    <option value="Google">Google</option>
+                                </select>
+                                <br/>
+                                <label class="label label-info">Operating System: </label><br/>
+                                <select class="combobox form-control" name="os">
+                                    <option value="Windows">Windows</option>
+                                    <option value="Android">Android</option>
+                                </select>
+                                <br/>
+                                <label class="label label-info">Description</label><br/>
+                                <textarea name="desc" class="input-xlarge" style="width: 80%" id="txt-modush"></textarea>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success" type="submit" value="Send!" id="submit">
+                        <a href="#" class="btn" data-dismiss="modal">Nah.</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal form-->
+
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-combobox.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#things').dataTable();
+            });
+            $('#modush').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var mac = button.data('mac');
+//                var type = button.data('type');
+                var desc = button.data('desc');
+//                var os = button.data('os');
+                var modal = $(this);
+                modal.find('.modal-title').text('Edit Thing ' + mac);
+                $("#txt-modush").val(desc);
+            });
+            $("input#submit").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "process.php", //process to mail
+                    data: $('form.contact').serialize(),
+                    success: function (msg) {
+                        $("#thanks").html(msg); //hide button and show thank you
+                        $("#form-content").modal('hide'); //hide popup
+                    },
+                    error: function () {
+                        alert("failure");
+                    }
+                });
+            });
+            $('.combobox').combobox();
+        </script>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" preserveAspectRatio="none" style="visibility: hidden; position: absolute; top: -100%; left: -100%;">
+        <defs></defs>
+        <text x="0" y="10" style="font-weight:bold;font-size:10pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle">200x200</text></svg>
+    </body>
+</html>
