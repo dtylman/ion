@@ -41,11 +41,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/DataObject.o \
 	${OBJECTDIR}/DataObserver.o \
 	${OBJECTDIR}/DataSubsystem.o \
+	${OBJECTDIR}/DevicesRequestHandler.o \
 	${OBJECTDIR}/DissectSubsystem.o \
 	${OBJECTDIR}/EventData.o \
 	${OBJECTDIR}/EventDataObject.o \
 	${OBJECTDIR}/EventNotification.o \
+	${OBJECTDIR}/EventsRequestsHandler.o \
 	${OBJECTDIR}/EventsSubsystem.o \
+	${OBJECTDIR}/FileRequestHandler.o \
 	${OBJECTDIR}/Frame.o \
 	${OBJECTDIR}/IPCache.o \
 	${OBJECTDIR}/IPData.o \
@@ -146,6 +149,11 @@ ${OBJECTDIR}/DataSubsystem.o: DataSubsystem.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataSubsystem.o DataSubsystem.cpp
 
+${OBJECTDIR}/DevicesRequestHandler.o: DevicesRequestHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DevicesRequestHandler.o DevicesRequestHandler.cpp
+
 ${OBJECTDIR}/DissectSubsystem.o: DissectSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -166,10 +174,20 @@ ${OBJECTDIR}/EventNotification.o: EventNotification.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventNotification.o EventNotification.cpp
 
+${OBJECTDIR}/EventsRequestsHandler.o: EventsRequestsHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventsRequestsHandler.o EventsRequestsHandler.cpp
+
 ${OBJECTDIR}/EventsSubsystem.o: EventsSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventsSubsystem.o EventsSubsystem.cpp
+
+${OBJECTDIR}/FileRequestHandler.o: FileRequestHandler.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FileRequestHandler.o FileRequestHandler.cpp
 
 ${OBJECTDIR}/Frame.o: Frame.cpp 
 	${MKDIR} -p ${OBJECTDIR}
