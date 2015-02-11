@@ -24,7 +24,7 @@ Poco::Net::HTTPRequestHandler* WebRequestHandlerFactory::createRequestHandler(co
 
     Poco::URI uri(request.getURI());
     if (uri.getPath() == "/bin/devices") {
-        return new RestRequestHandler();
+        // return new RestRequestHandler();
     }
     return new PageRequestHandler();
 }
