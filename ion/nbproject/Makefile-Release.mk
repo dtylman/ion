@@ -47,7 +47,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/EventNotification.o \
 	${OBJECTDIR}/EventsSubsystem.o \
 	${OBJECTDIR}/Frame.o \
-	${OBJECTDIR}/IONRequestHandlerFactory.o \
 	${OBJECTDIR}/IPCache.o \
 	${OBJECTDIR}/IPData.o \
 	${OBJECTDIR}/IPDataObject.o \
@@ -67,7 +66,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/ProtocolIP.o \
 	${OBJECTDIR}/ProtocolNBDatagram.o \
 	${OBJECTDIR}/ProtocolUDP.o \
-	${OBJECTDIR}/RestRequestHandler.o \
 	${OBJECTDIR}/Rouing.o \
 	${OBJECTDIR}/Routing_LINUX.o \
 	${OBJECTDIR}/ScopedTransaciton.o \
@@ -76,6 +74,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Solicitator.o \
 	${OBJECTDIR}/ThingDataObject.o \
 	${OBJECTDIR}/ThingObserver.o \
+	${OBJECTDIR}/WebRequestHandlerFactory.o \
 	${OBJECTDIR}/WebSubsystem.o
 
 
@@ -162,11 +161,6 @@ ${OBJECTDIR}/Frame.o: Frame.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Frame.o Frame.cpp
-
-${OBJECTDIR}/IONRequestHandlerFactory.o: IONRequestHandlerFactory.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/IONRequestHandlerFactory.o IONRequestHandlerFactory.cpp
 
 ${OBJECTDIR}/IPCache.o: IPCache.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -263,11 +257,6 @@ ${OBJECTDIR}/ProtocolUDP.o: ProtocolUDP.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolUDP.o ProtocolUDP.cpp
 
-${OBJECTDIR}/RestRequestHandler.o: RestRequestHandler.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RestRequestHandler.o RestRequestHandler.cpp
-
 ${OBJECTDIR}/Rouing.o: Rouing.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -307,6 +296,11 @@ ${OBJECTDIR}/ThingObserver.o: ThingObserver.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingObserver.o ThingObserver.cpp
+
+${OBJECTDIR}/WebRequestHandlerFactory.o: WebRequestHandlerFactory.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WebRequestHandlerFactory.o WebRequestHandlerFactory.cpp
 
 ${OBJECTDIR}/WebSubsystem.o: WebSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}

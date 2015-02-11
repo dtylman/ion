@@ -73,13 +73,11 @@
                    displayName="Resource Files"
                    projectFiles="true">
     </logicalFolder>
-    <logicalFolder name="f6" displayName="Web" projectFiles="true" kind="ROOT">
-      <itemPath>IONRequestHandlerFactory.cpp</itemPath>
-      <itemPath>IONRequestHandlerFactory.h</itemPath>
+    <logicalFolder name="f6" displayName="Web" projectFiles="true">
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
-      <itemPath>RestRequestHandler.cpp</itemPath>
-      <itemPath>RestRequestHandler.h</itemPath>
+      <itemPath>WebRequestHandlerFactory.cpp</itemPath>
+      <itemPath>WebRequestHandlerFactory.h</itemPath>
       <itemPath>WebSubsystem.cpp</itemPath>
       <itemPath>WebSubsystem.h</itemPath>
     </logicalFolder>
@@ -204,10 +202,6 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="IONRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IONRequestHandlerFactory.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
@@ -286,10 +280,6 @@
       </item>
       <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="RestRequestHandler.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RestRequestHandler.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Rouing.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
@@ -319,6 +309,10 @@
       <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WebRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WebRequestHandlerFactory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -415,10 +409,6 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="IONRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IONRequestHandlerFactory.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
@@ -497,10 +487,6 @@
       </item>
       <item path="ProtocolUDP.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="RestRequestHandler.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="RestRequestHandler.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Rouing.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
@@ -530,6 +516,10 @@
       <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WebRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WebRequestHandlerFactory.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
