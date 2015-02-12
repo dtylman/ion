@@ -30,7 +30,7 @@ std::string DevicesRequestHandler::title() const
 
 void DevicesRequestHandler::renderBody(std::ostream& output)
 {
-    output << "                    <div class=\"table-responsive\">\n";
+    output << "                    <div class='table-responsive'>\n";
     renderTable(output);
     output << "                    </div>\n";
     output << "\n";
@@ -38,43 +38,43 @@ void DevicesRequestHandler::renderBody(std::ostream& output)
     output << "                </div>\n";
     output << "            </div>\n";
     output << "        </div>\n";
-    output << "        <div id='modush' class=\"modal fade\">\n";
-    output << "            <div class=\"modal-dialog\">\n";
-    output << "                <div class=\"modal-content\">\n";
-    output << "                    <div class=\"modal-header\">\n";
-    output << "                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">×</button>\n";
-    output << "                        <h4 class=\"modal-title\">Modal title</h4>\n";
+    output << "        <div id='modush' class='modal fade'>\n";
+    output << "            <div class='modal-dialog'>\n";
+    output << "                <div class='modal-content'>\n";
+    output << "                    <div class='modal-header'>\n";
+    output << "                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>\n";
+    output << "                        <h4 class='modal-title'>Modal title</h4>\n";
     output << "                    </div>\n";
-    output << "                    <div class=\"modal-body\">\n";
-    output << "                        <form class=\"form-inline\" name=\"form-thing\">\n";
+    output << "                    <div class='modal-body'>\n";
+    output << "                        <form class='form-inline' name='form-thing'>\n";
     output << "                            <fieldset>\n";
-    output << "                                <label class=\"label label-info\">Type: </label><br/>\n";
-    output << "                                <select class=\"combobox form-control\" name=\"type\" id=\"modush-type\">\n";
-    output << "                                    <option value=\"\"></option>\n";
-    output << "                                    <option value=\"Type\">Type</option>\n";
-    output << "                                    <option value=\"Camera\">Camera</option>\n";
+    output << "                                <label class='label label-info'>Type: </label><br/>\n";
+    output << "                                <select class='combobox form-control' name='type' id='modush-type'>\n";
+    output << "                                    <option value=''></option>\n";
+    output << "                                    <option value='Type'>Type</option>\n";
+    output << "                                    <option value='Camera'>Camera</option>\n";
     output << "                                </select>\n";
     output << "                                <br/>\n";
-    output << "                                <label class=\"label label-info\">Vendor: </label><br/>\n";
-    output << "                                <select class=\"combobox form-control\" name=\"vendor\">\n";
-    output << "                                    <option value=\"Microsoft\">Microsoft</option>\n";
-    output << "                                    <option value=\"Google\">Google</option>\n";
+    output << "                                <label class='label label-info'>Vendor: </label><br/>\n";
+    output << "                                <select class='combobox form-control' name='vendor'>\n";
+    output << "                                    <option value='Microsoft'>Microsoft</option>\n";
+    output << "                                    <option value='Google'>Google</option>\n";
     output << "                                </select>\n";
     output << "                                <br/>\n";
-    output << "                                <label class=\"label label-info\">Operating System: </label><br/>\n";
-    output << "                                <select class=\"combobox form-control\" name=\"os\">\n";
-    output << "                                    <option value=\"Windows\">Windows</option>\n";
-    output << "                                    <option value=\"Android\">Android</option>\n";
+    output << "                                <label class='label label-info'>Operating System: </label><br/>\n";
+    output << "                                <select class='combobox form-control' name='os'>\n";
+    output << "                                    <option value='Windows'>Windows</option>\n";
+    output << "                                    <option value='Android'>Android</option>\n";
     output << "                                </select>\n";
     output << "                                <br/>\n";
-    output << "                                <label class=\"label label-info\">Description</label><br/>\n";
-    output << "                                <textarea name=\"desc\" class=\"input-xlarge\" style=\"width: 80%\" id=\"txt-modush\"></textarea>\n";
+    output << "                                <label class='label label-info'>Description</label><br/>\n";
+    output << "                                <textarea name='desc' class='input-xlarge' style='width: 80%' id='txt-modush'></textarea>\n";
     output << "                            </fieldset>\n";
     output << "                        </form>\n";
     output << "                    </div>\n";
-    output << "                    <div class=\"modal-footer\">\n";
-    output << "                        <input class=\"btn btn-success\" type=\"submit\" value=\"Send!\" id=\"submit\">\n";
-    output << "                        <a href=\"#\" class=\"btn\" data-dismiss=\"modal\">Nah.</a>\n";
+    output << "                    <div class='modal-footer'>\n";
+    output << "                        <input class='btn btn-success' type='submit' value='Send!' id='submit'>\n";
+    output << "                        <a href='#' class='btn' data-dismiss='modal'>Nah.</a>\n";
     output << "                    </div>\n";
     output << "                </div><!-- /.modal-content -->\n";
     output << "            </div><!-- /.modal-dialog -->\n";
@@ -91,19 +91,19 @@ void DevicesRequestHandler::renderBody(std::ostream& output)
     output << "//                var os = button.data('os');\n";
     output << "                var modal = $(this);\n";
     output << "                modal.find('.modal-title').text('Edit Thing ' + mac);\n";
-    output << "                $(\"#txt-modush\").val(desc);\n";
+    output << "                $('#txt-modush').val(desc);\n";
     output << "            });\n";
-    output << "            $(\"input#submit\").click(function () {\n";
+    output << "            $('input#submit').click(function () {\n";
     output << "                $.ajax({\n";
-    output << "                    type: \"POST\",\n";
-    output << "                    url: \"process.php\", //process to mail\n";
+    output << "                    type: 'POST',\n";
+    output << "                    url: 'process.php', //process to mail\n";
     output << "                    data: $('form.contact').serialize(),\n";
     output << "                    success: function (msg) {\n";
-    output << "                        $(\"#thanks\").html(msg); //hide button and show thank you\n";
-    output << "                        $(\"#form-content\").modal('hide'); //hide popup\n";
+    output << "                        $('#thanks').html(msg); //hide button and show thank you\n";
+    output << "                        $('#form-content').modal('hide'); //hide popup\n";
     output << "                    },\n";
     output << "                    error: function () {\n";
-    output << "                        alert(\"failure\");\n";
+    output << "                        alert('failure');\n";
     output << "                    }\n";
     output << "                });\n";
     output << "            });\n";
@@ -114,7 +114,7 @@ void DevicesRequestHandler::renderBody(std::ostream& output)
 
 void DevicesRequestHandler::renderTable(std::ostream& output)
 {
-    output << "                        <table id=\"things\" class=\"table table-responsive\" >\n";
+    output << "                        <table id='things' class='table table-responsive' >\n";
     output << "                            <thead>\n";
     output << "                                <tr>\n";
     output << "                                    <td>Actions</td>\n";
@@ -158,9 +158,9 @@ void DevicesRequestHandler::renderRow(std::ostream& output, Poco::Data::RecordSe
 {
     output << "                                <tr>\n";
     output << "                                    <td>\n";
-    output << "                                        <a data-toggle=\"modal\" href=\"#modush\" class=\"btn btn-primary\"\n";
-    output << "                                           data-mac=\"00:00:00:00:00:01\" data-type=\"Type\" data-desc=\"my laptop\" data-os=\"windows\">\n";
-    output << "                                            <span class=\"glyphicon glyphicon-edit\" ></span> Edit</a>\n";
+    output << "                                        <a data-toggle='modal' href='#modush' class='btn btn-primary'\n";
+    output << "                                           data-mac='00:00:00:00:00:01' data-type='Type' data-desc='my laptop' data-os='windows'>\n";
+    output << "                                            <span class='glyphicon glyphicon-edit' ></span> Edit</a>\n";
     output << "                                    </td>\n";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
         output << "<td>";
