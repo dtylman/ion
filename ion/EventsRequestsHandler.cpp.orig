@@ -12,7 +12,7 @@
 #include <Poco/Data/Statement.h>
 #include "DataSubsystem.h"
 
-EventsRequestsHandler::EventsRequestsHandler()
+EventsRequestsHandler::EventsRequestsHandler() : PageRequestHandler("events")
 {
 }
 
@@ -22,7 +22,7 @@ EventsRequestsHandler::~EventsRequestsHandler()
 
 void EventsRequestsHandler::renderBody(std::ostream& output)
 {
-    output << "<table id='events' class='table table-responsive' >\n";
+    output << "                        <table id='events' class='table table-responsive' >\n";
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
@@ -30,14 +30,14 @@ void EventsRequestsHandler::renderBody(std::ostream& output)
     query.execute();
     Poco::Data::RecordSet rs(query);
     bool more = rs.moveFirst();
-    output << "<thead>\n";
-    output << "    <tr>\n";
+    output << "                            <thead>\n";
+    output << "                                <tr>\n";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
         output << "<th>" << rs.columnName(i) << "</th>";
     }
-    output << "    </tr>\n";
-    output << "</thead>\n";
-    output << "<tbody>\n";
+    output << "                                </tr>\n";
+    output << "                            </thead>\n";
+    output << "                            <tbody>\n";
     while (more) {
         output << "                                <tr>\n";
 
@@ -51,22 +51,17 @@ void EventsRequestsHandler::renderBody(std::ostream& output)
         more = rs.moveNext();
         output << "                                </tr>\n";
     }
-    output << "    </tbody>\n";
-    output << "</table>\n";
+    output << "                            </tbody>\n";
+    output << "                        </table>\n";
 
-    output << "<script>\n";
-    output << "    $(document).ready(function () {\n";
-    output << "        $('#events').dataTable();\n";
-    output << "    });\n";
-    output << "</script>\n";
+    output << "        <script>\n";
+    output << "            $(document).ready(function () {\n";
+    output << "                $('#events').dataTable();\n";
+    output << "            });\n";
+    output << "        </script>\n";
 }
 
 std::string EventsRequestsHandler::title() const
 {
     return "Events";
-}
-
-bool EventsRequestsHandler::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
-{
-    return false;
 }

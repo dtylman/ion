@@ -14,7 +14,7 @@
 
 using namespace Poco::Data::Keywords;
 
-DevicesRequestHandler::DevicesRequestHandler()
+DevicesRequestHandler::DevicesRequestHandler() : PageRequestHandler("things")
 {
 }
 

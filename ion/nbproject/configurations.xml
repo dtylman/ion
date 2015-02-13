@@ -74,14 +74,18 @@
                    projectFiles="true">
     </logicalFolder>
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
-      <itemPath>DevicesRequestHandler.cpp</itemPath>
-      <itemPath>DevicesRequestHandler.h</itemPath>
+      <itemPath>EditThing2.cpp</itemPath>
+      <itemPath>EditThing2.h</itemPath>
       <itemPath>EventsRequestsHandler.cpp</itemPath>
       <itemPath>EventsRequestsHandler.h</itemPath>
       <itemPath>FileRequestHandler.cpp</itemPath>
       <itemPath>FileRequestHandler.h</itemPath>
+      <itemPath>MainMenu.cpp</itemPath>
+      <itemPath>MainMenu.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
+      <itemPath>ThingsRequestHandler.cpp</itemPath>
+      <itemPath>ThingsRequestHandler.h</itemPath>
       <itemPath>WebRequestHandlerFactory.cpp</itemPath>
       <itemPath>WebRequestHandlerFactory.h</itemPath>
       <itemPath>WebSubsystem.cpp</itemPath>
@@ -184,13 +188,13 @@
       </item>
       <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DevicesRequestHandler.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DevicesRequestHandler.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EditThing2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EditThing2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -247,6 +251,10 @@
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MainMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MainMenu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
@@ -327,6 +335,10 @@
       <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingsRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingsRequestHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -403,13 +415,13 @@
       </item>
       <item path="DataSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DevicesRequestHandler.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DevicesRequestHandler.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="DissectSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="EditThing2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="EditThing2.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -466,6 +478,10 @@
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MainMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MainMenu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
@@ -546,6 +562,10 @@
       <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ThingsRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ThingsRequestHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>

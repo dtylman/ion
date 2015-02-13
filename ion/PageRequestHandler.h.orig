@@ -9,27 +9,25 @@
 #define	PAGEREQUESTHANDLER_H
 
 #include <Poco/Net/HTTPRequestHandler.h>
-#include <Poco/Net/HTTPRequest.h>
-#include <Poco/Net/HTTPResponse.h>
-#include <Poco/Net/HTMLForm.h>
 #include <fstream>
 #include <string>
 
 class PageRequestHandler : public Poco::Net::HTTPRequestHandler
 {
 public:
-    PageRequestHandler();
+    PageRequestHandler(const std::string& name);
     virtual ~PageRequestHandler();
     virtual void handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 protected:
-    virtual std::string title() const = 0;
     virtual void renderBody(std::ostream& output) = 0;
     virtual void renderHeader(std::ostream& output);
+    virtual void renderMenus(std::ostream& output);
     virtual void renderFooter(std::ostream& output);
-    virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) = 0;
-private:
+    std::string getMenuItem(const std::string& name);
+    std::string _menuItem;
+    std::string _title;
     std::string _language = "en";
-
+    std::string _name;
 };
 
 #endif	/* PAGEREQUESTHANDLER_H */
