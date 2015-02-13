@@ -5,23 +5,25 @@
  * Created on February 11, 2015, 10:30 PM
  */
 
-#ifndef DEVICESREQUESTHANDLER_H
-#define	DEVICESREQUESTHANDLER_H
+#ifndef THINGSREQUESTHANDLER_H
+#define	THINGSREQUESTHANDLER_H
 
 #include "PageRequestHandler.h"
 #include <Poco/Data/RecordSet.h>
 
-class DevicesRequestHandler : public PageRequestHandler
+class ThingsRequestHandler : public PageRequestHandler
 {
 public:
-    DevicesRequestHandler();
-    virtual ~DevicesRequestHandler();
+    ThingsRequestHandler();
+    virtual ~ThingsRequestHandler();
 protected:
     virtual std::string title() const;
     virtual void renderBody(std::ostream& output);
+    virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
     void renderTable(std::ostream& output);
     void renderRow(std::ostream& output, Poco::Data::RecordSet& rs);
+    void renderScripts(std::ostream& output);
 };
 
 #endif	/* DEVICESREQUESTHANDLER_H */

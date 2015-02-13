@@ -1,27 +1,28 @@
 /*
- * File:   EventsRequestsHandler.h
+ * File:   EditThing2.h
  * Author: danny
  *
- * Created on February 11, 2015, 11:08 PM
+ * Created on February 13, 2015, 12:18 AM
  */
 
-#ifndef EVENTSREQUESTSHANDLER_H
-#define	EVENTSREQUESTSHANDLER_H
+#ifndef EDITTHING2_H
+#define	EDITTHING2_H
 
 #include "PageRequestHandler.h"
+#include <Poco/URI.h>
 
-class EventsRequestsHandler : public PageRequestHandler
+class EditThing2 : public PageRequestHandler
 {
 public:
-    EventsRequestsHandler();
-    virtual ~EventsRequestsHandler();
+    EditThing2(const Poco::URI::QueryParameters& params);
+    virtual ~EditThing2();
 protected:
     virtual std::string title() const;
     virtual void renderBody(std::ostream& output);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
-
+    std::string _mac;
 };
 
-#endif	/* EVENTSREQUESTSHANDLER_H */
+#endif	/* EDITTHING2_H */
 
