@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/DataSubsystem.o \
 	${OBJECTDIR}/DissectSubsystem.o \
 	${OBJECTDIR}/EditThingPage.o \
+	${OBJECTDIR}/EventConfigPage.o \
 	${OBJECTDIR}/EventData.o \
 	${OBJECTDIR}/EventDataObject.o \
 	${OBJECTDIR}/EventNotification.o \
@@ -147,6 +148,11 @@ ${OBJECTDIR}/EditThingPage.o: EditThingPage.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EditThingPage.o EditThingPage.cpp
+
+${OBJECTDIR}/EventConfigPage.o: EventConfigPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventConfigPage.o EventConfigPage.cpp
 
 ${OBJECTDIR}/EventData.o: EventData.cpp 
 	${MKDIR} -p ${OBJECTDIR}

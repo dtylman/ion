@@ -41,7 +41,7 @@ void ThingsPage::renderTable(std::ostream& output)
     output << "<table id='things' class='table table-responsive' >\n";
     output << "    <thead>\n";
     output << "        <tr>\n";
-    output << "            <td>Actions</td>\n";
+    output << "            <th>Actions</th>\n";
     output << "            <th>MAC</th>\n";
     output << "            <th>IP</th>\n";
     output << "            <th>Last</th>\n";

@@ -6,12 +6,15 @@
  */
 
 #include "PageRequestHandler.h"
+#include "WebMenu.h"
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
+#include <Poco/URI.h>
+#include <Poco/Exception.h>
+#include <Poco/Format.h>
 
-PageRequestHandler::PageRequestHandler(const std::string& name) : _name(name)
+PageRequestHandler::PageRequestHandler()
 {
-
 }
 
 PageRequestHandler::~PageRequestHandler()
@@ -25,89 +28,49 @@ void PageRequestHandler::renderHeader(std::ostream& output)
     output << "    <head>";
     output << "        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>";
     output << "        <meta charset='utf-8'>";
-
     output << "        <meta name='viewport' content='width=device-width, initial-scale=1'>";
     output << "        <meta name='description' content=''>";
     output << "        <meta name='author' content=''>";
-
     output << "        <link href='css/bootstrap.min.css' rel='stylesheet'>";
-    output << "        <link href='css/bootstrap-combobox.css' rel='stylesheet'>";
     output << "        <link href='css/dashboard.css' rel='stylesheet'>";
     output << "        <link href='css/jquery.dataTables.min.css' rel='stylesheet' >";
-
+    output << "        <link href='css/dataTables.td.css' rel='stylesheet' >";
+    output << "        <link href='css/typeaheadjs.css' rel='stylesheet' >";
     output << "        <script src='js/jquery-2.1.3.min.js'></script>";
     output << "        <script src='js/jquery.dataTables.min.js'></script>";
     output << "        <script src='js/bootstrap.min.js'></script>";
-    output << "        <script src='js/bootstrap-combobox.js'></script>";
-
-    output << "        <title>" << _title << "</title>";
+    output << "        <script src='js/typeahead.bundle.js'></script>";
+    output << "        <title>" << title() << "</title>";
     output << "    </head>";
-    output << "";
-}
-
-void PageRequestHandler::renderMenus(std::ostream& output)
-{
     output << "    <body>";
-    output << "        <nav class='navbar navbar-inverse navbar-fixed-top'>";
-    output << "            <div class='container-fluid'>";
-    output << "                <div class='navbar-header'>";
-    output << "                    <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>";
-    output << "                        <span class='sr-only'>Toggle navigation</span>";
-    output << "                        <span class='icon-bar'></span>";
-    output << "                        <span class='icon-bar'></span>";
-    output << "                        <span class='icon-bar'></span>";
-    output << "                    </button>";
-    output << "                    <a class='navbar-brand' href='#'>Project name</a>";
-    output << "                </div>";
-    output << "                <div id='navbar' class='navbar-collapse collapse'>";
-    output << "                    <ul class='nav navbar-nav navbar-right'>";
-    output << "                        <li><a href='#'>Dashboard</a></li>";
-    output << "                        <li><a href='#'>Settings</a></li>";
-    output << "                        <li><a href='#'>Profile</a></li>";
-    output << "                        <li><a href='#'>Help</a></li>";
-    output << "                    </ul>";
-    output << "                    <form class='navbar-form navbar-right'>";
-    output << "                        <input type='text' class='form-control' placeholder='Search...'>";
-    output << "                    </form>";
-    output << "                </div>";
-    output << "            </div>";
-    output << "        </nav>";
-    output << "";
-    output << "        <div class='container-fluid'>";
-    output << "            <div class='row'>";
-    output << "                <div class='col-sm-3 col-md-2 sidebar'>";
-    output << "                    <ul class='nav nav-sidebar'>";
-    output << getMenuItem("devices");
-    output << getMenuItem("events");
-    output << "                    </ul>";
-    output << "                    <ul class='nav nav-sidebar'>";
-    output << "                        <li><a href=''>Nav item</a></li>";
-    output << "                        <li><a href=''>Nav item again</a></li>";
-    output << "                        <li><a href=''>One more nav</a></li>";
-    output << "                        <li><a href=''>Another nav item</a></li>";
-    output << "                        <li><a href=''>More navigation</a></li>";
-    output << "                    </ul>";
-    output << "                    <ul class='nav nav-sidebar'>";
-    output << "                        <li><a href=''>Nav item again</a></li>";
-    output << "                        <li><a href=''>One more nav</a></li>";
-    output << "                        <li><a href=''>Another nav item</a></li>";
-    output << "                    </ul>";
-    output << "                </div>";
-    output << "                <div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>";
-    output << "<h2 class='sub-header'>" << _title << "</h2>";
 }
 
 void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-
+    Poco::Net::HTMLForm form(request, request.stream());
+    if (!form.empty()) {
+        if (handleForm(form, request, response)) {
+            return;
+        }
+    }
     response.setChunkedTransferEncoding(true);
     response.setContentType("text/html");
 
     std::ostream& output = response.send();
-    renderHeader(output);
-    renderMenus(output);
-    renderBody(output);
-    renderFooter(output);
+    try {
+        renderHeader(output);
+        WebMenu menu;
+        menu.renderNavBar(output, title());
+        output << "<div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>";
+        output << "<h2 class='sub-header'>" << title() << "</h2>";
+        renderBody(output, request);
+        output << "</div>";
+        renderFooter(output);
+    }
+    catch (Poco::Exception& ex) {
+        output << ex.displayText();
+        response.setStatus(Poco::Net::HTTPResponse::HTTP_INTERNAL_SERVER_ERROR);
+    }
 }
 
 void PageRequestHandler::renderFooter(std::ostream& output)
@@ -119,15 +82,13 @@ void PageRequestHandler::renderFooter(std::ostream& output)
     output << "</html>";
 }
 
-std::string PageRequestHandler::getMenuItem(const std::string& name)
+std::string PageRequestHandler::getQueryParam(const std::string& name, Poco::Net::HTTPServerRequest& request)
 {
-    std::string li = "<li";
-    if (_name == name) {
-        li += " class='active'";
+    Poco::URI uri(request.getURI());
+    for (auto param : uri.getQueryParameters()) {
+        if (param.first == name) {
+            return param.second;
+        }
     }
-    li += "><a href='" + _name + ".bin'>";
-    li += _title;
-    li += "</a></li>";
-    return li;
+    throw Poco::NotFoundException(Poco::format("Required param %s not found", name));
 }
-

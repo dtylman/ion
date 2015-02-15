@@ -21,8 +21,10 @@ public:
 
     static std::string PAGE_THINGS;
     static std::string PAGE_EVENTS;
+    static std::string PAGE_EVENTS_CONFIG;
     static std::string PAGE_EDIT_THING;
     static std::string PAGE_SAVE_THING;
+
 
     void renderNavBar(std::ostream& output, const std::string& activeTitle);
 private:
