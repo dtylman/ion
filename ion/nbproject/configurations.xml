@@ -74,18 +74,20 @@
                    projectFiles="true">
     </logicalFolder>
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
-      <itemPath>EditThing2.cpp</itemPath>
-      <itemPath>EditThing2.h</itemPath>
-      <itemPath>EventsRequestsHandler.cpp</itemPath>
-      <itemPath>EventsRequestsHandler.h</itemPath>
+      <itemPath>EditThingPage.cpp</itemPath>
+      <itemPath>EditThingPage.h</itemPath>
+      <itemPath>ErrorPage.cpp</itemPath>
+      <itemPath>ErrorPage.h</itemPath>
+      <itemPath>EventsPage.cpp</itemPath>
+      <itemPath>EventsPage.h</itemPath>
       <itemPath>FileRequestHandler.cpp</itemPath>
       <itemPath>FileRequestHandler.h</itemPath>
-      <itemPath>MainMenu.cpp</itemPath>
-      <itemPath>MainMenu.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
-      <itemPath>ThingsRequestHandler.cpp</itemPath>
-      <itemPath>ThingsRequestHandler.h</itemPath>
+      <itemPath>ThingsPage.cpp</itemPath>
+      <itemPath>ThingsPage.h</itemPath>
+      <itemPath>WebMenu.cpp</itemPath>
+      <itemPath>WebMenu.h</itemPath>
       <itemPath>WebRequestHandlerFactory.cpp</itemPath>
       <itemPath>WebRequestHandlerFactory.h</itemPath>
       <itemPath>WebSubsystem.cpp</itemPath>
@@ -192,9 +194,13 @@
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EditThing2.cpp" ex="false" tool="1" flavor2="0">
+      <item path="EditThingPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="EditThing2.h" ex="false" tool="3" flavor2="0">
+      <item path="EditThingPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ErrorPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ErrorPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -208,9 +214,9 @@
       </item>
       <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EventsRequestsHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="EventsPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="EventsRequestsHandler.h" ex="false" tool="3" flavor2="0">
+      <item path="EventsPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -251,10 +257,6 @@
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="MainMenu.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="MainMenu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
@@ -336,9 +338,13 @@
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ThingsRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ThingsPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ThingsRequestHandler.h" ex="false" tool="3" flavor2="0">
+      <item path="ThingsPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WebMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WebMenu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -419,9 +425,13 @@
       </item>
       <item path="DissectSubsystem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EditThing2.cpp" ex="false" tool="1" flavor2="0">
+      <item path="EditThingPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="EditThing2.h" ex="false" tool="3" flavor2="0">
+      <item path="EditThingPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ErrorPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ErrorPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -435,9 +445,9 @@
       </item>
       <item path="EventNotification.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EventsRequestsHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="EventsPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="EventsRequestsHandler.h" ex="false" tool="3" flavor2="0">
+      <item path="EventsPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="EventsSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -478,10 +488,6 @@
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Main.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="MainMenu.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="MainMenu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
       </item>
@@ -563,9 +569,13 @@
       </item>
       <item path="ThingObserver.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ThingsRequestHandler.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ThingsPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ThingsRequestHandler.h" ex="false" tool="3" flavor2="0">
+      <item path="ThingsPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WebMenu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WebMenu.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebRequestHandlerFactory.cpp" ex="false" tool="1" flavor2="0">
       </item>

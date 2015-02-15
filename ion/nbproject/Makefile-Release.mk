@@ -42,11 +42,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/DataObserver.o \
 	${OBJECTDIR}/DataSubsystem.o \
 	${OBJECTDIR}/DissectSubsystem.o \
-	${OBJECTDIR}/EditThing2.o \
+	${OBJECTDIR}/EditThingPage.o \
+	${OBJECTDIR}/ErrorPage.o \
 	${OBJECTDIR}/EventData.o \
 	${OBJECTDIR}/EventDataObject.o \
 	${OBJECTDIR}/EventNotification.o \
-	${OBJECTDIR}/EventsRequestsHandler.o \
+	${OBJECTDIR}/EventsPage.o \
 	${OBJECTDIR}/EventsSubsystem.o \
 	${OBJECTDIR}/FileRequestHandler.o \
 	${OBJECTDIR}/Frame.o \
@@ -57,7 +58,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/Injector.o \
 	${OBJECTDIR}/MAC.o \
 	${OBJECTDIR}/Main.o \
-	${OBJECTDIR}/MainMenu.o \
 	${OBJECTDIR}/PageRequestHandler.o \
 	${OBJECTDIR}/PcapActivity.o \
 	${OBJECTDIR}/PcapDevice.o \
@@ -78,7 +78,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Solicitator.o \
 	${OBJECTDIR}/ThingDataObject.o \
 	${OBJECTDIR}/ThingObserver.o \
-	${OBJECTDIR}/ThingsRequestHandler.o \
+	${OBJECTDIR}/ThingsPage.o \
+	${OBJECTDIR}/WebMenu.o \
 	${OBJECTDIR}/WebRequestHandlerFactory.o \
 	${OBJECTDIR}/WebSubsystem.o
 
@@ -142,10 +143,15 @@ ${OBJECTDIR}/DissectSubsystem.o: DissectSubsystem.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DissectSubsystem.o DissectSubsystem.cpp
 
-${OBJECTDIR}/EditThing2.o: EditThing2.cpp 
+${OBJECTDIR}/EditThingPage.o: EditThingPage.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EditThing2.o EditThing2.cpp
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EditThingPage.o EditThingPage.cpp
+
+${OBJECTDIR}/ErrorPage.o: ErrorPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ErrorPage.o ErrorPage.cpp
 
 ${OBJECTDIR}/EventData.o: EventData.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -162,10 +168,10 @@ ${OBJECTDIR}/EventNotification.o: EventNotification.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventNotification.o EventNotification.cpp
 
-${OBJECTDIR}/EventsRequestsHandler.o: EventsRequestsHandler.cpp 
+${OBJECTDIR}/EventsPage.o: EventsPage.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventsRequestsHandler.o EventsRequestsHandler.cpp
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EventsPage.o EventsPage.cpp
 
 ${OBJECTDIR}/EventsSubsystem.o: EventsSubsystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -216,11 +222,6 @@ ${OBJECTDIR}/Main.o: Main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.cpp
-
-${OBJECTDIR}/MainMenu.o: MainMenu.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MainMenu.o MainMenu.cpp
 
 ${OBJECTDIR}/PageRequestHandler.o: PageRequestHandler.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -322,10 +323,15 @@ ${OBJECTDIR}/ThingObserver.o: ThingObserver.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingObserver.o ThingObserver.cpp
 
-${OBJECTDIR}/ThingsRequestHandler.o: ThingsRequestHandler.cpp 
+${OBJECTDIR}/ThingsPage.o: ThingsPage.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingsRequestHandler.o ThingsRequestHandler.cpp
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingsPage.o ThingsPage.cpp
+
+${OBJECTDIR}/WebMenu.o: WebMenu.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WebMenu.o WebMenu.cpp
 
 ${OBJECTDIR}/WebRequestHandlerFactory.o: WebRequestHandlerFactory.cpp 
 	${MKDIR} -p ${OBJECTDIR}

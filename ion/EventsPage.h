@@ -5,16 +5,16 @@
  * Created on February 11, 2015, 11:08 PM
  */
 
-#ifndef EVENTSREQUESTSHANDLER_H
-#define	EVENTSREQUESTSHANDLER_H
+#ifndef EVENTSPAGE_H
+#define	EVENTSPAGE_H
 
 #include "PageRequestHandler.h"
 
-class EventsRequestsHandler : public PageRequestHandler
+class EventsPage : public PageRequestHandler
 {
 public:
-    EventsRequestsHandler();
-    virtual ~EventsRequestsHandler();
+    EventsPage();
+    virtual ~EventsPage();
 protected:
     virtual std::string title() const;
     virtual void renderBody(std::ostream& output);

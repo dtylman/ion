@@ -7,9 +7,11 @@
 
 #include "WebRequestHandlerFactory.h"
 #include "FileRequestHandler.h"
-#include "ThingsRequestHandler.h"
-#include "EventsRequestsHandler.h"
-#include "EditThing2.h"
+#include "ThingsPage.h"
+#include "EventsPage.h"
+#include "EditThingPage.h"
+#include "WebMenu.h"
+#include "ErrorPage.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
@@ -25,16 +27,17 @@ Poco::Net::HTTPRequestHandler* WebRequestHandlerFactory::createRequestHandler(co
     _logger.debug("Handling request from %s: %s (%s)", request.getHost(), request.getURI(), request.getMethod());
     Poco::URI uri(request.getURI());
     std::string path = uri.getPath();
-    if (path == "/things.bin") {
-        return new ThingsRequestHandler();
+    if (!path.empty()) {
+        path.erase(0, 1);
     }
-    else if (path == "/events.bin") {
-        return new EventsRequestsHandler();
+    if (path.empty() || path == WebMenu::PAGE_THINGS) {
+        return new ThingsPage();
     }
-    else if (path == "/edithing.bin") {
-        return new EditThing2(uri.getQueryParameters());
+    if (path == WebMenu::PAGE_EVENTS) {
+        return new EventsPage();
     }
-    else {
-        return new FileRequestHandler();
+    if (path == WebMenu::PAGE_EDIT_THING) {
+        return new EditThingPage(uri.getQueryParameters());
     }
+    return new FileRequestHandler();
 }
