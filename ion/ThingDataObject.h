@@ -22,6 +22,8 @@ public:
     void setName(const MAC& mac, const std::string& name);
     void setOS(const MAC& mac, const std::string& os);
     bool exists(const MAC& mac);
+
+    void update(const MAC&mac, const std::string& type, const std::string& vendor, const std::string& os, const std::string& desc);
 private:
     Poco::Logger& _logger;
 };

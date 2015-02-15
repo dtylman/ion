@@ -18,7 +18,7 @@ public:
     virtual ~ThingsPage();
 protected:
     virtual std::string title() const;
-    virtual void renderBody(std::ostream& output);
+    virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
     void renderTable(std::ostream& output);

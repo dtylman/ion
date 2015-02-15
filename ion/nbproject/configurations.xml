@@ -76,14 +76,14 @@
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
       <itemPath>EditThingPage.cpp</itemPath>
       <itemPath>EditThingPage.h</itemPath>
-      <itemPath>ErrorPage.cpp</itemPath>
-      <itemPath>ErrorPage.h</itemPath>
       <itemPath>EventsPage.cpp</itemPath>
       <itemPath>EventsPage.h</itemPath>
       <itemPath>FileRequestHandler.cpp</itemPath>
       <itemPath>FileRequestHandler.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
+      <itemPath>SaveThingPage.cpp</itemPath>
+      <itemPath>SaveThingPage.h</itemPath>
       <itemPath>ThingsPage.cpp</itemPath>
       <itemPath>ThingsPage.h</itemPath>
       <itemPath>WebMenu.cpp</itemPath>
@@ -198,10 +198,6 @@
       </item>
       <item path="EditThingPage.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ErrorPage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ErrorPage.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EventData.h" ex="false" tool="3" flavor2="0">
@@ -313,6 +309,10 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SaveThingPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SaveThingPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -429,10 +429,6 @@
       </item>
       <item path="EditThingPage.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ErrorPage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ErrorPage.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="EventData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="EventData.h" ex="false" tool="3" flavor2="0">
@@ -544,6 +540,10 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SaveThingPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SaveThingPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
       </item>

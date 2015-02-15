@@ -1,20 +1,20 @@
 /*
- * File:   EventsRequestsHandler.h
+ * File:   SaveThingPage.h
  * Author: danny
  *
- * Created on February 11, 2015, 11:08 PM
+ * Created on February 15, 2015, 12:55 PM
  */
 
-#ifndef EVENTSPAGE_H
-#define	EVENTSPAGE_H
+#ifndef SAVETHINGPAGE_H
+#define	SAVETHINGPAGE_H
 
 #include "PageRequestHandler.h"
 
-class EventsPage : public PageRequestHandler
+class SaveThingPage : public PageRequestHandler
 {
 public:
-    EventsPage();
-    virtual ~EventsPage();
+    SaveThingPage();
+    virtual ~SaveThingPage();
 protected:
     virtual std::string title() const;
     virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
@@ -23,5 +23,5 @@ private:
 
 };
 
-#endif	/* EVENTSREQUESTSHANDLER_H */
+#endif	/* SAVETHINGPAGE_H */
 

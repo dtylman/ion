@@ -9,6 +9,9 @@
 #include "WebMenu.h"
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
+#include <Poco/URI.h>
+#include <Poco/Exception.h>
+#include <Poco/Format.h>
 
 PageRequestHandler::PageRequestHandler()
 {
@@ -53,14 +56,20 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
     response.setContentType("text/html");
 
     std::ostream& output = response.send();
-    renderHeader(output);
-    WebMenu menu;
-    menu.renderNavBar(output, title());
-    output << "<div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>";
-    output << "<h2 class='sub-header'>" << title() << "</h2>";
-    renderBody(output);
-    output << "</div>";
-    renderFooter(output);
+    try {
+        renderHeader(output);
+        WebMenu menu;
+        menu.renderNavBar(output, title());
+        output << "<div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>";
+        output << "<h2 class='sub-header'>" << title() << "</h2>";
+        renderBody(output, request);
+        output << "</div>";
+        renderFooter(output);
+    }
+    catch (Poco::Exception& ex) {
+        output << ex.displayText();
+        response.setStatus(Poco::Net::HTTPResponse::HTTP_INTERNAL_SERVER_ERROR);
+    }
 }
 
 void PageRequestHandler::renderFooter(std::ostream& output)
@@ -70,4 +79,15 @@ void PageRequestHandler::renderFooter(std::ostream& output)
     output << "        <text x='0' y='10' style='font-weight:bold;font-size:10pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle'>200x200</text></svg>";
     output << "    </body>";
     output << "</html>";
+}
+
+std::string PageRequestHandler::getQueryParam(const std::string& name, Poco::Net::HTTPServerRequest& request)
+{
+    Poco::URI uri(request.getURI());
+    for (auto param : uri.getQueryParameters()) {
+        if (param.first == name) {
+            return param.second;
+        }
+    }
+    throw Poco::NotFoundException(Poco::format("Required param %s not found", name));
 }

@@ -23,10 +23,12 @@ public:
     virtual void handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 protected:
     virtual std::string title() const = 0;
-    virtual void renderBody(std::ostream& output) = 0;
+    virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request) = 0;
     virtual void renderHeader(std::ostream& output);
     virtual void renderFooter(std::ostream& output);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) = 0;
+
+    std::string getQueryParam(const std::string& name, Poco::Net::HTTPServerRequest& request);
 private:
     std::string _language = "en";
 

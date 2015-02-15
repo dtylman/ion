@@ -71,3 +71,16 @@ bool ThingDataObject::exists(const MAC& mac)
     _session << "SELECT 1 FROM thing WHERE mac=?", use(macstr), into(exists), now;
     return exists;
 }
+
+void ThingDataObject::update(const MAC& mac, const std::string& type, const std::string& vendor, const std::string& os, const std::string& desc)
+{
+    std::string macstr(mac.toString());
+    std::string typestr = type;
+    std::string vendorstr = vendor;
+    std::string osstr = os;
+    std::string descstr = desc;
+    _logger.information("Update thing: %s: %s,%s,%s,%s", macstr, typestr, vendorstr, osstr, descstr);
+    _session << "UPDATE thing SET type=?, vendor=?,os=?,desc=? WHERE mac=?",
+            use(typestr), use(vendorstr), use(osstr), use(descstr), use(macstr), now;
+
+}

@@ -29,7 +29,7 @@ std::string ThingsPage::title() const
     return "My Things";
 }
 
-void ThingsPage::renderBody(std::ostream& output)
+void ThingsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     renderTable(output);
     renderScripts(output);

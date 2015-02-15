@@ -11,11 +11,15 @@
 #include "EventsPage.h"
 #include "EditThingPage.h"
 #include "WebMenu.h"
-#include "ErrorPage.h"
+#include "SaveThingPage.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
 {
+    _pages.registerClass<ThingsPage>(WebMenu::PAGE_THINGS);
+    _pages.registerClass<EventsPage>(WebMenu::PAGE_EVENTS);
+    _pages.registerClass<EditThingPage>(WebMenu::PAGE_EDIT_THING);
+    _pages.registerClass<SaveThingPage>(WebMenu::PAGE_SAVE_THING);
 }
 
 WebRequestHandlerFactory::~WebRequestHandlerFactory()
@@ -30,14 +34,8 @@ Poco::Net::HTTPRequestHandler* WebRequestHandlerFactory::createRequestHandler(co
     if (!path.empty()) {
         path.erase(0, 1);
     }
-    if (path.empty() || path == WebMenu::PAGE_THINGS) {
-        return new ThingsPage();
-    }
-    if (path == WebMenu::PAGE_EVENTS) {
-        return new EventsPage();
-    }
-    if (path == WebMenu::PAGE_EDIT_THING) {
-        return new EditThingPage(uri.getQueryParameters());
+    if (_pages.isClass(path)) {
+        return _pages.createInstance(path);
     }
     return new FileRequestHandler();
 }
