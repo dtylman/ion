@@ -20,7 +20,7 @@ EventsPage::~EventsPage()
 {
 }
 
-void EventsPage::renderBody(std::ostream& output)
+void EventsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     output << "<table id='events' class='table table-responsive' >\n";
 

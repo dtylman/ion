@@ -11,6 +11,7 @@
 #include <Poco/Net/HTTPRequestHandlerFactory.h>
 #include <Poco/Net/HTTPRequestHandler.h>
 #include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/DynamicFactory.h>
 #include <Poco/Logger.h>
 
 class WebRequestHandlerFactory : public Poco::Net::HTTPRequestHandlerFactory
@@ -23,6 +24,7 @@ public:
 
 private:
     Poco::Logger& _logger;
+    Poco::DynamicFactory<Poco::Net::HTTPRequestHandler> _pages;
 };
 
 #endif	/* IONREQUESTHANDLERFACTORY_H */
