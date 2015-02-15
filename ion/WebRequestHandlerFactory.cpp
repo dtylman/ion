@@ -12,6 +12,7 @@
 #include "EditThingPage.h"
 #include "WebMenu.h"
 #include "SaveThingPage.h"
+#include "EventConfigPage.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
@@ -20,6 +21,7 @@ WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get
     _pages.registerClass<EventsPage>(WebMenu::PAGE_EVENTS);
     _pages.registerClass<EditThingPage>(WebMenu::PAGE_EDIT_THING);
     _pages.registerClass<SaveThingPage>(WebMenu::PAGE_SAVE_THING);
+    _pages.registerClass<EventConfigPage>(WebMenu::PAGE_EVENTS_CONFIG);
 }
 
 WebRequestHandlerFactory::~WebRequestHandlerFactory()
