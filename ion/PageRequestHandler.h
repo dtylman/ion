@@ -9,8 +9,8 @@
 #define	PAGEREQUESTHANDLER_H
 
 #include <Poco/Net/HTTPRequestHandler.h>
-#include <Poco/Net/HTTPRequest.h>
-#include <Poco/Net/HTTPResponse.h>
+#include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/Net/HTMLForm.h>
 #include <fstream>
 #include <string>

@@ -5,39 +5,39 @@
  * Created on February 11, 2015, 10:30 PM
  */
 
-#include "ThingsRequestHandler.h"
+#include "ThingsPage.h"
 #include "DataSubsystem.h"
+#include "WebMenu.h"
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 #include <Poco/Data/RecordSet.h>
 #include <Poco/Util/Application.h>
-
+#include <Poco/Format.h>
 using namespace Poco::Data::Keywords;
 
-ThingsRequestHandler::ThingsRequestHandler()
+ThingsPage::ThingsPage()
 {
 }
 
-ThingsRequestHandler::~ThingsRequestHandler()
+ThingsPage::~ThingsPage()
 {
 
 }
 
-std::string ThingsRequestHandler::title() const
+std::string ThingsPage::title() const
 {
     return "My Things";
 }
 
-void ThingsRequestHandler::renderBody(std::ostream& output)
+void ThingsPage::renderBody(std::ostream& output)
 {
-    output << "                    <div class='table-responsive'>\n";
     renderTable(output);
-    output << "                    </div>\n";
     renderScripts(output);
 }
 
-void ThingsRequestHandler::renderTable(std::ostream& output)
+void ThingsPage::renderTable(std::ostream& output)
 {
+    output << "<div class='table-responsive'>\n";
     output << "<table id='things' class='table table-responsive' >\n";
     output << "    <thead>\n";
     output << "        <tr>\n";
@@ -75,18 +75,17 @@ void ThingsRequestHandler::renderTable(std::ostream& output)
     }
     output << "    </tbody>\n";
     output << "</table>\n";
+    output << "</div>\n";
 
 }
 
-void ThingsRequestHandler::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
+void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
 {
     output << "<tr>";
     output << "<td>";
-    output << "<a href='edithing.bin?mac=";
-    output << rs["mac"].toString();
-    output << "'>"
-            "<span class='glyphicon glyphicon-edit' ></span>"
-            " Edit</a>";
+    output << Poco::format("<a href='%s?mac=%s'>", WebMenu::PAGE_EDIT_THING, rs["mac"].toString());
+    output << "<span class='glyphicon glyphicon-edit' ></span>";
+    output << " Edit</a>";
     output << "</td>";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
         output << "<td>";
@@ -98,18 +97,17 @@ void ThingsRequestHandler::renderRow(std::ostream& output, Poco::Data::RecordSet
     output << "</tr>";
 }
 
-void ThingsRequestHandler::renderScripts(std::ostream& output)
+void ThingsPage::renderScripts(std::ostream& output)
 {
-    output << "<script>\n";
-    output << "    $(document).ready(function () {\n";
-    output << "        $('#things').dataTable();\n";
-    output << "    });\n";
-    output << "    $('.combobox').combobox();\n";
-    output << "</script>\n";
+    output << "<script>";
+    output << "    $(document).ready(function () {";
+    output << "        $('#things').dataTable();";
+    output << "    });";
+    output << "</script>";
 
 }
 
-bool ThingsRequestHandler::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
+bool ThingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
     return false;
 }

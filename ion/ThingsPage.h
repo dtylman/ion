@@ -5,17 +5,17 @@
  * Created on February 11, 2015, 10:30 PM
  */
 
-#ifndef THINGSREQUESTHANDLER_H
-#define	THINGSREQUESTHANDLER_H
+#ifndef THINGSPAGE_H
+#define	THINGSPAGE_H
 
 #include "PageRequestHandler.h"
 #include <Poco/Data/RecordSet.h>
 
-class ThingsRequestHandler : public PageRequestHandler
+class ThingsPage : public PageRequestHandler
 {
 public:
-    ThingsRequestHandler();
-    virtual ~ThingsRequestHandler();
+    ThingsPage();
+    virtual ~ThingsPage();
 protected:
     virtual std::string title() const;
     virtual void renderBody(std::ostream& output);

@@ -5,22 +5,22 @@
  * Created on February 11, 2015, 11:08 PM
  */
 
-#include "EventsRequestsHandler.h"
+#include "EventsPage.h"
 #include <Poco/Util/Application.h>
 #include <Poco/Data/RecordSet.h>
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 #include "DataSubsystem.h"
 
-EventsRequestsHandler::EventsRequestsHandler()
+EventsPage::EventsPage()
 {
 }
 
-EventsRequestsHandler::~EventsRequestsHandler()
+EventsPage::~EventsPage()
 {
 }
 
-void EventsRequestsHandler::renderBody(std::ostream& output)
+void EventsPage::renderBody(std::ostream& output)
 {
     output << "<table id='events' class='table table-responsive' >\n";
 
@@ -61,12 +61,12 @@ void EventsRequestsHandler::renderBody(std::ostream& output)
     output << "</script>\n";
 }
 
-std::string EventsRequestsHandler::title() const
+std::string EventsPage::title() const
 {
     return "Events";
 }
 
-bool EventsRequestsHandler::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
+bool EventsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
     return false;
 }
