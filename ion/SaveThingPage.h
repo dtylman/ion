@@ -20,7 +20,8 @@ protected:
     virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
-
+    void handleUpdateThing(const Poco::Net::HTMLForm& form);
+    void handleAuthThing(Poco::Net::HTTPServerRequest& request);
 };
 
 #endif	/* SAVETHINGPAGE_H */

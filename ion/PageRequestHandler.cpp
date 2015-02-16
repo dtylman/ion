@@ -46,17 +46,18 @@ void PageRequestHandler::renderHeader(std::ostream& output)
 
 void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-    Poco::Net::HTMLForm form(request, request.stream());
-    if (!form.empty()) {
-        if (handleForm(form, request, response)) {
-            return;
-        }
-    }
-    response.setChunkedTransferEncoding(true);
-    response.setContentType("text/html");
 
-    std::ostream& output = response.send();
     try {
+        Poco::Net::HTMLForm form(request, request.stream());
+        if (!form.empty()) {
+            if (handleForm(form, request, response)) {
+                return;
+            }
+        }
+        std::ostream& output = response.send();
+        response.setChunkedTransferEncoding(true);
+        response.setContentType("text/html");
+
         renderHeader(output);
         WebMenu menu;
         menu.renderNavBar(output, title());
@@ -67,6 +68,7 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
         renderFooter(output);
     }
     catch (Poco::Exception& ex) {
+        std::ostream& output = response.send();
         output << "<div class='alert alert-danger' role='alert'>Ouch! ";
         output << ex.displayText();
         output << "</div>";
@@ -88,7 +90,7 @@ std::string PageRequestHandler::getQueryParam(const std::string& name, Poco::Net
     Poco::URI uri(request.getURI());
     for (auto param : uri.getQueryParameters()) {
         if (param.first == name) {
-            return param.second;
+            return Poco::toLower((param.second));
         }
     }
     throw Poco::NotFoundException(Poco::format("Required param %s not found", name));

@@ -81,7 +81,7 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
             output << "<td>";
             if (!rs[i].isEmpty()) {
                 if (rs.columnName(i) == "auth") {
-                    output << Poco::format("<a href='%s?mac=%s&auth=toggle'>", WebMenu::PAGE_EDIT_THING, rs["mac"].toString());
+                    output << Poco::format("<a href='%s?action=auth&mac=%s&auth=toggle'>", WebMenu::PAGE_SAVE_THING, rs["mac"].toString());
                 }
                 output << rs[i].toString();
                 if (rs.columnName(i) == "auth") {
