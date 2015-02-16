@@ -10,6 +10,7 @@
 #include <Poco/StreamCopier.h>
 #include <Poco/Path.h>
 #include <Poco/String.h>
+#include <Poco/Util/Application.h>
 
 FileRequestHandler::FileRequestHandler() : _logger(Poco::Logger::get("PageRequestHandler"))
 {
@@ -24,7 +25,10 @@ void FileRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
     setContentType(request, response);
     std::ostream& ostr = response.send();
     try {
-        Poco::FileInputStream fis("/home/danny/src/ion/web" + request.getURI());
+		Poco::Path basedir = Poco::Util::Application::instance().config().getString("application.dir");
+		basedir.append("web");
+		basedir.append(request.getURI());
+        Poco::FileInputStream fis(basedir.toString());
         Poco::StreamCopier::copyStream(fis, ostr);
         response.setStatus(Poco::Net::HTTPResponse::HTTPStatus::HTTP_OK);
     }

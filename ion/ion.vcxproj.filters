@@ -148,6 +148,15 @@
     <ClCompile Include="EventsPage.cpp">
       <Filter>Web</Filter>
     </ClCompile>
+    <ClCompile Include="AddressesPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="EventConfigPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="EditThingPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -272,6 +281,15 @@
       <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="EventsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressesPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="EventConfigPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="EditThingPage.h">
       <Filter>Web</Filter>
     </ClInclude>
   </ItemGroup>
