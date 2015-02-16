@@ -39,12 +39,10 @@ Source: "WinPcap_4_1_3.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#BINDIR}\ion.db"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\ion\ion.properties"; DestDir: "{app}\config"; Flags: ignoreversion
 
-[Registry]
-;Root: HKCU; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layes\{app}\konzolo.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletekey
+Source: "..\..\web\*"; DestDir: "{app}\web"; Flags: recursesubdirs 
 
 [Icons]
-Name: "{group}\ion"; Filename: "{app}\konzolo.exe"; Flags: 
-Name: "{commondesktop}\{#AppName}"; Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
+Name: "{group}\ion"; Filename: "http://localhost:9980/things.bin"; 
 
 [Run]
 Filename: "{app}\WinPcap_4_1_3.exe"; 

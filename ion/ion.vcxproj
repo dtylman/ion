@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddressesPage.cpp" />
     <ClCompile Include="Arping.cpp" />
     <ClCompile Include="AuthDataObject.cpp" />
     <ClCompile Include="AutoConfiguration.cpp" />
@@ -19,6 +20,8 @@
     <ClCompile Include="DataSubsystem.cpp" />
     <ClCompile Include="DHCPOSDataObject.cpp" />
     <ClCompile Include="DissectSubsystem.cpp" />
+    <ClCompile Include="EditThingPage.cpp" />
+    <ClCompile Include="EventConfigPage.cpp" />
     <ClCompile Include="EventData.cpp" />
     <ClCompile Include="EventDataObject.cpp" />
     <ClCompile Include="EventNotification.cpp" />
@@ -61,6 +64,7 @@
     <ClCompile Include="WebSubsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddressesPage.h" />
     <ClInclude Include="Arping.h" />
     <ClInclude Include="AuthDataObject.h" />
     <ClInclude Include="AutoConfiguration.h" />
@@ -69,6 +73,8 @@
     <ClInclude Include="DataSubsystem.h" />
     <ClInclude Include="DHCPOSDataObject.h" />
     <ClInclude Include="DissectSubsystem.h" />
+    <ClInclude Include="EditThingPage.h" />
+    <ClInclude Include="EventConfigPage.h" />
     <ClInclude Include="EventData.h" />
     <ClInclude Include="EventDataObject.h" />
     <ClInclude Include="EventNotification.h" />
