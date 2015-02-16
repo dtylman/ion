@@ -1,28 +1,30 @@
 /*
- * File:   EventsRequestsHandler.h
+ * File:   AddressesPage.h
  * Author: danny
  *
- * Created on February 11, 2015, 11:08 PM
+ * Created on February 16, 2015, 12:26 PM
  */
 
-#ifndef EVENTSPAGE_H
-#define	EVENTSPAGE_H
+#ifndef ADDRESSESPAGE_H
+#define	ADDRESSESPAGE_H
 
 #include "PageRequestHandler.h"
 #include <Poco/Data/RecordSet.h>
 
-class EventsPage : public PageRequestHandler
+class AddressesPage : public PageRequestHandler
 {
 public:
-    EventsPage();
-    virtual ~EventsPage();
+    AddressesPage();
+    virtual ~AddressesPage();
 protected:
     virtual std::string title() const;
     virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
+    void renderTable(std::ostream& output);
     void renderRow(std::ostream& output, Poco::Data::RecordSet& rs);
+    void renderScripts(std::ostream& output);
 };
 
-#endif	/* EVENTSREQUESTSHANDLER_H */
+#endif	/* ADDRESSESPAGE_H */
 

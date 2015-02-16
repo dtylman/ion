@@ -9,6 +9,7 @@
 
 std::string WebMenu::PAGE_THINGS("things.bin");
 std::string WebMenu::PAGE_EVENTS("events.bin");
+std::string WebMenu::PAGE_ADDRESSES("addresses.bin");
 std::string WebMenu::PAGE_EVENTS_CONFIG("events.config.bin");
 std::string WebMenu::PAGE_EDIT_THING("edit.thing.bin");
 std::string WebMenu::PAGE_SAVE_THING("save.thing.bin");
@@ -16,7 +17,8 @@ std::string WebMenu::PAGE_SAVE_THING("save.thing.bin");
 WebMenu::WebMenu()
 {
     _navbarItems.push_back(MenuItem("My Things", PAGE_THINGS));
-    _navbarItems.push_back(MenuItem("Events", PAGE_EVENTS));
+    _navbarItems.push_back(MenuItem("My Addresses", PAGE_ADDRESSES));
+    _navbarItems.push_back(MenuItem("My Events", PAGE_EVENTS));
     _navbarItems.push_back(MenuItem("Events Config", PAGE_EVENTS_CONFIG));
 }
 

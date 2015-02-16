@@ -67,7 +67,9 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
         renderFooter(output);
     }
     catch (Poco::Exception& ex) {
+        output << "<div class='alert alert-danger' role='alert'>Ouch! ";
         output << ex.displayText();
+        output << "</div>";
         response.setStatus(Poco::Net::HTTPResponse::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

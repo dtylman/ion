@@ -74,8 +74,12 @@
                    projectFiles="true">
     </logicalFolder>
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
+      <itemPath>AddressesPage.cpp</itemPath>
+      <itemPath>AddressesPage.h</itemPath>
       <itemPath>EditThingPage.cpp</itemPath>
       <itemPath>EditThingPage.h</itemPath>
+      <itemPath>EventConfigPage.cpp</itemPath>
+      <itemPath>EventConfigPage.h</itemPath>
       <itemPath>EventsPage.cpp</itemPath>
       <itemPath>EventsPage.h</itemPath>
       <itemPath>FileRequestHandler.cpp</itemPath>
@@ -166,6 +170,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="AddressesPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AddressesPage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
@@ -401,6 +409,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="AddressesPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AddressesPage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Arping.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Arping.h" ex="false" tool="3" flavor2="0">
