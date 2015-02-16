@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dbtool", "dbtool\dbtool.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ion", "ion\ion.vcxproj", "{670191CA-6C52-4E53-BBB9-3A6BA7A01601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "konzolo", "konzolo\konzolo\konzolo.csproj", "{103E749B-2761-4995-AE9B-7732D29231ED}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,16 +49,6 @@ Global
 		{670191CA-6C52-4E53-BBB9-3A6BA7A01601}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{670191CA-6C52-4E53-BBB9-3A6BA7A01601}.Release|Win32.ActiveCfg = Release|Win32
 		{670191CA-6C52-4E53-BBB9-3A6BA7A01601}.Release|Win32.Build.0 = Release|Win32
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{103E749B-2761-4995-AE9B-7732D29231ED}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

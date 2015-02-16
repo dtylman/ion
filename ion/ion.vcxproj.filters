@@ -17,6 +17,9 @@
     <Filter Include="Event">
       <UniqueIdentifier>{aa9e6758-ac59-43e5-aea2-1c9c91e1fa48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Web">
+      <UniqueIdentifier>{0770bd1b-c721-43e5-bac7-2c2b50f10dc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -115,6 +118,36 @@
     </ClCompile>
     <ClCompile Include="Selfy.cpp" />
     <ClCompile Include="AutoConfiguration.cpp" />
+    <ClCompile Include="MailConfigPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="PageRequestHandler.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveThingPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="ThingsPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebMenu.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebRequestHandlerFactory.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebSubsystem.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="FileRequestHandler.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="EventsPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -211,10 +244,52 @@
     </ClInclude>
     <ClInclude Include="Selfy.h" />
     <ClInclude Include="AutoConfiguration.h" />
+    <ClInclude Include="MailConfigPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="PageRequestHandler.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveThingPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="ThingsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebMenu.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebRequestHandlerFactory.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebSubsystem.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="FileRequestHandler.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="EventsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />
     <None Include="pcap.props" />
     <None Include="libnet.props" />
+    <None Include="PageRequestHandler.cpp.orig">
+      <Filter>Web</Filter>
+    </None>
+    <None Include="PageRequestHandler.h.orig">
+      <Filter>Web</Filter>
+    </None>
+    <None Include="EventConfigPage.cpp.orig">
+      <Filter>Web</Filter>
+    </None>
+    <None Include="DevicesRequestHandler.cpp.orig">
+      <Filter>Web</Filter>
+    </None>
   </ItemGroup>
 </Project>
