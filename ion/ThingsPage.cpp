@@ -41,17 +41,13 @@ void ThingsPage::renderTable(std::ostream& output)
     output << "<table id='things' class='table table-responsive' >\n";
     output << "    <thead>\n";
     output << "        <tr>\n";
-    output << "            <th>Actions</th>\n";
-    output << "            <th>MAC</th>\n";
-    output << "            <th>IP</th>\n";
-    output << "            <th>Last</th>\n";
     output << "            <th>Type</th>\n";
     output << "            <th>Name</th>\n";
     output << "            <th>Vendor</th>\n";
     output << "            <th>OS</th>\n";
-    output << "            <th>HW</th>\n";
     output << "            <th>Description</th>\n";
     output << "            <th>Authorized</th>\n";
+    output << "            <th></th>\n";
     output << "        </tr>\n";
     output << "    </thead>\n";
 
@@ -59,13 +55,11 @@ void ThingsPage::renderTable(std::ostream& output)
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-    query << "SELECT ip.mac, ip, datetime(last_seen,'unixepoch','localtime') as last_seen, "
-            "thing.type, thing.name, thing.vendor, "
-            "thing.os, desc, oui.vendor as hw_vendor , case when  authorized.mac is null then 'no' else 'yes' end as auth "
-            "    FROM ip LEFT JOIN thing ON ip.mac=thing.mac "
-            "    LEFT JOIN oui ON substr(ip.mac,0,9)=oui.prefix "
-            "LEFT JOIN authorized on ip.mac=authorized.mac "
-            "ORDER BY ip.mac";
+    query << "SELECT  thing.mac, thing.type, thing.name, thing.vendor, "
+            "thing.os, desc, case when authorized.mac is null then 'no' else 'yes' end as auth "
+            "FROM thing "
+            "LEFT JOIN authorized on thing.mac = authorized.mac "
+            "ORDER BY thing.type desc";
     query.execute();
     Poco::Data::RecordSet rs(query);
     bool more = rs.moveFirst();
@@ -82,18 +76,27 @@ void ThingsPage::renderTable(std::ostream& output)
 void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
 {
     output << "<tr>";
+    for (size_t i = 0; i < rs.columnCount(); ++i) {
+        if (rs.columnName(i) != "mac") {
+            output << "<td>";
+            if (!rs[i].isEmpty()) {
+                if (rs.columnName(i) == "auth") {
+                    output << Poco::format("<a href='%s?mac=%s&auth=toggle'>", WebMenu::PAGE_EDIT_THING, rs["mac"].toString());
+                }
+                output << rs[i].toString();
+                if (rs.columnName(i) == "auth") {
+                    output << "</a>";
+                }
+            }
+            output << "</td>";
+        }
+    }
     output << "<td>";
     output << Poco::format("<a href='%s?mac=%s'>", WebMenu::PAGE_EDIT_THING, rs["mac"].toString());
-    output << "<span class='glyphicon glyphicon-edit' ></span>";
-    output << " Edit</a>";
+    output << "<span class='glyphicon glyphicon-edit' ></span> Edit</a>";
+
     output << "</td>";
-    for (size_t i = 0; i < rs.columnCount(); ++i) {
-        output << "<td>";
-        if (!rs[i].isEmpty()) {
-            output << rs[i].toString();
-        }
-        output << "</td>";
-    }
+
     output << "</tr>";
 }
 

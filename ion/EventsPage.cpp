@@ -11,6 +11,7 @@
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 #include "DataSubsystem.h"
+#include "EventNotification.h"
 
 EventsPage::EventsPage()
 {
@@ -22,51 +23,70 @@ EventsPage::~EventsPage()
 
 void EventsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    output << "<table id='events' class='table table-responsive' >\n";
+    output << "<table id='events' class='table table-responsive' >";
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-    query << "SELECT mac, datetime(time,'unixepoch','localtime') as time,name,ip,details FROM event ORDER BY time";
+    query << "SELECT mac, datetime(time,'unixepoch','localtime') as time,name,ip,details FROM event ORDER BY time DESC";
     query.execute();
     Poco::Data::RecordSet rs(query);
     bool more = rs.moveFirst();
-    output << "<thead>\n";
-    output << "    <tr>\n";
-    for (size_t i = 0; i < rs.columnCount(); ++i) {
-        output << "<th>" << rs.columnName(i) << "</th>";
-    }
-    output << "    </tr>\n";
-    output << "</thead>\n";
-    output << "<tbody>\n";
+    output << "<thead>";
+    output << "<tr>";
+    output << "<th>When</th>";
+    output << "<th>What</th>";
+    output << "<th>Details</th>";
+    output << "</tr>";
+    output << "</thead>";
+    output << "<tbody>";
     while (more) {
-        output << "                                <tr>\n";
-
-        for (size_t i = 0; i < rs.columnCount(); ++i) {
-            output << "<td>";
-            if (!rs[i].isEmpty()) {
-                output << rs[i].toString();
-            }
-            output << "</td>";
-        }
+        renderRow(output, rs);
         more = rs.moveNext();
-        output << "                                </tr>\n";
     }
-    output << "    </tbody>\n";
-    output << "</table>\n";
+    output << "    </tbody>";
+    output << "</table>";
 
-    output << "<script>\n";
-    output << "    $(document).ready(function () {\n";
-    output << "        $('#events').dataTable();\n";
-    output << "    });\n";
-    output << "</script>\n";
+    output << "<script>";
+    output << "    $(document).ready(function () {";
+    output << "        $('#events').dataTable();";
+    output << "    });";
+    output << "</script>";
 }
 
 std::string EventsPage::title() const
 {
-    return "Events";
+    return "My Events";
 }
 
 bool EventsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
     return false;
+}
+
+void EventsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
+{
+    std::string name = rs["name"].toString();
+    std::string mac = rs["mac"].toString();
+    std::string ip = rs["ip"].toString();
+    std::string what;
+    if (name == EventNotification::IP_ONLINE) {
+        what = Poco::format("%s connected to network", ip);
+    }
+    else if (name == EventNotification::IP_OFFLINE) {
+        what = Poco::format("%s disconnected from network", ip);
+    }
+    else if (name == EventNotification::THING_ONLINE) {
+        what = Poco::format("New things %s connected to network", mac);
+    }
+    else if (name == EventNotification::THING_OFFLINE) {
+        what = Poco::format("Things %s disappeared from the network", mac);
+    }
+    else if (name == EventNotification::NOT_AUTHORIZED) {
+        what = Poco::format("<font color='red'>Detected non authorized thing %s </font>", mac);
+    }
+    output << "<tr>";
+    output << Poco::format("<td>%s</td>", rs["time"].toString());
+    output << Poco::format("<td>%s</td>", what);
+    output << Poco::format("<td>%s</td>", rs["details"].toString());
+    output << "</tr>";
 }

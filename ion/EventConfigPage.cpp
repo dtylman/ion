@@ -52,6 +52,7 @@ void EventConfigPage::renderPanel(std::ostream& output, const std::string& event
 
     output << "<div class='row'>";
     output << "<div class='col-lg-6'>";
+    output << "Tester:";
     output << "<div class='input-group'>";
     output << "<span class='input-group-addon'>";
 
@@ -63,6 +64,7 @@ void EventConfigPage::renderPanel(std::ostream& output, const std::string& event
     output << "</span>";
     output << "<label class='form-control' >Send Mail</label>";
 
+    output << "</div>";
     output << "</div>";
     output << "</div>";
 }

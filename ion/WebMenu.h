@@ -20,6 +20,7 @@ public:
     virtual ~WebMenu();
 
     static std::string PAGE_THINGS;
+    static std::string PAGE_ADDRESSES;
     static std::string PAGE_EVENTS;
     static std::string PAGE_EVENTS_CONFIG;
     static std::string PAGE_EDIT_THING;

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/AddressesPage.o \
 	${OBJECTDIR}/Arping.o \
 	${OBJECTDIR}/AutoConfiguration.o \
 	${OBJECTDIR}/DHCPOSDataObject.o \
@@ -122,6 +123,11 @@ LDLIBSOPTIONS=-L../lib/poco-1.6.0-all/lib/Linux/x86_64 ../lib/poco-1.6.0-all/lib
 ../${CND_CONF}/ion: ${OBJECTFILES}
 	${MKDIR} -p ../${CND_CONF}
 	${LINK.cc} -o ../${CND_CONF}/ion ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/AddressesPage.o: AddressesPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddressesPage.o AddressesPage.cpp
 
 ${OBJECTDIR}/Arping.o: Arping.cpp 
 	${MKDIR} -p ${OBJECTDIR}
