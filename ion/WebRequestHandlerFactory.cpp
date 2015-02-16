@@ -14,6 +14,7 @@
 #include "SaveThingPage.h"
 #include "EventConfigPage.h"
 #include "AddressesPage.h"
+#include "MailConfigPage.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
@@ -24,7 +25,7 @@ WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get
     _pages.registerClass<EditThingPage>(WebMenu::PAGE_EDIT_THING);
     _pages.registerClass<SaveThingPage>(WebMenu::PAGE_SAVE_THING);
     _pages.registerClass<EventConfigPage>(WebMenu::PAGE_EVENTS_CONFIG);
-
+    _pages.registerClass<MailConfigPage>(WebMenu::PAGE_MAIL_CONFIG);
 }
 
 WebRequestHandlerFactory::~WebRequestHandlerFactory()

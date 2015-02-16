@@ -86,6 +86,8 @@
       <itemPath>EventsPage.h</itemPath>
       <itemPath>FileRequestHandler.cpp</itemPath>
       <itemPath>FileRequestHandler.h</itemPath>
+      <itemPath>MailConfigPage.cpp</itemPath>
+      <itemPath>MailConfigPage.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
       <itemPath>SaveThingPage.cpp</itemPath>
@@ -267,6 +269,10 @@
       <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MAC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MailConfigPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MailConfigPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -510,6 +516,10 @@
       <item path="MAC.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MAC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MailConfigPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MailConfigPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
