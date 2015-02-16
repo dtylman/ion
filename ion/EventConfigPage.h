@@ -22,6 +22,7 @@ protected:
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
     void renderPanel(std::ostream& output, const std::string& eventName);
+    void renderCheckbox(std::ostream& output, const std::string& eventName, const std::string& eventType, const std::string& desc);
 };
 
 #endif	/* EVENTCONFIGPAGE_H */
