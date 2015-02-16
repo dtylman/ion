@@ -38,23 +38,22 @@ EditThingPage::~EditThingPage()
 
 void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-
     _mac = getQueryParam("mac", request);
-
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     std::string type, vendor, os, desc;
     session << "SELECT type, vendor,os,desc FROM thing WHERE mac=?", use(_mac), into(type), into(vendor), into(os), into(desc), now;
 
-    output << "<div class='panel panel-default'>";
 
+
+    output << Poco::format("<form method='POST' action='%s?action=update' class='form-inline' name='form-edit-thing' >", WebMenu::PAGE_SAVE_THING);
+    output << "<div class='panel panel-default'>";
     output << "<div class='panel-heading'>";
     output << "<h3 class='panel-title'>This will explain you stuff:</h3>";
     output << "</div>";
     output << "<div class='panel-body'>";
-    output << Poco::format("<form method='POST' action='%s' class='form-inline' name='form-edit-thing' >", WebMenu::PAGE_SAVE_THING);
-    output << "    <fieldset>\n";
 
     output << Poco::format("<input type='hidden' name='mac' value='%s'/>", _mac);
+
     renderInput(output, "Type: ", "type", "txtType", type);
     output << "<br/>";
     renderInput(output, "Vendor: ", "vendor", "txtVendor", vendor);
@@ -62,13 +61,23 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     renderInput(output, "Operating System: ", "os", "txtOS", os);
     output << "<br/>";
 
-    output << "<label class='label label-info'>Description: </label><br/>";
-    output << Poco::format("<textarea name='desc' class='input-xlarge' style='width: 80%'>%s</textarea>", desc);
+    output << "<div class='row'><div class='col-lg-6'>Description: </br>";
+    output << Poco::format("<textarea name='desc' class='input-xlarge' width='100'>%s</textarea>", desc);
+    output << "</div>";
+    output << "</div>";
 
-    output << "</fieldset>";
-    output << "<input class='btn btn-success' type='submit' value='Save' >\n";
-    output << "</form>\n";
-    output << "</div>\n";
+
+    output << "</div>";
+    output << "</div>";
+
+    output << "<input class='btn btn-success' type='submit' value='Save' >";
+    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", WebMenu::PAGE_THINGS);
+
+    output << "</div>";
+
+
+    output << "</form>";
+
     output << "<script>";
     output << "var substringMatcher = function (strs) {";
     output << "return function (q, cb) {";
@@ -83,11 +92,9 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     output << "cb(matches);";
     output << "};";
     output << "};";
-
     renderTypeAheadScript(output, "type", "txtType", _types);
     renderTypeAheadScript(output, "vendor", "txtVendor", _vendors);
     renderTypeAheadScript(output, "os", "txtOS", _os);
-
     output << "</script>";
 }
 
@@ -104,9 +111,10 @@ bool EditThingPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerR
 void EditThingPage::renderInput(std::ostream& output, const std::string& displayName, const std::string& name, const std::string& id, const std::string& value)
 {
     output << "<div class='row'><div class='col-lg-6'>";
-    output << Poco::format("<label class='label label-info'>%s</label><br/>", displayName);
+    output << displayName;
     output << Poco::format("<input class='typeahead form-control' name='%s' type='text' placeholder='Value..' id='%s' value='%s'/>", name, id, value);
-    output << "</div></div>";
+    output << "</div>";
+    output << "</div>";
 }
 
 void EditThingPage::renderTypeAheadScript(std::ostream& output, const std::string& name, const std::string& id, const std::list<std::string>& list)

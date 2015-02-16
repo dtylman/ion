@@ -25,13 +25,14 @@ public:
     static std::string PAGE_EVENTS_CONFIG;
     static std::string PAGE_EDIT_THING;
     static std::string PAGE_SAVE_THING;
-
+    static std::string PAGE_MAIL_CONFIG;
 
     void renderNavBar(std::ostream& output, const std::string& activeTitle);
 private:
     typedef std::pair<std::string, std::string> MenuItem;
     typedef std::list<MenuItem> MenuItems;
     MenuItems _navbarItems;
+    std::string _productName = "IoN";
 };
 
 #endif	/* MAINMENU_H */

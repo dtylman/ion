@@ -6,6 +6,7 @@
  */
 
 #include "WebMenu.h"
+#include <Poco/Format.h>
 
 std::string WebMenu::PAGE_THINGS("things.bin");
 std::string WebMenu::PAGE_EVENTS("events.bin");
@@ -13,13 +14,15 @@ std::string WebMenu::PAGE_ADDRESSES("addresses.bin");
 std::string WebMenu::PAGE_EVENTS_CONFIG("events.config.bin");
 std::string WebMenu::PAGE_EDIT_THING("edit.thing.bin");
 std::string WebMenu::PAGE_SAVE_THING("save.thing.bin");
+std::string WebMenu::PAGE_MAIL_CONFIG("mail.config.bin");
 
 WebMenu::WebMenu()
 {
     _navbarItems.push_back(MenuItem("My Things", PAGE_THINGS));
     _navbarItems.push_back(MenuItem("My Addresses", PAGE_ADDRESSES));
     _navbarItems.push_back(MenuItem("My Events", PAGE_EVENTS));
-    _navbarItems.push_back(MenuItem("Events Config", PAGE_EVENTS_CONFIG));
+    _navbarItems.push_back(MenuItem("Events Settings", PAGE_EVENTS_CONFIG));
+    _navbarItems.push_back(MenuItem("Mail Settings", PAGE_MAIL_CONFIG));
 }
 
 WebMenu::~WebMenu()
@@ -37,18 +40,13 @@ void WebMenu::renderNavBar(std::ostream& output, const std::string& activeTitle)
     output << "                <span class='icon-bar'></span>";
     output << "                <span class='icon-bar'></span>";
     output << "            </button>";
-    output << "            <a class='navbar-brand' href='#'>Project name</a>";
+    output << Poco::format("<a class='navbar-brand' href='%s'>%s</a>", WebMenu::PAGE_THINGS, _productName);
     output << "        </div>";
     output << "        <div id='navbar' class='navbar-collapse collapse'>";
     output << "            <ul class='nav navbar-nav navbar-right'>";
-    output << "                <li><a href='#'>Dashboard</a></li>";
-    output << "                <li><a href='#'>Settings</a></li>";
-    output << "                <li><a href='#'>Profile</a></li>";
-    output << "                <li><a href='#'>Help</a></li>";
+    output << "                <li><a href='http://lagildo.com'>Site</a></li>";
+    output << "                <li><a href=''>About</a></li>";
     output << "            </ul>";
-    output << "            <form class='navbar-form navbar-right'>";
-    output << "                <input type='text' class='form-control' placeholder='Search...'>";
-    output << "            </form>";
     output << "        </div>";
     output << "    </div>";
     output << "</nav>";
