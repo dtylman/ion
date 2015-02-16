@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Arping.cpp" />
+    <ClCompile Include="AuthDataObject.cpp" />
     <ClCompile Include="AutoConfiguration.cpp" />
     <ClCompile Include="DataObject.cpp" />
     <ClCompile Include="DataObserver.cpp" />
@@ -21,7 +22,9 @@
     <ClCompile Include="EventData.cpp" />
     <ClCompile Include="EventDataObject.cpp" />
     <ClCompile Include="EventNotification.cpp" />
+    <ClCompile Include="EventsPage.cpp" />
     <ClCompile Include="EventsSubsystem.cpp" />
+    <ClCompile Include="FileRequestHandler.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Injector.cpp" />
     <ClCompile Include="IPCache.cpp" />
@@ -29,7 +32,9 @@
     <ClCompile Include="IPDataObject.cpp" />
     <ClCompile Include="IPDataObserver.cpp" />
     <ClCompile Include="MAC.cpp" />
+    <ClCompile Include="MailConfigPage.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PageRequestHandler.cpp" />
     <ClCompile Include="PcapActivity.cpp" />
     <ClCompile Include="PcapDevice.cpp" />
     <ClCompile Include="PcapIfaceAddress.cpp" />
@@ -43,15 +48,21 @@
     <ClCompile Include="ProtocolUDP.cpp" />
     <ClCompile Include="Rouing.cpp" />
     <ClCompile Include="Routing_WIN32.cpp" />
+    <ClCompile Include="SaveThingPage.cpp" />
     <ClCompile Include="ScopedTransaciton.cpp" />
     <ClCompile Include="Selfy.cpp" />
     <ClCompile Include="SendMail.cpp" />
     <ClCompile Include="Solicitator.cpp" />
     <ClCompile Include="ThingDataObject.cpp" />
     <ClCompile Include="ThingObserver.cpp" />
+    <ClCompile Include="ThingsPage.cpp" />
+    <ClCompile Include="WebMenu.cpp" />
+    <ClCompile Include="WebRequestHandlerFactory.cpp" />
+    <ClCompile Include="WebSubsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arping.h" />
+    <ClInclude Include="AuthDataObject.h" />
     <ClInclude Include="AutoConfiguration.h" />
     <ClInclude Include="DataObject.h" />
     <ClInclude Include="DataObserver.h" />
@@ -61,7 +72,9 @@
     <ClInclude Include="EventData.h" />
     <ClInclude Include="EventDataObject.h" />
     <ClInclude Include="EventNotification.h" />
+    <ClInclude Include="EventsPage.h" />
     <ClInclude Include="EventsSubsystem.h" />
+    <ClInclude Include="FileRequestHandler.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Injector.h" />
     <ClInclude Include="IPCache.h" />
@@ -69,7 +82,9 @@
     <ClInclude Include="IPDataObject.h" />
     <ClInclude Include="IPDataObserver.h" />
     <ClInclude Include="MAC.h" />
+    <ClInclude Include="MailConfigPage.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="PageRequestHandler.h" />
     <ClInclude Include="PcapActivity.h" />
     <ClInclude Include="PcapDevice.h" />
     <ClInclude Include="PcapIfaceAddress.h" />
@@ -81,15 +96,24 @@
     <ClInclude Include="ProtocolIP.h" />
     <ClInclude Include="ProtocolNBDatagram.h" />
     <ClInclude Include="ProtocolUDP.h" />
+    <ClInclude Include="SaveThingPage.h" />
     <ClInclude Include="ScopedTransaciton.h" />
     <ClInclude Include="Selfy.h" />
     <ClInclude Include="SendMail.h" />
     <ClInclude Include="Solicitator.h" />
     <ClInclude Include="ThingDataObject.h" />
     <ClInclude Include="ThingObserver.h" />
+    <ClInclude Include="ThingsPage.h" />
+    <ClInclude Include="WebMenu.h" />
+    <ClInclude Include="WebRequestHandlerFactory.h" />
+    <ClInclude Include="WebSubsystem.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DevicesRequestHandler.cpp.orig" />
+    <None Include="EventConfigPage.cpp.orig" />
     <None Include="libnet.props" />
+    <None Include="PageRequestHandler.cpp.orig" />
+    <None Include="PageRequestHandler.h.orig" />
     <None Include="pcap.props" />
     <None Include="Poco.props" />
   </ItemGroup>
