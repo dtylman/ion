@@ -112,6 +112,7 @@ bool IONDataObject::getThing(const Poco::UUID& thingID, ThingData & data)
     }
     std::string uuid = thingID.toString();
     _session << "SELECT id, type, name, vendor, os, desc FROM thing WHERE id=?", use(uuid), into(data), now;
+	return true;
 }
 
 void IONDataObject::findIPs(IPData::Container & container)

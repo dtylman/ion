@@ -76,17 +76,11 @@
     <ClCompile Include="DataSubsystem.cpp">
       <Filter>Data</Filter>
     </ClCompile>
-    <ClCompile Include="IPDataObject.cpp">
-      <Filter>Data</Filter>
-    </ClCompile>
     <ClCompile Include="IPDataObserver.cpp">
       <Filter>Data</Filter>
     </ClCompile>
     <ClCompile Include="ProtocolDHCP.cpp">
       <Filter>Dissect</Filter>
-    </ClCompile>
-    <ClCompile Include="ThingDataObject.cpp">
-      <Filter>Data</Filter>
     </ClCompile>
     <ClCompile Include="ThingObserver.cpp">
       <Filter>Data</Filter>
@@ -117,7 +111,6 @@
       <Filter>Event</Filter>
     </ClCompile>
     <ClCompile Include="Selfy.cpp" />
-    <ClCompile Include="AutoConfiguration.cpp" />
     <ClCompile Include="MailConfigPage.cpp">
       <Filter>Web</Filter>
     </ClCompile>
@@ -156,6 +149,12 @@
     </ClCompile>
     <ClCompile Include="EditThingPage.cpp">
       <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="IONDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ThingData.cpp">
+      <Filter>Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,17 +210,11 @@
     <ClInclude Include="DataSubsystem.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="IPDataObject.h">
-      <Filter>Data</Filter>
-    </ClInclude>
     <ClInclude Include="IPDataObserver.h">
       <Filter>Data</Filter>
     </ClInclude>
     <ClInclude Include="ProtocolDHCP.h">
       <Filter>Dissect</Filter>
-    </ClInclude>
-    <ClInclude Include="ThingDataObject.h">
-      <Filter>Data</Filter>
     </ClInclude>
     <ClInclude Include="ThingObserver.h">
       <Filter>Data</Filter>
@@ -252,7 +245,6 @@
       <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="Selfy.h" />
-    <ClInclude Include="AutoConfiguration.h" />
     <ClInclude Include="MailConfigPage.h">
       <Filter>Web</Filter>
     </ClInclude>
@@ -291,6 +283,12 @@
     </ClInclude>
     <ClInclude Include="EditThingPage.h">
       <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="IONDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ThingData.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
