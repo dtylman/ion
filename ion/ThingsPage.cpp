@@ -55,11 +55,12 @@ void ThingsPage::renderTable(std::ostream& output)
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-    query << "SELECT  thing.mac, thing.type, thing.name, thing.vendor, "
-            "thing.os, desc, case when authorized.mac is null then 'no' else 'yes' end as auth "
-            "FROM thing "
-            "LEFT JOIN authorized on thing.mac = authorized.mac "
-            "ORDER BY thing.type desc";
+	query << "SELECT DISTINCT thing.id, thing.type, thing.name, thing.vendor, thing.os, thing.desc, "
+		"case when authorized.mac is null then 'no' else 'yes' end as auth "
+		"FROM ip "
+		"LEFT JOIN thing on ip.thingid = thing.id "
+		"LEFT JOIN authorized on ip.mac = authorized.mac "
+		"ORDER BY thing.type desc ";
     query.execute();
     Poco::Data::RecordSet rs(query);
     bool more = rs.moveFirst();
@@ -77,11 +78,11 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
 {
     output << "<tr>";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
-        if (rs.columnName(i) != "mac") {
+        if (rs.columnName(i) != "id") {
             output << "<td>";
             if (!rs[i].isEmpty()) {
                 if (rs.columnName(i) == "auth") {
-                    output << Poco::format("<a href='%s?action=auth&mac=%s&auth=toggle'>", WebMenu::PAGE_SAVE_THING, rs["mac"].toString());
+                    output << Poco::format("<a href='%s?action=auth&id=%s&auth=toggle'>", WebMenu::PAGE_SAVE_THING, rs["id"].toString());
                 }
                 output << rs[i].toString();
                 if (rs.columnName(i) == "auth") {
@@ -92,7 +93,7 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
         }
     }
     output << "<td>";
-    output << Poco::format("<a href='%s?mac=%s'>", WebMenu::PAGE_EDIT_THING, rs["mac"].toString());
+    output << Poco::format("<a href='%s?id=%s'>", WebMenu::PAGE_EDIT_THING, rs["id"].toString());
     output << "<span class='glyphicon glyphicon-edit' ></span> Edit</a>";
 
     output << "</td>";

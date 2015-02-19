@@ -98,7 +98,7 @@ bool IONDataObject::getThing(const MAC& mac, ThingData& thing)
     if (macExists(mac)) {
         std::string uuid;
         std::string macstr(mac.toString());
-        _session << "SELECT thing_id FROM ip WHERE mac=?", use(macstr), into(uuid), now;
+        _session << "SELECT thingid FROM ip WHERE mac=?", use(macstr), into(uuid), now;
         return getThing(Poco::UUID(uuid), thing);
     }
     return false;
@@ -183,7 +183,7 @@ void IONDataObject::setIP(const IPData & data)
         std::string thingid = newThing.uuid().toString();
         std::string ifacestr = data.iface();
         _session << "INSERT INTO ip (mac ,ip ,last_seen , iface , thingid) VALUES (?,?,?,?,?)",
-                use(macstr), use(ipstr), use(ifacestr), use(thingid), now;
+                use(macstr), use(ipstr),use(time), use(ifacestr), use(thingid), now;
         onIPAdded(data);
     }
 }

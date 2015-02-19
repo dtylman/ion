@@ -53,7 +53,7 @@ namespace Poco
 
             static std::size_t size()
             {
-                return 5;
+                return 3;
             }
 
             static void prepare(std::size_t pos, const EventData &eventData, AbstractPreparator::Ptr pPreparator)
