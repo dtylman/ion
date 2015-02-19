@@ -14,7 +14,6 @@
     <ClCompile Include="AddressesPage.cpp" />
     <ClCompile Include="Arping.cpp" />
     <ClCompile Include="AuthDataObject.cpp" />
-    <ClCompile Include="AutoConfiguration.cpp" />
     <ClCompile Include="DataObject.cpp" />
     <ClCompile Include="DataObserver.cpp" />
     <ClCompile Include="DataSubsystem.cpp" />
@@ -30,9 +29,9 @@
     <ClCompile Include="FileRequestHandler.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Injector.cpp" />
+    <ClCompile Include="IONDataObject.cpp" />
     <ClCompile Include="IPCache.cpp" />
     <ClCompile Include="IPData.cpp" />
-    <ClCompile Include="IPDataObject.cpp" />
     <ClCompile Include="IPDataObserver.cpp" />
     <ClCompile Include="MAC.cpp" />
     <ClCompile Include="MailConfigPage.cpp" />
@@ -56,7 +55,7 @@
     <ClCompile Include="Selfy.cpp" />
     <ClCompile Include="SendMail.cpp" />
     <ClCompile Include="Solicitator.cpp" />
-    <ClCompile Include="ThingDataObject.cpp" />
+    <ClCompile Include="ThingData.cpp" />
     <ClCompile Include="ThingObserver.cpp" />
     <ClCompile Include="ThingsPage.cpp" />
     <ClCompile Include="WebMenu.cpp" />
@@ -67,7 +66,6 @@
     <ClInclude Include="AddressesPage.h" />
     <ClInclude Include="Arping.h" />
     <ClInclude Include="AuthDataObject.h" />
-    <ClInclude Include="AutoConfiguration.h" />
     <ClInclude Include="DataObject.h" />
     <ClInclude Include="DataObserver.h" />
     <ClInclude Include="DataSubsystem.h" />
@@ -83,9 +81,9 @@
     <ClInclude Include="FileRequestHandler.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Injector.h" />
+    <ClInclude Include="IONDataObject.h" />
     <ClInclude Include="IPCache.h" />
     <ClInclude Include="IPData.h" />
-    <ClInclude Include="IPDataObject.h" />
     <ClInclude Include="IPDataObserver.h" />
     <ClInclude Include="MAC.h" />
     <ClInclude Include="MailConfigPage.h" />
@@ -107,7 +105,7 @@
     <ClInclude Include="Selfy.h" />
     <ClInclude Include="SendMail.h" />
     <ClInclude Include="Solicitator.h" />
-    <ClInclude Include="ThingDataObject.h" />
+    <ClInclude Include="ThingData.h" />
     <ClInclude Include="ThingObserver.h" />
     <ClInclude Include="ThingsPage.h" />
     <ClInclude Include="WebMenu.h" />
