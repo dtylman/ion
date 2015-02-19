@@ -38,7 +38,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/AddressesPage.o \
 	${OBJECTDIR}/Arping.o \
 	${OBJECTDIR}/AuthDataObject.o \
-	${OBJECTDIR}/AutoConfiguration.o \
 	${OBJECTDIR}/DHCPOSDataObject.o \
 	${OBJECTDIR}/DataObject.o \
 	${OBJECTDIR}/DataObserver.o \
@@ -126,11 +125,6 @@ ${OBJECTDIR}/AuthDataObject.o: AuthDataObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthDataObject.o AuthDataObject.cpp
-
-${OBJECTDIR}/AutoConfiguration.o: AutoConfiguration.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AutoConfiguration.o AutoConfiguration.cpp
 
 ${OBJECTDIR}/DHCPOSDataObject.o: DHCPOSDataObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}

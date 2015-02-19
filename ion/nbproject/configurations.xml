@@ -186,10 +186,6 @@
       </item>
       <item path="AuthDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AutoConfiguration.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AutoConfiguration.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
@@ -432,10 +428,6 @@
       <item path="AuthDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="AuthDataObject.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AutoConfiguration.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AutoConfiguration.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>

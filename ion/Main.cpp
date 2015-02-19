@@ -15,13 +15,14 @@
 #include "Arping.h"
 #include "Routing.h"
 #include "IPDataObserver.h"
-#include "AutoConfiguration.h"
-#include "EventsSubsystem.h"
 #include "Selfy.h"
 #include "WebSubsystem.h"
+#include "EventsSubsystem.h"
 #include <iostream>
 #include <Poco/Util/TimerTaskAdapter.h>
 #include <Poco/Net/NetworkInterface.h>
+#include <Poco/Util/SystemConfiguration.h>
+#include <Poco/Util/PropertyFileConfiguration.h>
 
 Main::Main()
 {
@@ -49,7 +50,11 @@ int Main::main(const std::vector<std::string>& args)
 
 void Main::initialize(Poco::Util::Application& self)
 {
-    loadConfiguration();
+    config().add(new Poco::Util::SystemConfiguration(), PRIO_SYSTEM);
+    Poco::Path path(config().getString("application.dir"));
+    path.setFileName("ion.properties");
+    _config = new Poco::Util::PropertyFileConfiguration(path.toString());
+    config().addWriteable(_config, PRIO_APPLICATION, true);
     Poco::Util::ServerApplication::initialize(self);
     unsigned interval = config().getUInt("ion.offline-interval", 10) * 60 * 1000;
     _timer.scheduleAtFixedRate(new Poco::Util::TimerTaskAdapter<Main>(*this, &Main::onOnlineScan), interval, interval);
@@ -60,15 +65,6 @@ void Main::onOnlineScan(Poco::Util::TimerTask& timerTask)
     _solicitator.solicitateOnline();
 }
 
-int Main::loadConfiguration(int priority)
-{
-    Poco::Path path = config().getString("application.configDir");
-    path.pushDirectory("config");
-    Poco::File file(path);
-    file.createDirectories();
-    config().setString("application.configDir", path.toString());
-    config().add(new AutoConfiguration(path, "ion.properties"), priority);
-    return 1;
-}
+
 
 POCO_SERVER_MAIN(Main)
