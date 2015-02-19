@@ -11,6 +11,8 @@
 #include <Poco/Notification.h>
 #include <Poco/AutoPtr.h>
 #include "EventData.h"
+#include "ThingData.h"
+#include "IPData.h"
 
 class EventNotification : public Poco::Notification
 {
@@ -29,8 +31,8 @@ public:
 
     void setDetails(const std::string& details);
 
-    static void notify(const std::string& name, const MAC& mac, const std::string& details = "");
-    static void notify(const std::string& name, const MAC& mac, const Poco::Net::IPAddress& ip, const std::string& details = "");
+    static void notify(const std::string& name, const ThingData& thing);
+    static void notify(const std::string& name, const IPData& ip);
 protected:
     virtual ~EventNotification();
 private:

@@ -8,7 +8,6 @@
 #include "DataSubsystem.h"
 #include "DissectSubsystem.h"
 #include "IPDataObserver.h"
-#include "ThingDataObject.h"
 #include "ThingObserver.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Delegate.h>

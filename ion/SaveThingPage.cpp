@@ -7,9 +7,9 @@
 
 #include "SaveThingPage.h"
 #include "WebMenu.h"
-#include "ThingDataObject.h"
 #include "DataSubsystem.h"
 #include "AuthDataObject.h"
+#include "IONDataObject.h"
 #include <Poco/Util/Application.h>
 #include <Poco/Exception.h>
 
@@ -49,13 +49,15 @@ std::string SaveThingPage::title() const
 
 void SaveThingPage::handleUpdateThing(const Poco::Net::HTMLForm& form)
 {
+    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
     std::string mac = form.get("mac");
+    ThingData thing;
+    ion.getThing(MAC(mac), thing);
     std::string type = form.get("type");
     std::string vendor = form.get("vendor");
     std::string os = form.get("os");
     std::string desc = form.get("desc");
-    ThingDataObject thing(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    thing.update(MAC(mac), type, vendor, os, desc);
+    ion.setThing(thing, true);
 }
 
 void SaveThingPage::handleAuthThing(Poco::Net::HTTPServerRequest& request)

@@ -11,6 +11,7 @@
 #include <Poco/Data/TypeHandler.h>
 #include <Poco/Net/IPAddress.h>
 #include <Poco/Timestamp.h>
+#include <Poco/UUID.h>
 #include "MAC.h"
 #include <list>
 
@@ -18,6 +19,7 @@ class IPData
 {
 public:
     IPData();
+    IPData(const MAC& mac, const Poco::Net::IPAddress& ip, const std::string& iface);
     virtual ~IPData();
 
     typedef std::list<IPData> Container;
@@ -29,13 +31,17 @@ public:
     void setLastSeen(const Poco::Timestamp& lastSeen);
     const std::string& iface() const;
     void setIface(const std::string& iface);
+    const Poco::UUID& thingID() const;
+    void setThingID(const Poco::UUID& thingID);
 
     std::string toString() const;
+    bool ignore() const;
 private:
     MAC _mac;
     Poco::Net::IPAddress _ip;
     Poco::Timestamp _lastSeen;
     std::string _iface;
+    Poco::UUID _thingid;
 };
 
 
@@ -58,11 +64,12 @@ namespace Poco
                 TypeHandler<std::string>::bind(pos++, ipData.ip().toString(), pBinder, dir);
                 TypeHandler<std::time_t>::bind(pos++, ipData.lastSeen().epochTime(), pBinder, dir);
                 TypeHandler<std::string>::bind(pos++, ipData.iface(), pBinder, dir);
+                TypeHandler<std::string>::bind(pos++, ipData.thingID().toString(), pBinder, dir);
             }
 
             static std::size_t size()
             {
-                return 4;
+                return 5;
             }
 
             static void prepare(std::size_t pos, const IPData &ipData, AbstractPreparator::Ptr pPreparator)
@@ -72,21 +79,24 @@ namespace Poco
                 TypeHandler<std::string>::prepare(pos++, ipData.ip().toString(), pPreparator);
                 TypeHandler<std::time_t>::prepare(pos++, ipData.lastSeen().epochTime(), pPreparator);
                 TypeHandler<std::string>::prepare(pos++, ipData.iface(), pPreparator);
+                TypeHandler<std::string>::prepare(pos++, ipData.thingID().toString(), pPreparator);
             }
 
             static void extract(std::size_t pos, IPData &ipData, const IPData & defVal, AbstractExtractor::Ptr pExt)
             {
                 poco_assert_dbg(!pExt.isNull());
-                std::string mac, ip, iface;
+                std::string mac, ip, iface, thingid;
                 std::time_t last;
                 TypeHandler<std::string>::extract(pos++, mac, defVal.mac().toString(), pExt);
                 TypeHandler<std::string>::extract(pos++, ip, defVal.ip().toString(), pExt);
                 TypeHandler<std::time_t>::extract(pos++, last, defVal.lastSeen().epochTime(), pExt);
                 TypeHandler<std::string>::extract(pos++, iface, defVal.iface(), pExt);
+                TypeHandler<std::string>::extract(pos++, thingid, defVal.thingID().toString(), pExt);
                 ipData.setMAC(MAC(mac));
                 ipData.setIP(Poco::Net::IPAddress(ip));
                 ipData.setLastSeen(Poco::Timestamp::fromEpochTime(last));
                 ipData.setIface(iface);
+                ipData.setThingID(Poco::UUID(thingid));
             }
         private:
             TypeHandler();

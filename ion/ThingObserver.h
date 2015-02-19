@@ -9,9 +9,9 @@
 #define	HOSTOBSERVER_H
 
 #include "DataObserver.h"
-#include "ThingDataObject.h"
 #include "Frame.h"
 #include "DHCPOSDataObject.h"
+#include "IONDataObject.h"
 
 class ThingObserver : public DataObserver
 {
@@ -21,7 +21,7 @@ protected:
     virtual ~ThingObserver();
     void onFrameEvent(Frame::Ptr& frame);
 private:
-    ThingDataObject _things;
+    IONDataObject _ion;
     DHCPOSDataObject _dhcp;
 };
 

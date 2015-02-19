@@ -16,7 +16,7 @@
 
 using namespace Poco::Data::Keywords;
 
-IPDataObserver::IPDataObserver(const Poco::Data::Session& session) : _dao(session)
+IPDataObserver::IPDataObserver(const Poco::Data::Session& session) : _ion(session)
 {
     Poco::Util::Application::instance().getSubsystem<DissectSubsystem>().onFrame += Poco::delegate(this, &IPDataObserver::onFrameEvent);
 }
@@ -49,7 +49,7 @@ bool IPDataObserver::handleARP(Frame::Ptr& frame)
     if (arp->isReply()) {
         link(arp->senderIP(), arp->senderMAC(), frame->device());
     }
-	return true;
+    return true;
 }
 
 bool IPDataObserver::handleIP(Frame::Ptr& frame)
@@ -81,7 +81,7 @@ void IPDataObserver::link(const Poco::Net::IPAddress& ip, const MAC& mac, const 
 
         return;
     }
-    _dao.addIP(ip, mac, device);
+    _ion.setIP(IPData(mac, ip, device));
 }
 
 void IPDataObserver::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device)
@@ -89,5 +89,5 @@ void IPDataObserver::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& 
     if (_cache.exists(mac, ip, device)) {
         return;
     }
-    _dao.routerSuspected(ip, mac);
+    _ion.setSuspectedRouter(ip, mac, device);
 }

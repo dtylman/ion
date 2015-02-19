@@ -7,9 +7,16 @@
 
 #include "IPData.h"
 #include <Poco/Format.h>
+#include <Poco/Util/Application.h>
 
 IPData::IPData()
 {
+}
+
+IPData::IPData(const MAC& mac, const Poco::Net::IPAddress& ip, const std::string& iface) : _mac(mac),
+_ip(ip), _iface(iface)
+{
+
 }
 
 IPData::~IPData()
@@ -59,4 +66,30 @@ void IPData::setMAC(const MAC& mac)
 std::string IPData::toString() const
 {
     return Poco::format("%s %s %s", _mac.toString(), _ip.toString(), _iface);
+}
+
+bool IPData::ignore() const
+{
+    if (!_mac.isUnicast()) {
+        return true;
+    }
+    if (!_ip.isUnicast()) {
+        return true;
+    }
+    if (Poco::Util::Application::instance().config().getBool("ion.ignoreLinkLocal", true)) {
+        if (_ip.isLinkLocal()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void IPData::setThingID(const Poco::UUID& thingID)
+{
+    _thingid = thingID;
+}
+
+const Poco::UUID& IPData::thingID() const
+{
+    return _thingid;
 }

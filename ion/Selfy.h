@@ -11,6 +11,8 @@
 #include <Poco/Logger.h>
 #include <Poco/Net/IPAddress.h>
 
+#include "ThingData.h"
+
 class Selfy
 {
 public:
@@ -20,7 +22,7 @@ public:
     void report();
 private:
     void reportNetworkConfig();
-    void reportIPConfig(const Poco::Net::IPAddress& ip, const std::string& pcapName);
+    void reportIPConfig(const Poco::Net::IPAddress& ip, const std::string& pcapName, ThingData& myThing);
     void reportRouters();
     Poco::Logger& _logger;
 };

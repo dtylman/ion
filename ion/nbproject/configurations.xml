@@ -12,18 +12,18 @@
       <itemPath>DataObserver.h</itemPath>
       <itemPath>DataSubsystem.cpp</itemPath>
       <itemPath>DataSubsystem.h</itemPath>
+      <itemPath>IONDataObject.cpp</itemPath>
+      <itemPath>IONDataObject.h</itemPath>
       <itemPath>IPCache.cpp</itemPath>
       <itemPath>IPCache.h</itemPath>
       <itemPath>IPData.cpp</itemPath>
       <itemPath>IPData.h</itemPath>
-      <itemPath>IPDataObject.cpp</itemPath>
-      <itemPath>IPDataObject.h</itemPath>
       <itemPath>IPDataObserver.cpp</itemPath>
       <itemPath>IPDataObserver.h</itemPath>
       <itemPath>ScopedTransaciton.cpp</itemPath>
       <itemPath>ScopedTransaciton.h</itemPath>
-      <itemPath>ThingDataObject.cpp</itemPath>
-      <itemPath>ThingDataObject.h</itemPath>
+      <itemPath>ThingData.cpp</itemPath>
+      <itemPath>ThingData.h</itemPath>
       <itemPath>ThingObserver.cpp</itemPath>
       <itemPath>ThingObserver.h</itemPath>
     </logicalFolder>
@@ -246,6 +246,10 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="IONDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IONDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
@@ -253,10 +257,6 @@
       <item path="IPData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPData.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IPDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IPDataObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -354,9 +354,9 @@
       </item>
       <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ThingDataObject.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ThingData.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ThingDataObject.h" ex="false" tool="3" flavor2="0">
+      <item path="ThingData.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -493,6 +493,10 @@
       </item>
       <item path="Frame.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="IONDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="IONDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="IPCache.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPCache.h" ex="false" tool="3" flavor2="0">
@@ -500,10 +504,6 @@
       <item path="IPData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="IPData.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="IPDataObject.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="IPDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IPDataObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -601,9 +601,9 @@
       </item>
       <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ThingDataObject.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ThingData.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ThingDataObject.h" ex="false" tool="3" flavor2="0">
+      <item path="ThingData.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ThingObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>

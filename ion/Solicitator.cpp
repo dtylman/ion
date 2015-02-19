@@ -9,8 +9,8 @@
 #include "PcapSubsystem.h"
 #include "Injector.h"
 #include "DataSubsystem.h"
-#include "IPDataObject.h"
 #include "Arping.h"
+#include "IONDataObject.h"
 #include <Poco/Util/Application.h>
 
 Solicitator::Solicitator() : _logger(Poco::Logger::get("Solicitator"))
@@ -50,9 +50,9 @@ void Solicitator::solicitateAll()
 void Solicitator::solicitateOnline()
 {
     DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
-    IPDataObject ipDao(data.createSession());
+    IONDataObject ion(data.createSession());
     IPData::Container ipContainer;
-    ipDao.findOnline(ipContainer);
+    ion.findOnlineIPs(ipContainer);
     for (auto data : ipContainer) {
         bool pong = false;
         if (data.ip().family() == Poco::Net::IPAddress::IPv4) {
@@ -64,7 +64,7 @@ void Solicitator::solicitateOnline()
         }
         if (!pong) {
             _logger.debug("No reply from %s", data.toString());
-            ipDao.removeIP(data.ip(), data.mac());
+            ion.removeIP(data.ip(), data.mac());
         }
         else {
             _logger.debug("Pong from %s", data.toString());
