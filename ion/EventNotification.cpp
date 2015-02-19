@@ -41,7 +41,7 @@ void EventNotification::setDetails(const std::string& details)
 
 void EventNotification::notify(const std::string& name, const ThingData& thing)
 {
-    std::string key = Poco::format("ion.event.%s.text", name);
+    std::string key = Poco::format("ion.events.%s.text", name);
     std::string text = Poco::Util::Application::instance().config().getString(key);
     Poco::replaceInPlace(text, std::string("[type]"), thing.type());
     Poco::replaceInPlace(text, std::string("[name]"), thing.name());
@@ -61,7 +61,7 @@ void EventNotification::notify(const std::string& name, const ThingData& thing)
 
 void EventNotification::notify(const std::string& name, const IPData& ip)
 {
-    std::string key = Poco::format("ion.event.%s.text", name);
+    std::string key = Poco::format("ion.events.%s.text", name);
     std::string text = Poco::Util::Application::instance().config().getString(key);
     Poco::replaceInPlace(text, std::string("[mac]"), ip.mac().toString());
     Poco::replaceInPlace(text, std::string("[ip]"), ip.ip().toString());

@@ -37,8 +37,8 @@ void Selfy::reportNetworkConfig()
     Poco::Util::AbstractConfiguration& config = Poco::Util::Application::instance().config();
     thingData.setName(config.getString("system.nodeName"));
     thingData.setOS(config.getString("system.osName"));
-    thingData.setType("Computer");
-    for (auto device : devices) {
+    thingData.setType("Computer");	
+	for (auto device : devices) {
         Poco::Net::IPAddress ip = device.getIPAddress(Poco::Net::IPAddress::IPv4);
         reportIPConfig(ip, device.pcapName(), thingData);
         ip = device.getIPAddress(Poco::Net::IPAddress::IPv6);
@@ -54,11 +54,8 @@ void Selfy::reportIPConfig(const Poco::Net::IPAddress& ip, const std::string& pc
             MAC mac = Poco::Net::NetworkInterface::forAddress(ip).macAddress();
             DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
             IONDataObject ion(data.createSession());
-            if (!ion.getThing(mac, myThing)) {
-                ion.setThing(myThing, false);
-            }
+			ion.getThing(mac, myThing);
             IPData ipData(mac, ip, pcapName);
-            ipData.setThingID(myThing.uuid());
             ion.setIP(ipData);
         }
         catch (Poco::NotFoundException&) {
