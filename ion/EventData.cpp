@@ -22,17 +22,6 @@ const std::string& EventData::details() const
     return _details;
 }
 
-const Poco::Net::IPAddress& EventData::ip() const
-{
-    return _ip;
-}
-
-const MAC& EventData::mac() const
-{
-    return _mac;
-
-}
-
 const std::string& EventData::name() const
 {
     return _name;
@@ -41,16 +30,6 @@ const std::string& EventData::name() const
 void EventData::setDetails(const std::string& details)
 {
     _details = details;
-}
-
-void EventData::setIP(const Poco::Net::IPAddress& ip)
-{
-    _ip = ip;
-}
-
-void EventData::setMAC(const MAC& mac)
-{
-    _mac = mac;
 }
 
 void EventData::setName(const std::string& name)
@@ -70,6 +49,6 @@ const Poco::Timestamp& EventData::time() const
 
 std::string EventData::toString() const
 {
-    return Poco::format("%s %s %s %s %s", Poco::DateTimeFormatter::format(_time, Poco::DateTimeFormat::HTTP_FORMAT, 0),
-                        _name, _mac.toString(), _ip.toString(), _details);
+    return Poco::format("%s %s '%s'", Poco::DateTimeFormatter::format(_time, Poco::DateTimeFormat::HTTP_FORMAT, 0),
+                        _name, _details);
 }

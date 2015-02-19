@@ -12,7 +12,7 @@
 #include "ProtocolDHCP.h"
 #include <Poco/Delegate.h>
 
-ThingObserver::ThingObserver(const Poco::Data::Session& session) : _things(session), _dhcp(session)
+ThingObserver::ThingObserver(const Poco::Data::Session& session) : _ion(session), _dhcp(session)
 {
     Poco::Util::Application::instance().getSubsystem<DissectSubsystem>().onFrame += Poco::delegate(this, &ThingObserver::onFrameEvent);
 }
@@ -35,7 +35,11 @@ void ThingObserver::onFrameEvent(Frame::Ptr& frame)
         std::string hostName = dhcp->getOption(12);
         std::string vendorClass = dhcp->getOption(60);
         std::string os = _dhcp.findOS(vendorClass, hostName);
-        _things.setName(dhcp->clientMAC(), hostName);
-        _things.setOS(dhcp->clientMAC(), os);
+        ThingData thing;
+        if (_ion.getThing(dhcp->clientMAC(), thing)) {
+            thing.setName(hostName);
+            thing.setOS(os);
+            _ion.setThing(thing, false);
+        }
     }
 }

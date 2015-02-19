@@ -11,7 +11,7 @@
 #include "DataObserver.h"
 #include "Frame.h"
 #include "IPCache.h"
-#include "IPDataObject.h"
+#include "IONDataObject.h"
 #include <Poco/ExpireCache.h>
 
 class IPDataObserver : public DataObserver
@@ -28,7 +28,7 @@ private:
     void routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
 
     IPCache _cache;
-    IPDataObject _dao;
+    IONDataObject _ion;
 };
 
 #endif	/* IPMODEL_H */

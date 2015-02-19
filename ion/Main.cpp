@@ -16,7 +16,6 @@
 #include "Routing.h"
 #include "IPDataObserver.h"
 #include "AutoConfiguration.h"
-#include "ThingDataObject.h"
 #include "EventsSubsystem.h"
 #include "Selfy.h"
 #include "WebSubsystem.h"

@@ -9,6 +9,10 @@
 #include "MAC.h"
 #include "EventsSubsystem.h"
 #include <Poco/Util/Application.h>
+#include <Poco/DateTimeFormatter.h>
+#include <Poco/DateTimeFormat.h>
+#include <Poco/Format.h>
+#include <Poco/String.h>
 
 const std::string EventNotification::IP_OFFLINE("ip_offline");
 const std::string EventNotification::IP_ONLINE("ip_online");
@@ -35,20 +39,37 @@ void EventNotification::setDetails(const std::string& details)
     _data.setDetails(details);
 }
 
-void EventNotification::notify(const std::string& name, const MAC& mac, const std::string& details)
+void EventNotification::notify(const std::string& name, const ThingData& thing)
 {
+    std::string key = Poco::format("ion.event.%s.text", name);
+    std::string text = Poco::Util::Application::instance().config().getString(key);
+    Poco::replaceInPlace(text, std::string("[type]"), thing.type());
+    Poco::replaceInPlace(text, std::string("[name]"), thing.name());
+    Poco::replaceInPlace(text, std::string("[os]"), thing.os());
+    Poco::replaceInPlace(text, std::string("[vendor]"), thing.vendor());
+    Poco::replaceInPlace(text, std::string("[desc]"), thing.desc());
     EventNotification::Ptr notif = new EventNotification();
     notif->_data.setName(name);
-    notif->_data.setMAC(mac);
-    notif->_data.setDetails(details);
+    notif->_data.setDetails(text);
     Poco::Util::Application::instance().getSubsystem<EventsSubsystem>().notify(notif);
 }
 
-void EventNotification::notify(const std::string& name, const MAC& mac, const Poco::Net::IPAddress& ip, const std::string& details)
+/*    MAC _mac;
+    Poco::Net::IPAddress _ip;
+    Poco::Timestamp _lastSeen;
+    std::string _iface;*/
+
+void EventNotification::notify(const std::string& name, const IPData& ip)
 {
+    std::string key = Poco::format("ion.event.%s.text", name);
+    std::string text = Poco::Util::Application::instance().config().getString(key);
+    Poco::replaceInPlace(text, std::string("[mac]"), ip.mac().toString());
+    Poco::replaceInPlace(text, std::string("[ip]"), ip.ip().toString());
+    std::string lastSeen = Poco::DateTimeFormatter::format(ip.lastSeen(), Poco::DateTimeFormat::HTTP_FORMAT, 0);
+    Poco::replaceInPlace(text, std::string("[last_seen]"), lastSeen);
+    Poco::replaceInPlace(text, std::string("[interface]"), ip.iface());
     EventNotification::Ptr notif = new EventNotification();
     notif->_data.setName(name);
-    notif->_data.setMAC(mac);
-    notif->_data.setIP(ip);
+    notif->_data.setDetails(text);
     Poco::Util::Application::instance().getSubsystem<EventsSubsystem>().notify(notif);
 }
