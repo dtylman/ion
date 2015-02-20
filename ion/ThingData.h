@@ -31,6 +31,7 @@ public:
     void setDesc(const std::string& desc);
     const std::string& desc() const;
 
+    std::string toString() const;
 private:
     Poco::UUID _uuid;
     std::string _type;

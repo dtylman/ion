@@ -37,30 +37,30 @@ void ThingsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& 
 
 void ThingsPage::renderTable(std::ostream& output)
 {
-    output << "<div class='table-responsive'>\n";
-    output << "<table id='things' class='table table-responsive' >\n";
-    output << "    <thead>\n";
-    output << "        <tr>\n";
-    output << "            <th>Type</th>\n";
-    output << "            <th>Name</th>\n";
-    output << "            <th>Vendor</th>\n";
-    output << "            <th>OS</th>\n";
-    output << "            <th>Description</th>\n";
-    output << "            <th>Authorized</th>\n";
-    output << "            <th></th>\n";
-    output << "        </tr>\n";
-    output << "    </thead>\n";
+    output << "<div class='table-responsive'>";
+    output << "<table id='things' class='table table-responsive' >";
+    output << "    <thead>";
+    output << "        <tr>";
+    output << "            <th>Type</th>";
+    output << "            <th>Name</th>";
+    output << "            <th>Vendor</th>";
+    output << "            <th>OS</th>";
+    output << "            <th>Description</th>";
+    output << "            <th>Authorized</th>";
+    output << "            <th></th>";
+    output << "        </tr>";
+    output << "    </thead>";
 
-    output << "    <tbody>\n";
+    output << "    <tbody>";
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-	query << "SELECT DISTINCT thing.id, thing.type, thing.name, thing.vendor, thing.os, thing.desc, "
-		"case when authorized.mac is null then 'no' else 'yes' end as auth "
-		"FROM ip "
-		"LEFT JOIN thing on ip.thingid = thing.id "
-		"LEFT JOIN authorized on ip.mac = authorized.mac "
-		"ORDER BY thing.type desc ";
+    query << "SELECT DISTINCT thing.id, thing.type, thing.name, thing.vendor, thing.os, thing.desc, "
+            "case when authorized.mac is null then 'no' else 'yes' end as auth "
+            "FROM ip "
+            "LEFT JOIN thing on ip.thingid = thing.id "
+            "LEFT JOIN authorized on ip.mac = authorized.mac "
+            "ORDER BY thing.type desc ";
     query.execute();
     Poco::Data::RecordSet rs(query);
     bool more = rs.moveFirst();
@@ -68,9 +68,9 @@ void ThingsPage::renderTable(std::ostream& output)
         renderRow(output, rs);
         more = rs.moveNext();
     }
-    output << "    </tbody>\n";
-    output << "</table>\n";
-    output << "</div>\n";
+    output << "    </tbody>";
+    output << "</table>";
+    output << "</div>";
 
 }
 
@@ -82,7 +82,7 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
             output << "<td>";
             if (!rs[i].isEmpty()) {
                 if (rs.columnName(i) == "auth") {
-                    output << Poco::format("<a href='%s?action=auth&id=%s&auth=toggle'>", WebMenu::PAGE_SAVE_THING, rs["id"].toString());
+                    output << Poco::format("<a href='%s?action=auth&id=%s&auth=%s'>", WebMenu::PAGE_SAVE_THING, rs["id"].toString(), rs["auth"].toString());
                 }
                 output << rs[i].toString();
                 if (rs.columnName(i) == "auth") {

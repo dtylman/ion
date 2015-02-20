@@ -112,7 +112,7 @@ bool IONDataObject::getThing(const Poco::UUID& thingID, ThingData & data)
     }
     std::string uuid = thingID.toString();
     _session << "SELECT id, type, name, vendor, os, desc FROM thing WHERE id=?", use(uuid), into(data), now;
-	return true;
+    return true;
 }
 
 void IONDataObject::findIPs(IPData::Container & container)
@@ -183,7 +183,7 @@ void IONDataObject::setIP(const IPData & data)
         std::string thingid = newThing.uuid().toString();
         std::string ifacestr = data.iface();
         _session << "INSERT INTO ip (mac ,ip ,last_seen , iface , thingid) VALUES (?,?,?,?,?)",
-                use(macstr), use(ipstr),use(time), use(ifacestr), use(thingid), now;
+                use(macstr), use(ipstr), use(time), use(ifacestr), use(thingid), now;
         onIPAdded(data);
     }
 }
@@ -229,16 +229,19 @@ void IONDataObject::setSuspectedRouter(const Poco::Net::IPAddress& ip, const MAC
 
 void IONDataObject::onThingAdded(const ThingData & thing)
 {
+    _logger.notice("Thing added: %s", thing.toString());
     EventNotification::notify(EventNotification::THING_ONLINE, thing);
 }
 
 void IONDataObject::onThingRemoved(const ThingData & thing)
 {
+    _logger.notice("Thing removed: %s", thing.toString());
     EventNotification::notify(EventNotification::THING_OFFLINE, thing);
 }
 
 void IONDataObject::onIPAdded(const IPData & ip)
 {
+    _logger.notice("IP added: %s", ip.toString());
     AuthDataObject auth(_session);
     if (!auth.isAuthorized(ip.mac())) {
         EventNotification::notify(EventNotification::NOT_AUTHORIZED, ip);
@@ -248,6 +251,7 @@ void IONDataObject::onIPAdded(const IPData & ip)
 
 void IONDataObject::onIPRemoved(const IPData & ip)
 {
+    _logger.notice("IP removed: %s", ip.toString());
     EventNotification::notify(EventNotification::IP_OFFLINE, ip);
 }
 
@@ -257,4 +261,21 @@ int IONDataObject::getFamNum(const Poco::Net::IPAddress::Family fam) const
         return 4;
     }
     return 6;
+}
+
+void IONDataObject::authorizeThing(const Poco::UUID& thingID, bool authorize)
+{
+    ScopedTransaciton transaction(_session);
+    std::list<std::string> macs;
+    std::string thingidstr = thingID.toString();
+    _session << "SELECT mac FROM ip WHERE thingid=?", use(thingidstr), into(macs), now;
+    AuthDataObject ado(_session);
+    for (auto mac : macs) {
+        if (authorize) {
+            ado.authorize(MAC(mac));
+        }
+        else {
+            ado.unAuthorize(MAC(mac));
+        }
+    }
 }

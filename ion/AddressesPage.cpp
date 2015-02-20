@@ -58,7 +58,7 @@ void AddressesPage::renderTable(std::ostream& output)
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-    query << "SELECT ip.mac, ip, datetime(last_seen,'unixepoch','localtime') as last_seen, "
+    query << "SELECT mac, ip, datetime(last_seen,'unixepoch','localtime') as last_seen, "
             "thing.id, thing.type, thing.name, thing.vendor, "
             "thing.os, desc, oui.vendor as hw_vendor , case when  authorized.mac is null then 'no' else 'yes' end as auth "
             "FROM ip LEFT JOIN thing ON ip.thingid=thing.id "
@@ -80,11 +80,10 @@ void AddressesPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
 {
     output << "<tr>";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
+        if (rs.columnName(i) == "id") {
+            continue;
+        }
         output << "<td>";
-		if (rs.columnName(i) == "id")
-		{
-			continue;
-		}
         if (!rs[i].isEmpty()) {
             if (rs.columnName(i) == "mac") {
                 output << Poco::format("<a href='%s?id=%s'>", WebMenu::PAGE_EDIT_THING, rs["id"].toString());
