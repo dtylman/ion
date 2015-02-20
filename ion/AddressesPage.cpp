@@ -58,7 +58,7 @@ void AddressesPage::renderTable(std::ostream& output)
 
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-    query << "SELECT mac, ip, datetime(last_seen,'unixepoch','localtime') as last_seen, "
+    query << "SELECT ip.mac, ip, datetime(last_seen,'unixepoch','localtime') as last_seen, "
             "thing.id, thing.type, thing.name, thing.vendor, "
             "thing.os, desc, oui.vendor as hw_vendor , case when  authorized.mac is null then 'no' else 'yes' end as auth "
             "FROM ip LEFT JOIN thing ON ip.thingid=thing.id "

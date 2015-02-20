@@ -13,6 +13,7 @@
 #include <Poco/Data/Session.h>
 #include <Poco/URI.h>
 #include "DataSubsystem.h"
+#include "IONDataObject.h"
 #include <Poco/String.h>
 
 using namespace Poco::Data::Keywords;
@@ -38,13 +39,11 @@ EditThingPage::~EditThingPage()
 
 void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    _mac = getQueryParam("mac", request);
-    Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
-    std::string type, vendor, os, desc;
-    session << "SELECT type, vendor,os,desc FROM thing WHERE mac=?", use(_mac), into(type), into(vendor), into(os), into(desc), now;
-
-
-
+    Poco::UUID id(getQueryParam("id", request));
+    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+    if (!ion.getThing(id, _thing)) {
+        throw Poco::NotFoundException("Thing not found");
+    }
     output << Poco::format("<form method='POST' action='%s?action=update' class='form-inline' name='form-edit-thing' >", WebMenu::PAGE_SAVE_THING);
     output << "<div class='panel panel-default'>";
     output << "<div class='panel-heading'>";
@@ -52,17 +51,17 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     output << "</div>";
     output << "<div class='panel-body'>";
 
-    output << Poco::format("<input type='hidden' name='mac' value='%s'/>", _mac);
+    output << Poco::format("<input type='hidden' name='id' value='%s'/>", _thing.uuid().toString());
 
-    renderInput(output, "Type: ", "type", "txtType", type);
+    renderInput(output, "Type: ", "type", "txtType", _thing.type());
     output << "<br/>";
-    renderInput(output, "Vendor: ", "vendor", "txtVendor", vendor);
+    renderInput(output, "Vendor: ", "vendor", "txtVendor", _thing.vendor());
     output << "<br/>";
-    renderInput(output, "Operating System: ", "os", "txtOS", os);
+    renderInput(output, "Operating System: ", "os", "txtOS", _thing.os());
     output << "<br/>";
 
     output << "<div class='row'><div class='col-lg-6'>Description: </br>";
-    output << Poco::format("<textarea name='desc' class='input-xlarge' width='100'>%s</textarea>", desc);
+    output << Poco::format("<textarea name='desc' class='input-xlarge' width='100'>%s</textarea>", _thing.desc());
     output << "</div>";
     output << "</div>";
 
@@ -77,7 +76,6 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
 
 
     output << "</form>";
-
     output << "<script>";
     output << "var substringMatcher = function (strs) {";
     output << "return function (q, cb) {";
@@ -100,7 +98,7 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
 
 std::string EditThingPage::title() const
 {
-    return Poco::format("Edit %s", _mac);
+    return Poco::format("Editing %s", _thing.toString());
 }
 
 bool EditThingPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
