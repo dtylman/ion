@@ -9,6 +9,7 @@
 #define	EDITTHINGPAGE_H
 
 #include "PageRequestHandler.h"
+#include "ThingData.h"
 #include <list>
 
 class EditThingPage : public PageRequestHandler
@@ -23,7 +24,7 @@ protected:
 private:
     void renderInput(std::ostream& output, const std::string& displayName, const std::string& name, const std::string& id, const std::string& value);
     void renderTypeAheadScript(std::ostream& output, const std::string& name, const std::string& id, const std::list<std::string>& list);
-    std::string _mac;
+    ThingData _thing;
     std::list<std::string> _types;
     std::list<std::string> _vendors;
     std::list<std::string> _os;

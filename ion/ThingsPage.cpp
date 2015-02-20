@@ -32,6 +32,7 @@ std::string ThingsPage::title() const
 void ThingsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     renderTable(output);
+    output << Poco::format(" <a href='%s' class='btn btn-primary'>Authorize All</a>", WebMenu::PAGE_THINGS);
     renderScripts(output);
 }
 
@@ -94,8 +95,9 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
     }
     output << "<td>";
     output << Poco::format("<a href='%s?id=%s'>", WebMenu::PAGE_EDIT_THING, rs["id"].toString());
-    output << "<span class='glyphicon glyphicon-edit' ></span> Edit</a>";
-
+    output << "<span class='glyphicon glyphicon-edit' ></span> Edit</a> ";
+    output << Poco::format("<a href='%s?action=delete&id=%s'>", WebMenu::PAGE_SAVE_THING, rs["id"].toString());
+    output << "<span class='glyphicon glyphicon-remove' ></span> Remove</a>";
     output << "</td>";
 
     output << "</tr>";
