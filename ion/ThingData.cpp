@@ -7,6 +7,7 @@
 
 #include "ThingData.h"
 #include <Poco/UUIDGenerator.h>
+#include <Poco/Format.h>
 
 ThingData::ThingData()
 {
@@ -77,3 +78,7 @@ void ThingData::setVendor(const std::string& vendor)
     _vendor = vendor;
 }
 
+std::string ThingData::toString() const
+{
+    return Poco::format("%s %s %s %s %s %s", _uuid.toString(), _type, _name, _vendor, _os, _desc);
+}

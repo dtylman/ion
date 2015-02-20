@@ -50,27 +50,22 @@ std::string SaveThingPage::title() const
 void SaveThingPage::handleUpdateThing(const Poco::Net::HTMLForm& form)
 {
     IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    std::string mac = form.get("mac");
+    std::string id = form.get("id");
     ThingData thing;
-    ion.getThing(MAC(mac), thing);
-    std::string type = form.get("type");
-    std::string vendor = form.get("vendor");
-    std::string os = form.get("os");
-    std::string desc = form.get("desc");
+    if (!ion.getThing(Poco::UUID(id), thing)) {
+        throw Poco::NotFoundException("Thing not found!");
+    }
+    thing.setType(form.get("type"));
+    thing.setVendor(form.get("vendor"));
+    thing.setOS(form.get("os"));
+    thing.setDesc(form.get("desc"));
     ion.setThing(thing, true);
 }
 
 void SaveThingPage::handleAuthThing(Poco::Net::HTTPServerRequest& request)
 {
-    MAC mac = getQueryParam("mac", request);
+    std::string thingid = getQueryParam("id", request);
     std::string auth = getQueryParam("auth", request);
-    AuthDataObject ado(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    if (auth == "toggle") {
-        if (ado.isAuthorized(mac)) {
-            ado.unAuthorize(mac);
-        }
-        else {
-            ado.authorize(mac);
-        }
-    }
+    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+    ion.authorizeThing(Poco::UUID(thingid), (auth == "no"));
 }

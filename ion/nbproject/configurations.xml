@@ -114,8 +114,6 @@
     </logicalFolder>
     <itemPath>Arping.cpp</itemPath>
     <itemPath>Arping.h</itemPath>
-    <itemPath>AutoConfiguration.cpp</itemPath>
-    <itemPath>AutoConfiguration.h</itemPath>
     <itemPath>Injector.cpp</itemPath>
     <itemPath>Injector.h</itemPath>
     <itemPath>MAC.cpp</itemPath>

@@ -37,6 +37,7 @@ public:
     bool macExists(const MAC& mac);
     bool thingExists(const ThingData& thing);
     bool thingIDExists(const Poco::UUID& thingID);
+    void authorizeThing(const Poco::UUID& thingID, bool authorize);
 private:
     void onThingAdded(const ThingData& thing);
     void onThingRemoved(const ThingData& thing);
