@@ -57,7 +57,7 @@ bool IONDataObject::ipExists(const Poco::Net::IPAddress& ip, const MAC& mac)
     std::string ipstr(ip.toString());
     std::string macstr(mac.toString());
     int exists = 0;
-    _session << "SELECT 1 FROM ip WHERE ip=? AND mac=?", use(ipstr), use(macstr), into(exists), now;
+    _session << "SELECT 1 FROM ip WHERE ip=? AND mac=?", use(ipstr), use(macstr), into(exists), limit(1), now;
     return (exists == 1);
 }
 
@@ -65,7 +65,7 @@ bool IONDataObject::macExists(const MAC& mac)
 {
     std::string macstr(mac.toString());
     int exists = 0;
-    _session << "SELECT 1 FROM ip WHERE  mac=?", use(macstr), into(exists), now;
+    _session << "SELECT 1 FROM ip WHERE  mac=?", use(macstr), into(exists), limit(1), now;
     return (exists == 1);
 }
 
@@ -73,7 +73,7 @@ bool IONDataObject::thingExists(const ThingData& thing)
 {
     std::string uuid = thing.uuid().toString();
     int exists = 0;
-    _session << "SELECT 1 FROM thing WHERE id=?", use(uuid), into(exists), now;
+    _session << "SELECT 1 FROM thing WHERE id=?", use(uuid), into(exists), limit(1), now;
     return (exists == 1);
 }
 
@@ -81,7 +81,7 @@ bool IONDataObject::thingIDExists(const Poco::UUID& thingID)
 {
     std::string uuid = thingID.toString();
     int exists = 0;
-    _session << "SELECT 1 FROM thing WHERE id=?", use(uuid), into(exists), now;
+    _session << "SELECT 1 FROM thing WHERE id=?", use(uuid), into(exists), limit(1), now;
     return (exists == 1);
 }
 
@@ -98,7 +98,7 @@ bool IONDataObject::getThing(const MAC& mac, ThingData& thing)
     if (macExists(mac)) {
         std::string uuid;
         std::string macstr(mac.toString());
-        _session << "SELECT thingid FROM ip WHERE mac=?", use(macstr), into(uuid), now;
+        _session << "SELECT thingid FROM ip WHERE mac=?", use(macstr), into(uuid), limit(1), now;
         return getThing(Poco::UUID(uuid), thing);
     }
     return false;
@@ -111,7 +111,7 @@ bool IONDataObject::getThing(const Poco::UUID& thingID, ThingData & data)
         return false;
     }
     std::string uuid = thingID.toString();
-    _session << "SELECT id, type, name, vendor, os, desc FROM thing WHERE id=?", use(uuid), into(data), now;
+    _session << "SELECT id, type, name, vendor, os, desc FROM thing WHERE id=?", use(uuid), into(data), limit(1), now;
     return true;
 }
 
@@ -134,7 +134,7 @@ bool IONDataObject::isRouter(const MAC& mac, const Poco::Net::IPAddress::Family 
     std::string macstr = mac.toString();
     int famnum = getFamNum(family);
     bool router = false;
-    _session << "SELECT 1 FROM router WHERE mac=? AND family=?", use(macstr), use(famnum), into(router), now;
+    _session << "SELECT 1 FROM router WHERE mac=? AND family=?", use(macstr), use(famnum), into(router), limit(1), now;
     return router;
 }
 
@@ -197,7 +197,7 @@ void IONDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC & mac)
     IPData data;
     std::string ipstr = ip.toString();
     std::string macstr = mac.toString();
-    _session << "SELECT (mac,ip,last_seen,iface,thingid) FROM ip WHERE ip=? AND mac=?", into(data), use(ipstr), use(macstr), now;
+    _session << "SELECT mac,ip,last_seen,iface,thingid FROM ip WHERE ip=? AND mac=?", into(data), use(ipstr), use(macstr), limit(1), now;
     _session << "DELETE FROM ip WHERE ip=? AND mac=?", use(ipstr), use(macstr), now;
     bool exists = 0;
     std::string thingid = data.thingID().toString();

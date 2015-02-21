@@ -62,7 +62,12 @@ void Main::initialize(Poco::Util::Application& self)
 
 void Main::onOnlineScan(Poco::Util::TimerTask& timerTask)
 {
-    _solicitator.solicitateOnline();
+    try {
+        _solicitator.solicitateOnline();
+    }
+    catch (Poco::Exception& ex) {
+        logger().error("Exception on online scan", ex.displayText());
+    }
 }
 
 
