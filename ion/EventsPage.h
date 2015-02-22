@@ -14,6 +14,8 @@
 class EventsPage : public PageRequestHandler
 {
 public:
+    static const std::string Title;
+    static const std::string Link;
     EventsPage();
     virtual ~EventsPage();
 protected:

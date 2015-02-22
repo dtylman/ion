@@ -13,6 +13,8 @@
 class MailConfigPage : public PageRequestHandler
 {
 public:
+    static const std::string Title;
+    static const std::string Link;
     MailConfigPage();
     virtual ~MailConfigPage();
 protected:

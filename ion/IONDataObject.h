@@ -23,7 +23,7 @@ public:
     virtual ~IONDataObject();
 
     void setThing(const ThingData& thing, bool overwrite);
-    void removeThing(const ThingData& thing);
+    void removeThing(const Poco::UUID& thingid);
     bool getThingByMAC(const MAC& mac, ThingData& thing);
     bool getThing(const Poco::UUID& thingID, ThingData& data);
     void removeIP(const Poco::Net::IPAddress& ip, const MAC& mac);
@@ -32,13 +32,17 @@ public:
     void setIP(const IPData& data);
     bool isRouter(const MAC& mac, const Poco::Net::IPAddress::Family& family);
     void findIPs(IPData::Container& container);
+    void findThingIPs(const Poco::UUID& thingid, IPData::Container & container);
     void findOnlineIPs(IPData::Container& container);
     bool ipExists(const Poco::Net::IPAddress& ip, const MAC& mac);
     bool macExists(const MAC& mac);
     bool thingExists(const ThingData& thing);
     bool thingIDExists(const Poco::UUID& thingID);
     void authorizeThing(const Poco::UUID& thingID, bool authorize);
+    bool thingAuthorized(const Poco::UUID& thingID);
 private:
+    void removeThingData(const ThingData& thing);
+
     void onThingAdded(const ThingData& thing);
     void onThingRemoved(const ThingData& thing);
     void onIPAdded(const IPData& ip);

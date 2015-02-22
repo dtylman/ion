@@ -14,6 +14,8 @@
 class AddressesPage : public PageRequestHandler
 {
 public:
+    static const std::string Title;
+    static const std::string Link;
     AddressesPage();
     virtual ~AddressesPage();
 protected:

@@ -13,6 +13,9 @@
 #include "DataSubsystem.h"
 #include "EventNotification.h"
 
+const std::string EventsPage::Title("My Events");
+const std::string EventsPage::Link("events.bin");
+
 EventsPage::EventsPage()
 {
 }
@@ -54,7 +57,7 @@ void EventsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& 
 
 std::string EventsPage::title() const
 {
-    return "My Events";
+    return Title;
 }
 
 bool EventsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
@@ -67,12 +70,12 @@ void EventsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
     std::string name = rs["name"].toString();
     std::string details = rs["details"].toString();
     output << "<tr>";
+    output << Poco::format("<td>%s</td>", rs["time"].toString());
     if (name == EventNotification::NOT_AUTHORIZED) {
         output << Poco::format("<td><font color='red'>%s</font></td>", details);
     }
     else {
         output << Poco::format("<td>%s</td>", details);
     }
-    output << Poco::format("<td>%s</td>", rs["time"].toString());
     output << "</tr>";
 }

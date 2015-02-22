@@ -8,12 +8,25 @@
 #include "ThingsPage.h"
 #include "DataSubsystem.h"
 #include "WebMenu.h"
+#include "IONDataObject.h"
+#include "AuthDataObject.h"
+#include "EditThingPage.h"
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 #include <Poco/Data/RecordSet.h>
 #include <Poco/Util/Application.h>
 #include <Poco/Format.h>
+
 using namespace Poco::Data::Keywords;
+
+const std::string ThingsPage::Title("My Things");
+const std::string ThingsPage::Link("things.bin");
+const std::string ThingsPage::ParamAction("action");
+const std::string ThingsPage::ParamThingID("id");
+const std::string ThingsPage::ActionAuthAll("authall");
+const std::string ThingsPage::ActionToggleAuth("toggleauth");
+const std::string ThingsPage::ActionUnAuthAll("unauthall");
+const std::string ThingsPage::ActionDelete("delete");
 
 ThingsPage::ThingsPage()
 {
@@ -26,13 +39,14 @@ ThingsPage::~ThingsPage()
 
 std::string ThingsPage::title() const
 {
-    return "My Things";
+    return Title;
 }
 
 void ThingsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     renderTable(output);
-    output << Poco::format(" <a href='%s' class='btn btn-primary'>Authorize All</a>", WebMenu::PAGE_THINGS);
+    output << Poco::format("<a href='%s?%s=%s' class='btn btn-primary'>Authorize All</a> ", Link, ParamAction, ActionAuthAll);
+    output << Poco::format("<a href='%s?%s=%s' class='btn btn-primary'>UnAuthorize All</a>", Link, ParamAction, ActionUnAuthAll);
     renderScripts(output);
 }
 
@@ -83,7 +97,7 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
             output << "<td>";
             if (!rs[i].isEmpty()) {
                 if (rs.columnName(i) == "auth") {
-                    output << Poco::format("<a href='%s?action=auth&id=%s&auth=%s'>", WebMenu::PAGE_SAVE_THING, rs["id"].toString(), rs["auth"].toString());
+                    output << Poco::format("<a href='%s?%s=%s&%s=%s'>", Link, ParamAction, ActionToggleAuth, ParamThingID, rs["id"].toString());
                 }
                 output << rs[i].toString();
                 if (rs.columnName(i) == "auth") {
@@ -94,9 +108,9 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
         }
     }
     output << "<td>";
-    output << Poco::format("<a href='%s?id=%s'>", WebMenu::PAGE_EDIT_THING, rs["id"].toString());
+    output << Poco::format("<a href='%s?%s=%s'>", EditThingPage::Link, EditThingPage::ParamThingID, rs["id"].toString());
     output << "<span class='glyphicon glyphicon-edit' ></span> Edit</a> ";
-    output << Poco::format("<a href='%s?action=delete&id=%s'>", WebMenu::PAGE_SAVE_THING, rs["id"].toString());
+    output << Poco::format("<a href='%s?%s=%s&%s=%s'>", Link, ParamAction, ActionDelete, ParamThingID, rs["id"].toString());
     output << "<span class='glyphicon glyphicon-remove' ></span> Remove</a>";
     output << "</td>";
 
@@ -115,5 +129,44 @@ void ThingsPage::renderScripts(std::ostream& output)
 
 bool ThingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
+    std::string action = getQueryParam(ParamAction, request);
+    if (action == ActionAuthAll) {
+        handleAuthAll(true);
+    }
+    else if (action == ActionUnAuthAll) {
+        handleAuthAll(false);
+    }
+    else if (action == ActionToggleAuth) {
+        handleToggleAuth(request);
+    }
+    else if (action == ActionDelete) {
+        handleDelete(request);
+    }
     return false;
+}
+
+void ThingsPage::handleDelete(Poco::Net::HTTPServerRequest& request)
+{
+    Poco::UUID thingid = Poco::UUID(getQueryParam(ParamThingID, request));
+    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+    ion.removeThing(thingid);
+}
+
+void ThingsPage::handleToggleAuth(Poco::Net::HTTPServerRequest& request)
+{
+    Poco::UUID thingid = Poco::UUID(getQueryParam(ParamThingID, request));
+    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+    bool auth = ion.thingAuthorized(thingid);
+    ion.authorizeThing(thingid, !auth);
+}
+
+void ThingsPage::handleAuthAll(bool auth)
+{
+    AuthDataObject ado(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+    if (auth) {
+        ado.authorizeAll();
+    }
+    else {
+        ado.unAuthorizeAll();
+    }
 }

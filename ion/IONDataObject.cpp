@@ -52,6 +52,16 @@ void IONDataObject::setThing(const ThingData& thing, bool overwrite)
     };
 }
 
+void IONDataObject::removeThing(const Poco::UUID& thingid)
+{
+    ScopedTransaciton transaction(_session);
+    IPData::Container ips;
+    findThingIPs(thingid, ips);
+    for (auto ip : ips) {
+        removeIP(ip.ip(), ip.mac());
+    }
+}
+
 bool IONDataObject::ipExists(const Poco::Net::IPAddress& ip, const MAC& mac)
 {
     std::string ipstr(ip.toString());
@@ -85,7 +95,7 @@ bool IONDataObject::thingIDExists(const Poco::UUID& thingID)
     return (exists == 1);
 }
 
-void IONDataObject::removeThing(const ThingData& thing)
+void IONDataObject::removeThingData(const ThingData& thing)
 {
     std::string uuid = thing.uuid().toString();
     _session << "DELETE FROM thing WHERE id=?", use(uuid), now;
@@ -118,6 +128,12 @@ bool IONDataObject::getThing(const Poco::UUID& thingID, ThingData & data)
 void IONDataObject::findIPs(IPData::Container & container)
 {
     _session << "SELECT mac, ip, last_seen,iface FROM ip", into(container), now;
+}
+
+void IONDataObject::findThingIPs(const Poco::UUID& thingid, IPData::Container & container)
+{
+    std::string thingidstr(thingid.toString());
+    _session << "SELECT mac, ip, last_seen,iface FROM ip where thingid=?", use(thingidstr), into(container), now;
 }
 
 void IONDataObject::findOnlineIPs(IPData::Container & container)
@@ -204,7 +220,7 @@ void IONDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC & mac)
     _session << "SELECT 1 FROM ip WHERE thingid=?", use(thingid), into(exists), limit(1), now;
     if (exists == 0) {
         ThingData thing;
-        removeThing(thing);
+        removeThingData(thing);
     }
     onIPRemoved(data);
 }
@@ -277,4 +293,13 @@ void IONDataObject::authorizeThing(const Poco::UUID& thingID, bool authorize)
             ado.unAuthorize(MAC(mac));
         }
     }
+}
+
+/** return true if at least one mac address is not authorized*/
+bool IONDataObject::thingAuthorized(const Poco::UUID& thingID)
+{
+    std::string thingidstr(thingID.toString());
+    bool notAuth = 0;
+    _session << "SELECT DISTINCT 1 FROM ip WHERE ip.mac NOT IN authorized AND ip.thingid=?", use(thingidstr), into(notAuth), now;
+    return !(notAuth);
 }

@@ -90,8 +90,6 @@
       <itemPath>MailConfigPage.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
-      <itemPath>SaveThingPage.cpp</itemPath>
-      <itemPath>SaveThingPage.h</itemPath>
       <itemPath>ThingsPage.cpp</itemPath>
       <itemPath>ThingsPage.h</itemPath>
       <itemPath>WebMenu.cpp</itemPath>
@@ -327,10 +325,6 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SaveThingPage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SaveThingPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -570,10 +564,6 @@
       <item path="Routing.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Routing_LINUX.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SaveThingPage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="SaveThingPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ScopedTransaciton.cpp" ex="false" tool="1" flavor2="0">
       </item>

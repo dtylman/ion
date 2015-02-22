@@ -8,8 +8,12 @@
 #include "AddressesPage.h"
 #include "DataSubsystem.h"
 #include "WebMenu.h"
+#include "EditThingPage.h"
 #include <Poco/Data/Session.h>
 #include <Poco/Util/Application.h>
+
+const std::string AddressesPage::Title("My Addresses");
+const std::string AddressesPage::Link("addresses.bin");
 
 AddressesPage::AddressesPage()
 {
@@ -21,7 +25,7 @@ AddressesPage::~AddressesPage()
 
 std::string AddressesPage::title() const
 {
-    return "My Addresses";
+    return Title;
 }
 
 bool AddressesPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
@@ -86,7 +90,7 @@ void AddressesPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
         output << "<td>";
         if (!rs[i].isEmpty()) {
             if (rs.columnName(i) == "mac") {
-                output << Poco::format("<a href='%s?id=%s'>", WebMenu::PAGE_EDIT_THING, rs["id"].toString());
+                output << Poco::format("<a href='%s?id=%s'>", EditThingPage::Link, rs["id"].toString());
             }
             output << rs[i].toString();
             if (rs.columnName(i) == "mac") {
