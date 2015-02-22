@@ -74,7 +74,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/ProtocolUDP.o \
 	${OBJECTDIR}/Rouing.o \
 	${OBJECTDIR}/Routing_LINUX.o \
-	${OBJECTDIR}/SaveThingPage.o \
 	${OBJECTDIR}/ScopedTransaciton.o \
 	${OBJECTDIR}/Selfy.o \
 	${OBJECTDIR}/SendMail.o \
@@ -305,11 +304,6 @@ ${OBJECTDIR}/Routing_LINUX.o: Routing_LINUX.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Routing_LINUX.o Routing_LINUX.cpp
-
-${OBJECTDIR}/SaveThingPage.o: SaveThingPage.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SaveThingPage.o SaveThingPage.cpp
 
 ${OBJECTDIR}/ScopedTransaciton.o: ScopedTransaciton.cpp 
 	${MKDIR} -p ${OBJECTDIR}

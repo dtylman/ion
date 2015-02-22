@@ -9,6 +9,9 @@
 #include "WebMenu.h"
 #include <Poco/Format.h>
 
+const std::string MailConfigPage::Link("mailsetup.bin");
+const std::string MailConfigPage::Title("Mail Settings");
+
 MailConfigPage::MailConfigPage()
 {
 }
@@ -19,7 +22,7 @@ MailConfigPage::~MailConfigPage()
 
 std::string MailConfigPage::title() const
 {
-    return "Mail Settings";
+    return Title;
 }
 
 bool MailConfigPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
@@ -38,8 +41,7 @@ void MailConfigPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReque
     output << "</div>";
     output << "</div>";
     output << "<input class='btn btn-success' type='submit' value='Save' >";
-    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", WebMenu::PAGE_THINGS);
-
+    WebMenu::renderHomeButton(output, "Close");
     output << "</div>";
 
     output << "</form>";

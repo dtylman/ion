@@ -14,7 +14,11 @@
 #include <Poco/URI.h>
 #include "DataSubsystem.h"
 #include "IONDataObject.h"
+#include "ThingsPage.h"
 #include <Poco/String.h>
+
+const std::string EditThingPage::Link("editthing.bin");
+const std::string EditThingPage::ParamThingID("id");
 
 using namespace Poco::Data::Keywords;
 
@@ -30,11 +34,15 @@ EditThingPage::EditThingPage()
     _os.push_back("Linux");
     _os.push_back("Windows");
     _os.push_back("Android");
-
 }
 
 EditThingPage::~EditThingPage()
 {
+}
+
+std::string EditThingPage::title() const
+{
+    return Poco::format("Editing %s", _thing.toString());
 }
 
 void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
@@ -44,7 +52,7 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     if (!ion.getThing(Poco::UUID(id), _thing)) {
         throw Poco::NotFoundException("Thing not found");
     }
-    output << Poco::format("<form method='POST' action='%s?action=update' class='form-inline' name='form-edit-thing' >", WebMenu::PAGE_SAVE_THING);
+    output << Poco::format("<form method='POST' action='%s' class='form-inline' name='form-edit-thing' >", Link);
     output << "<div class='panel panel-default'>";
     output << "<div class='panel-heading'>";
     output << "<h3 class='panel-title'>This will explain you stuff:</h3>";
@@ -70,7 +78,7 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     output << "</div>";
 
     output << "<input class='btn btn-success' type='submit' value='Save' >";
-    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", WebMenu::PAGE_THINGS);
+    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", ThingsPage::Link);
 
     output << "</div>";
 
@@ -96,14 +104,24 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     output << "</script>";
 }
 
-std::string EditThingPage::title() const
-{
-    return Poco::format("Editing %s", _thing.toString());
-}
-
 bool EditThingPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-    return false;
+    if (!form.has("type")) {
+        return false;
+    }
+    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+    std::string id = form.get("id");
+    ThingData thing;
+    if (!ion.getThing(Poco::UUID(id), thing)) {
+        throw Poco::NotFoundException("Thing not found!");
+    }
+    thing.setType(form.get("type"));
+    thing.setVendor(form.get("vendor"));
+    thing.setOS(form.get("os"));
+    thing.setDesc(form.get("desc"));
+    ion.setThing(thing, true);
+    response.redirect(ThingsPage::Link);
+    return true;
 }
 
 void EditThingPage::renderInput(std::ostream& output, const std::string& displayName, const std::string& name, const std::string& id, const std::string& value)

@@ -15,6 +15,8 @@
 class EditThingPage : public PageRequestHandler
 {
 public:
+    static const std::string Link;
+    static const std::string ParamThingID;
     EditThingPage();
     virtual ~EditThingPage();
 protected:

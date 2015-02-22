@@ -21,6 +21,11 @@ public:
     bool isAuthorized(const MAC& mac);
     void authorize(const MAC& mac);
     void unAuthorize(const MAC& mac);
+
+    void authorizeAll();
+    void unAuthorizeAll();
+
+
 private:
     Poco::Logger& _logger;
 };

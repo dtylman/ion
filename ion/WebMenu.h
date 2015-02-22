@@ -19,15 +19,8 @@ public:
     WebMenu();
     virtual ~WebMenu();
 
-    static std::string PAGE_THINGS;
-    static std::string PAGE_ADDRESSES;
-    static std::string PAGE_EVENTS;
-    static std::string PAGE_EVENTS_CONFIG;
-    static std::string PAGE_EDIT_THING;
-    static std::string PAGE_SAVE_THING;
-    static std::string PAGE_MAIL_CONFIG;
-
     void renderNavBar(std::ostream& output, const std::string& activeTitle);
+    static void renderHomeButton(std::ostream& output, const std::string& text);
 private:
     typedef std::pair<std::string, std::string> MenuItem;
     typedef std::list<MenuItem> MenuItems;

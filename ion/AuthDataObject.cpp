@@ -41,3 +41,13 @@ void AuthDataObject::unAuthorize(const MAC& mac)
     _session << "DELETE FROM authorized WHERE mac=?", use(macstr), now;
     _logger.information("%s un-authorized", macstr);
 }
+
+void AuthDataObject::authorizeAll()
+{
+    _logger.notice("All devices authorized");
+}
+
+void AuthDataObject::unAuthorizeAll()
+{
+    _logger.notice("All devices unauthorized");
+}

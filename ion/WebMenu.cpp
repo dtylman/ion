@@ -6,23 +6,20 @@
  */
 
 #include "WebMenu.h"
+#include "ThingsPage.h"
+#include "AddressesPage.h"
+#include "EventsPage.h"
+#include "EventConfigPage.h"
+#include "MailConfigPage.h"
 #include <Poco/Format.h>
-
-std::string WebMenu::PAGE_THINGS("things.bin");
-std::string WebMenu::PAGE_EVENTS("events.bin");
-std::string WebMenu::PAGE_ADDRESSES("addresses.bin");
-std::string WebMenu::PAGE_EVENTS_CONFIG("events.config.bin");
-std::string WebMenu::PAGE_EDIT_THING("edit.thing.bin");
-std::string WebMenu::PAGE_SAVE_THING("save.thing.bin");
-std::string WebMenu::PAGE_MAIL_CONFIG("mail.config.bin");
 
 WebMenu::WebMenu()
 {
-    _navbarItems.push_back(MenuItem("My Things", PAGE_THINGS));
-    _navbarItems.push_back(MenuItem("My Addresses", PAGE_ADDRESSES));
-    _navbarItems.push_back(MenuItem("My Events", PAGE_EVENTS));
-    _navbarItems.push_back(MenuItem("Events Settings", PAGE_EVENTS_CONFIG));
-    _navbarItems.push_back(MenuItem("Mail Settings", PAGE_MAIL_CONFIG));
+    _navbarItems.push_back(MenuItem(ThingsPage::Title, ThingsPage::Link));
+    _navbarItems.push_back(MenuItem(AddressesPage::Title, AddressesPage::Link));
+    _navbarItems.push_back(MenuItem(EventsPage::Title, EventsPage::Link));
+    _navbarItems.push_back(MenuItem(EventConfigPage::Title, EventConfigPage::Link));
+    _navbarItems.push_back(MenuItem(MailConfigPage::Title, MailConfigPage::Link));
 }
 
 WebMenu::~WebMenu()
@@ -40,7 +37,7 @@ void WebMenu::renderNavBar(std::ostream& output, const std::string& activeTitle)
     output << "                <span class='icon-bar'></span>";
     output << "                <span class='icon-bar'></span>";
     output << "            </button>";
-    output << Poco::format("<a class='navbar-brand' href='%s'>%s</a>", WebMenu::PAGE_THINGS, _productName);
+    output << Poco::format("<a class='navbar-brand' href='%s'>%s</a>", ThingsPage::Link, _productName);
     output << "        </div>";
     output << "        <div id='navbar' class='navbar-collapse collapse'>";
     output << "            <ul class='nav navbar-nav navbar-right'>";
@@ -58,6 +55,7 @@ void WebMenu::renderNavBar(std::ostream& output, const std::string& activeTitle)
     for (auto item : _navbarItems) {
         output << "<li";
         if (item.first == activeTitle) {
+
             output << " class='active'";
         }
         output << "><a href = '";
@@ -70,4 +68,9 @@ void WebMenu::renderNavBar(std::ostream& output, const std::string& activeTitle)
     output << "          </div>";
     output << "     </div>";
     output << "</div>";
+}
+
+void WebMenu::renderHomeButton(std::ostream& output, const std::string& text)
+{
+    output << Poco::format("<a href='%s' class='btn btn-primary'>%s</a>", ThingsPage::Link, text);
 }

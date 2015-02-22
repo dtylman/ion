@@ -8,8 +8,12 @@
 #include "EventConfigPage.h"
 #include "EventNotification.h"
 #include "WebMenu.h"
+#include "ThingsPage.h"
 #include <Poco/Format.h>
 #include <Poco/Util/Application.h>
+
+const std::string EventConfigPage::Link("eventconf.bin");
+const std::string EventConfigPage::Title("Events Setup");
 
 EventConfigPage::EventConfigPage()
 {
@@ -40,7 +44,7 @@ void EventConfigPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequ
     output << "</div>";
     output << "</div>";
     output << "<input class='btn btn-success' type='submit' value='Save' >";
-    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", WebMenu::PAGE_THINGS);
+    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", ThingsPage::Link);
 
     output << "</div>";
 
@@ -49,7 +53,7 @@ void EventConfigPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequ
 
 std::string EventConfigPage::title() const
 {
-    return "Events Setup";
+    return Title;
 }
 
 void EventConfigPage::renderPanel(std::ostream& output, const std::string& eventName)

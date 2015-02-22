@@ -13,6 +13,8 @@
 class EventConfigPage : public PageRequestHandler
 {
 public:
+    static const std::string Title;
+    static const std::string Link;
     EventConfigPage();
     virtual ~EventConfigPage();
 protected:
