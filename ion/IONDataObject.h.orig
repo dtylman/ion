@@ -25,7 +25,7 @@ public:
     void setThing(const ThingData& thing, bool overwrite);
     void removeThing(const ThingData& thing);
     bool getThingByMAC(const MAC& mac, ThingData& thing);
-    bool getThing(const Poco::UUID& thingID, ThingData& data);
+    bool getThingByID(const Poco::UUID& thingID, ThingData& data);
     void removeIP(const Poco::Net::IPAddress& ip, const MAC& mac);
     void setRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void setSuspectedRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);

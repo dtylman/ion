@@ -99,12 +99,12 @@ bool IONDataObject::getThingByMAC(const MAC& mac, ThingData& thing)
         std::string uuid;
         std::string macstr(mac.toString());
         _session << "SELECT thingid FROM ip WHERE mac=?", use(macstr), into(uuid), limit(1), now;
-        return getThing(Poco::UUID(uuid), thing);
+        return getThingByID(Poco::UUID(uuid), thing);
     }
     return false;
 }
 
-bool IONDataObject::getThing(const Poco::UUID& thingID, ThingData & data)
+bool IONDataObjegetThingByIDhing(const Poco::UUID& thingID, ThingData & data)
 {
     ScopedTransaciton transaction(_session);
     if (!thingIDExists(thingID)) {
@@ -158,7 +158,7 @@ void IONDataObject::setRouter(const Poco::Net::IPAddress& ip, const MAC& mac, co
     IPData address(mac, ip, device);
     setIP(address);
     ThingData routerThing;
-    getThingByMAC(mac, routerThing);
+    getThingByMACThing(mac, routerThing);
     routerThing.setType("Router");
     setThing(routerThing, false);
 }
@@ -201,9 +201,10 @@ void IONDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC & mac)
     _session << "DELETE FROM ip WHERE ip=? AND mac=?", use(ipstr), use(macstr), now;
     bool exists = 0;
     std::string thingid = data.thingID().toString();
-    _session << "SELECT 1 FROM ip WHERE thingid=?", use(thingid), into(exists), limit(1), now;
+    _session << "SELECT 1 FROM ip WHERE thingid=?", use(thingid), now;
     if (exists == 0) {
         ThingData thing;
+        getThingByIDgetThing(Poco::UUID(thingid), thing);
         removeThing(thing);
     }
     onIPRemoved(data);

@@ -36,7 +36,7 @@ void ThingObserver::onFrameEvent(Frame::Ptr& frame)
         std::string vendorClass = dhcp->getOption(60);
         std::string os = _dhcp.findOS(vendorClass, hostName);
         ThingData thing;
-        if (_ion.getThing(dhcp->clientMAC(), thing)) {
+        if (_ion.getThingByMAC(dhcp->clientMAC(), thing)) {
             thing.setName(hostName);
             thing.setOS(os);
             _ion.setThing(thing, false);
