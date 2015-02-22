@@ -41,7 +41,7 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
 {
     Poco::UUID id(getQueryParam("id", request));
     IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    if (!ion.getThing(id, _thing)) {
+    if (!ion.getThing(Poco::UUID(id), _thing)) {
         throw Poco::NotFoundException("Thing not found");
     }
     output << Poco::format("<form method='POST' action='%s?action=update' class='form-inline' name='form-edit-thing' >", WebMenu::PAGE_SAVE_THING);

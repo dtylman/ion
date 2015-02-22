@@ -54,7 +54,7 @@ void Selfy::reportIPConfig(const Poco::Net::IPAddress& ip, const std::string& pc
             MAC mac = Poco::Net::NetworkInterface::forAddress(ip).macAddress();
             DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
             IONDataObject ion(data.createSession());
-			ion.getThing(mac, myThing);
+			ion.getThingByMAC(mac, myThing);
             IPData ipData(mac, ip, pcapName);
             ion.setIP(ipData);
         }
