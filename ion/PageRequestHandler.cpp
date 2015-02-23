@@ -46,15 +46,14 @@ void PageRequestHandler::renderHeader(std::ostream& output)
 
 void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-
-    try {
+    if (request.getMethod() == Poco::Net::HTTPServerRequest::HTTP_POST) {
         Poco::Net::HTMLForm form(request, request.stream());
-        if (!form.empty()) {
-            if (handleForm(form, request, response)) {
-                return;
-            }
+        if (handleForm(form, request, response)) {
+            return;
         }
-        std::ostream& output = response.send();
+    }
+    std::ostream& output = response.send();
+    try {
         response.setChunkedTransferEncoding(true);
         response.setContentType("text/html");
 
@@ -63,9 +62,29 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
         menu.renderNavBar(output, title());
         output << "<div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>";
         output << "<h2 class='sub-header'>" << title() << "</h2>";
-        renderBody(output, request);
+
+        bool isForm = renderFormStart(output);
+        output << "<div class='panel panel-default'>";
+
+        output << "<div class='panel-heading'>";
+        output << "<h3 class='panel-title'>" << subtitle() << "</h3>";
+        output << "</div>"; //panel heading
+
+        output << "<div class='panel-body'>";
+        renderPanelBody(output, request);
+        output << "</div>"; //panel
+
+        output << "<div class='panel-footer clearfix'>";
+        renderButtons(output);
         output << "</div>";
-        renderFooter(output);
+
+        output << "</div>"; //main
+        if (isForm) {
+            output << "</form>";
+        }
+        renderScripts(output);
+
+        renderPageFooter(output);
     }
     catch (Poco::Exception& ex) {
         std::ostream& output = response.send();
@@ -76,7 +95,7 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
     }
 }
 
-void PageRequestHandler::renderFooter(std::ostream& output)
+void PageRequestHandler::renderPageFooter(std::ostream& output)
 {
     output << "        <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200' preserveAspectRatio='none' style='visibility: hidden; position: absolute; top: -100%; left: -100%;'>";
     output << "        <defs></defs>";
@@ -96,4 +115,12 @@ std::string PageRequestHandler::getQueryParam(const std::string& name, Poco::Net
     throw Poco::NotFoundException(Poco::format("Required param %s not found", name));
 }
 
+bool PageRequestHandler::renderFormStart(std::ostream& output)
+{
+    return false;
+}
 
+void PageRequestHandler::renderScripts(std::ostream& output)
+{
+
+}

@@ -24,7 +24,17 @@ EventsPage::~EventsPage()
 {
 }
 
-void EventsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
+void EventsPage::renderButtons(std::ostream& output)
+{
+
+}
+
+std::string EventsPage::subtitle() const
+{
+    return "some text";
+}
+
+void EventsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     output << "<table id='events' class='table table-responsive' >";
 
@@ -47,12 +57,6 @@ void EventsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& 
     }
     output << "    </tbody>";
     output << "</table>";
-
-    output << "<script>";
-    output << "    $(document).ready(function () {";
-    output << "        $('#events').dataTable();";
-    output << "    });";
-    output << "</script>";
 }
 
 std::string EventsPage::title() const
@@ -78,4 +82,13 @@ void EventsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
         output << Poco::format("<td>%s</td>", details);
     }
     output << "</tr>";
+}
+
+void EventsPage::renderScripts(std::ostream& output)
+{
+    output << "<script>";
+    output << "    $(document).ready(function () {";
+    output << "        $('#events').dataTable();";
+    output << "    });";
+    output << "</script>";
 }

@@ -33,11 +33,21 @@ bool AddressesPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerR
     return false;
 }
 
-void AddressesPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
+void AddressesPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     renderTable(output);
 
     renderScripts(output);
+}
+
+void AddressesPage::renderButtons(std::ostream& output)
+{
+
+}
+
+std::string AddressesPage::subtitle() const
+{
+    return "Some text goes here";
 }
 
 void AddressesPage::renderTable(std::ostream& output)

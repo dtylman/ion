@@ -45,22 +45,32 @@ std::string EditThingPage::title() const
     return Poco::format("Editing %s", _thing.toString());
 }
 
-void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
+std::string EditThingPage::subtitle() const
+{
+    return "This will explain you stuff";
+}
+
+void EditThingPage::renderButtons(std::ostream& output)
+{
+    output << "<input class='btn btn-success' type='submit' value='Save' >";
+    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", ThingsPage::Link);
+}
+
+bool EditThingPage::renderFormStart(std::ostream& output)
+{
+    output << Poco::format("<form method='POST' action='%s' class='form-inline' name='form-edit-thing' >", Link);
+    return true;
+}
+
+void EditThingPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     Poco::UUID id(getQueryParam("id", request));
     IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
     if (!ion.getThing(Poco::UUID(id), _thing)) {
         throw Poco::NotFoundException("Thing not found");
     }
-    output << Poco::format("<form method='POST' action='%s' class='form-inline' name='form-edit-thing' >", Link);
-    output << "<div class='panel panel-default'>";
-    output << "<div class='panel-heading'>";
-    output << "<h3 class='panel-title'>This will explain you stuff:</h3>";
-    output << "</div>";
-    output << "<div class='panel-body'>";
 
     output << Poco::format("<input type='hidden' name='id' value='%s'/>", _thing.uuid().toString());
-
     renderInput(output, "Type: ", "type", "txtType", _thing.type());
     output << "<br/>";
     renderInput(output, "Vendor: ", "vendor", "txtVendor", _thing.vendor());
@@ -71,19 +81,10 @@ void EditThingPage::renderBody(std::ostream& output, Poco::Net::HTTPServerReques
     output << "<div class='row'><div class='col-lg-6'>Description: </br>";
     output << Poco::format("<textarea name='desc' class='input-xlarge' width='100'>%s</textarea>", _thing.desc());
     output << "</div>";
-    output << "</div>";
+}
 
-
-    output << "</div>";
-    output << "</div>";
-
-    output << "<input class='btn btn-success' type='submit' value='Save' >";
-    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", ThingsPage::Link);
-
-    output << "</div>";
-
-
-    output << "</form>";
+void EditThingPage::renderScripts(std::ostream& output)
+{
     output << "<script>";
     output << "var substringMatcher = function (strs) {";
     output << "return function (q, cb) {";

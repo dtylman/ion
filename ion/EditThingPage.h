@@ -21,8 +21,12 @@ public:
     virtual ~EditThingPage();
 protected:
     virtual std::string title() const;
-    virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
+    virtual std::string subtitle() const;
+    virtual bool renderFormStart(std::ostream& output);
+    virtual void renderButtons(std::ostream& output);
+    virtual void renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
+    virtual void renderScripts(std::ostream& output);
 private:
     void renderInput(std::ostream& output, const std::string& displayName, const std::string& name, const std::string& id, const std::string& value);
     void renderTypeAheadScript(std::ostream& output, const std::string& name, const std::string& id, const std::list<std::string>& list);

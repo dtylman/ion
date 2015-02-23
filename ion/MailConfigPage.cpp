@@ -30,19 +30,25 @@ bool MailConfigPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServer
     return false;
 }
 
-void MailConfigPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
+void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    output << "<form class='form-group'>";
-    output << "<div class='panel panel-default'>";
-    output << "<div class='panel-heading'>";
-    output << "<h3 class='panel-title'>This should explain what this page is for</h3>";
-    output << "</div>";
-    output << "<div class='panel-body'>";
-    output << "</div>";
-    output << "</div>";
+
+}
+
+std::string MailConfigPage::subtitle() const
+{
+    return "this is some text";
+}
+
+void MailConfigPage::renderButtons(std::ostream& output)
+{
     output << "<input class='btn btn-success' type='submit' value='Save' >";
     WebMenu::renderHomeButton(output, "Close");
-    output << "</div>";
+}
 
-    output << "</form>";
+bool MailConfigPage::renderFormStart(std::ostream& output)
+{
+    output << Poco::format("<form method='POST' action='%s'>", Link);
+    return true;
+
 }

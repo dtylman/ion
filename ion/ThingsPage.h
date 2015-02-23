@@ -26,15 +26,19 @@ public:
     virtual ~ThingsPage();
 protected:
     virtual std::string title() const;
-    virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
+    virtual std::string subtitle() const;
+    virtual void renderButtons(std::ostream& output);
+
+    virtual void renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
+
+    virtual void renderScripts(std::ostream& output);
 private:
     void handleToggleAuth(Poco::Net::HTTPServerRequest& request);
     void handleAuthAll(bool auth);
     void handleDelete(Poco::Net::HTTPServerRequest& request);
     void renderTable(std::ostream& output);
     void renderRow(std::ostream& output, Poco::Data::RecordSet& rs);
-    void renderScripts(std::ostream& output);
 };
 
 #endif	/* DEVICESREQUESTHANDLER_H */
