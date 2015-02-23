@@ -62,35 +62,35 @@ void EventConfigPage::updateConfig(Poco::Net::HTMLForm& form, const std::string&
     }
 }
 
-void EventConfigPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
+void EventConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    output << Poco::format("<form method='POST' action='%s'>", Link);
-    output << "<div class='panel panel-default'>";
-
-    output << "<div class='panel-heading'>";
-    output << "<h3 class='panel-title'>This should explain what this page is for</h3>";
-    output << "</div>";
-
-    output << "<div class='panel-body'>";
     renderPanel(output, EventNotification::IP_OFFLINE);
     renderPanel(output, EventNotification::IP_ONLINE);
     renderPanel(output, EventNotification::NOT_AUTHORIZED);
     renderPanel(output, EventNotification::THING_OFFLINE);
     renderPanel(output, EventNotification::THING_ONLINE);
-    output << "</div>";
+}
 
-    output << "<div class='panel-footer clearfix'>";
-    output << "<input class='btn btn-success' type='submit' value='Save' >";
-    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", ThingsPage::Link);
-    output << "</div>";
-    output << "</div>";
-
-    output << "</form>";
+bool EventConfigPage::renderFormStart(std::ostream& output)
+{
+    output << Poco::format("<form method='POST' action='%s'>", Link);
+    return true;
 }
 
 std::string EventConfigPage::title() const
 {
     return Title;
+}
+
+std::string EventConfigPage::subtitle() const
+{
+    return "subtitle";
+}
+
+void EventConfigPage::renderButtons(std::ostream& output)
+{
+    output << "<input class='btn btn-success' type='submit' value='Save' >";
+    output << Poco::format(" <a href='%s' class='btn btn-primary'>Cancel</a>", ThingsPage::Link);
 }
 
 void EventConfigPage::renderPanel(std::ostream& output, const std::string& eventName)

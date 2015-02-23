@@ -20,7 +20,12 @@ public:
     virtual ~EventsPage();
 protected:
     virtual std::string title() const;
-    virtual void renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
+    virtual std::string subtitle() const;
+    virtual void renderButtons(std::ostream& output);
+
+    virtual void renderScripts(std::ostream& output);
+
+    virtual void renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
     void renderRow(std::ostream& output, Poco::Data::RecordSet& rs);
