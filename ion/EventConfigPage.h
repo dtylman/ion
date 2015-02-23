@@ -25,6 +25,8 @@ protected:
 private:
     void renderPanel(std::ostream& output, const std::string& eventName);
     void renderCheckbox(std::ostream& output, const std::string& eventName, const std::string& eventType, const std::string& desc);
+    void updateConfig(Poco::Net::HTMLForm& form, const std::string& eventName, const std::string& eventType);
+    void updateConfig(Poco::Net::HTMLForm& form, const std::string& eventName);
 };
 
 #endif	/* EVENTCONFIGPAGE_H */
