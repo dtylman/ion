@@ -15,6 +15,8 @@ class MailConfigPage : public PageRequestHandler
 public:
     static const std::string Title;
     static const std::string Link;
+    static const std::string ParamAction;
+    static const std::string GMail;
     MailConfigPage();
     virtual ~MailConfigPage();
 protected:
@@ -28,6 +30,10 @@ private:
     void renderInput(std::ostream& output, const std::string& name, const std::string& text,
                      const std::string& placeHolder, const std::string& configKey, const std::string& type = "text", int cols = 2);
     void renderChkbox(std::ostream& output, const std::string& name, const std::string& text, const std::string& configKey, int cols = 1);
+    void renderSelect(std::ostream& output, const std::string& name, const std::string& text, const std::string& configKey);
+    void renderOption(std::ostream& output, const std::string& value, const std::string& option);
+
+    void configureGMail();
 };
 
 #endif	/* MAILCONFIGPAGE_H */
