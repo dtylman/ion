@@ -72,16 +72,19 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
 
         output << "<div class='panel-body'>";
         renderPanelBody(output, request);
-        output << "</div>"; //panel
+        output << "</div>"; //panel body
 
         output << "<div class='panel-footer clearfix'>";
         renderButtons(output);
-        output << "</div>";
+        output << "</div>"; //panel--footer
 
-        output << "</div>"; //main
+        output << "</div>"; //panel
+
         if (isForm) {
             output << "</form>";
         }
+        output << "</div>"; //main
+
         renderScripts(output);
 
         renderPageFooter(output);

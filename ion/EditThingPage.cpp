@@ -58,7 +58,7 @@ void EditThingPage::renderButtons(std::ostream& output)
 
 bool EditThingPage::renderFormStart(std::ostream& output)
 {
-    output << Poco::format("<form method='POST' action='%s' class='form-inline' name='form-edit-thing' >", Link);
+    output << Poco::format("<form method='POST' action='%s' class='form-inline'>", Link);
     return true;
 }
 
@@ -69,17 +69,12 @@ void EditThingPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerR
     if (!ion.getThing(Poco::UUID(id), _thing)) {
         throw Poco::NotFoundException("Thing not found");
     }
-
     output << Poco::format("<input type='hidden' name='id' value='%s'/>", _thing.uuid().toString());
     renderInput(output, "Type: ", "type", "txtType", _thing.type());
-    output << "<br/>";
     renderInput(output, "Vendor: ", "vendor", "txtVendor", _thing.vendor());
-    output << "<br/>";
     renderInput(output, "Operating System: ", "os", "txtOS", _thing.os());
-    output << "<br/>";
-
-    output << "<div class='row'><div class='col-lg-6'>Description: </br>";
-    output << Poco::format("<textarea name='desc' class='input-xlarge' width='100'>%s</textarea>", _thing.desc());
+    output << "<div class='form-group col-xs-2'><label class='form-control'>Description:</label>";
+    output << Poco::format("<textarea name='desc' class='form-control' style='height:33px;width:400px'>%s</textarea>", _thing.desc());
     output << "</div>";
 }
 
@@ -127,10 +122,9 @@ bool EditThingPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerR
 
 void EditThingPage::renderInput(std::ostream& output, const std::string& displayName, const std::string& name, const std::string& id, const std::string& value)
 {
-    output << "<div class='row'><div class='col-lg-6'>";
-    output << displayName;
+    output << "<div class='form-group col-xs-2'>";
+    output << Poco::format("<label class='form-control'>%s</label>", displayName);
     output << Poco::format("<input class='typeahead form-control' name='%s' type='text' placeholder='Value..' id='%s' value='%s'/>", name, id, value);
-    output << "</div>";
     output << "</div>";
 }
 
