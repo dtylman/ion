@@ -20,10 +20,12 @@ public:
     Main();
     virtual ~Main();
 
+    void saveConfig();
 protected:
     virtual int main(const std::vector<std::string>& args);
     void initialize(Poco::Util::Application& self);
 private:
+    std::string configFileName() const;
     void onOnlineScan(Poco::Util::TimerTask& timerTask);
     Poco::Util::Timer _timer;
     Solicitator _solicitator;

@@ -44,9 +44,17 @@ std::string ThingsPage::title() const
 
 void ThingsPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
+    output << "<div class='panel panel-default'>";
+    output << "<div class='panel-heading'>";
+    output << "<h3 class='panel-title'>This should explain what this page is for</h3>";
+    output << "</div>";
+
     renderTable(output);
+    output << "<div class='panel-footer clearfix'>";
     output << Poco::format("<a href='%s?%s=%s' class='btn btn-primary'>Authorize All</a> ", Link, ParamAction, ActionAuthAll);
     output << Poco::format("<a href='%s?%s=%s' class='btn btn-primary'>UnAuthorize All</a>", Link, ParamAction, ActionUnAuthAll);
+    output << "</div>";
+    output << "</div>";
     renderScripts(output);
 }
 

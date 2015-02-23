@@ -51,9 +51,8 @@ int Main::main(const std::vector<std::string>& args)
 void Main::initialize(Poco::Util::Application& self)
 {
     config().add(new Poco::Util::SystemConfiguration(), PRIO_SYSTEM);
-    Poco::Path path(config().getString("application.dir"));
-    path.setFileName("ion.properties");
-    _config = new Poco::Util::PropertyFileConfiguration(path.toString());
+
+    _config = new Poco::Util::PropertyFileConfiguration(configFileName());
     config().addWriteable(_config, PRIO_APPLICATION, true);
     Poco::Util::ServerApplication::initialize(self);
     unsigned interval = config().getUInt("ion.offline-interval", 10) * 60 * 1000;
@@ -70,6 +69,18 @@ void Main::onOnlineScan(Poco::Util::TimerTask& timerTask)
     }
 }
 
+std::string Main::configFileName() const
+{
+    Poco::Path path(config().getString("application.dir"));
+    path.setFileName("ion.properties");
+    return path.toString();
+}
+
+void Main::saveConfig()
+{
+    _config->save(configFileName());
+    logger().notice("Saving configuration");
+}
 
 
 POCO_SERVER_MAIN(Main)

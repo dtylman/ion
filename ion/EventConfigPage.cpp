@@ -9,6 +9,7 @@
 #include "EventNotification.h"
 #include "WebMenu.h"
 #include "ThingsPage.h"
+#include "Main.h"
 #include <Poco/Format.h>
 #include <Poco/Util/Application.h>
 
@@ -25,12 +26,45 @@ EventConfigPage::~EventConfigPage()
 
 bool EventConfigPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
+    if (request.getMethod() == Poco::Net::HTTPServerRequest::HTTP_POST) {
+        updateConfig(form, EventNotification::IP_OFFLINE);
+        updateConfig(form, EventNotification::IP_ONLINE);
+        updateConfig(form, EventNotification::NOT_AUTHORIZED);
+        updateConfig(form, EventNotification::THING_OFFLINE);
+        updateConfig(form, EventNotification::THING_ONLINE);
+        Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
+        main.saveConfig();
+    }
     return false;
+}
+
+void EventConfigPage::updateConfig(Poco::Net::HTMLForm& form, const std::string& eventName)
+{
+    updateConfig(form, eventName, "save");
+    updateConfig(form, eventName, "mail");
+    updateConfig(form, eventName, "syslog");
+    std::string name = Poco::format("txt_%s", eventName);
+    if (form.has(name)) {
+        std::string keyName = Poco::format("ion.events.%s.text", eventName);
+        Poco::Util::Application::instance().config().setString(keyName, form.get(name));
+    }
+}
+
+void EventConfigPage::updateConfig(Poco::Net::HTMLForm& form, const std::string& eventName, const std::string& eventType)
+{
+    std::string name = Poco::format("chk_%s_%s", eventName, eventType);
+    std::string keyName = Poco::format("ion.events.%s.%s", eventName, eventType);
+    if (form.has(name)) {
+        Poco::Util::Application::instance().config().setBool(keyName, true);
+    }
+    else {
+        Poco::Util::Application::instance().config().setBool(keyName, false);
+    }
 }
 
 void EventConfigPage::renderBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    output << "<form>";
+    output << Poco::format("<form method='POST' action='%s'>", Link);
     output << "<div class='panel panel-default'>";
 
     output << "<div class='panel-heading'>";
@@ -66,15 +100,16 @@ void EventConfigPage::renderPanel(std::ostream& output, const std::string& event
 
     output << "<div class='row form-group'>";
     output << Poco::format("<label class='col-xs-2'>When %s:</label>", eventName);
-    output << "<label class='control-label col-xs-1' >Message Text:</label>";
+    output << "<label class='control-label col-xs-1'>Use Text:</label>";
     output << "<div class='col-xs-6'>";
-    output << Poco::format("<input class='form-control' name='txt%s' value='%s'>", eventName, text);
+    output << Poco::format("<input class='form-control' name='txt_%s' value='%s'>", eventName, text);
     output << "</div>";
     output << "</div>";
     output << "<div class='row form-group'>";
-    renderCheckbox(output, eventName, "save", "Save to local database");
+    output << "<label class='control-label col-xs-2'>Dispatch to:</label>";
+    renderCheckbox(output, eventName, "save", "Local storage");
     renderCheckbox(output, eventName, "mail", "Send Mail");
-    renderCheckbox(output, eventName, "syslog", "Write to system logger");
+    renderCheckbox(output, eventName, "syslog", "System logger");
     output << "</div>";
 
 }
@@ -86,9 +121,9 @@ void EventConfigPage::renderCheckbox(std::ostream& output, const std::string& ev
     if (Poco::Util::Application::instance().config().getBool(keyName)) {
         checeked = "checked";
     }
-    output << "<div class='col-xs-3'>";
-    output << Poco::format("<input type='checkbox' name='chk%s_%s' %s value='%s'>", eventType, eventName, checeked, desc);
-    output << "</div>";
+    output << "<div class='col-xs-2'><label class='checkbox'>";
+    output << Poco::format("<input type='checkbox' name='chk_%s_%s' %s>%s", eventName, eventType, checeked, desc);
+    output << "</label></div>";
 
 }
 
