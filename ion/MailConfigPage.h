@@ -21,13 +21,12 @@ protected:
     virtual std::string title() const;
     virtual std::string subtitle() const;
     virtual void renderButtons(std::ostream& output);
-
     virtual bool renderFormStart(std::ostream& output);
-
-
     virtual void renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest & request);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse & response);
-
+private:
+    void renderInput(std::ostream& output, const std::string& name, const std::string& text,
+                     const std::string& placeHolder, const std::string& configKey, const std::string& type = "text", int cols = 2);
 };
 
 #endif	/* MAILCONFIGPAGE_H */
