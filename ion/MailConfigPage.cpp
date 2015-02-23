@@ -36,7 +36,7 @@ void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServer
     output << "<div class='row'>";
     renderInput(output, "host", "SMTP Server", "server name or ip", "ion.mail.host");
     renderInput(output, "port", "SMTP Port", "port number...", "ion.mail.port", "text", 1);
-    renderInput(output, "ssl", "Use SSL", "", "ion.mail.ssl", "checkbox", 1);
+    renderChkbox(output, "ssl", "Use SSL", "ion.mail.ssl");
     output << "</div>";
 
     output << "<div class='row'>";
@@ -64,6 +64,19 @@ void MailConfigPage::renderInput(std::ostream& output, const std::string& name, 
     output << Poco::format("<label for='%s'>%s</label>", id, text);
     std::string value = Poco::Util::Application::instance().config().getString(configKey);
     output << Poco::format("<input type='%s' class='form-control' id='%s' placeholder='%s' name='%s' value='%s'>", type, id, placeHolder, name, value);
+    output << "</div>";
+}
+
+void MailConfigPage::renderChkbox(std::ostream& output, const std::string& name, const std::string& text, const std::string& configKey, int cols)
+{
+    std::string id = Poco::format("id_%s", name);
+    output << Poco::format("<div class='form-group col-xs-%d'>", cols);
+    output << Poco::format("<label for='%s'>%s</label>", id, text);
+    std::string checked = "";
+    if (Poco::Util::Application::instance().config().getBool(configKey)) {
+        checked = "checked";
+    }
+    output << Poco::format("<input type='checkbox' class='form-control' id='%s' name='%s' %s>", id, name, checked);
     output << "</div>";
 }
 

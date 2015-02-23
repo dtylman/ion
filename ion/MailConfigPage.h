@@ -27,6 +27,7 @@ protected:
 private:
     void renderInput(std::ostream& output, const std::string& name, const std::string& text,
                      const std::string& placeHolder, const std::string& configKey, const std::string& type = "text", int cols = 2);
+    void renderChkbox(std::ostream& output, const std::string& name, const std::string& text, const std::string& configKey, int cols = 1);
 };
 
 #endif	/* MAILCONFIGPAGE_H */
