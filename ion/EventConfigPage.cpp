@@ -10,6 +10,7 @@
 #include "WebMenu.h"
 #include "ThingsPage.h"
 #include "Main.h"
+#include "WebForm.h"
 #include <Poco/Format.h>
 #include <Poco/Util/Application.h>
 
@@ -95,23 +96,14 @@ void EventConfigPage::renderButtons(std::ostream& output)
 
 void EventConfigPage::renderPanel(std::ostream& output, const std::string& eventName)
 {
-    std::string keyName = Poco::format("ion.events.%s.text", eventName);
-    std::string text = Poco::Util::Application::instance().config().getString(keyName);
-
-    output << "<div class='row form-group'>";
-    output << Poco::format("<label class='col-xs-2'>When %s:</label>", eventName);
-    output << "<label class='control-label col-xs-1'>Use Text:</label>";
-    output << "<div class='col-xs-6'>";
-    output << Poco::format("<input class='form-control' name='txt_%s' value='%s'>", eventName, text);
-    output << "</div>";
-    output << "</div>";
-    output << "<div class='row form-group'>";
-    output << "<label class='control-label col-xs-2'>Dispatch to:</label>";
-    renderCheckbox(output, eventName, "save", "Local storage");
-    renderCheckbox(output, eventName, "mail", "Send Mail");
-    renderCheckbox(output, eventName, "syslog", "System logger");
-    output << "</div>";
-
+    const Poco::Util::AbstractConfiguration* config = Poco::Util::Application::instance().config().createView(Poco::format("ion.events.%s", eventName));
+    WebForm wf(output);
+    wf.startRow();
+    wf.renderInput("txt_" + eventName, eventName + " Message Text:", "Enter Text", config->getString("text"), true, "text", 5);
+    wf.renderChkbox("chk_" + eventName + "_save", "Save", config->getBool("save"), 1);
+    wf.renderChkbox("chk_" + eventName + "_mail", "Send mail", config->getBool("mail"), 1);
+    wf.renderChkbox("chk_" + eventName + "_syslog", "Write to System Logger", config->getBool("syslog"), 1);
+    wf.endRow();
 }
 
 void EventConfigPage::renderCheckbox(std::ostream& output, const std::string& eventName, const std::string& eventType, const std::string& desc)
