@@ -102,7 +102,7 @@ void EventConfigPage::renderPanel(std::ostream& output, const std::string& event
     wf.renderInput("txt_" + eventName, eventName + " Message Text:", "Enter Text", config->getString("text"), true, "text", 5);
     wf.renderChkbox("chk_" + eventName + "_save", "Save", config->getBool("save"), 1);
     wf.renderChkbox("chk_" + eventName + "_mail", "Send mail", config->getBool("mail"), 1);
-    wf.renderChkbox("chk_" + eventName + "_syslog", "Write to System Logger", config->getBool("syslog"), 1);
+    wf.renderChkbox("chk_" + eventName + "_syslog", "Write to System Logger", config->getBool("syslog"), 2);
     wf.endRow();
 }
 

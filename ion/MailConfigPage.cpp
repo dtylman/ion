@@ -66,7 +66,6 @@ bool MailConfigPage::updateSettings(Poco::Net::HTMLForm& form, const std::string
 
 void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    std::string value;
     Poco::Util::LayeredConfiguration& config = Poco::Util::Application::instance().config();
     WebForm wf(output);
     wf.startRow();
