@@ -117,9 +117,6 @@
     <ClCompile Include="PageRequestHandler.cpp">
       <Filter>Web</Filter>
     </ClCompile>
-    <ClCompile Include="SaveThingPage.cpp">
-      <Filter>Web</Filter>
-    </ClCompile>
     <ClCompile Include="ThingsPage.cpp">
       <Filter>Web</Filter>
     </ClCompile>
@@ -249,9 +246,6 @@
       <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="PageRequestHandler.h">
-      <Filter>Web</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveThingPage.h">
       <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="ThingsPage.h">
