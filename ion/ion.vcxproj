@@ -50,7 +50,6 @@
     <ClCompile Include="ProtocolUDP.cpp" />
     <ClCompile Include="Rouing.cpp" />
     <ClCompile Include="Routing_WIN32.cpp" />
-    <ClCompile Include="SaveThingPage.cpp" />
     <ClCompile Include="ScopedTransaciton.cpp" />
     <ClCompile Include="Selfy.cpp" />
     <ClCompile Include="SendMail.cpp" />
@@ -100,7 +99,6 @@
     <ClInclude Include="ProtocolIP.h" />
     <ClInclude Include="ProtocolNBDatagram.h" />
     <ClInclude Include="ProtocolUDP.h" />
-    <ClInclude Include="SaveThingPage.h" />
     <ClInclude Include="ScopedTransaciton.h" />
     <ClInclude Include="Selfy.h" />
     <ClInclude Include="SendMail.h" />
