@@ -12,6 +12,12 @@
 #include <Poco/NObserver.h>
 #include <Poco/NotificationCenter.h>
 #include <Poco/Util/Application.h>
+#include <Poco/Net/Context.h>
+#include <Poco/Net/SSLManager.h>
+#include <Poco/Net/PrivateKeyPassphraseHandler.h>
+#include <Poco/Net/InvalidCertificateHandler.h>
+#include <Poco/Net/AcceptCertificateHandler.h>
+#include <Poco/SharedPtr.h>
 
 EventsSubsystem::EventsSubsystem() : _activity(this, &EventsSubsystem::runActivity),
 _logger(Poco::Logger::get("EventsSubsystem"))
@@ -27,6 +33,9 @@ EventsSubsystem::~EventsSubsystem()
 void EventsSubsystem::initialize(Poco::Util::Application& app)
 {
     _logger.debug("EventsSubsystem::initialize");
+    Poco::SharedPtr<Poco::Net::InvalidCertificateHandler> cert(new Poco::Net::AcceptCertificateHandler(true));
+    Poco::Net::Context::Ptr context = new Poco::Net::Context(Poco::Net::Context::CLIENT_USE, "", "", "", Poco::Net::Context::VERIFY_RELAXED, 9, true, "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH");
+    Poco::Net::SSLManager::instance().initializeClient(nullptr, cert, context);
     _activity.start();
 }
 
@@ -41,6 +50,7 @@ void EventsSubsystem::uninitialize()
     _activity.stop();
     _queue.wakeUpAll();
     _activity.wait(2500);
+    Poco::Net::uninitializeSSL();
 }
 
 void EventsSubsystem::notify(EventNotification::Ptr notif)
@@ -98,7 +108,7 @@ void EventsSubsystem::mailEvent(const EventData& eventData)
 {
     try {
         SendMail mail;
-        mail.send(eventData);
+        mail.sendEvent(eventData);
     }
     catch (Poco::Exception& ex) {
         _logger.error("Failed to send mail: %s", ex.displayText());

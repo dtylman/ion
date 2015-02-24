@@ -9,6 +9,7 @@
 #include "WebMenu.h"
 #include "Main.h"
 #include "WebForm.h"
+#include "MailSendPage.h"
 #include <Poco/Format.h>
 #include <Poco/Util/Application.h>
 
@@ -76,7 +77,7 @@ void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServer
 
     wf.startRow();
     wf.renderInput("user", "SMTP Username", "user name if applicable", config.getString("ion.mail.user"));
-    wf.renderInput("password", "SMTP Password", "password if applicable", config.getString("ion.mail.password"), "password");
+    wf.renderInput("password", "SMTP Password", "password if applicable", config.getString("ion.mail.password"), true, "password");
     WebForm::Options options;
     options.push_back("AUTH_NONE");
     options.push_back("AUTH_CRAM_MD5");
@@ -99,16 +100,14 @@ void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServer
 
 std::string MailConfigPage::subtitle() const
 {
-
     return "this is some text";
 }
 
 void MailConfigPage::renderButtons(std::ostream& output)
 {
-
     output << "<input class='btn btn-success' type='submit' value='Save'> ";
     output << "<div class='btn btn-primary' onclick='configuregmail()'>I am using GMAIL</div> ";
-    output << "<input class='btn btn-primary' type='submit' value='Test'> ";
+    WebMenu::renderLinkButton(output, "Test", MailSendPage::Link);
     WebMenu::renderHomeButton(output, "Close");
 }
 

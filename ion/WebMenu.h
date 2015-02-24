@@ -21,6 +21,7 @@ public:
 
     void renderNavBar(std::ostream& output, const std::string& activeTitle);
     static void renderHomeButton(std::ostream& output, const std::string& text);
+    static void renderLinkButton(std::ostream& output, const std::string& text, const std::string& target);
 private:
     typedef std::pair<std::string, std::string> MenuItem;
     typedef std::list<MenuItem> MenuItems;

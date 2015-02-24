@@ -72,5 +72,10 @@ void WebMenu::renderNavBar(std::ostream& output, const std::string& activeTitle)
 
 void WebMenu::renderHomeButton(std::ostream& output, const std::string& text)
 {
-    output << Poco::format("<a href='%s' class='btn btn-primary'>%s</a>", ThingsPage::Link, text);
+    renderLinkButton(output, text, ThingsPage::Link);
+}
+
+void WebMenu::renderLinkButton(std::ostream& output, const std::string& text, const std::string& target)
+{
+    output << Poco::format("<a href='%s' class='btn btn-primary'>%s</a> ", target, text);
 }

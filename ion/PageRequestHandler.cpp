@@ -90,7 +90,6 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
         renderPageFooter(output);
     }
     catch (Poco::Exception& ex) {
-        std::ostream& output = response.send();
         output << "<div class='alert alert-danger' role='alert'>Ouch! ";
         output << ex.displayText();
         output << "</div>";
