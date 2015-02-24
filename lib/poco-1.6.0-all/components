@@ -1,10 +1,16 @@
+CppUnit
+CppUnit/WinTestRunner
 Foundation
 XML
 JSON
 Util
 Net
+Crypto
+NetSSL_OpenSSL
 Data
 Data/SQLite
+Data/ODBC
+Data/MySQL
 MongoDB
 Zip
 PageCompiler
