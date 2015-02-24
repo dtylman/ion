@@ -35,6 +35,7 @@
     <ClCompile Include="IPDataObserver.cpp" />
     <ClCompile Include="MAC.cpp" />
     <ClCompile Include="MailConfigPage.cpp" />
+    <ClCompile Include="MailSendPage.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PageRequestHandler.cpp" />
     <ClCompile Include="PcapActivity.cpp" />
@@ -53,10 +54,12 @@
     <ClCompile Include="ScopedTransaciton.cpp" />
     <ClCompile Include="Selfy.cpp" />
     <ClCompile Include="SendMail.cpp" />
+    <ClCompile Include="ServerSettingsPage.cpp" />
     <ClCompile Include="Solicitator.cpp" />
     <ClCompile Include="ThingData.cpp" />
     <ClCompile Include="ThingObserver.cpp" />
     <ClCompile Include="ThingsPage.cpp" />
+    <ClCompile Include="WebForm.cpp" />
     <ClCompile Include="WebMenu.cpp" />
     <ClCompile Include="WebRequestHandlerFactory.cpp" />
     <ClCompile Include="WebSubsystem.cpp" />
@@ -86,6 +89,7 @@
     <ClInclude Include="IPDataObserver.h" />
     <ClInclude Include="MAC.h" />
     <ClInclude Include="MailConfigPage.h" />
+    <ClInclude Include="MailSendPage.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="PageRequestHandler.h" />
     <ClInclude Include="PcapActivity.h" />
@@ -102,10 +106,12 @@
     <ClInclude Include="ScopedTransaciton.h" />
     <ClInclude Include="Selfy.h" />
     <ClInclude Include="SendMail.h" />
+    <ClInclude Include="ServerSettingsPage.h" />
     <ClInclude Include="Solicitator.h" />
     <ClInclude Include="ThingData.h" />
     <ClInclude Include="ThingObserver.h" />
     <ClInclude Include="ThingsPage.h" />
+    <ClInclude Include="WebForm.h" />
     <ClInclude Include="WebMenu.h" />
     <ClInclude Include="WebRequestHandlerFactory.h" />
     <ClInclude Include="WebSubsystem.h" />
@@ -151,12 +157,14 @@
     <Import Project="..\libnet.props" />
     <Import Project="..\pcap.props" />
     <Import Project="..\Poco.props" />
+    <Import Project="..\openssl.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\libnet.props" />
     <Import Project="..\pcap.props" />
     <Import Project="..\Poco.props" />
+    <Import Project="..\openssl.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
