@@ -32,7 +32,7 @@ protected:
     virtual bool renderFormStart(std::ostream& output);
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse & response) = 0;
 
-    std::string getQueryParam(const std::string& name, Poco::Net::HTTPServerRequest & request);
+    bool getQueryParam(const std::string& name, std::string& value, Poco::Net::HTTPServerRequest & request);
 private:
     std::string _language = "en";
 

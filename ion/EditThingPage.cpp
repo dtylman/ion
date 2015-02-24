@@ -64,7 +64,11 @@ bool EditThingPage::renderFormStart(std::ostream& output)
 
 void EditThingPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    Poco::UUID id(getQueryParam("id", request));
+    std::string idstr;
+    if (!getQueryParam(ParamThingID, idstr, request)) {
+        throw Poco::InvalidArgumentException("Missing id string");
+    }
+    Poco::UUID id(idstr);
     IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
     if (!ion.getThing(Poco::UUID(id), _thing)) {
         throw Poco::NotFoundException("Thing not found");

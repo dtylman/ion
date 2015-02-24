@@ -11,6 +11,7 @@
 #include "EventsPage.h"
 #include "EventConfigPage.h"
 #include "MailConfigPage.h"
+#include "ServerSettingsPage.h"
 #include <Poco/Format.h>
 
 WebMenu::WebMenu()
@@ -20,6 +21,7 @@ WebMenu::WebMenu()
     _navbarItems.push_back(MenuItem(EventsPage::Title, EventsPage::Link));
     _navbarItems.push_back(MenuItem(EventConfigPage::Title, EventConfigPage::Link));
     _navbarItems.push_back(MenuItem(MailConfigPage::Title, MailConfigPage::Link));
+    _navbarItems.push_back(MenuItem(ServerSettingsPage::Title, ServerSettingsPage::Link));
 }
 
 WebMenu::~WebMenu()
