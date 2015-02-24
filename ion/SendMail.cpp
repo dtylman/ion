@@ -87,5 +87,5 @@ Poco::Net::SMTPClientSession::LoginMethod SendMail::getLoginMethod(const std::st
     else if (loginMethod == "AUTH_PLAIN") {
         return SMTPClientSession::LoginMethod::AUTH_PLAIN;
     }
-
+	throw Poco::InvalidArgumentException("No such method", method);
 }

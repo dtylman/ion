@@ -153,6 +153,15 @@
     <ClCompile Include="ThingData.cpp">
       <Filter>Data</Filter>
     </ClCompile>
+    <ClCompile Include="MailSendPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSettingsPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebForm.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -283,6 +292,15 @@
     </ClInclude>
     <ClInclude Include="ThingData.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MailSendPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSettingsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebForm.h">
+      <Filter>Web</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
