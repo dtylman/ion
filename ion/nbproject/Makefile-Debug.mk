@@ -71,6 +71,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ProtocolDHCP.o \
 	${OBJECTDIR}/ProtocolEthernet.o \
 	${OBJECTDIR}/ProtocolIP.o \
+	${OBJECTDIR}/ProtocolIPV6.o \
 	${OBJECTDIR}/ProtocolNBDatagram.o \
 	${OBJECTDIR}/ProtocolUDP.o \
 	${OBJECTDIR}/Rouing.o \
@@ -310,6 +311,11 @@ ${OBJECTDIR}/ProtocolIP.o: ProtocolIP.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolIP.o ProtocolIP.cpp
+
+${OBJECTDIR}/ProtocolIPV6.o: ProtocolIPV6.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ProtocolIPV6.o ProtocolIPV6.cpp
 
 ${OBJECTDIR}/ProtocolNBDatagram.o: ProtocolNBDatagram.cpp 
 	${MKDIR} -p ${OBJECTDIR}
