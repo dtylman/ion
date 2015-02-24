@@ -88,6 +88,8 @@
       <itemPath>FileRequestHandler.h</itemPath>
       <itemPath>MailConfigPage.cpp</itemPath>
       <itemPath>MailConfigPage.h</itemPath>
+      <itemPath>MailSendPage.cpp</itemPath>
+      <itemPath>MailSendPage.h</itemPath>
       <itemPath>PageRequestHandler.cpp</itemPath>
       <itemPath>PageRequestHandler.h</itemPath>
       <itemPath>ThingsPage.cpp</itemPath>
@@ -145,11 +147,12 @@
             <pElem>../lib/poco-1.6.0-all/Foundation/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Util/include</pElem>
             <pElem>../lib/poco-1.6.0-all/XML/include</pElem>
-            <pElem>../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/NetSSL_OpenSSL/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Net/include</pElem>
             <pElem>../lib/poco-1.6.0-all/JSON/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Data/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Data/SQLite/include</pElem>
+            <pElem>../lib/poco-1.6.0-all/Crypto/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -165,10 +168,13 @@
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoFoundationd.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDataSQLited.a</linkerLibFileItem>
             <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoDatad.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoNetSSLd.a</linkerLibFileItem>
+            <linkerLibFileItem>../lib/poco-1.6.0-all/lib/Linux/x86_64/libPocoCryptod.a</linkerLibFileItem>
             <linkerLibLibItem>pcap</linkerLibLibItem>
             <linkerLibLibItem>pthread</linkerLibLibItem>
             <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
             <linkerLibLibItem>net</linkerLibLibItem>
+            <linkerOptionItem>`pkg-config --libs libssl`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -267,6 +273,10 @@
       <item path="MailConfigPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MailConfigPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MailSendPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MailSendPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -510,6 +520,10 @@
       <item path="MailConfigPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MailConfigPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MailSendPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MailSendPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Main.cpp" ex="false" tool="1" flavor2="0">
       </item>

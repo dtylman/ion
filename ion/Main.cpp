@@ -50,13 +50,19 @@ int Main::main(const std::vector<std::string>& args)
 
 void Main::initialize(Poco::Util::Application& self)
 {
+    Poco::Net::initializeNetwork();
     config().add(new Poco::Util::SystemConfiguration(), PRIO_SYSTEM);
-
     _config = new Poco::Util::PropertyFileConfiguration(configFileName());
     config().addWriteable(_config, PRIO_APPLICATION, true);
     Poco::Util::ServerApplication::initialize(self);
     unsigned interval = config().getUInt("ion.offline-interval", 10) * 60 * 1000;
     _timer.scheduleAtFixedRate(new Poco::Util::TimerTaskAdapter<Main>(*this, &Main::onOnlineScan), interval, interval);
+}
+
+void Main::uninitialize()
+{
+    Poco::Util::ServerApplication::uninitialize();
+    Poco::Net::uninitializeNetwork();
 }
 
 void Main::onOnlineScan(Poco::Util::TimerTask& timerTask)

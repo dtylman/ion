@@ -59,6 +59,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Injector.o \
 	${OBJECTDIR}/MAC.o \
 	${OBJECTDIR}/MailConfigPage.o \
+	${OBJECTDIR}/MailSendPage.o \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/PageRequestHandler.o \
 	${OBJECTDIR}/PcapActivity.o \
@@ -230,6 +231,11 @@ ${OBJECTDIR}/MailConfigPage.o: MailConfigPage.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MailConfigPage.o MailConfigPage.cpp
+
+${OBJECTDIR}/MailSendPage.o: MailSendPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MailSendPage.o MailSendPage.cpp
 
 ${OBJECTDIR}/Main.o: Main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
