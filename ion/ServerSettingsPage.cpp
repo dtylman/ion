@@ -37,6 +37,7 @@ bool ServerSettingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPSe
 {
     bool changed = updateSettings(form, "offline", "ion.offline-interval");
     changed |= updateSettings(form, "eventsage", "ion.eventsage");
+    changed |= updateSettings(form, "linklocal", "ion.ignoreLinkLocal");
     if (changed) {
         Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
         main.saveConfig();
@@ -46,7 +47,7 @@ bool ServerSettingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPSe
 
 bool ServerSettingsPage::renderFormStart(std::ostream& output)
 {
-    output << Poco::format("<form method='POST' action='%s'>", Link);
+    output << Poco::format("<form method='POST' action='%s' >", Link);
     return true;
 }
 
@@ -61,10 +62,9 @@ void ServerSettingsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPSe
     Poco::Util::LayeredConfiguration& config = Poco::Util::Application::instance().config();
     WebForm wf(output);
     wf.startRow();
-    wf.renderInput("offline", "Offline interval (minutes):", "minutes", config.getString("ion.offline-interval"), true, "number", 4);
-    wf.endRow();
-    wf.startRow();
-    wf.renderInput("eventsage", "Events age (days):", "days", config.getString("ion.eventsage"), true, "number", 4);
+    wf.renderInput("offline", "Offline interval (minutes):", "minutes", config.getString("ion.offline-interval"), true, "number", 2);
+    wf.renderInput("eventsage", "Events age (days):", "days", config.getString("ion.eventsage"), true, "number", 2);
+    wf.renderChkbox("linklocal", "Ignore link local addresses:", config.getBool("ion.ignoreLinkLocal"), 2);
     wf.endRow();
 }
 
