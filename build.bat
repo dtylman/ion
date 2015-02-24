@@ -1,6 +1,12 @@
 call "%VS120COMNTOOLS%..\..\VC\vcvarsall.bat" x86
 set WORKSPACE=%CD%
 
+cd %WORKSPACE%\lib\openssl-1.0.2
+call perl Configure VC-WIN32 --prefix=%OPENSSL_DIR%
+call ms\do_nasm
+call nmake -f ms\nt.mak
+cd ..
+
 cd %WORKSPACE%\lib\poco-1.6.0-all
 call buildwin 120 build static_mt both Win32 nosamples notests msbuild
 
