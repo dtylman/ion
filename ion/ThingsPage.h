@@ -34,6 +34,7 @@ protected:
 
     virtual void renderScripts(std::ostream& output);
 private:
+    void handleParams(Poco::Net::HTTPServerRequest& request);
     void handleToggleAuth(Poco::Net::HTTPServerRequest& request);
     void handleAuthAll(bool auth);
     void handleDelete(Poco::Net::HTTPServerRequest& request);

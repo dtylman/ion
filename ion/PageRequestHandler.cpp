@@ -106,15 +106,16 @@ void PageRequestHandler::renderPageFooter(std::ostream& output)
     output << "</html>";
 }
 
-std::string PageRequestHandler::getQueryParam(const std::string& name, Poco::Net::HTTPServerRequest& request)
+bool PageRequestHandler::getQueryParam(const std::string& name, std::string& value, Poco::Net::HTTPServerRequest& request)
 {
     Poco::URI uri(request.getURI());
     for (auto param : uri.getQueryParameters()) {
         if (param.first == name) {
-            return Poco::toLower((param.second));
+            value = Poco::toLower((param.second));
+            return true;
         }
     }
-    throw Poco::NotFoundException(Poco::format("Required param %s not found", name));
+    return false;
 }
 
 bool PageRequestHandler::renderFormStart(std::ostream& output)

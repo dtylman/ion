@@ -44,10 +44,12 @@ void AuthDataObject::unAuthorize(const MAC& mac)
 
 void AuthDataObject::authorizeAll()
 {
+    _session << "INSERT OR REPLACE INTO authorized (mac) SELECT DISTINCT mac FROM ip", now;
     _logger.notice("All devices authorized");
 }
 
 void AuthDataObject::unAuthorizeAll()
 {
+    _session << "DELETE FROM authorized", now;
     _logger.notice("All devices unauthorized");
 }

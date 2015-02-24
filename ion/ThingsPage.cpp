@@ -49,6 +49,7 @@ std::string ThingsPage::subtitle() const
 
 void ThingsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
+    handleParams(request);
     renderTable(output);
     renderScripts(output);
 }
@@ -138,35 +139,28 @@ void ThingsPage::renderScripts(std::ostream& output)
 
 bool ThingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-    std::string action = getQueryParam(ParamAction, request);
-    if (action == ActionAuthAll) {
-        handleAuthAll(true);
-    }
-    else if (action == ActionUnAuthAll) {
-        handleAuthAll(false);
-    }
-    else if (action == ActionToggleAuth) {
-        handleToggleAuth(request);
-    }
-    else if (action == ActionDelete) {
-        handleDelete(request);
-    }
     return false;
 }
 
 void ThingsPage::handleDelete(Poco::Net::HTTPServerRequest& request)
 {
-    Poco::UUID thingid = Poco::UUID(getQueryParam(ParamThingID, request));
-    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    ion.removeThing(thingid);
+    std::string id;
+    if (getQueryParam(ParamThingID, id, request)) {
+        IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+        ion.removeThing(Poco::UUID(id));
+    }
+
 }
 
 void ThingsPage::handleToggleAuth(Poco::Net::HTTPServerRequest& request)
 {
-    Poco::UUID thingid = Poco::UUID(getQueryParam(ParamThingID, request));
-    IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    bool auth = ion.thingAuthorized(thingid);
-    ion.authorizeThing(thingid, !auth);
+    std::string id;
+    if (getQueryParam(ParamThingID, id, request)) {
+        IONDataObject ion(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+        Poco::UUID thingid(id);
+        bool auth = ion.thingAuthorized(thingid);
+        ion.authorizeThing(thingid, !auth);
+    }
 }
 
 void ThingsPage::handleAuthAll(bool auth)
@@ -177,5 +171,24 @@ void ThingsPage::handleAuthAll(bool auth)
     }
     else {
         ado.unAuthorizeAll();
+    }
+}
+
+void ThingsPage::handleParams(Poco::Net::HTTPServerRequest& request)
+{
+    std::string action;
+    if (getQueryParam(ParamAction, action, request)) {
+        if (action == ActionAuthAll) {
+            handleAuthAll(true);
+        }
+        else if (action == ActionUnAuthAll) {
+            handleAuthAll(false);
+        }
+        else if (action == ActionToggleAuth) {
+            handleToggleAuth(request);
+        }
+        else if (action == ActionDelete) {
+            handleDelete(request);
+        }
     }
 }
