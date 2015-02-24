@@ -7,13 +7,13 @@
 
 #include "MailConfigPage.h"
 #include "WebMenu.h"
+#include "Main.h"
+#include "WebForm.h"
 #include <Poco/Format.h>
 #include <Poco/Util/Application.h>
 
 const std::string MailConfigPage::Link("mailsetup.bin");
 const std::string MailConfigPage::Title("Mail Settings");
-const std::string MailConfigPage::ParamAction("action");
-const std::string MailConfigPage::GMail("gmail");
 
 MailConfigPage::MailConfigPage()
 {
@@ -30,59 +30,72 @@ std::string MailConfigPage::title() const
 
 bool MailConfigPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
+    bool changed = updateSettings(form, "host", "ion.mail.host");
+    changed |= updateSettings(form, "port", "ion.mail.port");
+    changed |= updateSettings(form, "user", "ion.mail.user");
+    changed |= updateSettings(form, "password", "ion.mail.password");
+    changed |= updateSettings(form, "loginmethod", "ion.mail.loginmethod");
+    changed |= updateSettings(form, "from", "ion.mail.sender");
+    changed |= updateSettings(form, "to", "ion.mail.recipient");
+    changed |= updateSettings(form, "subject", "ion.mail.subject");
+    if (form.has("ssl")) {
+        changed |= true;
+        if (form.get("ssl") == "on") {
+            Poco::Util::Application::instance().config().setBool("ion.mail.ssl", true);
+        }
+        else {
+
+            Poco::Util::Application::instance().config().setBool("ion.mail.ssl", false);
+        }
+    }
+    if (changed) {
+        Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
+        main.saveConfig();
+    }
+    return false;
+}
+
+bool MailConfigPage::updateSettings(Poco::Net::HTMLForm& form, const std::string& name, const std::string& confKey)
+{
+    if (form.has(name)) {
+        Poco::Util::Application::instance().config().setString(confKey, form.get(name));
+        return true;
+    }
     return false;
 }
 
 void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    if (getQueryParam(ParamAction, request) == GMail) {
-        configureGMail();
-    }
-    output << "<div class='row'>";
-    renderInput(output, "host", "SMTP Server", "server name or ip", "ion.mail.host");
-    renderInput(output, "port", "SMTP Port", "port number...", "ion.mail.port", "text", 1);
-    renderChkbox(output, "ssl", "Use SSL", "ion.mail.ssl");
-    output << "</div>";
+    std::string value;
+    Poco::Util::LayeredConfiguration& config = Poco::Util::Application::instance().config();
+    WebForm wf(output);
+    wf.startRow();
+    wf.renderInput("host", "SMTP Server", "server name or ip", config.getString("ion.mail.host"));
+    wf.renderInput("port", "SMTP Port", "port number...", config.getString("ion.mail.port"), true, "number", 1);
+    wf.renderChkbox("ssl", "Use SSL", config.getBool("ion.mail.ssl"));
+    wf.endRow();
 
-    output << "<div class='row'>";
-    renderInput(output, "user", "SMTP Username", "user name if applicable", "ion.mail.user");
-    renderInput(output, "password", "SMTP Password", "password if applicable", "ion.mail.password", "password");
-    renderSelect(output, "loginmethod", "Login Method", "ion.mail.loginmethod");
-    output << "</div>";
+    wf.startRow();
+    wf.renderInput("user", "SMTP Username", "user name if applicable", config.getString("ion.mail.user"));
+    wf.renderInput("password", "SMTP Password", "password if applicable", config.getString("ion.mail.password"), "password");
+    WebForm::Options options;
+    options.push_back("AUTH_NONE");
+    options.push_back("AUTH_CRAM_MD5");
+    options.push_back("AUTH_CRAM_SHA1");
+    options.push_back("AUTH_LOGIN");
+    options.push_back("AUTH_PLAIN");
+    wf.renderSelect("loginmethod", "Login Method", config.getString("ion.mail.loginmethod"), options);
+    wf.endRow();
 
-    output << "<div class='row'>";
-    renderInput(output, "from", "Sender address", "your e-mail address", "ion.mail.sender", "email", 3);
-    renderInput(output, "to", "Recipient address", "e-mail address", "ion.mail.recipient", "email", 3);
-    output << "</div>";
+    wf.startRow();
+    wf.renderInput("from", "Sender address", "your e-mail address", config.getString("ion.mail.sender"), true, "email", 3);
+    wf.renderInput("to", "Recipient address", "e-mail address", config.getString("ion.mail.recipient"), true, "email", 3);
+    wf.endRow();
 
+    wf.startRow();
+    wf.renderInput("subject", "Subject", "Message subject", config.getString("ion.mail.subject"), true, "text", 5);
+    wf.endRow();
 
-    output << "<div class='row'>";
-    renderInput(output, "subject", "Subject", "Message subject", "ion.mail.subject", "text", 5);
-    output << "</div>";
-
-}
-
-void MailConfigPage::renderInput(std::ostream& output, const std::string& name, const std::string& text, const std::string& placeHolder, const std::string& configKey, const std::string& type, int cols)
-{
-    std::string id = Poco::format("id_%s", name);
-    output << Poco::format("<div class='form-group col-xs-%d'>", cols);
-    output << Poco::format("<label for='%s'>%s</label>", id, text);
-    std::string value = Poco::Util::Application::instance().config().getString(configKey);
-    output << Poco::format("<input type='%s' class='form-control' id='%s' placeholder='%s' name='%s' value='%s'>", type, id, placeHolder, name, value);
-    output << "</div>";
-}
-
-void MailConfigPage::renderChkbox(std::ostream& output, const std::string& name, const std::string& text, const std::string& configKey, int cols)
-{
-    std::string id = Poco::format("id_%s", name);
-    output << Poco::format("<div class='form-group col-xs-%d'>", cols);
-    output << Poco::format("<label for='%s'>%s</label>", id, text);
-    std::string checked = "";
-    if (Poco::Util::Application::instance().config().getBool(configKey)) {
-        checked = "checked";
-    }
-    output << Poco::format("<input type='checkbox' class='form-control' id='%s' name='%s' %s>", id, name, checked);
-    output << "</div>";
 }
 
 std::string MailConfigPage::subtitle() const
@@ -93,47 +106,32 @@ std::string MailConfigPage::subtitle() const
 
 void MailConfigPage::renderButtons(std::ostream& output)
 {
+
     output << "<input class='btn btn-success' type='submit' value='Save'> ";
-    output << Poco::format("<a href='%s?%s=%s' class='btn btn-primary'>I am using GMAIL</a> ", MailConfigPage::Link, MailConfigPage::ParamAction, MailConfigPage::GMail);
+    output << "<div class='btn btn-primary' onclick='configuregmail()'>I am using GMAIL</div> ";
     output << "<input class='btn btn-primary' type='submit' value='Test'> ";
     WebMenu::renderHomeButton(output, "Close");
 }
 
 bool MailConfigPage::renderFormStart(std::ostream& output)
 {
+
     output << Poco::format("<form method='POST' action='%s'>", Link);
     return true;
-
 }
 
-void MailConfigPage::renderSelect(std::ostream& output, const std::string& name, const std::string& text, const std::string& configKey)
+void MailConfigPage::renderScripts(std::ostream& output)
 {
-    std::string id = Poco::format("id_%s", name);
-    output << "<div class='form-group col-xs-2'>";
-    output << Poco::format("<label for='%s'>%s</label>", id, text);
-    std::string value = Poco::Util::Application::instance().config().getString(configKey);
-    output << Poco::format("<select class='form-control' id='%s' name='%s'>", id, name);
-    renderOption(output, value, "AUTH_NONE");
-    renderOption(output, value, "AUTH_CRAM_MD5");
-    renderOption(output, value, "AUTH_CRAM_SHA1");
-    renderOption(output, value, "AUTH_LOGIN");
-    renderOption(output, value, "AUTH_PLAIN");
-    output << "</select >";
-    output << "</div>";
-}
-
-void MailConfigPage::renderOption(std::ostream& output, const std::string& value, const std::string& option)
-{
-    if (value == option) {
-        output << Poco::format("<option selected>%s</option>", option);
-    }
-    else {
-        output << Poco::format("<option>%s</option>", option);
-    }
-
-}
-
-void MailConfigPage::configureGMail()
-{
-
+    output << "<script>";
+    output << "function configuregmail()";
+    output << "{";
+    output << "$('#id_host').val('smtp.gmail.com');";
+    output << "$('#id_port').val('465');";
+    output << "$('#id_ssl').prop('checked', true);";
+    output << "$('#id_loginmethod').val('AUTH_LOGIN');";
+    output << "$('#id_user').val('@gmail.com');";
+    output << "$('#id_from').val('@gmail.com');";
+    output << "$('#id_user').focus();";
+    output << "}";
+    output << "</script>";
 }

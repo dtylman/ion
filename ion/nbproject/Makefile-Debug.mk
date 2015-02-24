@@ -81,6 +81,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ThingData.o \
 	${OBJECTDIR}/ThingObserver.o \
 	${OBJECTDIR}/ThingsPage.o \
+	${OBJECTDIR}/WebForm.o \
 	${OBJECTDIR}/WebMenu.o \
 	${OBJECTDIR}/WebRequestHandlerFactory.o \
 	${OBJECTDIR}/WebSubsystem.o
@@ -353,6 +354,11 @@ ${OBJECTDIR}/ThingsPage.o: ThingsPage.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingsPage.o ThingsPage.cpp
+
+${OBJECTDIR}/WebForm.o: WebForm.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSLNet/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WebForm.o WebForm.cpp
 
 ${OBJECTDIR}/WebMenu.o: WebMenu.cpp 
 	${MKDIR} -p ${OBJECTDIR}
