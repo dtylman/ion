@@ -35,13 +35,18 @@ std::string ServerSettingsPage::subtitle() const
 
 bool ServerSettingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-    bool changed = updateSettings(form, "offline", "ion.offline-interval");
-    changed |= updateSettings(form, "eventsage", "ion.eventsage");
-    changed |= updateSettings(form, "linklocal", "ion.ignoreLinkLocal");
-    if (changed) {
-        Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
-        main.saveConfig();
+    updateSettings(form, "offline", "ion.offline-interval");
+    updateSettings(form, "eventsage", "ion.eventsage");
+    if (form.has("linklocal")) {
+        Poco::Util::Application::instance().config().setBool("ion.ignoreLinkLocal", true);
     }
+    else {
+        Poco::Util::Application::instance().config().setBool("ion.ignoreLinkLocal", false);
+    }
+
+    Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
+    main.saveConfig();
+
     return false;
 }
 
