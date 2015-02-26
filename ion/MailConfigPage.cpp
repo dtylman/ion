@@ -31,28 +31,22 @@ std::string MailConfigPage::title() const
 
 bool MailConfigPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
-    bool changed = updateSettings(form, "host", "ion.mail.host");
-    changed |= updateSettings(form, "port", "ion.mail.port");
-    changed |= updateSettings(form, "user", "ion.mail.user");
-    changed |= updateSettings(form, "password", "ion.mail.password");
-    changed |= updateSettings(form, "loginmethod", "ion.mail.loginmethod");
-    changed |= updateSettings(form, "from", "ion.mail.sender");
-    changed |= updateSettings(form, "to", "ion.mail.recipient");
-    changed |= updateSettings(form, "subject", "ion.mail.subject");
+    updateSettings(form, "host", "ion.mail.host");
+    updateSettings(form, "port", "ion.mail.port");
+    updateSettings(form, "user", "ion.mail.user");
+    updateSettings(form, "password", "ion.mail.password");
+    updateSettings(form, "loginmethod", "ion.mail.loginmethod");
+    updateSettings(form, "from", "ion.mail.sender");
+    updateSettings(form, "to", "ion.mail.recipient");
+    updateSettings(form, "subject", "ion.mail.subject");
     if (form.has("ssl")) {
-        changed |= true;
-        if (form.get("ssl") == "on") {
-            Poco::Util::Application::instance().config().setBool("ion.mail.ssl", true);
-        }
-        else {
-
-            Poco::Util::Application::instance().config().setBool("ion.mail.ssl", false);
-        }
+        Poco::Util::Application::instance().config().setBool("ion.mail.ssl", true);
     }
-    if (changed) {
-        Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
-        main.saveConfig();
+    else {
+        Poco::Util::Application::instance().config().setBool("ion.mail.ssl", false);
     }
+    Main& main = dynamic_cast<Main&> (Poco::Util::Application::instance());
+    main.saveConfig();
     return false;
 }
 
