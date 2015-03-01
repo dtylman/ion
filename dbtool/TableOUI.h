@@ -21,6 +21,7 @@ public:
 private:
     void populate(const std::string& ouiFile);
     void insert(const std::string& prefix, const std::string& vendor);
+    std::string camel(const std::string& text);
     Poco::Data::Session& _session;
     Poco::Logger& _logger;
 };
