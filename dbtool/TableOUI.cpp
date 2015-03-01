@@ -56,10 +56,26 @@ void TableOUI::insert(const std::string& prefix, const std::string& vendor)
 {
     try {
         std::string prefixstr = Poco::toLower(Poco::trim(prefix));
-        std::string vendorstr = Poco::toLower(Poco::trim((vendor)));
+        std::string vendorstr = camel(Poco::trim((vendor)));
         _session << "INSERT INTO oui (prefix,vendor) VALUES (?,?)", use(prefixstr), use(vendorstr), now;
     }
     catch (Poco::Exception& ex) {
         _logger.error(ex.displayText());
     }
+}
+
+std::string TableOUI::camel(const std::string& text)
+{
+    std::string output;
+    bool whitespace = true;
+    for (char c : text) {
+        if (whitespace) {
+            output += toupper(c);
+        }
+        else {
+            output += tolower(c);
+        }
+        whitespace = isspace(c);
+    }
+    return output;
 }
