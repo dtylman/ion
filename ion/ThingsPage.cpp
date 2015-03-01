@@ -103,14 +103,15 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
 {
     output << "<tr>";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
-        if (rs.columnName(i) != "id") {
+        std::string columnName = rs.columnName(i);
+        if (columnName != "id") {
             output << "<td>";
             if (!rs[i].isEmpty()) {
-                if (rs.columnName(i) == "auth") {
+                if (columnName == "auth") {
                     output << Poco::format("<a href='%s?%s=%s&%s=%s'>", Link, ParamAction, ActionToggleAuth, ParamThingID, rs["id"].toString());
                 }
                 output << rs[i].toString();
-                if (rs.columnName(i) == "auth") {
+                if (columnName == "auth") {
                     output << "</a>";
                 }
             }
