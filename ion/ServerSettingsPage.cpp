@@ -67,9 +67,13 @@ void ServerSettingsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPSe
     Poco::Util::LayeredConfiguration& config = Poco::Util::Application::instance().config();
     WebForm wf(output);
     wf.startRow();
-    wf.renderInput("offline", "Offline interval (minutes):", "minutes", config.getString("ion.offline-interval"), true, "number", 2);
-    wf.renderInput("eventsage", "Events age (days):", "days", config.getString("ion.eventsage"), true, "number", 2);
-    wf.renderChkbox("linklocal", "Ignore link local addresses:", config.getBool("ion.ignoreLinkLocal"), 2);
+    wf.renderInput("offline", "Offline interval (minutes):", "minutes", config.getString("ion.offline-interval"), true, "number", 3);
+    wf.endRow();
+    wf.startRow();
+    wf.renderInput("eventsage", "Events age (days):", "days", config.getString("ion.eventsage"), true, "number", 3);
+    wf.endRow();
+    wf.startRow();
+    wf.renderChkbox("linklocal", "Ignore link local addresses:", config.getBool("ion.ignoreLinkLocal"), 3);
     wf.endRow();
 }
 
