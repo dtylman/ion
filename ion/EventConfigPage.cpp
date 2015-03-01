@@ -15,7 +15,7 @@
 #include <Poco/Util/Application.h>
 
 const std::string EventConfigPage::Link("eventconf.bin");
-const std::string EventConfigPage::Title("Events Setup");
+const std::string EventConfigPage::Title("Event Settings");
 
 EventConfigPage::EventConfigPage()
 {
