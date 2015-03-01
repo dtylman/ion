@@ -63,8 +63,8 @@ void AddressesPage::renderTable(std::ostream& output)
     output << "            <th>Name</th>";
     output << "            <th>Vendor</th>";
     output << "            <th>OS</th>";
-    output << "            <th>HW</th>";
     output << "            <th>Description</th>";
+    output << "            <th>HW</th>";
     output << "            <th>Authorized</th>";
     output << "        </tr>";
     output << "    </thead>";
