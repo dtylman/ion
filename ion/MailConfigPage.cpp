@@ -14,7 +14,7 @@
 #include <Poco/Util/Application.h>
 
 const std::string MailConfigPage::Link("mailsetup.bin");
-const std::string MailConfigPage::Title("Mail Settings");
+const std::string MailConfigPage::Title("Email Alert Settings");
 
 MailConfigPage::MailConfigPage()
 {
