@@ -47,7 +47,7 @@ void AddressesPage::renderButtons(std::ostream& output)
 
 std::string AddressesPage::subtitle() const
 {
-    return "Some text goes here";
+    return "List of addresses of things connected to the network:";
 }
 
 void AddressesPage::renderTable(std::ostream& output)

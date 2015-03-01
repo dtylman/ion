@@ -31,7 +31,7 @@ void EventsPage::renderButtons(std::ostream& output)
 
 std::string EventsPage::subtitle() const
 {
-    return "some text";
+    return "List of network events:";
 }
 
 void EventsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)

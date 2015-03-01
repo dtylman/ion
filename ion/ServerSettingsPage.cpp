@@ -30,7 +30,7 @@ std::string ServerSettingsPage::title() const
 
 std::string ServerSettingsPage::subtitle() const
 {
-    return "Some wisdom";
+    return "General configuration settings:";
 }
 
 bool ServerSettingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
