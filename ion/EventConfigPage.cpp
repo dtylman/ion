@@ -85,7 +85,7 @@ std::string EventConfigPage::title() const
 
 std::string EventConfigPage::subtitle() const
 {
-    return "subtitle";
+    return "Configuration settings for network events:";
 }
 
 void EventConfigPage::renderButtons(std::ostream& output)

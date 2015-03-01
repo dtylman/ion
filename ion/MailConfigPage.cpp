@@ -94,7 +94,7 @@ void MailConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServer
 
 std::string MailConfigPage::subtitle() const
 {
-    return "this is some text";
+    return "Configuration settings for email alerts:";
 }
 
 void MailConfigPage::renderButtons(std::ostream& output)

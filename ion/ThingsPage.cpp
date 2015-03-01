@@ -44,7 +44,7 @@ std::string ThingsPage::title() const
 
 std::string ThingsPage::subtitle() const
 {
-    return "This should explain what this page is for";
+    return "List of things connected to the network:";
 }
 
 void ThingsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
@@ -69,7 +69,7 @@ void ThingsPage::renderTable(std::ostream& output)
     output << "            <th>Type</th>";
     output << "            <th>Name</th>";
     output << "            <th>Vendor</th>";
-    output << "            <th>OS</th>";
+    output << "            <th>Operating System</th>";
     output << "            <th>Description</th>";
     output << "            <th>Authorized</th>";
     output << "            <th></th>";
