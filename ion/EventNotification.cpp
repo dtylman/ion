@@ -66,7 +66,7 @@ void EventNotification::notify(const std::string& name, const IPData& ip)
     Poco::replaceInPlace(text, std::string("[mac]"), ip.mac().toString());
     Poco::replaceInPlace(text, std::string("[ip]"), ip.ip().toString());
     std::string lastSeen = Poco::DateTimeFormatter::format(ip.lastSeen(), Poco::DateTimeFormat::HTTP_FORMAT, 0);
-    Poco::replaceInPlace(text, std::string("[last_seen]"), lastSeen);
+    Poco::replaceInPlace(text, std::string("[timestamp]"), lastSeen);
     Poco::replaceInPlace(text, std::string("[interface]"), ip.iface());
     EventNotification::Ptr notif = new EventNotification();
     notif->_data.setName(name);
