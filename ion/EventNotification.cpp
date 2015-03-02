@@ -48,6 +48,8 @@ void EventNotification::notify(const std::string& name, const ThingData& thing)
     Poco::replaceInPlace(text, std::string("[os]"), thing.os());
     Poco::replaceInPlace(text, std::string("[vendor]"), thing.vendor());
     Poco::replaceInPlace(text, std::string("[desc]"), thing.desc());
+	std::string timestamp = Poco::DateTimeFormatter::format(Poco::Timestamp(), Poco::DateTimeFormat::HTTP_FORMAT, 0);
+	Poco::replaceInPlace(text, std::string("[timestamp]"), timestamp);
     EventNotification::Ptr notif = new EventNotification();
     notif->_data.setName(name);
     notif->_data.setDetails(text);
@@ -66,8 +68,10 @@ void EventNotification::notify(const std::string& name, const IPData& ip)
     Poco::replaceInPlace(text, std::string("[mac]"), ip.mac().toString());
     Poco::replaceInPlace(text, std::string("[ip]"), ip.ip().toString());
     std::string lastSeen = Poco::DateTimeFormatter::format(ip.lastSeen(), Poco::DateTimeFormat::HTTP_FORMAT, 0);
-    Poco::replaceInPlace(text, std::string("[timestamp]"), lastSeen);
+    Poco::replaceInPlace(text, std::string("[lastseen]"), lastSeen);
     Poco::replaceInPlace(text, std::string("[interface]"), ip.iface());
+	std::string timestamp = Poco::DateTimeFormatter::format(Poco::Timestamp(), Poco::DateTimeFormat::HTTP_FORMAT, 0);
+	Poco::replaceInPlace(text, std::string("[timestamp]"), timestamp);
     EventNotification::Ptr notif = new EventNotification();
     notif->_data.setName(name);
     notif->_data.setDetails(text);
