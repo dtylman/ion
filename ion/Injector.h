@@ -24,9 +24,11 @@ public:
     void arpRequest(const Poco::Net::IPAddress& targetIP);
     void arpRequest(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
 
+    void icmpEcho(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
     const std::string& device() const;
     MAC deviceMACAddress() const;
 private:
+    void write();
     std::string _device;
     Poco::FastMutex _mutex;
     libnet_t* _libnet = nullptr;
