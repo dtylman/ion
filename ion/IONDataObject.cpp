@@ -183,8 +183,12 @@ void IONDataObject::setIP(const IPData & data)
 {
     if (data.ignore()) {
         return;
-    }
+    }	
     ScopedTransaciton transaction(_session);
+	if (isRouter(data.mac(), data.ip().family()))
+	{
+		return;
+	}
     bool exists = ipExists(data.ip(), data.mac());
     std::string macstr = data.mac().toString();
     std::string ipstr = data.ip().toString();

@@ -74,8 +74,8 @@ std::string TableOUI::camel(const std::string& text)
         }
         else {
             output += tolower(c);
-        }
-        whitespace = isspace(c);
+        }		
+		whitespace = (isspace(c) != 0);
     }
     return output;
 }
