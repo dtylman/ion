@@ -136,8 +136,6 @@
     <itemPath>Selfy.h</itemPath>
     <itemPath>Solicitator.cpp</itemPath>
     <itemPath>Solicitator.h</itemPath>
-    <itemPath>Testush.cpp</itemPath>
-    <itemPath>Testush.h</itemPath>
     <itemPath>ion.properties</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -161,7 +159,6 @@
             <pElem>../lib/poco-1.6.0-all/Data/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Data/SQLite/include</pElem>
             <pElem>../lib/poco-1.6.0-all/Crypto/include</pElem>
-            <pElem>../lib/crafter/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
@@ -184,7 +181,6 @@
             <linkerLibStdlibItem>DynamicLinking</linkerLibStdlibItem>
             <linkerLibLibItem>net</linkerLibLibItem>
             <linkerOptionItem>`pkg-config --libs libssl`</linkerOptionItem>
-            <linkerLibFileItem>../lib/crafter/lib/libcrafter.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -375,10 +371,6 @@
       <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Testush.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Testush.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ThingData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -638,10 +630,6 @@
       <item path="Solicitator.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Solicitator.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Testush.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Testush.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ThingData.cpp" ex="false" tool="1" flavor2="0">
       </item>
