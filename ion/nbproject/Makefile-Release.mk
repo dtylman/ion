@@ -82,6 +82,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/SendMail.o \
 	${OBJECTDIR}/ServerSettingsPage.o \
 	${OBJECTDIR}/Solicitator.o \
+	${OBJECTDIR}/Syslog_LINUX.o \
 	${OBJECTDIR}/ThingData.o \
 	${OBJECTDIR}/ThingObserver.o \
 	${OBJECTDIR}/ThingsPage.o \
@@ -349,6 +350,11 @@ ${OBJECTDIR}/Solicitator.o: Solicitator.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Solicitator.o Solicitator.cpp
+
+${OBJECTDIR}/Syslog_LINUX.o: Syslog_LINUX.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Syslog_LINUX.o Syslog_LINUX.cpp
 
 ${OBJECTDIR}/ThingData.o: ThingData.cpp 
 	${MKDIR} -p ${OBJECTDIR}
