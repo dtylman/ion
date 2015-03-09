@@ -9,6 +9,7 @@
 #include "EventDataObject.h"
 #include "DataSubsystem.h"
 #include "SendMail.h"
+#include "Syslog.h"
 #include <Poco/NObserver.h>
 #include <Poco/NotificationCenter.h>
 #include <Poco/Util/Application.h>
@@ -71,12 +72,15 @@ void EventsSubsystem::processEvent(const EventData& eventData)
         _logger.debug("Event: %s", eventData.toString());
     }
     Poco::Util::AbstractConfiguration& config = Poco::Util::Application::instance().config();
-
-    if (config.getBool(Poco::format("ion.events.%s.save", eventData.name()), true)) {
+    const std::string& eventName = eventData.name();
+    if (config.getBool(Poco::format("ion.events.%s.save", eventName), true)) {
         persistEvent(eventData);
     }
-    if (config.getBool(Poco::format("ion.events.%s.mail", eventData.name()), false)) {
+    if (config.getBool(Poco::format("ion.events.%s.mail", eventName), false)) {
         mailEvent(eventData);
+    }
+    if (config.getBool(Poco::format("ion.events.%s.syslog", eventName), false)) {
+        syslogEvent(eventData);
     }
 }
 
@@ -104,7 +108,7 @@ void EventsSubsystem::runActivity()
     _logger.information("Activity Ended");
 }
 
-void EventsSubsystem::mailEvent(const EventData& eventData)
+void EventsSubsystem::mailEvent(const EventData & eventData)
 {
     try {
         SendMail mail;
@@ -112,5 +116,15 @@ void EventsSubsystem::mailEvent(const EventData& eventData)
     }
     catch (Poco::Exception& ex) {
         _logger.error("Failed to send mail: %s", ex.displayText());
+    }
+}
+
+void EventsSubsystem::syslogEvent(const EventData& eventData)
+{
+    try {
+        _syslog.log(eventData);
+    }
+    catch (Poco::Exception& ex) {
+        _logger.error("Failed to write syslog event: %s", ex.displayText());
     }
 }
