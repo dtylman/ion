@@ -25,9 +25,24 @@ public:
     void arpRequest(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
 
     void icmpEcho(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
+    void icmpEcho6(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
+
+    void icmpMask(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
+    void icmpTimestamp(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
+
+    void icmpNSR(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC);
+
+    void tcpSyn(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC, uint16_t port);
+    void udp(const Poco::Net::IPAddress& targetIP, const MAC& targetMAC, uint16_t port, const std::string& payload = "");
     const std::string& device() const;
     MAC deviceMACAddress() const;
 private:
+    void buildEhernet(const MAC& targetMAC, uint16_t type);
+    void buildIP(const Poco::Net::IPAddress& targetIP, unsigned len, u_int8_t protocol);
+    void buildIPv4(const Poco::Net::IPAddress& targetIP, unsigned len, u_int8_t protocol);
+    void buildIPv6(const Poco::Net::IPAddress& targetIP, unsigned len, u_int8_t protocol);
+    void buildUDP(uint16_t srcPort, uint16_t destPort, const std::string& payload = "");
+    void buildTCP(uint16_t srcPort, uint16_t destPort, uint8_t flags, const std::string& payload = "");
     void write();
     std::string _device;
     Poco::FastMutex _mutex;
