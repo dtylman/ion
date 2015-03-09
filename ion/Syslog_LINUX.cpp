@@ -8,7 +8,7 @@
 #include "Syslog.h"
 #include <syslog.h>
 
-Syslog::Syslog()
+Syslog::Syslog() : _logger(Poco::Logger::get("Syslog"))
 {
     openlog("ion", LOG_PID, LOG_AUTH);
 }
