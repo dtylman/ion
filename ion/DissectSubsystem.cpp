@@ -46,7 +46,7 @@ void DissectSubsystem::runActivity()
     _logger.information("Activity Started");
     while (!_activity.isStopped()) {
         try {
-            Poco::Notification::Ptr notif(_queue.waitDequeueNotification(2500), true);
+            Poco::Notification::Ptr notif(_queue.waitDequeueNotification(2500));
             Frame::Ptr frame = notif.cast<Frame>();
             if (!frame.isNull()) {
                 frame->dissect();
