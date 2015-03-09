@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Dissect">
+      <UniqueIdentifier>{764df43b-9b57-4fc9-9d31-06d19e0dc24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pcap">
+      <UniqueIdentifier>{088c93db-2ef0-4a9c-a68e-7d7a9c5db016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{2a4977a3-a593-4133-b8d6-62b18cdcd598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{aa9e6758-ac59-43e5-aea2-1c9c91e1fa48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web">
+      <UniqueIdentifier>{0770bd1b-c721-43e5-bac7-2c2b50f10dc7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Arping.cpp" />
+    <ClCompile Include="Injector.cpp" />
+    <ClCompile Include="MAC.cpp" />
+    <ClCompile Include="DissectSubsystem.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="IPCache.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="PcapActivity.cpp">
+      <Filter>Pcap</Filter>
+    </ClCompile>
+    <ClCompile Include="PcapIfaceAddress.cpp">
+      <Filter>Pcap</Filter>
+    </ClCompile>
+    <ClCompile Include="PcapSubsystem.cpp">
+      <Filter>Pcap</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolARP.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolEthernet.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolIP.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolNBDatagram.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolUDP.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="Rouing.cpp" />
+    <ClCompile Include="Routing_WIN32.cpp" />
+    <ClCompile Include="PcapDevice.cpp">
+      <Filter>Pcap</Filter>
+    </ClCompile>
+    <ClCompile Include="DataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DataObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSubsystem.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="IPDataObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolDHCP.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="ThingObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Solicitator.cpp" />
+    <ClCompile Include="DHCPOSDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="IPData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ScopedTransaciton.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="EventData.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventDataObject.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventNotification.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventsSubsystem.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SendMail.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Selfy.cpp" />
+    <ClCompile Include="MailConfigPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="PageRequestHandler.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="ThingsPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebMenu.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebRequestHandlerFactory.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebSubsystem.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="FileRequestHandler.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="EventsPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="AddressesPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="EventConfigPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="EditThingPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="IONDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ThingData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="MailSendPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSettingsPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WebForm.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="LibnetException.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Arping.h" />
+    <ClInclude Include="Injector.h" />
+    <ClInclude Include="MAC.h" />
+    <ClInclude Include="DissectSubsystem.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="IPCache.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="PcapActivity.h">
+      <Filter>Pcap</Filter>
+    </ClInclude>
+    <ClInclude Include="PcapIfaceAddress.h">
+      <Filter>Pcap</Filter>
+    </ClInclude>
+    <ClInclude Include="PcapSubsystem.h">
+      <Filter>Pcap</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolARP.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolEthernet.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolIP.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolNBDatagram.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolUDP.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="PcapDevice.h">
+      <Filter>Pcap</Filter>
+    </ClInclude>
+    <ClInclude Include="DataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataObserver.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSubsystem.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IPDataObserver.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolDHCP.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="ThingObserver.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Solicitator.h" />
+    <ClInclude Include="DHCPOSDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IPData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ScopedTransaciton.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="EventData.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDataObject.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventNotification.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventsSubsystem.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SendMail.h">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Selfy.h" />
+    <ClInclude Include="MailConfigPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="PageRequestHandler.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="ThingsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebMenu.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebRequestHandlerFactory.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebSubsystem.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="FileRequestHandler.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="EventsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressesPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="EventConfigPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="EditThingPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="IONDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ThingData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MailSendPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSettingsPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WebForm.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="LibnetException.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Poco.props" />
+    <None Include="pcap.props" />
+    <None Include="libnet.props" />
+    <None Include="PageRequestHandler.cpp.orig">
+      <Filter>Web</Filter>
+    </None>
+    <None Include="PageRequestHandler.h.orig">
+      <Filter>Web</Filter>
+    </None>
+    <None Include="EventConfigPage.cpp.orig">
+      <Filter>Web</Filter>
+    </None>
+    <None Include="DevicesRequestHandler.cpp.orig">
+      <Filter>Web</Filter>
+    </None>
+  </ItemGroup>
+</Project>

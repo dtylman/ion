@@ -1,0 +1,34 @@
+/*
+ * File:   PageRequestHandler.h
+ * Author: danny
+ *
+ * Created on February 11, 2015, 10:02 PM
+ */
+
+#ifndef PAGEREQUESTHANDLER_H
+#define	PAGEREQUESTHANDLER_H
+
+#include <Poco/Net/HTTPRequestHandler.h>
+#include <fstream>
+#include <string>
+
+class PageRequestHandler : public Poco::Net::HTTPRequestHandler
+{
+public:
+    PageRequestHandler(const std::string& name);
+    virtual ~PageRequestHandler();
+    virtual void handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
+protected:
+    virtual void renderBody(std::ostream& output) = 0;
+    virtual void renderHeader(std::ostream& output);
+    virtual void renderMenus(std::ostream& output);
+    virtual void renderFooter(std::ostream& output);
+    std::string getMenuItem(const std::string& name);
+    std::string _menuItem;
+    std::string _title;
+    std::string _language = "en";
+    std::string _name;
+};
+
+#endif	/* PAGEREQUESTHANDLER_H */
+
