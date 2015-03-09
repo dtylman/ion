@@ -42,7 +42,7 @@ int Main::main(const std::vector<std::string>& args)
     PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
     pcap.start();
     Selfy selfy;
-    selfy.report();
+    selfy.report();	
     _solicitator.solicitateAll();
     waitForTerminationRequest();
     return EXIT_OK;

@@ -162,6 +162,7 @@
     <ClCompile Include="WebForm.cpp">
       <Filter>Web</Filter>
     </ClCompile>
+    <ClCompile Include="LibnetException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -302,6 +303,7 @@
     <ClInclude Include="WebForm.h">
       <Filter>Web</Filter>
     </ClInclude>
+    <ClInclude Include="LibnetException.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

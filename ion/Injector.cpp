@@ -12,7 +12,6 @@
 #include <Poco/Format.h>
 #include <Poco/Bugcheck.h>
 #include <vector>
-#include <net/ethernet.h>
 
 Injector::Injector(const std::string& device, const Poco::Net::IPAddress& sourceIP) :
 _device(device), _srcIP(sourceIP), _logger(Poco::Logger::get("Injector"))

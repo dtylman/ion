@@ -8,8 +8,8 @@
 #ifndef LIBNETEXCEPTION_H
 #define	LIBNETEXCEPTION_H
 
-#include <libnet.h>
 #include <Poco/Exception.h>
+#include <libnet.h>
 
 class LibnetException : public Poco::Exception
 {

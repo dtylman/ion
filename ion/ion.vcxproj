@@ -33,6 +33,7 @@
     <ClCompile Include="IPCache.cpp" />
     <ClCompile Include="IPData.cpp" />
     <ClCompile Include="IPDataObserver.cpp" />
+    <ClCompile Include="LibnetException.cpp" />
     <ClCompile Include="MAC.cpp" />
     <ClCompile Include="MailConfigPage.cpp" />
     <ClCompile Include="MailSendPage.cpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="IPCache.h" />
     <ClInclude Include="IPData.h" />
     <ClInclude Include="IPDataObserver.h" />
+    <ClInclude Include="LibnetException.h" />
     <ClInclude Include="MAC.h" />
     <ClInclude Include="MailConfigPage.h" />
     <ClInclude Include="MailSendPage.h" />

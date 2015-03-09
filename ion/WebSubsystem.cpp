@@ -19,8 +19,8 @@ WebSubsystem::~WebSubsystem()
 
 void WebSubsystem::initialize(Poco::Util::Application& app)
 {
-    unsigned short port = (unsigned short) app.config().getInt("ion.httpport", 9980);
-    Poco::Net::ServerSocket socket(port);
+	Poco::Net::SocketAddress address(app.config().getString("ion.web.address", "0.0.0.0:9980"));    
+    Poco::Net::ServerSocket socket(address);
     _logger.notice("Starting server on %s", socket.address().toString());
 
     _server = new Poco::Net::HTTPServer(new WebRequestHandlerFactory(), socket, new Poco::Net::HTTPServerParams());
