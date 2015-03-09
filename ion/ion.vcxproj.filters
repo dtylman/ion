@@ -163,6 +163,9 @@
       <Filter>Web</Filter>
     </ClCompile>
     <ClCompile Include="LibnetException.cpp" />
+    <ClCompile Include="Syslog_WIN32.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -304,6 +307,9 @@
       <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="LibnetException.h" />
+    <ClInclude Include="Syslog.h">
+      <Filter>Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

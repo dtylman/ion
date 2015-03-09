@@ -57,6 +57,7 @@
     <ClCompile Include="SendMail.cpp" />
     <ClCompile Include="ServerSettingsPage.cpp" />
     <ClCompile Include="Solicitator.cpp" />
+    <ClCompile Include="Syslog_WIN32.cpp" />
     <ClCompile Include="ThingData.cpp" />
     <ClCompile Include="ThingObserver.cpp" />
     <ClCompile Include="ThingsPage.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="SendMail.h" />
     <ClInclude Include="ServerSettingsPage.h" />
     <ClInclude Include="Solicitator.h" />
+    <ClInclude Include="Syslog.h" />
     <ClInclude Include="ThingData.h" />
     <ClInclude Include="ThingObserver.h" />
     <ClInclude Include="ThingsPage.h" />
