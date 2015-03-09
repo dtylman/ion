@@ -9,6 +9,7 @@
 #define	SYSLOG_H
 
 #include "EventData.h"
+#include <Poco/Logger.h>
 
 class Syslog
 {
@@ -17,7 +18,7 @@ public:
     virtual ~Syslog();
     void log(const EventData& eventData);
 private:
-
+	Poco::Logger& _logger;
 };
 
 #endif	/* SYSLOG_H */

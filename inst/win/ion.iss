@@ -62,6 +62,11 @@ Source: "..\..\ion\ion.properties"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "..\..\web\*"; DestDir: "{app}\web"; Flags: recursesubdirs 
 
+[Registry]
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\{#AppName}"; ValueType: string; ValueName: "EventMessageFile"; ValueData: "%SystemRoot%\System32\EventCreate.exe"
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\{#AppName}"; ValueType: dword; ValueName: "TypeSupported"; ValueData: 7
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\{#AppName}"; ValueType: dword; ValueName: "CustomSource"; ValueData: 1
+
 [Icons]
 Name: "{group}\ion"; Filename: "http://localhost:9980/things.bin"; 
 

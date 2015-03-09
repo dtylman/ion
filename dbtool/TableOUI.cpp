@@ -69,13 +69,16 @@ std::string TableOUI::camel(const std::string& text)
     std::string output;
     bool whitespace = true;
     for (char c : text) {
-        if (whitespace) {
-            output += toupper(c);
-        }
-        else {
-            output += tolower(c);
-        }		
-		whitespace = (isspace(c) != 0);
+		if (isascii(c))
+		{
+			if (whitespace) {
+				output += toupper(c);
+			}
+			else {
+				output += tolower(c);
+			}
+			whitespace = (isspace(c) != 0);
+		}
     }
     return output;
 }
