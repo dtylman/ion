@@ -9,6 +9,7 @@
 #include "DissectSubsystem.h"
 #include "IPDataObserver.h"
 #include "ThingObserver.h"
+#include "TrafficObserver.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Delegate.h>
 #include <Poco/Util/Application.h>
@@ -29,6 +30,7 @@ void DataSubsystem::initialize(Poco::Util::Application& app)
     Poco::Data::SQLite::Connector::registerConnector();
     _observers.push_back(new IPDataObserver(createSession()));
     _observers.push_back(new ThingObserver(createSession()));
+    _observers.push_back(new TrafficObserver());
 }
 
 const char* DataSubsystem::name() const
@@ -48,7 +50,7 @@ Poco::Data::Session DataSubsystem::createSession()
     dbFile.setFileName("ion.db");
     Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, dbFile.absolute().toString());
     session.setConnectionTimeout(30000); // 30 seconds
-	session.setLoginTimeout(30000);	
+    session.setLoginTimeout(30000);
     session << "PRAGMA synchronous = OFF", now;
     session << "PRAGMA journal_mode = MEMORY", now;
     return session;

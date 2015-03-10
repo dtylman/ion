@@ -7,6 +7,7 @@
 
 #include "ProtocolIP.h"
 #include "ProtocolUDP.h"
+#include "ProtocolTCP.h"
 #include <Poco/Format.h>
 
 const std::string ProtocolIP::Name("IP");
@@ -48,6 +49,10 @@ bool ProtocolIP::dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Pt
     if (_protocol == 0x11) // UDP
     {
         next = new ProtocolUDP();
+    }
+    else if (_protocol == 0x6) //TCP
+    {
+        next = new ProtocolTCP();
     }
     else {
         next = nullptr;
