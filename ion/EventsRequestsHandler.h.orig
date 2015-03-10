@@ -1,0 +1,26 @@
+/*
+ * File:   EventsRequestsHandler.h
+ * Author: danny
+ *
+ * Created on February 11, 2015, 11:08 PM
+ */
+
+#ifndef EVENTSREQUESTHANDLER_H
+#define	EVENTSREQUESTHANDLER_H
+
+#include "PageRequestHandler.h"
+
+class EventsRequestHandler : public PageRequestHandler
+{
+public:
+    EventsRequestHandler();
+    virtual ~EventsRequestHandler();
+protected:
+    virtual std::string title() const;
+    virtual void renderBody(std::ostream& output);
+private:
+
+};
+
+#endif	/* EVENTSREQUESTSHANDLER_H */
+
