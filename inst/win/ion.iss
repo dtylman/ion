@@ -66,6 +66,7 @@ Source: "..\..\web\*"; DestDir: "{app}\web"; Flags: recursesubdirs
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\{#AppName}"; ValueType: string; ValueName: "EventMessageFile"; ValueData: "%SystemRoot%\System32\EventCreate.exe"
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\{#AppName}"; ValueType: dword; ValueName: "TypeSupported"; ValueData: 7
 Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Services\EventLog\Application\{#AppName}"; ValueType: dword; ValueName: "CustomSource"; ValueData: 1
+Root: HKLM; Subkey: "System\CurrentControlSet\Services\{#AppName}"; ValueType: string; ValueName: "Description"; ValueData: "ION Traffic Monitor"
 
 [Icons]
 Name: "{group}\ion"; Filename: "http://localhost:9980/things.bin"; 
