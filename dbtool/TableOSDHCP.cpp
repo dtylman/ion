@@ -24,6 +24,7 @@ void TableOSDHCP::create()
 
     insert("MSFT 5.0", "*", "microsoft windows");
     insert("dhcpcd*", "android*", "google android");
+    insert("*", "*iPhone", "apple iphone");
 }
 
 void TableOSDHCP::insert(const std::string vendor, const std::string& hostname, const std::string& os)
