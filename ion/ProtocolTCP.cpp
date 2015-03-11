@@ -83,3 +83,13 @@ bool ProtocolTCP::isSynAck() const
 {
     return (_syn && _ack);
 }
+
+const Poco::UInt16 ProtocolTCP::destPort() const
+{
+    return _dest;
+}
+
+const Poco::UInt16 ProtocolTCP::srcPort() const
+{
+    return _source;
+}

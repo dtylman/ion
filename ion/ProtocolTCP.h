@@ -21,6 +21,9 @@ public:
     virtual std::string toString() const;
 
     bool isSynAck() const;
+    const Poco::UInt16 srcPort() const;
+    const Poco::UInt16 destPort() const;
+
 protected:
     virtual ~ProtocolTCP();
 private:

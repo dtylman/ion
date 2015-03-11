@@ -66,3 +66,13 @@ std::string ProtocolUDP::toString() const
 {
     return Poco::format("Source: %hu Dest: %hu Len: %hu Chksum: %hu", _source, _dest, _length, _checksum);
 }
+
+const Poco::UInt16 ProtocolUDP::destPort() const
+{
+    return _dest;
+}
+
+const Poco::UInt16 ProtocolUDP::srcPort() const
+{
+    return _source;
+}

@@ -18,6 +18,9 @@ public:
     virtual bool dissect(const FrameBuffer& buffer, size_t& offset, Protocol::Ptr& next);
     virtual const std::string& name() const;
     virtual std::string toString() const;
+
+    const Poco::UInt16 srcPort() const;
+    const Poco::UInt16 destPort() const;
 protected:
     virtual ~ProtocolUDP();
 private:
