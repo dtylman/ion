@@ -62,3 +62,7 @@ const PcapIfaceAddress::Container& PcapDevice::addresses()
     return _addresses;
 }
 
+MAC PcapDevice::getMACAddress() const
+{
+    return Poco::Net::NetworkInterface::forName(systemName()).macAddress();
+}

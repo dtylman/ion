@@ -30,7 +30,7 @@ void DataSubsystem::initialize(Poco::Util::Application& app)
     Poco::Data::SQLite::Connector::registerConnector();
     _observers.push_back(new IPDataObserver(createSession()));
     _observers.push_back(new ThingObserver(createSession()));
-    _observers.push_back(new TrafficObserver());
+    _observers.push_back(new TrafficObserver(createSession()));
 }
 
 const char* DataSubsystem::name() const

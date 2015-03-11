@@ -9,6 +9,7 @@
 #define	PCAPDEVICE_H
 
 #include "PcapIfaceAddress.h"
+#include "MAC.h"
 
 class PcapDevice
 {
@@ -24,6 +25,7 @@ public:
 
     std::string toString() const;
     const PcapIfaceAddress::Container& addresses();
+    MAC getMACAddress() const;
 private:
     PcapIfaceAddress::Container _addresses;
     std::string _name;

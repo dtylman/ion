@@ -26,6 +26,12 @@
       <itemPath>ThingData.h</itemPath>
       <itemPath>ThingObserver.cpp</itemPath>
       <itemPath>ThingObserver.h</itemPath>
+      <itemPath>TrafficBulk.cpp</itemPath>
+      <itemPath>TrafficBulk.h</itemPath>
+      <itemPath>TrafficData.cpp</itemPath>
+      <itemPath>TrafficData.h</itemPath>
+      <itemPath>TrafficDataObject.cpp</itemPath>
+      <itemPath>TrafficDataObject.h</itemPath>
       <itemPath>TrafficObserver.cpp</itemPath>
       <itemPath>TrafficObserver.h</itemPath>
     </logicalFolder>
@@ -404,6 +410,18 @@
       </item>
       <item path="ThingsPage.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="TrafficBulk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficBulk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="TrafficObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TrafficObserver.h" ex="false" tool="3" flavor2="0">
@@ -691,6 +709,18 @@
       <item path="ThingsPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ThingsPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficBulk.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficBulk.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TrafficObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>

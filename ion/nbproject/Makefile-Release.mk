@@ -87,6 +87,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/ThingData.o \
 	${OBJECTDIR}/ThingObserver.o \
 	${OBJECTDIR}/ThingsPage.o \
+	${OBJECTDIR}/TrafficBulk.o \
+	${OBJECTDIR}/TrafficData.o \
+	${OBJECTDIR}/TrafficDataObject.o \
 	${OBJECTDIR}/TrafficObserver.o \
 	${OBJECTDIR}/WebForm.o \
 	${OBJECTDIR}/WebMenu.o \
@@ -383,6 +386,21 @@ ${OBJECTDIR}/ThingsPage.o: ThingsPage.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingsPage.o ThingsPage.cpp
+
+${OBJECTDIR}/TrafficBulk.o: TrafficBulk.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficBulk.o TrafficBulk.cpp
+
+${OBJECTDIR}/TrafficData.o: TrafficData.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficData.o TrafficData.cpp
+
+${OBJECTDIR}/TrafficDataObject.o: TrafficDataObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficDataObject.o TrafficDataObject.cpp
 
 ${OBJECTDIR}/TrafficObserver.o: TrafficObserver.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -1099,6 +1117,45 @@ ${OBJECTDIR}/ThingsPage_nomain.o: ${OBJECTDIR}/ThingsPage.o ThingsPage.cpp
 	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ThingsPage_nomain.o ThingsPage.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/ThingsPage.o ${OBJECTDIR}/ThingsPage_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrafficBulk_nomain.o: ${OBJECTDIR}/TrafficBulk.o TrafficBulk.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrafficBulk.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficBulk_nomain.o TrafficBulk.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrafficBulk.o ${OBJECTDIR}/TrafficBulk_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrafficData_nomain.o: ${OBJECTDIR}/TrafficData.o TrafficData.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrafficData.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficData_nomain.o TrafficData.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrafficData.o ${OBJECTDIR}/TrafficData_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrafficDataObject_nomain.o: ${OBJECTDIR}/TrafficDataObject.o TrafficDataObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrafficDataObject.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficDataObject_nomain.o TrafficDataObject.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrafficDataObject.o ${OBJECTDIR}/TrafficDataObject_nomain.o;\
 	fi
 
 ${OBJECTDIR}/TrafficObserver_nomain.o: ${OBJECTDIR}/TrafficObserver.o TrafficObserver.cpp 
