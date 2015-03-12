@@ -39,11 +39,18 @@ Main::~Main()
 
 int Main::main(const std::vector<std::string>& args)
 {
-    PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
-    pcap.start();
-    Selfy selfy;
-    selfy.report();
-    _solicitator.solicitateAll();
+    try {
+        Selfy selfy;
+        selfy.reportNetworkConfig();
+
+        PcapSubsystem& pcap = getSubsystem<PcapSubsystem>();
+        pcap.start();
+        selfy.findRouters();
+        _solicitator.solicitateAll();
+    }
+    catch (Poco::Exception& ex) {
+        logger().error(ex.displayText());
+    }
     waitForTerminationRequest();
     return EXIT_OK;
 }

@@ -172,23 +172,22 @@ void IONDataObject::setRouter(const Poco::Net::IPAddress& ip, const MAC& mac, co
     //onRouterAdded(mac, ip.family());
     std::time_t ts = Poco::Timestamp().epochTime();
     IPData address(mac, ip, device);
-    setIP(address);
+    updateIP(address);
     ThingData routerThing;
     getThingByMAC(mac, routerThing);
     routerThing.setType("Router");
     setThing(routerThing, false);
 }
 
-void IONDataObject::setIP(const IPData & data)
+void IONDataObject::updateIP(const IPData& data, ThingData& thing)
 {
     if (data.ignore()) {
         return;
-    }	
+    }
     ScopedTransaciton transaction(_session);
-	if (isRouter(data.mac(), data.ip().family()))
-	{
-		return;
-	}
+    if (isRouter(data.mac(), data.ip().family())) {
+        return;
+    }
     bool exists = ipExists(data.ip(), data.mac());
     std::string macstr = data.mac().toString();
     std::string ipstr = data.ip().toString();
@@ -197,15 +196,20 @@ void IONDataObject::setIP(const IPData & data)
         _session << "UPDATE ip SET last_seen=? WHERE mac=? AND ip=?", use(time), use(macstr), use(ipstr), now;
     }
     else {
-        ThingData newThing;
-        newThing.setDesc(Poco::format("First seen with IP %s", ipstr));
-        setThing(newThing, false);
-        std::string thingid = newThing.uuid().toString();
+        std::string thingid = thing.uuid().toString();
         std::string ifacestr = data.iface();
+        thing.setDesc(Poco::format("First seen with IP %s", ipstr));
+        setThing(thing, false);
         _session << "INSERT INTO ip (mac ,ip ,last_seen , iface , thingid) VALUES (?,?,?,?,?)",
                 use(macstr), use(ipstr), use(time), use(ifacestr), use(thingid), now;
         onIPAdded(data);
     }
+}
+
+void IONDataObject::updateIP(const IPData & data)
+{
+    ThingData newThing;
+    updateIP(data, newThing);
 }
 
 void IONDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC & mac)

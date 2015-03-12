@@ -92,6 +92,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TrafficData.o \
 	${OBJECTDIR}/TrafficDataObject.o \
 	${OBJECTDIR}/TrafficObserver.o \
+	${OBJECTDIR}/TrafficPage.o \
 	${OBJECTDIR}/WebForm.o \
 	${OBJECTDIR}/WebMenu.o \
 	${OBJECTDIR}/WebRequestHandlerFactory.o \
@@ -430,6 +431,11 @@ ${OBJECTDIR}/TrafficObserver.o: TrafficObserver.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficObserver.o TrafficObserver.cpp
+
+${OBJECTDIR}/TrafficPage.o: TrafficPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficPage.o TrafficPage.cpp
 
 ${OBJECTDIR}/WebForm.o: WebForm.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -1206,6 +1212,19 @@ ${OBJECTDIR}/TrafficObserver_nomain.o: ${OBJECTDIR}/TrafficObserver.o TrafficObs
 	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficObserver_nomain.o TrafficObserver.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/TrafficObserver.o ${OBJECTDIR}/TrafficObserver_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrafficPage_nomain.o: ${OBJECTDIR}/TrafficPage.o TrafficPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrafficPage.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficPage_nomain.o TrafficPage.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrafficPage.o ${OBJECTDIR}/TrafficPage_nomain.o;\
 	fi
 
 ${OBJECTDIR}/WebForm_nomain.o: ${OBJECTDIR}/WebForm.o WebForm.cpp 

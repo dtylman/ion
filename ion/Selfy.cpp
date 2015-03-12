@@ -22,49 +22,39 @@ Selfy::~Selfy()
 {
 }
 
-void Selfy::report()
-{
-    reportNetworkConfig();
-    reportRouters();
-}
-
 void Selfy::reportNetworkConfig()
 {
+    ThingData myThing;
+    getMyThing(myThing);
+
+    DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
     PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
     PcapSubsystem::Devices devices;
     pcap.getAllDevices(devices);
-    ThingData thingData;
-    Poco::Util::AbstractConfiguration& config = Poco::Util::Application::instance().config();
-    thingData.setName(config.getString("system.nodeName"));
-    thingData.setOS(config.getString("system.osName"));
-    thingData.setType("Computer");
+    IONDataObject ion(data.createSession());
     for (auto device : devices) {
-        Poco::Net::IPAddress ip = device.getIPAddress(Poco::Net::IPAddress::IPv4);
-        reportIPConfig(ip, device.pcapName(), thingData);
-        ip = device.getIPAddress(Poco::Net::IPAddress::IPv6);
-        reportIPConfig(ip, device.pcapName(), thingData);
-    }
-
-}
-
-void Selfy::reportIPConfig(const Poco::Net::IPAddress& ip, const std::string& pcapName, ThingData& myThing)
-{
-    if (ip.isUnicast()) {
         try {
-            MAC mac = Poco::Net::NetworkInterface::forAddress(ip).macAddress();
-            DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
-            IONDataObject ion(data.createSession());
-            ion.getThingByMAC(mac, myThing);
-            IPData ipData(mac, ip, pcapName);
-            ion.setIP(ipData);
+            MAC mac = device.getMACAddress();
+
+            Poco::Net::IPAddress ip = device.getIPAddress(Poco::Net::IPAddress::IPv4);
+            if (ip.isUnicast()) {
+                IPData ipData(mac, ip, device.pcapName());
+                ion.updateIP(ipData, myThing);
+            }
+            ip = device.getIPAddress(Poco::Net::IPAddress::IPv6);
+            if (ip.isUnicast()) {
+                IPData ipData(mac, ip, device.pcapName());
+                ion.updateIP(ipData, myThing);
+            }
         }
-        catch (Poco::NotFoundException&) {
-            _logger.notice("No MAC for %s %s", ip.toString(), pcapName);
+        catch (Poco::Exception& ex) {
+            _logger.error(ex.displayText());
         }
     }
+
 }
 
-void Selfy::reportRouters()
+void Selfy::findRouters()
 {
     Routing routing;
     const Routing::Gateways& gateways = routing.gateways();
@@ -75,16 +65,12 @@ void Selfy::reportRouters()
         try {
             PcapDevice pcapDevice = pcap.getDevice(gateway.second);
             const Poco::Net::IPAddress& gwIP = gateway.first;
-            Poco::Net::IPAddress src = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
-            Injector injector(pcapDevice.pcapName(), src);
-            //move from here
-            ion.setIP(IPData(injector.deviceMACAddress(), src, pcapDevice.pcapName()));
-            _logger.information("Adding address %s %s %s", src.toString(), injector.deviceMACAddress().toString(), pcapDevice.pcapName());
-            //move from here -- end
+            Poco::Net::IPAddress deviceIP = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
+            Injector injector(pcapDevice.pcapName(), deviceIP);
             Arping arping(injector, gwIP);
             if (arping.ping()) {
                 const MAC& gwMAC = arping.targetMAC();
-                _logger.information("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), src.toString(), gwIP.toString(), gwMAC.toString());
+                _logger.information("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), deviceIP.toString(), gwIP.toString(), gwMAC.toString());
                 ion.setRouter(gwIP, gwMAC, pcapDevice.pcapName());
             }
         }
@@ -94,3 +80,27 @@ void Selfy::reportRouters()
     }
 }
 
+void Selfy::getMyThing(ThingData& mything)
+{
+
+    PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
+    PcapSubsystem::Devices devices;
+    pcap.getAllDevices(devices);
+    DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
+    IONDataObject ion(data.createSession());
+    for (auto device : devices) {
+        try {
+            MAC mac = device.getMACAddress();
+            if (ion.getThingByMAC(mac, mything)) {
+                break;
+            }
+        }
+        catch (Poco::Exception& ex) {
+            _logger.error(ex.displayText());
+        }
+    }
+    Poco::Util::AbstractConfiguration& config = Poco::Util::Application::instance().config();
+    mything.setName(config.getString("system.nodeName"));
+    mything.setOS(config.getString("system.osName"));
+    mything.setType("Computer");
+}

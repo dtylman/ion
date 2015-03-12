@@ -43,7 +43,7 @@ public:
     void update();
 private:
     Poco::Timestamp _time;
-    Poco::UInt32 _count = 0;
+    Poco::UInt32 _count = 1;
     MAC _mac;
     Poco::Net::IPAddress _ip;
     Poco::UInt16 _port = 0;

@@ -85,6 +85,11 @@ void TrafficBulk::update(TrafficData& trafficData, const NetStat& netstat)
     try {
         Poco::Net::HostEntry host = Poco::Net::DNS::hostByAddress(trafficData.ip());
         trafficData.setHost(host.name());
+    }
+    catch (Poco::Exception& ex) {
+        _logger.warning(ex.displayText());
+    }
+    try {
         trafficData.setProcess(netstat.getProcess(trafficData.transport(), trafficData.ip(), trafficData.port()));
         _session << "INSERT INTO traffic (time ,count ,mac ,ip, port, host, transport , process) VALUES (?,?,?,?,?,?,?,?)", use(trafficData), now;
     }
