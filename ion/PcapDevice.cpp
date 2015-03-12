@@ -41,7 +41,6 @@ Poco::Net::IPAddress PcapDevice::getIPAddress(Poco::Net::IPAddress::Family famil
 
 const std::string& PcapDevice::systemName() const
 {
-
     return _name;
 }
 
@@ -63,6 +62,13 @@ const PcapIfaceAddress::Container& PcapDevice::addresses()
 }
 
 MAC PcapDevice::getMACAddress() const
-{
-    return Poco::Net::NetworkInterface::forName(systemName()).macAddress();
+{	
+	for (auto iface : Poco::Net::NetworkInterface::map(false,false))
+	{
+		if (iface.second.displayName() == systemName())
+		{
+			return iface.second.macAddress();
+		}
+	}
+	throw Poco::NotFoundException("Can't find mac address");
 }
