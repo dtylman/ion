@@ -38,6 +38,7 @@
     <ClCompile Include="MailConfigPage.cpp" />
     <ClCompile Include="MailSendPage.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NetStat_WIN32.cpp" />
     <ClCompile Include="PageRequestHandler.cpp" />
     <ClCompile Include="PcapActivity.cpp" />
     <ClCompile Include="PcapDevice.cpp" />
@@ -49,6 +50,7 @@
     <ClCompile Include="ProtocolEthernet.cpp" />
     <ClCompile Include="ProtocolIP.cpp" />
     <ClCompile Include="ProtocolNBDatagram.cpp" />
+    <ClCompile Include="ProtocolTCP.cpp" />
     <ClCompile Include="ProtocolUDP.cpp" />
     <ClCompile Include="Rouing.cpp" />
     <ClCompile Include="Routing_WIN32.cpp" />
@@ -61,6 +63,11 @@
     <ClCompile Include="ThingData.cpp" />
     <ClCompile Include="ThingObserver.cpp" />
     <ClCompile Include="ThingsPage.cpp" />
+    <ClCompile Include="TrafficBulk.cpp" />
+    <ClCompile Include="TrafficData.cpp" />
+    <ClCompile Include="TrafficDataObject.cpp" />
+    <ClCompile Include="TrafficObserver.cpp" />
+    <ClCompile Include="TrafficPage.cpp" />
     <ClCompile Include="WebForm.cpp" />
     <ClCompile Include="WebMenu.cpp" />
     <ClCompile Include="WebRequestHandlerFactory.cpp" />
@@ -94,6 +101,7 @@
     <ClInclude Include="MailConfigPage.h" />
     <ClInclude Include="MailSendPage.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="NetStat.h" />
     <ClInclude Include="PageRequestHandler.h" />
     <ClInclude Include="PcapActivity.h" />
     <ClInclude Include="PcapDevice.h" />
@@ -105,6 +113,7 @@
     <ClInclude Include="ProtocolEthernet.h" />
     <ClInclude Include="ProtocolIP.h" />
     <ClInclude Include="ProtocolNBDatagram.h" />
+    <ClInclude Include="ProtocolTCP.h" />
     <ClInclude Include="ProtocolUDP.h" />
     <ClInclude Include="ScopedTransaciton.h" />
     <ClInclude Include="Selfy.h" />
@@ -115,6 +124,11 @@
     <ClInclude Include="ThingData.h" />
     <ClInclude Include="ThingObserver.h" />
     <ClInclude Include="ThingsPage.h" />
+    <ClInclude Include="TrafficBulk.h" />
+    <ClInclude Include="TrafficData.h" />
+    <ClInclude Include="TrafficDataObject.h" />
+    <ClInclude Include="TrafficObserver.h" />
+    <ClInclude Include="TrafficPage.h" />
     <ClInclude Include="WebForm.h" />
     <ClInclude Include="WebMenu.h" />
     <ClInclude Include="WebRequestHandlerFactory.h" />
