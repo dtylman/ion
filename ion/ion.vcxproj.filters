@@ -166,6 +166,25 @@
     <ClCompile Include="Syslog_WIN32.cpp">
       <Filter>Event</Filter>
     </ClCompile>
+    <ClCompile Include="TrafficBulk.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficObserver.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolTCP.cpp">
+      <Filter>Dissect</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="NetStat_WIN32.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -310,6 +329,25 @@
     <ClInclude Include="Syslog.h">
       <Filter>Event</Filter>
     </ClInclude>
+    <ClInclude Include="TrafficBulk.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficObserver.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolTCP.h">
+      <Filter>Dissect</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="NetStat.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />

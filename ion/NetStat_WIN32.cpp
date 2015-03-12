@@ -7,7 +7,7 @@
 #include <Poco/Exception.h>
 #include <Poco/NumberFormatter.h>
 #include <Poco/Format.h>
-#include "WMI/WMIProvider.h"
+
 
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "ws2_32.lib")
@@ -20,28 +20,15 @@ NetStat::~NetStat(void)
 {
 }
 
+
 void NetStat::populate()
 {
 
+    write_tcp4();
+    write_udp4();
 }
 
-void NetStat::populate(ContextWriter& writer)
-{
-    WMIProvider wmi;
-    wmi.connect();
-    WMIProvider::WMIResults res;
-    wmi.query("SELECT Name, ProcessId from Win32_Process", res);
-    WMIProvider::WMIResults::iterator iter = res.begin();
-    for (; iter != res.end(); ++iter) {
-        std::string& name = iter->second["Name"];
-        std::string& id = iter->second["ProcessId"];
-        _processes[id] = name;
-    }
-    write_tcp4(writer);
-    write_udp4(writer);
-}
-
-void NetStat::write_tcp4(ContextWriter& writer)
+void NetStat::write_tcp4()
 {
     DWORD size = 0;
     DWORD result = 0;
@@ -63,22 +50,22 @@ void NetStat::write_tcp4(ContextWriter& writer)
     for (DWORD i = 0; i < pTCPTable->dwNumEntries; i++) {
         MIB_TCPROW_OWNER_MODULE module = pTCPTable->table[i];
         if (module.dwState == MIB_TCP_STATE_LISTEN) {
-            writer.startObject("socket");
+            //writer.startObject("socket");
             Poco::Net::IPAddress local(&module.dwLocalAddr, sizeof (DWORD));
-            writer.write("localaddress", local.toString());
+            ///writer.write("localaddress", local.toString());
             std::string pid = Poco::NumberFormatter::format(module.dwOwningPid);
-            writer.write("pid", pid);
-            writer.write("pname", pid2Name(pid));
-            writer.write("localport", Poco::NumberFormatter::format(htons((short) module.dwLocalPort)));
-            writer.write("protocol", "TCP");
-            writer.endObject();
+            //writer.write("pid", pid);
+            //writer.write("pname", pid2Name(pid));
+            //writer.write("localport", Poco::NumberFormatter::format(htons((short) module.dwLocalPort)));
+            //writer.write("protocol", "TCP");
+            //writer.endObject();
         }
 
     }
     free(pTCPTable);
 }
 
-void NetStat::write_udp4(ContextWriter& writer)
+void NetStat::write_udp4()
 {
     DWORD size = 0;
     DWORD result = 0;
@@ -98,16 +85,16 @@ void NetStat::write_udp4(ContextWriter& writer)
         return;
     }
     for (DWORD i = 0; i < pUDPTable->dwNumEntries; i++) {
-        writer.startObject("socket");
+        //writer.startObject("socket");
         MIB_UDPROW_OWNER_MODULE module = pUDPTable->table[i];
         Poco::Net::IPAddress local(&module.dwLocalAddr, sizeof (DWORD));
-        writer.write("localaddress", local.toString());
+        //writer.write("localaddress", local.toString());
         std::string pid = Poco::NumberFormatter::format(module.dwOwningPid);
-        writer.write("pid", pid);
-        writer.write("pname", pid2Name(pid));
-        writer.write("localport", Poco::NumberFormatter::format(htons((short) module.dwLocalPort)));
-        writer.write("protocol", "UDP");
-        writer.endObject();
+        //writer.write("pid", pid);
+        //writer.write("pname", pid2Name(pid));
+        //writer.write("localport", Poco::NumberFormatter::format(htons((short) module.dwLocalPort)));
+        //writer.write("protocol", "UDP");
+        //writer.endObject();
     }
     free(pUDPTable);
     return;
@@ -120,4 +107,9 @@ std::string NetStat::pid2Name(const std::string& pid)
         return iter->second;
     }
     return "";
+}
+
+std::string NetStat::getProcess(const std::string& transport, const Poco::Net::IPAddress& ip, Poco::UInt16 port) const
+{
+	return "";
 }

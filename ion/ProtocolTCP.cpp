@@ -7,7 +7,11 @@
 
 #include "ProtocolTCP.h"
 #include <Poco/Format.h>
+#ifdef POCO_OS_FAMILY_WINDOWS
+#include <WinSock2.h>
+#else
 #include <netinet/in.h>
+#endif
 
 const std::string ProtocolTCP::Name("TCP");
 
