@@ -147,6 +147,8 @@
     <itemPath>Main.cpp</itemPath>
     <itemPath>Main.h</itemPath>
     <itemPath>Makefile</itemPath>
+    <itemPath>NetStat.h</itemPath>
+    <itemPath>NetStat_LINUX.cpp</itemPath>
     <itemPath>Rouing.cpp</itemPath>
     <itemPath>Routing.h</itemPath>
     <itemPath>Routing_LINUX.cpp</itemPath>
@@ -311,6 +313,10 @@
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NetStat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NetStat_LINUX.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PageRequestHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -611,6 +617,10 @@
       <item path="Main.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Makefile" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NetStat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NetStat_LINUX.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PageRequestHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
