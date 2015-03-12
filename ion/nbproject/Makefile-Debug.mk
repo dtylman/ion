@@ -62,6 +62,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/MailConfigPage.o \
 	${OBJECTDIR}/MailSendPage.o \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/NetStat_LINUX.o \
 	${OBJECTDIR}/PageRequestHandler.o \
 	${OBJECTDIR}/PcapActivity.o \
 	${OBJECTDIR}/PcapDevice.o \
@@ -279,6 +280,11 @@ ${OBJECTDIR}/Main.o: Main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.cpp
+
+${OBJECTDIR}/NetStat_LINUX.o: NetStat_LINUX.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NetStat_LINUX.o NetStat_LINUX.cpp
 
 ${OBJECTDIR}/PageRequestHandler.o: PageRequestHandler.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -810,6 +816,19 @@ ${OBJECTDIR}/Main_nomain.o: ${OBJECTDIR}/Main.o Main.cpp
 	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main_nomain.o Main.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/Main.o ${OBJECTDIR}/Main_nomain.o;\
+	fi
+
+${OBJECTDIR}/NetStat_LINUX_nomain.o: ${OBJECTDIR}/NetStat_LINUX.o NetStat_LINUX.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/NetStat_LINUX.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NetStat_LINUX_nomain.o NetStat_LINUX.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/NetStat_LINUX.o ${OBJECTDIR}/NetStat_LINUX_nomain.o;\
 	fi
 
 ${OBJECTDIR}/PageRequestHandler_nomain.o: ${OBJECTDIR}/PageRequestHandler.o PageRequestHandler.cpp 
