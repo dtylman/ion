@@ -51,7 +51,6 @@ void ThingsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequ
 {
     handleParams(request);
     renderTable(output);
-    renderScripts(output);
 }
 
 void ThingsPage::renderButtons(std::ostream& output)

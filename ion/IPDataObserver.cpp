@@ -81,7 +81,7 @@ void IPDataObserver::link(const Poco::Net::IPAddress& ip, const MAC& mac, const 
 
         return;
     }
-    _ion.setIP(IPData(mac, ip, device));
+    _ion.updateIP(IPData(mac, ip, device));
 }
 
 void IPDataObserver::routerSuspected(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device)

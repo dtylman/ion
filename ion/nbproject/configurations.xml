@@ -110,6 +110,8 @@
       <itemPath>ServerSettingsPage.h</itemPath>
       <itemPath>ThingsPage.cpp</itemPath>
       <itemPath>ThingsPage.h</itemPath>
+      <itemPath>TrafficPage.cpp</itemPath>
+      <itemPath>TrafficPage.h</itemPath>
       <itemPath>WebForm.cpp</itemPath>
       <itemPath>WebForm.h</itemPath>
       <itemPath>WebMenu.cpp</itemPath>
@@ -432,6 +434,10 @@
       </item>
       <item path="TrafficObserver.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="TrafficPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficPage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="WebForm.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="WebForm.h" ex="false" tool="3" flavor2="0">
@@ -735,6 +741,10 @@
       <item path="TrafficObserver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TrafficObserver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebForm.cpp" ex="false" tool="1" flavor2="0">
       </item>

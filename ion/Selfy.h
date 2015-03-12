@@ -18,12 +18,10 @@ class Selfy
 public:
     Selfy();
     virtual ~Selfy();
-
-    void report();
-private:
     void reportNetworkConfig();
-    void reportIPConfig(const Poco::Net::IPAddress& ip, const std::string& pcapName, ThingData& myThing);
-    void reportRouters();
+    void findRouters();
+private:
+    void getMyThing(ThingData& mything);
     Poco::Logger& _logger;
 };
 

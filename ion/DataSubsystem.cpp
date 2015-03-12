@@ -49,8 +49,7 @@ Poco::Data::Session DataSubsystem::createSession()
     Poco::Path dbFile(Poco::Util::Application::instance().config().getString("application.dir"));
     dbFile.setFileName("ion.db");
     Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, dbFile.absolute().toString());
-    session.setConnectionTimeout(60000); // 30 seconds
-    session.setLoginTimeout(60000);
+    session.setConnectionTimeout(30000); // 30 seconds
     session << "PRAGMA synchronous = OFF", now;
     session << "PRAGMA journal_mode = MEMORY", now;
     return session;

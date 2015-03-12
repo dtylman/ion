@@ -36,8 +36,6 @@ bool AddressesPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerR
 void AddressesPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
     renderTable(output);
-
-    renderScripts(output);
 }
 
 void AddressesPage::renderButtons(std::ostream& output)

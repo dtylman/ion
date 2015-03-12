@@ -29,7 +29,8 @@ public:
     void removeIP(const Poco::Net::IPAddress& ip, const MAC& mac);
     void setRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
     void setSuspectedRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string& device);
-    void setIP(const IPData& data);
+    void updateIP(const IPData& data);
+    void updateIP(const IPData& data, ThingData& thing);
     bool isRouter(const MAC& mac, const Poco::Net::IPAddress::Family& family);
     void findIPs(IPData::Container& container);
     void findThingIPs(const Poco::UUID& thingid, IPData::Container & container);
