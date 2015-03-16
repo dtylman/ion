@@ -118,6 +118,13 @@ bool PageRequestHandler::getQueryParam(const std::string& name, std::string& val
     return false;
 }
 
+std::string PageRequestHandler::queryParam(const std::string& name, Poco::Net::HTTPServerRequest& request)
+{
+    std::string val;
+    getQueryParam(name, val, request);
+    return val;
+}
+
 bool PageRequestHandler::renderFormStart(std::ostream& output)
 {
     return false;

@@ -10,6 +10,7 @@
 #include "ScopedTransaciton.h"
 #include "NetStat.h"
 #include <Poco/Util/Application.h>
+#include <Poco/Exception.h>
 #include <Poco/Net/DNS.h>
 
 using namespace Poco::Data::Keywords;
@@ -28,7 +29,6 @@ _logger(Poco::Logger::get("TrafficBulk"))
             _logger.warning("Cannot find mac address for %s", device.systemName());
         }
     }
-
 }
 
 TrafficBulk::~TrafficBulk()
@@ -84,16 +84,40 @@ void TrafficBulk::update(TrafficData& trafficData, const NetStat& netstat)
 {
     try {
         Poco::Net::HostEntry host = Poco::Net::DNS::hostByAddress(trafficData.ip());
-        trafficData.setHost(host.name());
+        setHostName(trafficData, host.name());
     }
     catch (Poco::Exception& ex) {
         _logger.warning(ex.displayText());
     }
     try {
         trafficData.setProcess(netstat.getProcess(trafficData.transport(), trafficData.ip(), trafficData.port()));
-        _session << "INSERT INTO traffic (time ,count ,mac ,ip, port, host, transport , process) VALUES (?,?,?,?,?,?,?,?)", use(trafficData), now;
+        _session << "INSERT INTO traffic (time ,count ,mac ,ip, port, host, domain, transport , process) VALUES (?,?,?,?,?,?,?,?,?)", use(trafficData), now;
     }
     catch (Poco::Exception& ex) {
         _logger.error(ex.displayText());
     }
+}
+
+void TrafficBulk::setHostName(TrafficData& trafficData, const std::string& fqdn)
+{
+    std::string domain;
+    std::string host;
+    unsigned dots = 0;
+    unsigned domain_dots = 3;
+    for (size_t pos = fqdn.size() - 1; pos != 0; pos--) {
+        char c = tolower(fqdn[pos]);
+        if (c == '.') {
+            if ((domain == "com") || (domain == "edu") || (domain == "net") || (domain == "org") || (domain == "int") || (domain == "gov") || (domain == "mil")) {
+                domain_dots = 2;
+            }
+            dots++;
+            if (dots == domain_dots) {
+                host = fqdn.substr(0, pos);
+                break;
+            }
+        }
+        domain.insert(domain.begin(), c);
+    }
+    trafficData.setHost(host);
+    trafficData.setDomain(domain);
 }

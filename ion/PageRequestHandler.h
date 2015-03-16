@@ -33,6 +33,7 @@ protected:
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse & response) = 0;
 
     bool getQueryParam(const std::string& name, std::string& value, Poco::Net::HTTPServerRequest & request);
+    std::string queryParam(const std::string& name, Poco::Net::HTTPServerRequest& request);
 private:
     std::string _language = "en";
 

@@ -118,3 +118,13 @@ void TrafficData::update()
 {
     _count++;
 }
+
+const std::string& TrafficData::domain() const
+{
+    return _domain;
+}
+
+const std::string& TrafficData::setDomain(const std::string& domain)
+{
+    _domain = domain;
+}

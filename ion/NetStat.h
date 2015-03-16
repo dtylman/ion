@@ -10,7 +10,6 @@
 
 #include <Poco/Logger.h>
 #include <Poco/Net/IPAddress.h>
-#include <string>
 #include <map>
 
 class NetStat
@@ -20,14 +19,10 @@ public:
     virtual ~NetStat();
 
     std::string getProcess(const std::string& transport, const Poco::Net::IPAddress& ip, Poco::UInt16 port) const;
-protected:
-    void populateProcesses();
+private:
     void populate();
-    void write_tcp4();
-    void write_udp4();
-    std::string pid2Name(const std::string& pid);
-
-    std::map<std::string, std::string> _processes;
+    typedef std::map<std::string, std::string> Processes;
+    Processes _processes;
     Poco::Logger& _logger;
 };
 

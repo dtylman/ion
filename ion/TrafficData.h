@@ -37,7 +37,8 @@ public:
     void setProcess(const std::string& process);
     const std::string& host() const;
     void setHost(const std::string& host);
-
+    const std::string& domain() const;
+    const std::string& setDomain(const std::string& domain);
     std::string toString() const;
     std::size_t hash() const;
     void update();
@@ -48,6 +49,7 @@ private:
     Poco::Net::IPAddress _ip;
     Poco::UInt16 _port = 0;
     std::string _host;
+    std::string _domain;
     std::string _transport;
     std::string _process;
 };
@@ -75,13 +77,14 @@ namespace Poco
                 TypeHandler<Poco::UInt16>::bind(pos++, trafficData.port(), pBinder, AbstractBinder::PD_IN_OUT);
 
                 TypeHandler<std::string>::bind(pos++, trafficData.host(), pBinder, AbstractBinder::PD_IN_OUT);
+                TypeHandler<std::string>::bind(pos++, trafficData.domain(), pBinder, AbstractBinder::PD_IN_OUT);
                 TypeHandler<std::string>::bind(pos++, trafficData.transport(), pBinder, AbstractBinder::PD_IN_OUT);
                 TypeHandler<std::string>::bind(pos++, trafficData.process(), pBinder, AbstractBinder::PD_IN_OUT);
             }
 
             static std::size_t size()
             {
-                return 8;
+                return 9;
             }
 
             static void prepare(std::size_t pos, const TrafficData &trafficData, AbstractPreparator::Ptr pPreparator)
@@ -95,6 +98,7 @@ namespace Poco
                 TypeHandler<Poco::UInt16>::prepare(pos++, trafficData.port(), pPreparator);
 
                 TypeHandler<std::string>::prepare(pos++, trafficData.host(), pPreparator);
+                TypeHandler<std::string>::prepare(pos++, trafficData.domain(), pPreparator);
                 TypeHandler<std::string>::prepare(pos++, trafficData.transport(), pPreparator);
                 TypeHandler<std::string>::prepare(pos++, trafficData.process(), pPreparator);
             }
@@ -104,7 +108,7 @@ namespace Poco
                 poco_assert_dbg(!pExt.isNull());
                 std::time_t time;
                 Poco::UInt32 count;
-                std::string mac, ip, host, transport, process;
+                std::string mac, ip, host, domain, transport, process;
                 Poco::UInt16 toport;
 
                 TypeHandler<std::time_t>::extract(pos++, time, defVal.time().epochTime(), pExt);
@@ -115,6 +119,7 @@ namespace Poco
                 TypeHandler<Poco::UInt16>::extract(pos++, toport, defVal.port(), pExt);
 
                 TypeHandler<std::string>::extract(pos++, host, defVal.host(), pExt);
+                TypeHandler<std::string>::extract(pos++, domain, defVal.domain(), pExt);
                 TypeHandler<std::string>::extract(pos++, transport, defVal.transport(), pExt);
                 TypeHandler<std::string>::extract(pos++, process, defVal.process(), pExt);
                 trafficData.setTime(Poco::Timestamp::fromEpochTime(time));
@@ -125,6 +130,7 @@ namespace Poco
                 trafficData.setPort(toport);
 
                 trafficData.setHost(host);
+                trafficData.setDomain(domain);
                 trafficData.setTransport(transport);
                 trafficData.setProcess(process);
             }
