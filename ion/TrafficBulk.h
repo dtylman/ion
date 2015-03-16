@@ -29,6 +29,7 @@ private:
     void set(const MAC& mac, const Poco::Net::IPAddress& ip, Poco::UInt16 port, const std::string& transport);
     void bulkUpdate();
     void update(TrafficData& trafficData, const NetStat& netstat);
+    void setHostName(TrafficData& trafficData, const std::string& fqdn);
     typedef std::set<MAC> MACSContainer;
     MACSContainer _selfMACs;
     typedef std::map<std::size_t, TrafficData> TrafficContainer;
