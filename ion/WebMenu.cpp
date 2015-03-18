@@ -13,6 +13,7 @@
 #include "MailConfigPage.h"
 #include "ServerSettingsPage.h"
 #include "TrafficPage.h"
+#include "AuthorizationPage.h"
 #include <Poco/Format.h>
 
 WebMenu::WebMenu()
@@ -21,6 +22,7 @@ WebMenu::WebMenu()
     _navbarItems.push_back(MenuItem(AddressesPage::Title, AddressesPage::Link));
     _navbarItems.push_back(MenuItem(EventsPage::Title, EventsPage::Link));
     _navbarItems.push_back(MenuItem(TrafficPage::Title, TrafficPage::Link));
+    _navbarItems.push_back(MenuItem(AuthorizationPage::Title, AuthorizationPage::Link));
     _navbarItems.push_back(MenuItem(EventConfigPage::Title, EventConfigPage::Link));
     _navbarItems.push_back(MenuItem(MailConfigPage::Title, MailConfigPage::Link));
     _navbarItems.push_back(MenuItem(ServerSettingsPage::Title, ServerSettingsPage::Link));

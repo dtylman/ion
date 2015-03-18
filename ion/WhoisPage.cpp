@@ -8,6 +8,7 @@
 #include "WhoisPage.h"
 #include "Whois.h"
 #include "WebMenu.h"
+#include "TrafficPage.h"
 #include <Poco/String.h>
 
 const std::string WhoisPage::Title("Whois");
@@ -33,26 +34,31 @@ std::string WhoisPage::subtitle() const
 
 void WhoisPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    std::string query;
-    if (getQueryParam("query", query, request)) {
-        Whois whois;
-        whois.query(query);
-        std::stringstream& record = whois.record();
-        bool code = true;
-        output << "<code>";
-        while (record.good()) {
-            std::string line;
-            std::getline(record, line);
+    try {
+        std::string query;
+        if (getQueryParam("query", query, request)) {
+            Whois whois;
+            whois.query(query);
+            std::stringstream& record = whois.record();
+            bool code = true;
+            output << "<code>";
+            while (record.good()) {
+                std::string line;
+                std::getline(record, line);
 
-            Poco::trimInPlace(line);
-            if (!line.empty()) {
-                output << line;
+                Poco::trimInPlace(line);
+                if (!line.empty()) {
+                    output << line;
+                }
+                output << "</br>";
             }
-            output << "</br>";
+            if (code) {
+                output << "</code>";
+            }
         }
-        if (code) {
-            output << "</code>";
-        }
+    }
+    catch (Poco::Exception& ex) {
+        output << "<div class='alert alert-danger' role='alert'>Ouch! " << ex.displayText() << "</div>";
     }
 }
 
@@ -63,5 +69,5 @@ bool WhoisPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerReque
 
 void WhoisPage::renderButtons(std::ostream& output)
 {
-    WebMenu::renderHomeButton(output, "Close");
+    WebMenu::renderLinkButton(output, "Close", TrafficPage::Link);
 }
