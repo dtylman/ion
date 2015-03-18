@@ -4,6 +4,8 @@
     <logicalFolder name="f4" displayName="Data" projectFiles="true">
       <itemPath>AuthDataObject.cpp</itemPath>
       <itemPath>AuthDataObject.h</itemPath>
+      <itemPath>AuthTrafficDataObject.cpp</itemPath>
+      <itemPath>AuthTrafficDataObject.h</itemPath>
       <itemPath>DHCPOSDataObject.cpp</itemPath>
       <itemPath>DHCPOSDataObject.h</itemPath>
       <itemPath>DataObject.cpp</itemPath>
@@ -92,6 +94,8 @@
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
       <itemPath>AddressesPage.cpp</itemPath>
       <itemPath>AddressesPage.h</itemPath>
+      <itemPath>AuthorizationPage.cpp</itemPath>
+      <itemPath>AuthorizationPage.h</itemPath>
       <itemPath>EditThingPage.cpp</itemPath>
       <itemPath>EditThingPage.h</itemPath>
       <itemPath>EventConfigPage.cpp</itemPath>
@@ -112,6 +116,8 @@
       <itemPath>ThingsPage.h</itemPath>
       <itemPath>TrafficPage.cpp</itemPath>
       <itemPath>TrafficPage.h</itemPath>
+      <itemPath>TrafficZoomPage.cpp</itemPath>
+      <itemPath>TrafficZoomPage.h</itemPath>
       <itemPath>WebForm.cpp</itemPath>
       <itemPath>WebForm.h</itemPath>
       <itemPath>WebMenu.cpp</itemPath>
@@ -222,6 +228,14 @@
       </item>
       <item path="AuthDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AuthTrafficDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AuthTrafficDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AuthorizationPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AuthorizationPage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
@@ -441,6 +455,10 @@
       <item path="TrafficPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TrafficPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficZoomPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficZoomPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebForm.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -538,6 +556,14 @@
       </item>
       <item path="AuthDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="AuthTrafficDataObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AuthTrafficDataObject.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AuthorizationPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AuthorizationPage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.h" ex="false" tool="3" flavor2="0">
@@ -757,6 +783,10 @@
       <item path="TrafficPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TrafficPage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TrafficZoomPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TrafficZoomPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WebForm.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -38,6 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/AddressesPage.o \
 	${OBJECTDIR}/Arping.o \
 	${OBJECTDIR}/AuthDataObject.o \
+	${OBJECTDIR}/AuthTrafficDataObject.o \
+	${OBJECTDIR}/AuthorizationPage.o \
 	${OBJECTDIR}/DHCPOSDataObject.o \
 	${OBJECTDIR}/DataObject.o \
 	${OBJECTDIR}/DataObserver.o \
@@ -93,6 +95,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/TrafficDataObject.o \
 	${OBJECTDIR}/TrafficObserver.o \
 	${OBJECTDIR}/TrafficPage.o \
+	${OBJECTDIR}/TrafficZoomPage.o \
 	${OBJECTDIR}/WebForm.o \
 	${OBJECTDIR}/WebMenu.o \
 	${OBJECTDIR}/WebRequestHandlerFactory.o \
@@ -163,6 +166,16 @@ ${OBJECTDIR}/AuthDataObject.o: AuthDataObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthDataObject.o AuthDataObject.cpp
+
+${OBJECTDIR}/AuthTrafficDataObject.o: AuthTrafficDataObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthTrafficDataObject.o AuthTrafficDataObject.cpp
+
+${OBJECTDIR}/AuthorizationPage.o: AuthorizationPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthorizationPage.o AuthorizationPage.cpp
 
 ${OBJECTDIR}/DHCPOSDataObject.o: DHCPOSDataObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -439,6 +452,11 @@ ${OBJECTDIR}/TrafficPage.o: TrafficPage.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficPage.o TrafficPage.cpp
 
+${OBJECTDIR}/TrafficZoomPage.o: TrafficZoomPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficZoomPage.o TrafficZoomPage.cpp
+
 ${OBJECTDIR}/WebForm.o: WebForm.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -522,6 +540,32 @@ ${OBJECTDIR}/AuthDataObject_nomain.o: ${OBJECTDIR}/AuthDataObject.o AuthDataObje
 	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthDataObject_nomain.o AuthDataObject.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/AuthDataObject.o ${OBJECTDIR}/AuthDataObject_nomain.o;\
+	fi
+
+${OBJECTDIR}/AuthTrafficDataObject_nomain.o: ${OBJECTDIR}/AuthTrafficDataObject.o AuthTrafficDataObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/AuthTrafficDataObject.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthTrafficDataObject_nomain.o AuthTrafficDataObject.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/AuthTrafficDataObject.o ${OBJECTDIR}/AuthTrafficDataObject_nomain.o;\
+	fi
+
+${OBJECTDIR}/AuthorizationPage_nomain.o: ${OBJECTDIR}/AuthorizationPage.o AuthorizationPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/AuthorizationPage.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthorizationPage_nomain.o AuthorizationPage.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/AuthorizationPage.o ${OBJECTDIR}/AuthorizationPage_nomain.o;\
 	fi
 
 ${OBJECTDIR}/DHCPOSDataObject_nomain.o: ${OBJECTDIR}/DHCPOSDataObject.o DHCPOSDataObject.cpp 
@@ -1237,6 +1281,19 @@ ${OBJECTDIR}/TrafficPage_nomain.o: ${OBJECTDIR}/TrafficPage.o TrafficPage.cpp
 	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficPage_nomain.o TrafficPage.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/TrafficPage.o ${OBJECTDIR}/TrafficPage_nomain.o;\
+	fi
+
+${OBJECTDIR}/TrafficZoomPage_nomain.o: ${OBJECTDIR}/TrafficZoomPage.o TrafficZoomPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/TrafficZoomPage.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/NetSSL_OpenSSL/include -I../lib/poco-1.6.0-all/Net/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Data/include -I../lib/poco-1.6.0-all/Data/SQLite/include -I../lib/poco-1.6.0-all/Crypto/include `pkg-config --cflags libssl` -std=c++11  -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TrafficZoomPage_nomain.o TrafficZoomPage.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/TrafficZoomPage.o ${OBJECTDIR}/TrafficZoomPage_nomain.o;\
 	fi
 
 ${OBJECTDIR}/WebForm_nomain.o: ${OBJECTDIR}/WebForm.o WebForm.cpp 

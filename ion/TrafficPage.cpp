@@ -10,6 +10,9 @@
 #include <Poco/Util/Application.h>
 #include "DataSubsystem.h"
 #include "WebForm.h"
+#include "WhoisPage.h"
+#include "TrafficZoomPage.h"
+#include "AuthorizationPage.h"
 
 const std::string TrafficPage::Title("My Traffic");
 const std::string TrafficPage::Link("traffic.bin");
@@ -22,14 +25,6 @@ TrafficPage::~TrafficPage()
 {
 }
 
-/*
-
---select  datetime(time,'unixepoch','localtime') AS time, sum(count) AS count, traffic.ip, host, domain, process, port, transport  FROM traffic
---left join ip on traffic.ip=ip.ip WHERE ip.ip is  null group by port order by count DESC
-
---select  datetime(time,'unixepoch','localtime') AS time, count, traffic.ip, host, domain, process, port, transport  FROM traffic
---left join ip on traffic.ip=ip.ip WHERE ip.ip is  null AND domain=''  group by traffic.ip order by count DESC
- */
 void TrafficPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
 
@@ -48,23 +43,25 @@ void TrafficPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerReq
 
     output << "    <tbody>";
 
-    std::string groupby;
-    if (!getQueryParam("group", groupby, request)) {
-        groupby = "domain";
-    }
-    std::string ipip;
-    if (queryParam("local", request) == "yes") {
-        ipip = " IS NOT NULL";
-    }
-    else {
-        ipip = " IS NULL";
-    }
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
     Poco::Data::Statement query(session);
-    query << "SELECT datetime(time,'unixepoch','localtime') AS time, sum(count) AS count, traffic.ip as ip, host, domain, process FROM traffic ";
+    query << "SELECT datetime(time,'unixepoch','localtime') AS time, sum(count) AS count, "
+            "traffic.ip as ip, traffic.host as host, traffic.domain as domain, traffic.process as process "
+            "FROM traffic ";
     query << "LEFT JOIN ip ON traffic.ip=ip.ip ";
-    query << "WHERE ip.ip " << ipip;
-    query << " GROUP BY " << groupby << " ORDER BY count DESC";
+    if (_local) {
+        query << "WHERE ip.ip IS NOT NULL ";
+    }
+    else {
+        query << "WHERE ip.ip IS NULL ";
+    }
+    if (!_all) {
+        query << "AND traffic.domain NOT IN (SELECT value FROM authorized_traffic WHERE  type='domain') AND ";
+        query << "traffic.ip NOT IN (SELECT value FROM authorized_traffic WHERE  type='ip') AND ";
+        query << "traffic.port NOT IN (SELECT value FROM authorized_traffic WHERE  type='port') AND ";
+        query << "traffic.process NOT IN (SELECT value FROM authorized_traffic WHERE  type='process')";
+    }
+    query << " GROUP BY " << _group << " ORDER BY count DESC";
     query.execute();
     Poco::Data::RecordSet rs(query);
     bool more = rs.moveFirst();
@@ -80,9 +77,31 @@ void TrafficPage::renderRow(std::ostream& output, Poco::Data::RecordSet & rs)
 {
     output << "<tr>";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
-
+        const std::string& columnName = rs.columnName(i);
+        std::string value = rs[i].toString();
+        if (value.empty()) {
+            value = "-";
+        }
         output << "<td>";
-        output << rs[i].toString();
+        if (!_all) {
+            if (columnName == "domain") {
+                output << Poco::format("<a href=%s?query=%s><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a> ", WhoisPage::Link, value);
+                output << Poco::format("<a href=%s?type=domain&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+            }
+            else if (columnName == "ip") {
+                output << Poco::format("<a href=%s?ip=%s><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a> ", WhoisPage::Link, value);
+                output << Poco::format("<a href=%s?type=ip&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+            }
+            else if (columnName == "process") {
+                output << Poco::format("<a href=%s?type=process&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+            }
+        }
+        if ((columnName != "time") && (columnName != "count")) {
+            output << Poco::format("<a href=%s?field=%s&value=%s>%s</a> ", TrafficZoomPage::Link, columnName, value, value);
+        }
+        else {
+            output << value;
+        }
         output << "</td>";
     }
     output << "</tr>";
@@ -90,7 +109,6 @@ void TrafficPage::renderRow(std::ostream& output, Poco::Data::RecordSet & rs)
 
 void TrafficPage::renderScripts(std::ostream & output)
 {
-
     output << "<script>";
     output << "    $(document).ready(function () {";
     output << "        $('#traffic').dataTable( { stateSave: true });";
@@ -100,19 +118,33 @@ void TrafficPage::renderScripts(std::ostream & output)
 
 std::string TrafficPage::subtitle() const
 {
-
-    return "All traffic";
+    std::string type = "remote";
+    if (_local) {
+        type = "local";
+    }
+    if (_all) {
+        return Poco::format("Showing all %s traffic", type);
+    }
+    else {
+        return Poco::format("Showing non authorized %s traffic", type);
+    }
 }
 
 std::string TrafficPage::title() const
 {
-
     return "My Traffic";
 }
 
 bool TrafficPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse & response)
 {
-
+    _local = form.has("local");
+    _all = form.has("all");
+    if (form.has("filter")) {
+        _group = form.get("filter");
+        if (_group == "IP") {
+            _group = "traffic.ip";
+        }
+    }
     return false;
 }
 
@@ -120,15 +152,15 @@ void TrafficPage::renderButtons(std::ostream & output)
 {
     output << Poco::format("<form method='POST' action='%s' class='form-inline'>", Link);
     WebForm form(output);
-    bool _local = false;
-    form.renderChkbox("local", "Local: ", _local, 2);
-    std::string _filter = "Domain";
+    form.renderChkbox("local", "Local Traffic only:  ", _local, 2);
+    form.renderChkbox("all", "Show All traffic:  ", _all, 2);
     WebForm::Options filterOptions;
     filterOptions.push_back("Domain");
     filterOptions.push_back("Host");
     filterOptions.push_back("IP");
     filterOptions.push_back("Time");
-    form.renderSelect("filter", "Filter: ", _filter, filterOptions, 2);
+    filterOptions.push_back("Process");
+    form.renderSelect("filter", "Filter By:  ", _group, filterOptions, 2);
     output << "<input type='submit' class='btn btn-primary' value='Filter...'></input>";
     output << "</form>";
 

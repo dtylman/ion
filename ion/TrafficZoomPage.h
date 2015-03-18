@@ -1,23 +1,24 @@
 /*
- * File:   TrafficPage.h
+ * File:   TrafficZoomPage.h
  * Author: danny
  *
- * Created on March 12, 2015, 11:16 PM
+ * Created on March 18, 2015, 2:41 PM
  */
 
-#ifndef TRAFFICPAGE_H
-#define	TRAFFICPAGE_H
+#ifndef TRAFFICZOOMPAGE_H
+#define	TRAFFICZOOMPAGE_H
 
 #include "PageRequestHandler.h"
 #include <Poco/Data/RecordSet.h>
+#include <string>
 
-class TrafficPage : public PageRequestHandler
+class TrafficZoomPage : public PageRequestHandler
 {
 public:
     static const std::string Title;
     static const std::string Link;
-    TrafficPage();
-    virtual ~TrafficPage();
+    TrafficZoomPage();
+    virtual ~TrafficZoomPage();
 protected:
     virtual std::string title() const;
     virtual std::string subtitle() const;
@@ -27,10 +28,10 @@ protected:
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
 private:
     void renderRow(std::ostream& output, Poco::Data::RecordSet& rs);
-    bool _local = false;
-    bool _all = false;
-    std::string _group = "Domain";
+private:
+    std::string _field;
+    std::string _value;
 };
 
-#endif	/* TRAFFICPAGE_H */
+#endif	/* TRAFFICZOOMPAGE_H */
 
