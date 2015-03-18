@@ -17,6 +17,7 @@
 #include "MailSendPage.h"
 #include "ServerSettingsPage.h"
 #include "TrafficPage.h"
+#include "WhoisPage.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
@@ -30,6 +31,7 @@ WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get
     _pages.registerClass<MailSendPage>(MailSendPage::Link);
     _pages.registerClass<ServerSettingsPage>(ServerSettingsPage::Link);
     _pages.registerClass<TrafficPage>(TrafficPage::Link);
+    _pages.registerClass<WhoisPage>(WhoisPage::Link);
 }
 
 WebRequestHandlerFactory::~WebRequestHandlerFactory()

@@ -9,6 +9,7 @@
 #include <Poco/Data/Session.h>
 #include <Poco/Util/Application.h>
 #include "DataSubsystem.h"
+#include "WebForm.h"
 
 const std::string TrafficPage::Title("My Traffic");
 const std::string TrafficPage::Link("traffic.bin");
@@ -92,7 +93,7 @@ void TrafficPage::renderScripts(std::ostream & output)
 
     output << "<script>";
     output << "    $(document).ready(function () {";
-    output << "        $('#traffic').dataTable();";
+    output << "        $('#traffic').dataTable( { stateSave: true });";
     output << "    });";
     output << "</script>";
 }
@@ -117,5 +118,18 @@ bool TrafficPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerReq
 
 void TrafficPage::renderButtons(std::ostream & output)
 {
+    output << Poco::format("<form method='POST' action='%s' class='form-inline'>", Link);
+    WebForm form(output);
+    bool _local = false;
+    form.renderChkbox("local", "Local: ", _local, 2);
+    std::string _filter = "Domain";
+    WebForm::Options filterOptions;
+    filterOptions.push_back("Domain");
+    filterOptions.push_back("Host");
+    filterOptions.push_back("IP");
+    filterOptions.push_back("Time");
+    form.renderSelect("filter", "Filter: ", _filter, filterOptions, 2);
+    output << "<input type='submit' class='btn btn-primary' value='Filter...'></input>";
+    output << "</form>";
 
 }

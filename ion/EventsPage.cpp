@@ -88,7 +88,7 @@ void EventsPage::renderScripts(std::ostream& output)
 {
     output << "<script>";
     output << "    $(document).ready(function () {";
-    output << "        $('#events').dataTable();";
+    output << "        $('#events').dataTable({ stateSave: true });";
     output << "    });";
     output << "</script>";
 }

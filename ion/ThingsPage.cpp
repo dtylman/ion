@@ -131,7 +131,7 @@ void ThingsPage::renderScripts(std::ostream& output)
 {
     output << "<script>";
     output << "    $(document).ready(function () {";
-    output << "        $('#things').dataTable();";
+    output << "        $('#things').dataTable({ stateSave: true });";
     output << "    });";
     output << "</script>";
 
