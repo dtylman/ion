@@ -34,7 +34,11 @@ void Tables::create()
     _session << "CREATE TABLE authorized (mac TEXT NOT NULL)", now;
     _session << "CREATE UNIQUE INDEX pk_authorized on authorized (mac ASC)", now;
 
+    _session << "CREATE TABLE authorized_traffic (type TEXT NOT NULL, value TEXT NOT NULL)", now;
+    _session << "CREATE UNIQUE INDEX pk_authorized_traffic on authorized_traffic (type ASC, value ASC)", now;
+
     _session << "CREATE TABLE traffic (time INTEGER NOT NULL, count INTEGER NOT NULL, mac TEXT NOT NULL, ip TEXT NOT NULL, "
             "port INTEGER NOT NULL, host TEXT, domain TEXT, transport TEXT NOT NULL, process TEXT)", now;
+
     _session << "CREATE UNIQUE INDEX pk_traffic on traffic (time ASC, mac ASC, ip ASC, port ASC, transport ASC)", now;
 }
