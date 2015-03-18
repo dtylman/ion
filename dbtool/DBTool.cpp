@@ -9,6 +9,7 @@
 #include "TableOUI.h"
 #include "TableOSDHCP.h"
 #include "Tables.h"
+#include "TableServices.h"
 #include <Poco/Data/SQLite/Connector.h>
 #include <Poco/Data/Session.h>
 #include <Poco/Util/HelpFormatter.h>
@@ -34,32 +35,38 @@ void DBTool::initialize(Poco::Util::Application& self)
 
 int DBTool::main(const std::vector<std::string>& args)
 {
-    if (config().hasOption("dbfile")) {
-        std::string dbFile = config().getString("dbfile");
-        if (config().hasOption("overwrite")) {
-            Poco::File file(dbFile);
-            if (file.exists()) {
+    try {
+        std::string dbFile = config().getString("dbfile", "ion.db");
+
+        Poco::File file(dbFile);
+        if (file.exists()) {
+            if (config().hasOption("overwrite")) {
                 logger().notice("Removing existing database file");
                 file.remove(false);
+            }
+            else {
+                logger().notice("DB file already exits");
+                return EXIT_OK;
             }
         }
         Poco::Data::Session session(Poco::Data::SQLite::Connector::KEY, dbFile);
         session.setConnectionTimeout(30000); // 30 seconds
         session << "PRAGMA synchronous = OFF", now;
         session << "PRAGMA journal_mode = MEMORY", now;
+        TableServices services(session);
+        services.create();
         TableOUI oui(session);
-        std::string ouifile = config().getString("ouifile");
+        std::string ouifile = config().getString("ouifile", "oui.txt");
         oui.create(ouifile);
         TableOSDHCP dhcp(session);
         dhcp.create();
         Tables tables(session);
         tables.create();
-
     }
-    else {
-        std::cout << "Missing parameters. Try -h or /h" << std::endl;
+    catch (Poco::Exception& ex) {
+        std::cerr << ex.displayText();
     }
-	return EXIT_OK;
+    return EXIT_OK;
 }
 
 void DBTool::defineOptions(Poco::Util::OptionSet& options)
@@ -67,6 +74,7 @@ void DBTool::defineOptions(Poco::Util::OptionSet& options)
     Application::defineOptions(options);
     options.addOption(Option("help", "h", "display help ").required(false).repeatable(false).callback(OptionCallback<DBTool>(this, &DBTool::handleHelp)));
     options.addOption(Option("oui", "i", "oui file").repeatable(false).argument("name").binding("ouifile"));
+    options.addOption(Option("svs", "s", "services file").repeatable(false).argument("name").binding("servicefile"));
     options.addOption(Option("db", "o", "db file").repeatable(false).argument("name").binding("dbfile"));
     options.addOption(Option("overwrite", "o", "overwrite existing db file").repeatable(false).binding("overwrite"));
 }

@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/DBTool.o \
 	${OBJECTDIR}/TableOSDHCP.o \
 	${OBJECTDIR}/TableOUI.o \
+	${OBJECTDIR}/TableServices.o \
 	${OBJECTDIR}/Tables.o
 
 
@@ -79,6 +80,11 @@ ${OBJECTDIR}/TableOUI.o: TableOUI.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableOUI.o TableOUI.cpp
+
+${OBJECTDIR}/TableServices.o: TableServices.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableServices.o TableServices.cpp
 
 ${OBJECTDIR}/Tables.o: Tables.cpp 
 	${MKDIR} -p ${OBJECTDIR}

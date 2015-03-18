@@ -22,6 +22,8 @@
     <itemPath>TableOSDHCP.h</itemPath>
     <itemPath>TableOUI.cpp</itemPath>
     <itemPath>TableOUI.h</itemPath>
+    <itemPath>TableServices.cpp</itemPath>
+    <itemPath>TableServices.h</itemPath>
     <itemPath>Tables.cpp</itemPath>
     <itemPath>Tables.h</itemPath>
   </logicalFolder>
@@ -76,6 +78,10 @@
       </item>
       <item path="TableOUI.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="TableServices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TableServices.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Tables.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Tables.h" ex="false" tool="3" flavor2="0">
@@ -113,6 +119,10 @@
       <item path="TableOUI.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TableOUI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TableServices.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TableServices.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tables.cpp" ex="false" tool="1" flavor2="0">
       </item>
