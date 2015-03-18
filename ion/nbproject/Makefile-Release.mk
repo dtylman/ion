@@ -96,7 +96,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/WebForm.o \
 	${OBJECTDIR}/WebMenu.o \
 	${OBJECTDIR}/WebRequestHandlerFactory.o \
-	${OBJECTDIR}/WebSubsystem.o
+	${OBJECTDIR}/WebSubsystem.o \
+	${OBJECTDIR}/Whois.o \
+	${OBJECTDIR}/WhoisPage.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -438,6 +440,16 @@ ${OBJECTDIR}/WebSubsystem.o: WebSubsystem.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WebSubsystem.o WebSubsystem.cpp
+
+${OBJECTDIR}/Whois.o: Whois.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Whois.o Whois.cpp
+
+${OBJECTDIR}/WhoisPage.o: WhoisPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WhoisPage.o WhoisPage.cpp
 
 # Subprojects
 .build-subprojects:
@@ -1259,6 +1271,32 @@ ${OBJECTDIR}/WebSubsystem_nomain.o: ${OBJECTDIR}/WebSubsystem.o WebSubsystem.cpp
 	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WebSubsystem_nomain.o WebSubsystem.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/WebSubsystem.o ${OBJECTDIR}/WebSubsystem_nomain.o;\
+	fi
+
+${OBJECTDIR}/Whois_nomain.o: ${OBJECTDIR}/Whois.o Whois.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/Whois.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Whois_nomain.o Whois.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/Whois.o ${OBJECTDIR}/Whois_nomain.o;\
+	fi
+
+${OBJECTDIR}/WhoisPage_nomain.o: ${OBJECTDIR}/WhoisPage.o WhoisPage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/WhoisPage.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/WhoisPage_nomain.o WhoisPage.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/WhoisPage.o ${OBJECTDIR}/WhoisPage_nomain.o;\
 	fi
 
 # Run Test Targets

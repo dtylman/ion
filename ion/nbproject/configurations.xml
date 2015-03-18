@@ -120,6 +120,8 @@
       <itemPath>WebRequestHandlerFactory.h</itemPath>
       <itemPath>WebSubsystem.cpp</itemPath>
       <itemPath>WebSubsystem.h</itemPath>
+      <itemPath>WhoisPage.cpp</itemPath>
+      <itemPath>WhoisPage.h</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -158,6 +160,8 @@
     <itemPath>Selfy.h</itemPath>
     <itemPath>Solicitator.cpp</itemPath>
     <itemPath>Solicitator.h</itemPath>
+    <itemPath>Whois.cpp</itemPath>
+    <itemPath>Whois.h</itemPath>
     <itemPath>ion.properties</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -453,6 +457,14 @@
       <item path="WebSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="WebSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Whois.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Whois.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WhoisPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WhoisPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
@@ -761,6 +773,14 @@
       <item path="WebSubsystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="WebSubsystem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Whois.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Whois.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WhoisPage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WhoisPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>

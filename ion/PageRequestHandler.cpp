@@ -88,6 +88,8 @@ void PageRequestHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
         renderScripts(output);
 
         renderPageFooter(output);
+
+        output.flush();
     }
     catch (Poco::Exception& ex) {
         output << "<div class='alert alert-danger' role='alert'>Ouch! ";

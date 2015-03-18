@@ -115,7 +115,7 @@ void AddressesPage::renderScripts(std::ostream& output)
 {
     output << "<script>";
     output << "    $(document).ready(function () {";
-    output << "        $('#addresses').dataTable();";
+    output << "        $('#addresses').dataTable({ stateSave: true });";
     output << "    });";
     output << "</script>";
 
