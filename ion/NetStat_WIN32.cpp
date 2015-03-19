@@ -3,32 +3,32 @@
 #include <ws2tcpip.h>
 #include <iphlpapi.h>
 #include <stdio.h>
+#include <Psapi.h>
 #include <Poco/Net/IPAddress.h>
 #include <Poco/Exception.h>
 #include <Poco/NumberFormatter.h>
 #include <Poco/Format.h>
-
+#include <Poco/Buffer.h>
+#include <Poco/String.h>
 
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "ws2_32.lib")
 
 NetStat::NetStat(void) : _logger(Poco::Logger::get("NetStat"))
 {
+	populate();
 }
 
 NetStat::~NetStat(void)
 {
 }
 
-
 void NetStat::populate()
 {
-
-    write_tcp4();
-    write_udp4();
+	popTCP4();	
 }
 
-void NetStat::write_tcp4()
+void NetStat::popTCP4()
 {
     DWORD size = 0;
     DWORD result = 0;
@@ -47,25 +47,24 @@ void NetStat::write_tcp4()
         free(pTCPTable);
         return;
     }
-    for (DWORD i = 0; i < pTCPTable->dwNumEntries; i++) {
-        MIB_TCPROW_OWNER_MODULE module = pTCPTable->table[i];
-        if (module.dwState == MIB_TCP_STATE_LISTEN) {
-            //writer.startObject("socket");
-            Poco::Net::IPAddress local(&module.dwLocalAddr, sizeof (DWORD));
-            ///writer.write("localaddress", local.toString());
-            std::string pid = Poco::NumberFormatter::format(module.dwOwningPid);
-            //writer.write("pid", pid);
-            //writer.write("pname", pid2Name(pid));
-            //writer.write("localport", Poco::NumberFormatter::format(htons((short) module.dwLocalPort)));
-            //writer.write("protocol", "TCP");
-            //writer.endObject();
-        }
-
+	for (DWORD i = 0; i < pTCPTable->dwNumEntries; i++) {
+		MIB_TCPROW_OWNER_MODULE module = pTCPTable->table[i];
+		unsigned pid = module.dwOwningPid;
+		Poco::Net::IPAddress ipAddress(&module.dwRemoteAddr, sizeof(DWORD));
+		if (ipAddress.isUnicast())
+		{
+			unsigned port = module.dwRemotePort;
+			std::string xfer = Poco::format("tcp:%s:%u", ipAddress.toString(), port);
+			std::string name = processName(pid);
+			_logger.debug("Adding process %s=%s", xfer, name);
+			_processes[xfer] = name;
+		}
     }
     free(pTCPTable);
 }
 
-void NetStat::write_udp4()
+/*
+void NetStat::popUDP4()
 {
     DWORD size = 0;
     DWORD result = 0;
@@ -84,32 +83,40 @@ void NetStat::write_udp4()
         free(pUDPTable);
         return;
     }
-    for (DWORD i = 0; i < pUDPTable->dwNumEntries; i++) {
-        //writer.startObject("socket");
+    for (DWORD i = 0; i < pUDPTable->dwNumEntries; i++) {        
         MIB_UDPROW_OWNER_MODULE module = pUDPTable->table[i];
-        Poco::Net::IPAddress local(&module.dwLocalAddr, sizeof (DWORD));
-        //writer.write("localaddress", local.toString());
-        std::string pid = Poco::NumberFormatter::format(module.dwOwningPid);
-        //writer.write("pid", pid);
-        //writer.write("pname", pid2Name(pid));
-        //writer.write("localport", Poco::NumberFormatter::format(htons((short) module.dwLocalPort)));
-        //writer.write("protocol", "UDP");
-        //writer.endObject();
+		unsigned pid = module.dwOwningPid;
+		Poco::Net::IPAddress ipAddress(&module.dwLocalAddr, sizeof(DWORD));
+		unsigned port = module.dwLocalPort;
+		std::string xfer = Poco::format("tcp:%s:%u", ipAddress.toString(), port);
+		_processes[xfer] = processName(pid);
     }
     free(pUDPTable);
     return;
 }
+*/
 
-std::string NetStat::pid2Name(const std::string& pid)
+std::string NetStat::processName(unsigned pid)
 {
-    std::map<std::string, std::string>::const_iterator iter = _processes.find(pid);
-    if (iter != _processes.end()) {
-        return iter->second;
-    }
-    return "";
+	HANDLE handle = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+	if (handle != 0)
+	{		
+		Poco::Buffer<char> basename(MAX_PATH);
+		DWORD len = GetModuleBaseName(handle, nullptr, basename.begin(), MAX_PATH);
+		if (len>0)
+		{
+			return std::string(basename.begin(), len);
+		}
+	}
+	return "";
 }
 
 std::string NetStat::getProcess(const std::string& transport, const Poco::Net::IPAddress& ip, Poco::UInt16 port) const
 {
-	return "";
+	std::string address = Poco::format("%s:%s:%hu", Poco::toLower(transport), ip.toString(), port);
+	auto process = _processes.find(address);
+	if (process == _processes.end()) {
+		return "";
+	}
+	return process->second;
 }

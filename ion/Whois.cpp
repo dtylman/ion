@@ -50,6 +50,7 @@ std::string Whois::getServer(const std::string& domain)
             }
         }
     }
+	return "whois.iana.org";
 }
 
 std::stringstream& Whois::record()

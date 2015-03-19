@@ -38,7 +38,7 @@ public:
     const std::string& host() const;
     void setHost(const std::string& host);
     const std::string& domain() const;
-    const std::string& setDomain(const std::string& domain);
+    void setDomain(const std::string& domain);
     std::string toString() const;
     std::size_t hash() const;
     void update();

@@ -26,7 +26,7 @@ _logger(Poco::Logger::get("TrafficBulk"))
             _logger.debug("Adding self mac: %s", device.getMACAddress().toString());
         }
         catch (Poco::Exception& ex) {
-            _logger.warning("Cannot find mac address for %s", device.systemName());
+            _logger.warning("Cannot find mac address for %s: %s", device.systemName(),ex.displayText());
         }
     }
 }

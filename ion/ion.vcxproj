@@ -14,6 +14,8 @@
     <ClCompile Include="AddressesPage.cpp" />
     <ClCompile Include="Arping.cpp" />
     <ClCompile Include="AuthDataObject.cpp" />
+    <ClCompile Include="AuthorizedTrafficPage.cpp" />
+    <ClCompile Include="AuthTrafficDataObject.cpp" />
     <ClCompile Include="DataObject.cpp" />
     <ClCompile Include="DataObserver.cpp" />
     <ClCompile Include="DataSubsystem.cpp" />
@@ -68,15 +70,20 @@
     <ClCompile Include="TrafficDataObject.cpp" />
     <ClCompile Include="TrafficObserver.cpp" />
     <ClCompile Include="TrafficPage.cpp" />
+    <ClCompile Include="TrafficZoomPage.cpp" />
     <ClCompile Include="WebForm.cpp" />
     <ClCompile Include="WebMenu.cpp" />
     <ClCompile Include="WebRequestHandlerFactory.cpp" />
     <ClCompile Include="WebSubsystem.cpp" />
+    <ClCompile Include="Whois.cpp" />
+    <ClCompile Include="WhoisPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddressesPage.h" />
     <ClInclude Include="Arping.h" />
     <ClInclude Include="AuthDataObject.h" />
+    <ClInclude Include="AuthorizedTrafficPage.h" />
+    <ClInclude Include="AuthTrafficDataObject.h" />
     <ClInclude Include="DataObject.h" />
     <ClInclude Include="DataObserver.h" />
     <ClInclude Include="DataSubsystem.h" />
@@ -129,17 +136,16 @@
     <ClInclude Include="TrafficDataObject.h" />
     <ClInclude Include="TrafficObserver.h" />
     <ClInclude Include="TrafficPage.h" />
+    <ClInclude Include="TrafficZoomPage.h" />
     <ClInclude Include="WebForm.h" />
     <ClInclude Include="WebMenu.h" />
     <ClInclude Include="WebRequestHandlerFactory.h" />
     <ClInclude Include="WebSubsystem.h" />
+    <ClInclude Include="Whois.h" />
+    <ClInclude Include="WhoisPage.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DevicesRequestHandler.cpp.orig" />
-    <None Include="EventConfigPage.cpp.orig" />
     <None Include="libnet.props" />
-    <None Include="PageRequestHandler.cpp.orig" />
-    <None Include="PageRequestHandler.h.orig" />
     <None Include="pcap.props" />
     <None Include="Poco.props" />
   </ItemGroup>

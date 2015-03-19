@@ -185,6 +185,19 @@
       <Filter>Web</Filter>
     </ClCompile>
     <ClCompile Include="NetStat_WIN32.cpp" />
+    <ClCompile Include="AuthTrafficDataObject.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="AuthorizedTrafficPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficZoomPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="WhoisPage.cpp">
+      <Filter>Web</Filter>
+    </ClCompile>
+    <ClCompile Include="Whois.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
@@ -348,22 +361,23 @@
       <Filter>Web</Filter>
     </ClInclude>
     <ClInclude Include="NetStat.h" />
+    <ClInclude Include="AuthTrafficDataObject.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="AuthorizedTrafficPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficZoomPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="WhoisPage.h">
+      <Filter>Web</Filter>
+    </ClInclude>
+    <ClInclude Include="Whois.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Poco.props" />
     <None Include="pcap.props" />
     <None Include="libnet.props" />
-    <None Include="PageRequestHandler.cpp.orig">
-      <Filter>Web</Filter>
-    </None>
-    <None Include="PageRequestHandler.h.orig">
-      <Filter>Web</Filter>
-    </None>
-    <None Include="EventConfigPage.cpp.orig">
-      <Filter>Web</Filter>
-    </None>
-    <None Include="DevicesRequestHandler.cpp.orig">
-      <Filter>Web</Filter>
-    </None>
   </ItemGroup>
 </Project>

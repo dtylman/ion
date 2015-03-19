@@ -19,8 +19,15 @@ public:
     virtual ~NetStat();
 
     std::string getProcess(const std::string& transport, const Poco::Net::IPAddress& ip, Poco::UInt16 port) const;
+
+
 private:
     void populate();
+	#ifdef POCO_OS_FAMILY_WINDOWS
+	std::string processName(unsigned pid);
+	void popTCP4();
+	void popUDP4();
+	#endif
     typedef std::map<std::string, std::string> Processes;
     Processes _processes;
     Poco::Logger& _logger;

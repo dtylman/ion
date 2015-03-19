@@ -101,11 +101,13 @@
     <ClCompile Include="TableOSDHCP.cpp" />
     <ClCompile Include="TableOUI.cpp" />
     <ClCompile Include="Tables.cpp" />
+    <ClCompile Include="TableServices.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TableOSDHCP.h" />
     <ClInclude Include="TableOUI.h" />
     <ClInclude Include="Tables.h" />
+    <ClInclude Include="TableServices.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\snuffapp\Poco.props" />

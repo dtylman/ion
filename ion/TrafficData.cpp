@@ -124,7 +124,7 @@ const std::string& TrafficData::domain() const
     return _domain;
 }
 
-const std::string& TrafficData::setDomain(const std::string& domain)
+void TrafficData::setDomain(const std::string& domain)
 {
     _domain = domain;
 }
