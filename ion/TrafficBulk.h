@@ -18,7 +18,7 @@
 #include <set>
 #include <map>
 
-class TrafficBulk : public DataObject
+class TrafficBulk
 {
 public:
     TrafficBulk(const Poco::Data::Session& session);
@@ -35,6 +35,7 @@ private:
     typedef std::map<std::size_t, TrafficData> TrafficContainer;
     TrafficContainer _data;
     Poco::Timestamp _lastUpdate;
+    TrafficDataObject _trafficDao;
     Poco::FastMutex _mutex;
     Poco::Activity<TrafficBulk> _activity;
     Poco::Logger& _logger;

@@ -12,6 +12,7 @@
 #include <Poco/Data/Statement.h>
 #include "DataSubsystem.h"
 #include "EventNotification.h"
+#include "EventDataObject.h"
 
 const std::string EventsPage::Title("My Events");
 const std::string EventsPage::Link("events.bin");
@@ -26,7 +27,7 @@ EventsPage::~EventsPage()
 
 void EventsPage::renderButtons(std::ostream& output)
 {
-
+    output << Poco::format("<a href='%s?action=delete' class='btn btn-primary'>Delete All Events</a> ", EventsPage::Link);
 }
 
 std::string EventsPage::subtitle() const
@@ -36,9 +37,15 @@ std::string EventsPage::subtitle() const
 
 void EventsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
 {
-    output << "<table id='events' class='table table-responsive' >";
-
     Poco::Data::Session session = Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession();
+    std::string action;
+    if (getQueryParam("action", action, request)) {
+        if (action == "delete") {
+            EventDataObject edo(session);
+            edo.deleteAll();
+        }
+    }
+    output << "<table id='events' class='table table-responsive' >";
     Poco::Data::Statement query(session);
     query << "SELECT datetime(time,'unixepoch','localtime') as time,name,details FROM event ORDER BY time DESC";
     query.execute();
@@ -75,7 +82,7 @@ void EventsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
     std::string details = rs["details"].toString();
     output << "<tr>";
     output << Poco::format("<td>%s</td>", rs["time"].toString());
-    if (name == EventNotification::NOT_AUTHORIZED) {
+    if ((name == EventNotification::NOT_AUTHORIZED) || (name == EventNotification::NOT_AUTHORIZED_TRAFFIC)) {
         output << Poco::format("<td><font color='red'>%s</font></td>", details);
     }
     else {

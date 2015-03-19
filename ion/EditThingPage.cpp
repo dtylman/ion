@@ -42,7 +42,7 @@ EditThingPage::~EditThingPage()
 
 std::string EditThingPage::title() const
 {
-    return Poco::format("Editing %s", _thing.toString());
+    return "Editing Thing";
 }
 
 std::string EditThingPage::subtitle() const

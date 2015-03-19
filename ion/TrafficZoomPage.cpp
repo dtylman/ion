@@ -9,7 +9,8 @@
 #include <Poco/Data/Session.h>
 #include <Poco/Util/Application.h>
 #include "DataSubsystem.h"
-#include "AuthorizationPage.h"
+#include "AuthorizedTrafficPage.h"
+#include "TrafficPage.h"
 
 using namespace Poco::Data::Keywords;
 
@@ -31,7 +32,10 @@ bool TrafficZoomPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServe
 
 void TrafficZoomPage::renderButtons(std::ostream& output)
 {
-    output << Poco::format("<a href='%s?type=%s&value=%s' class='btn btn-primary'>Authorize %s</a> ", AuthorizationPage::Link, _field, _value, _value);
+    if (!_value.empty()) {
+        output << Poco::format("<a href='%s?type=%s&value=%s' class='btn btn-primary'>Authorize %s  %s</a> ", AuthorizedTrafficPage::Link, _field, _value, _field, _value);
+    }
+    output << Poco::format("<a href='%s' class='btn btn-primary'>%s</a> ", TrafficPage::Link, TrafficPage::Title);
 }
 
 void TrafficZoomPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request)
@@ -83,10 +87,13 @@ void TrafficZoomPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
     output << "<tr>";
     for (size_t i = 0; i < rs.columnCount(); ++i) {
         const std::string& columnName = rs.columnName(i);
-        std::string value = rs[i].toString();
+        std::string value;
+        if (!rs[i].isEmpty()) {
+            value = rs[i].toString();
+        }
         output << "<td>";
         if (columnName == "port") {
-            output << Poco::format("<a href=%s?type=port&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+            output << Poco::format("<a href=%s?type=port&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizedTrafficPage::Link, value);
         }
         output << value;
         output << "</td>";

@@ -10,7 +10,8 @@
 
 using namespace Poco::Data::Keywords;
 
-EventDataObject::EventDataObject(const Poco::Data::Session& session) : DataObject(session)
+EventDataObject::EventDataObject(const Poco::Data::Session& session) : DataObject(session),
+_logger(Poco::Logger::get("EventDataObject"))
 {
 
 }
@@ -22,7 +23,7 @@ EventDataObject::~EventDataObject()
 void EventDataObject::insert(const EventData& data)
 {
     EventData event = data;
-	_session << "INSERT INTO event (time,name,details) VALUES (?,?,?)", use(event), now;
+    _session << "INSERT INTO event (time,name,details) VALUES (?,?,?)", use(event), now;
     deleteOld();
 }
 
@@ -33,4 +34,10 @@ void EventDataObject::deleteOld()
     achshav -= days;
     std::time_t age = achshav.epochTime();
     _session << "DELETE FROM event WHERE time<?", use(age), now;
+}
+
+void EventDataObject::deleteAll()
+{
+    _session << "DELETE FROM event", now;
+    _logger.notice("Deleted all events");
 }

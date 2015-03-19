@@ -15,7 +15,7 @@
 
 using namespace Poco::Data::Keywords;
 
-TrafficBulk::TrafficBulk(const Poco::Data::Session& session) : _activity(this, &TrafficBulk::bulkUpdate), DataObject(session),
+TrafficBulk::TrafficBulk(const Poco::Data::Session& session) : _activity(this, &TrafficBulk::bulkUpdate), _trafficDao(session),
 _logger(Poco::Logger::get("TrafficBulk"))
 {
     PcapSubsystem::Devices devices;
@@ -58,7 +58,8 @@ void TrafficBulk::set(const MAC& mac, const Poco::Net::IPAddress& ip, Poco::UInt
     else {
         _data[hash] = trafficData;
     }
-    if (_lastUpdate.isElapsed(Poco::Timespan::MINUTES * 3)) {
+    int minutes = Poco::Util::Application::instance().config().getInt("ion.traffic-interval");
+    if (_lastUpdate.isElapsed(Poco::Timespan::MINUTES * minutes)) {
         _lastUpdate.update();
         _activity.start();
     }
@@ -77,6 +78,8 @@ void TrafficBulk::bulkUpdate()
     for (auto data : container) {
         update(data.second, ns);
     }
+    _trafficDao.deleteOld();
+    _trafficDao.checkAuthStatus();
     _logger.debug("TrafficBulk::bulkInsert ended");
 }
 
@@ -91,7 +94,7 @@ void TrafficBulk::update(TrafficData& trafficData, const NetStat& netstat)
     }
     try {
         trafficData.setProcess(netstat.getProcess(trafficData.transport(), trafficData.ip(), trafficData.port()));
-        _session << "INSERT INTO traffic (time ,count ,mac ,ip, port, host, domain, transport , process) VALUES (?,?,?,?,?,?,?,?,?)", use(trafficData), now;
+        _trafficDao.insert(trafficData);
     }
     catch (Poco::Exception& ex) {
         _logger.error(ex.displayText());
@@ -121,3 +124,5 @@ void TrafficBulk::setHostName(TrafficData& trafficData, const std::string& fqdn)
     trafficData.setHost(host);
     trafficData.setDomain(domain);
 }
+
+

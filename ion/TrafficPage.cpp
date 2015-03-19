@@ -12,7 +12,7 @@
 #include "WebForm.h"
 #include "WhoisPage.h"
 #include "TrafficZoomPage.h"
-#include "AuthorizationPage.h"
+#include "AuthorizedTrafficPage.h"
 
 const std::string TrafficPage::Title("My Traffic");
 const std::string TrafficPage::Link("traffic.bin");
@@ -86,14 +86,14 @@ void TrafficPage::renderRow(std::ostream& output, Poco::Data::RecordSet & rs)
         if (!_all) {
             if (columnName == "domain") {
                 output << Poco::format("<a href=%s?query=%s><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a> ", WhoisPage::Link, value);
-                output << Poco::format("<a href=%s?type=domain&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+                output << Poco::format("<a href=%s?type=domain&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizedTrafficPage::Link, value);
             }
             else if (columnName == "ip") {
                 output << Poco::format("<a href=%s?ip=%s><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a> ", WhoisPage::Link, value);
-                output << Poco::format("<a href=%s?type=ip&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+                output << Poco::format("<a href=%s?type=ip&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizedTrafficPage::Link, value);
             }
             else if (columnName == "process") {
-                output << Poco::format("<a href=%s?type=process&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizationPage::Link, value);
+                output << Poco::format("<a href=%s?type=process&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizedTrafficPage::Link, value);
             }
         }
         if ((columnName != "time") && (columnName != "count")) {

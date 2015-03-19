@@ -19,7 +19,7 @@
 #include "TrafficPage.h"
 #include "WhoisPage.h"
 #include "TrafficZoomPage.h"
-#include "AuthorizationPage.h"
+#include "AuthorizedTrafficPage.h"
 #include <Poco/URI.h>
 
 WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get("IONRequestHandlerFactory"))
@@ -35,7 +35,7 @@ WebRequestHandlerFactory::WebRequestHandlerFactory() : _logger(Poco::Logger::get
     _pages.registerClass<TrafficPage>(TrafficPage::Link);
     _pages.registerClass<WhoisPage>(WhoisPage::Link);
     _pages.registerClass<TrafficZoomPage>(TrafficZoomPage::Link);
-    _pages.registerClass<AuthorizationPage>(AuthorizationPage::Link);
+    _pages.registerClass<AuthorizedTrafficPage>(AuthorizedTrafficPage::Link);
 }
 
 WebRequestHandlerFactory::~WebRequestHandlerFactory()

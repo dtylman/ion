@@ -10,6 +10,7 @@
 
 #include "DataObject.h"
 #include "EventData.h"
+#include <Poco/Logger.h>
 
 class EventDataObject : public DataObject
 {
@@ -21,6 +22,9 @@ public:
 
     void deleteOld();
 
+    void deleteAll();
+private:
+    Poco::Logger& _logger;
 };
 
 #endif	/* EVENTDATAOBJECT_H */

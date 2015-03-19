@@ -36,7 +36,9 @@ std::string ServerSettingsPage::subtitle() const
 bool ServerSettingsPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response)
 {
     updateSettings(form, "offline", "ion.offline-interval");
+    updateSettings(form, "traffic", "ion.traffic-interval");
     updateSettings(form, "eventsage", "ion.eventsage");
+    updateSettings(form, "trafficsage", "ion.trafficage");
     if (form.has("linklocal")) {
         Poco::Util::Application::instance().config().setBool("ion.ignoreLinkLocal", true);
     }
@@ -68,9 +70,11 @@ void ServerSettingsPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPSe
     WebForm wf(output);
     wf.startRow();
     wf.renderInput("offline", "Offline interval (minutes):", "minutes", config.getString("ion.offline-interval"), true, "number", 3);
+    wf.renderInput("traffic", "Traffic check interval (minutes):", "minutes", config.getString("ion.traffic-interval"), true, "number", 3);
     wf.endRow();
     wf.startRow();
     wf.renderInput("eventsage", "Events age (days):", "days", config.getString("ion.eventsage"), true, "number", 3);
+    wf.renderInput("trafficsage", "Traffic age (days):", "days", config.getString("ion.trafficage"), true, "number", 3);
     wf.endRow();
     wf.startRow();
     wf.renderChkbox("linklocal", "Ignore link local addresses:", config.getBool("ion.ignoreLinkLocal"), 3);
