@@ -253,13 +253,13 @@ void IONDataObject::setSuspectedRouter(const Poco::Net::IPAddress& ip, const MAC
 void IONDataObject::onThingAdded(const ThingData & thing)
 {
     _logger.notice("Thing added: %s", thing.toString());
-    EventNotification::notify(EventNotification::THING_ONLINE, thing);
+    EventNotification::notifyThing(EventNotification::THING_ONLINE, thing);
 }
 
 void IONDataObject::onThingRemoved(const ThingData & thing)
 {
     _logger.notice("Thing removed: %s", thing.toString());
-    EventNotification::notify(EventNotification::THING_OFFLINE, thing);
+    EventNotification::notifyThing(EventNotification::THING_OFFLINE, thing);
 }
 
 void IONDataObject::onIPAdded(const IPData & ip)
@@ -267,15 +267,15 @@ void IONDataObject::onIPAdded(const IPData & ip)
     _logger.notice("IP added: %s", ip.toString());
     AuthDataObject auth(_session);
     if (!auth.isAuthorized(ip.mac())) {
-        EventNotification::notify(EventNotification::NOT_AUTHORIZED, ip);
+        EventNotification::notifyIP(EventNotification::NOT_AUTHORIZED, ip);
     }
-    EventNotification::notify(EventNotification::IP_ONLINE, ip);
+    EventNotification::notifyIP(EventNotification::IP_ONLINE, ip);
 }
 
 void IONDataObject::onIPRemoved(const IPData & ip)
 {
     _logger.notice("IP removed: %s", ip.toString());
-    EventNotification::notify(EventNotification::IP_OFFLINE, ip);
+    EventNotification::notifyIP(EventNotification::IP_OFFLINE, ip);
 }
 
 int IONDataObject::getFamNum(const Poco::Net::IPAddress::Family fam) const

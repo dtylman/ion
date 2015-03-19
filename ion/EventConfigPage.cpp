@@ -70,6 +70,7 @@ void EventConfigPage::renderPanelBody(std::ostream& output, Poco::Net::HTTPServe
     renderPanel(output, EventNotification::NOT_AUTHORIZED);
     renderPanel(output, EventNotification::THING_OFFLINE);
     renderPanel(output, EventNotification::THING_ONLINE);
+    renderPanel(output, EventNotification::NOT_AUTHORIZED_TRAFFIC);
 }
 
 bool EventConfigPage::renderFormStart(std::ostream& output)

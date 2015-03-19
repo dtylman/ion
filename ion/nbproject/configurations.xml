@@ -94,8 +94,8 @@
     <logicalFolder name="f6" displayName="Web" projectFiles="true">
       <itemPath>AddressesPage.cpp</itemPath>
       <itemPath>AddressesPage.h</itemPath>
-      <itemPath>AuthorizationPage.cpp</itemPath>
-      <itemPath>AuthorizationPage.h</itemPath>
+      <itemPath>AuthorizedTrafficPage.cpp</itemPath>
+      <itemPath>AuthorizedTrafficPage.h</itemPath>
       <itemPath>EditThingPage.cpp</itemPath>
       <itemPath>EditThingPage.h</itemPath>
       <itemPath>EventConfigPage.cpp</itemPath>
@@ -232,9 +232,9 @@
       </item>
       <item path="AuthTrafficDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AuthorizationPage.cpp" ex="false" tool="1" flavor2="0">
+      <item path="AuthorizedTrafficPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="AuthorizationPage.h" ex="false" tool="3" flavor2="0">
+      <item path="AuthorizedTrafficPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -560,9 +560,9 @@
       </item>
       <item path="AuthTrafficDataObject.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AuthorizationPage.cpp" ex="false" tool="1" flavor2="0">
+      <item path="AuthorizedTrafficPage.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="AuthorizationPage.h" ex="false" tool="3" flavor2="0">
+      <item path="AuthorizedTrafficPage.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="DHCPOSDataObject.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -18,6 +18,7 @@ public:
     virtual ~AuthTrafficDataObject();
     void authorize(const std::string& type, const std::string& value);
     void unauthorize(const std::string& type, const std::string& value);
+    void unauthorizeAll();
 private:
     Poco::Logger& _logger;
 };

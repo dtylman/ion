@@ -33,3 +33,9 @@ void AuthTrafficDataObject::unauthorize(const std::string& type, const std::stri
     _session << "DELETE FROM authorized_traffic WHERE type=? AND value=?", use(typestr), use(valuestr), now;
     _logger.notice("traffic from %s '%s' is no longer authorized", type, value);
 }
+
+void AuthTrafficDataObject::unauthorizeAll()
+{
+    _session << "DELETE FROM authorized_traffic ", now;
+    _logger.notice("all traffic from is now unauthorized");
+}

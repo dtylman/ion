@@ -22,6 +22,7 @@ public:
     static const std::string THING_ONLINE;
     static const std::string THING_OFFLINE;
     static const std::string NOT_AUTHORIZED;
+    static const std::string NOT_AUTHORIZED_TRAFFIC;
 
     EventNotification();
 
@@ -31,8 +32,9 @@ public:
 
     void setDetails(const std::string& details);
 
-    static void notify(const std::string& name, const ThingData& thing);
-    static void notify(const std::string& name, const IPData& ip);
+    static void notifyThing(const std::string& name, const ThingData& thing);
+    static void notifyIP(const std::string& name, const IPData& ip);
+    static void notifyTraffic(const unsigned count);
 protected:
     virtual ~EventNotification();
 private:

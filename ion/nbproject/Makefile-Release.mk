@@ -39,7 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Arping.o \
 	${OBJECTDIR}/AuthDataObject.o \
 	${OBJECTDIR}/AuthTrafficDataObject.o \
-	${OBJECTDIR}/AuthorizationPage.o \
+	${OBJECTDIR}/AuthorizedTrafficPage.o \
 	${OBJECTDIR}/DHCPOSDataObject.o \
 	${OBJECTDIR}/DataObject.o \
 	${OBJECTDIR}/DataObserver.o \
@@ -154,10 +154,10 @@ ${OBJECTDIR}/AuthTrafficDataObject.o: AuthTrafficDataObject.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthTrafficDataObject.o AuthTrafficDataObject.cpp
 
-${OBJECTDIR}/AuthorizationPage.o: AuthorizationPage.cpp 
+${OBJECTDIR}/AuthorizedTrafficPage.o: AuthorizedTrafficPage.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthorizationPage.o AuthorizationPage.cpp
+	$(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthorizedTrafficPage.o AuthorizedTrafficPage.cpp
 
 ${OBJECTDIR}/DHCPOSDataObject.o: DHCPOSDataObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -537,17 +537,17 @@ ${OBJECTDIR}/AuthTrafficDataObject_nomain.o: ${OBJECTDIR}/AuthTrafficDataObject.
 	    ${CP} ${OBJECTDIR}/AuthTrafficDataObject.o ${OBJECTDIR}/AuthTrafficDataObject_nomain.o;\
 	fi
 
-${OBJECTDIR}/AuthorizationPage_nomain.o: ${OBJECTDIR}/AuthorizationPage.o AuthorizationPage.cpp 
+${OBJECTDIR}/AuthorizedTrafficPage_nomain.o: ${OBJECTDIR}/AuthorizedTrafficPage.o AuthorizedTrafficPage.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/AuthorizationPage.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/AuthorizedTrafficPage.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthorizationPage_nomain.o AuthorizationPage.cpp;\
+	    $(COMPILE.cc) -O2 -I../lib/poco-1.6.0-all/Foundation/include -I../lib/poco-1.6.0-all/JSON/include -I../lib/poco-1.6.0-all/Util/include -I../lib/poco-1.6.0-all/XML/include -I../lib/poco-1.6.0-all/Net/include -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AuthorizedTrafficPage_nomain.o AuthorizedTrafficPage.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/AuthorizationPage.o ${OBJECTDIR}/AuthorizationPage_nomain.o;\
+	    ${CP} ${OBJECTDIR}/AuthorizedTrafficPage.o ${OBJECTDIR}/AuthorizedTrafficPage_nomain.o;\
 	fi
 
 ${OBJECTDIR}/DHCPOSDataObject_nomain.o: ${OBJECTDIR}/DHCPOSDataObject.o DHCPOSDataObject.cpp 

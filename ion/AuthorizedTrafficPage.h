@@ -1,5 +1,5 @@
 /*
- * File:   TrafficAuthorizePage.h
+ * File:   AuthorizedTrafficPage.h
  * Author: danny
  *
  * Created on March 18, 2015, 4:30 PM
@@ -12,13 +12,13 @@
 #include <Poco/Data/Session.h>
 #include <string>
 
-class AuthorizationPage : public PageRequestHandler
+class AuthorizedTrafficPage : public PageRequestHandler
 {
 public:
     static const std::string Title;
     static const std::string Link;
-    AuthorizationPage();
-    virtual ~AuthorizationPage();
+    AuthorizedTrafficPage();
+    virtual ~AuthorizedTrafficPage();
     virtual void handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse & response);
 protected:
     virtual std::string title() const;
