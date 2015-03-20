@@ -21,6 +21,8 @@ public:
     void insert(TrafficData& trafficData);
     void deleteOld();
     void checkAuthStatus();
+    void authorizeTraffic();
+    void authorizeDomain(const std::string& name);
 private:
     Poco::Logger& _logger;
 };

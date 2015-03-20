@@ -19,6 +19,7 @@ public:
     virtual ~WhoisPage();
 protected:
     virtual void renderPanelBody(std::ostream& output, Poco::Net::HTTPServerRequest& request);
+    virtual void renderScripts(std::ostream& output);
     virtual std::string subtitle() const;
     virtual std::string title() const;
     virtual bool handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);

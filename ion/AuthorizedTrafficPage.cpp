@@ -9,6 +9,7 @@
 #include "TrafficPage.h"
 #include "AuthTrafficDataObject.h"
 #include "DataSubsystem.h"
+#include "TrafficDataObject.h"
 #include <Poco/Util/Application.h>
 
 const std::string AuthorizedTrafficPage::Link("authtraff.bin");
@@ -83,11 +84,22 @@ void AuthorizedTrafficPage::authTraffic(const std::string& type, const std::stri
     if (value == "-") {
         return;
     }
-    AuthTrafficDataObject atdo(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
-    atdo.authorize(type, value);
+    if (type == "every") {
+        TrafficDataObject tdo(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+        if (value == "thing") {
+            tdo.authorizeTraffic();
+        }
+        else {
+            tdo.authorizeDomain(value);
+        }
+    }
+    else {
+        AuthTrafficDataObject atdo(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
+        atdo.authorize(type, value);
+    }
 }
 
-void AuthorizedTrafficPage::unAuthTraffic(const std::string& type, const std::string& value)
+void AuthorizedTrafficPage::unAuthTraffic(const std::string& type, const std::string & value)
 {
     AuthTrafficDataObject atdo(Poco::Util::Application::instance().getSubsystem<DataSubsystem>().createSession());
     if (type == "all") {
@@ -98,9 +110,9 @@ void AuthorizedTrafficPage::unAuthTraffic(const std::string& type, const std::st
     }
 }
 
-void AuthorizedTrafficPage::renderTrafficTable(std::ostream& output, Poco::Net::HTTPServerRequest& request, Poco::Data::Session& session)
+void AuthorizedTrafficPage::renderTrafficTable(std::ostream& output, Poco::Net::HTTPServerRequest& request, Poco::Data::Session & session)
 {
-    output << "<table id='authtraffic' class='table well' >";
+    output << "<table id='authtraffic' class='table responsive' >";
     output << "    <thead>";
     output << "        <tr>";
     output << "            <th>Type</th>";

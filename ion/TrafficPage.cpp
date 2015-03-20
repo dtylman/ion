@@ -13,6 +13,7 @@
 #include "WhoisPage.h"
 #include "TrafficZoomPage.h"
 #include "AuthorizedTrafficPage.h"
+#include "WebMenu.h"
 
 const std::string TrafficPage::Title("My Traffic");
 const std::string TrafficPage::Link("traffic.bin");
@@ -111,7 +112,10 @@ void TrafficPage::renderScripts(std::ostream & output)
 {
     output << "<script>";
     output << "    $(document).ready(function () {";
-    output << "        $('#traffic').dataTable( { stateSave: true });";
+    output << "        $('#traffic').dataTable( {";
+    output << "             'stateSave': true,";
+    output << "             'order': [[2,'desc']]";
+    output << "         });";
     output << "    });";
     output << "</script>";
 }
@@ -135,7 +139,7 @@ std::string TrafficPage::title() const
     return "My Traffic";
 }
 
-bool TrafficPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse & response)
+bool TrafficPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServerRequest&, Poco::Net::HTTPServerResponse &)
 {
     _local = form.has("local");
     _all = form.has("all");
@@ -152,6 +156,7 @@ void TrafficPage::renderButtons(std::ostream & output)
 {
     output << Poco::format("<form method='POST' action='%s' class='form-inline'>", Link);
     WebForm form(output);
+    form.startRow();
     form.renderChkbox("local", "Local Traffic only:  ", _local, 2);
     form.renderChkbox("all", "Show All traffic:  ", _all, 2);
     WebForm::Options filterOptions;
@@ -161,7 +166,15 @@ void TrafficPage::renderButtons(std::ostream & output)
     filterOptions.push_back("Time");
     filterOptions.push_back("Process");
     form.renderSelect("filter", "Filter By:  ", _group, filterOptions, 2);
-    output << "<input type='submit' class='btn btn-primary' value='Filter...'></input>";
+    output << "<input type='submit' class='btn btn-primary' value='Filter...'></input> ";
+    form.endRow();
+    form.startRow();
+    WebMenu::renderLinkButton(output, "Authorize processes", Poco::format("%s?type=every&value=process", AuthorizedTrafficPage::Link));
+    WebMenu::renderLinkButton(output, "Authorize domains", Poco::format("%s?type=every&value=domain", AuthorizedTrafficPage::Link));
+    WebMenu::renderLinkButton(output, "Authorize ips", Poco::format("%s?type=every&value=ip", AuthorizedTrafficPage::Link));
+    WebMenu::renderLinkButton(output, "Authorize ports", Poco::format("%s?type=every&value=port", AuthorizedTrafficPage::Link));
+    WebMenu::renderLinkButton(output, "Authorize everything", Poco::format("%s?type=every&value=thing", AuthorizedTrafficPage::Link));
+    form.endRow();
     output << "</form>";
 
 }

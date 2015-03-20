@@ -30,7 +30,6 @@ protected:
 private:
     void authTraffic(const std::string& type, const std::string& value);
     void unAuthTraffic(const std::string& type, const std::string& value);
-
     void renderTrafficTable(std::ostream& output, Poco::Net::HTTPServerRequest& request, Poco::Data::Session& session);
 };
 
