@@ -42,9 +42,8 @@ void TrafficDataObject::checkAuthStatus()
     Poco::Timespan days = Poco::Timespan::MINUTES * Poco::Util::Application::instance().config().getUInt("ion.traffic-interval");
     achshav -= days;
     std::time_t age = achshav.epochTime();
-    _session << "DELETE FROM traffic WHERE time<?", use(age), now;
     unsigned count = 0;
-    _session << "SELECT sum(count) AS count FROM traffic WHERE time<? AND"
+    _session << "SELECT sum(count) AS count FROM traffic WHERE time>? AND "
             "traffic.domain NOT IN (SELECT value FROM authorized_traffic WHERE  type='domain') AND "
             "traffic.ip NOT IN (SELECT value FROM authorized_traffic WHERE  type='ip') AND "
             "traffic.port NOT IN (SELECT value FROM authorized_traffic WHERE  type='port') AND "
