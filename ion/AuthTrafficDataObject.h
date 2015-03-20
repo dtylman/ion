@@ -19,6 +19,7 @@ public:
     void authorize(const std::string& type, const std::string& value);
     void unauthorize(const std::string& type, const std::string& value);
     void unauthorizeAll();
+    void authorizeExistingTraffic();
 private:
     Poco::Logger& _logger;
 };

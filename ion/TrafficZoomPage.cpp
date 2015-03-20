@@ -32,7 +32,7 @@ bool TrafficZoomPage::handleForm(Poco::Net::HTMLForm& form, Poco::Net::HTTPServe
 
 void TrafficZoomPage::renderButtons(std::ostream& output)
 {
-    if (!_value.empty()) {
+    if (!_value.empty() && _field != "host" & _field != "time") {
         output << Poco::format("<a href='%s?type=%s&value=%s' class='btn btn-primary'>Authorize %s  %s</a> ", AuthorizedTrafficPage::Link, _field, _value, _field, _value);
     }
     output << Poco::format("<a href='%s' class='btn btn-primary'>%s</a> ", TrafficPage::Link, TrafficPage::Title);
