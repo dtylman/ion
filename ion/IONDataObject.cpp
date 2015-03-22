@@ -58,17 +58,8 @@ void IONDataObject::removeThing(const Poco::UUID& thingid)
     IPData::Container ips;
     findThingIPs(thingid, ips);
     for (auto ip : ips) {
-        removeIP(ip.ip(), ip.mac());
+        removeIP(ip);
     }
-}
-
-bool IONDataObject::ipExists(const Poco::Net::IPAddress& ip, const MAC& mac)
-{
-    std::string ipstr(ip.toString());
-    std::string macstr(mac.toString());
-    int exists = 0;
-    _session << "SELECT 1 FROM ip WHERE ip=? AND mac=?", use(ipstr), use(macstr), into(exists), limit(1), now;
-    return (exists == 1);
 }
 
 bool IONDataObject::macExists(const MAC& mac)
@@ -172,14 +163,14 @@ void IONDataObject::setRouter(const Poco::Net::IPAddress& ip, const MAC& mac, co
     //onRouterAdded(mac, ip.family());
     std::time_t ts = Poco::Timestamp().epochTime();
     IPData address(mac, ip, device);
-    updateIP(address);
+    setOnline(address);
     ThingData routerThing;
     getThingByMAC(mac, routerThing);
     routerThing.setType("Router");
     setThing(routerThing, false);
 }
 
-void IONDataObject::updateIP(const IPData& data, ThingData& thing)
+void IONDataObject::setOnline(IPData & data)
 {
     if (data.ignore()) {
         return;
@@ -188,49 +179,73 @@ void IONDataObject::updateIP(const IPData& data, ThingData& thing)
     if (isRouter(data.mac(), data.ip().family())) {
         return;
     }
-    bool exists = ipExists(data.ip(), data.mac());
-    std::string macstr = data.mac().toString();
-    std::string ipstr = data.ip().toString();
-    std::time_t time = Poco::Timestamp().epochTime();
-    if (exists) {
-        _session << "UPDATE ip SET last_seen=? WHERE mac=? AND ip=?", use(time), use(macstr), use(ipstr), now;
+    ThingData thing;
+    if (!getThing(data.thingID(), thing)) {
+        data.setThingID(thing.uuid());
+        thing.setDesc(Poco::format("First seen with IP %s", data.ip().toString()));
+        setThing(thing, true);
     }
-    else {
-        std::string thingid = thing.uuid().toString();
-        std::string ifacestr = data.iface();
-        thing.setDesc(Poco::format("First seen with IP %s", ipstr));
-        setThing(thing, false);
-        _session << "INSERT INTO ip (mac ,ip ,last_seen , iface , thingid) VALUES (?,?,?,?,?)",
-                use(macstr), use(ipstr), use(time), use(ifacestr), use(thingid), now;
+    bool exists = ipExists(data);
+    bool online = false;
+    if (exists) {
+        online = ipOnline(data);
+    }
+    _session << "INSERT INTO ip (mac ,ip ,last_seen , iface , thingid) VALUES (?,?,?,?,?)", use(data), now;
+    if (!exists) {
         onIPAdded(data);
     }
+    if (!online) {
+        onIPOnline(data);
+    }
 }
 
-void IONDataObject::updateIP(const IPData & data)
+bool IONDataObject::ipExists(const IPData& data)
 {
-    ThingData newThing;
-    updateIP(data, newThing);
+    bool exists = false;
+    std::string ipstr = data.ip().toString();
+    std::string macstr = data.mac().toString();
+    std::string thingid = data.thingID().toString();
+    _session << "SELECT 1 FROM ip WHERE mac=? AND ip=? AND thingid=?", use(macstr), use(ipstr), use(thingid), now;
+    return exists;
 }
 
-void IONDataObject::removeIP(const Poco::Net::IPAddress& ip, const MAC & mac)
+bool IONDataObject::ipOnline(const IPData& data)
+{
+    bool online = false;
+    std::string ipstr = data.ip().toString();
+    std::string macstr = data.mac().toString();
+    std::string thingid = data.thingID().toString();
+    Poco::Timespan interval = Poco::Timespan::MINUTES * Poco::Util::Application::instance().config().getUInt("ion.offline-interval", 10);
+    Poco::Timestamp achshav;
+    achshav -= interval;
+    std::time_t offlineTime = achshav.epochTime();
+    _session << "SELECT 1 FROM ip WHERE mac=? AND ip=? AND thingid=? AND last_seen>?", use(macstr), use(ipstr), use(thingid), use(offlineTime), now;
+    return online;
+}
+
+bool IONDataObject::ipOffline(const IPData& data)
+{
+    onIPOffline(data);
+}
+
+void IONDataObject::removeIP(const IPData& ipData)
 {
     ScopedTransaciton transaction(_session);
-    if (!ipExists(ip, mac)) {
+    if (!ipExists(ipData)) {
         return;
     }
-    IPData data;
-    std::string ipstr = ip.toString();
-    std::string macstr = mac.toString();
-    _session << "SELECT mac,ip,last_seen,iface,thingid FROM ip WHERE ip=? AND mac=?", into(data), use(ipstr), use(macstr), limit(1), now;
-    _session << "DELETE FROM ip WHERE ip=? AND mac=?", use(ipstr), use(macstr), now;
-    bool exists = 0;
-    std::string thingid = data.thingID().toString();
+    std::string ipstr = ipData.ip(). toString();
+    std::string macstr = ipData.mac().toString();
+    std::string thingid = ipData.thingID().toString();
+    _session << "DELETE FROM ip WHERE ip=? AND mac=? AND thingid=?", use(ipstr), use(macstr), use(thingid), now;
+    _logger.debug("IP deleted: %s ", ipData.toString());
+    bool exists = false;
     _session << "SELECT 1 FROM ip WHERE thingid=?", use(thingid), into(exists), limit(1), now;
-    if (exists == 0) {
+    if (!exists) {
         ThingData thing;
         removeThingData(thing);
     }
-    onIPRemoved(data);
+    onIPOffline(ipData);
 }
 
 void IONDataObject::setSuspectedRouter(const Poco::Net::IPAddress& ip, const MAC& mac, const std::string & device)
@@ -269,12 +284,17 @@ void IONDataObject::onIPAdded(const IPData & ip)
     if (!auth.isAuthorized(ip.mac())) {
         EventNotification::notifyIP(EventNotification::NOT_AUTHORIZED, ip);
     }
+}
+
+void IONDataObject::onIPOnline(const IPData& ip)
+{
+    _logger.notice("IP online: %s", ip.toString());
     EventNotification::notifyIP(EventNotification::IP_ONLINE, ip);
 }
 
-void IONDataObject::onIPRemoved(const IPData & ip)
+void IONDataObject::onIPOffline(const IPData & ip)
 {
-    _logger.notice("IP removed: %s", ip.toString());
+    _logger.notice("IP offline: %s", ip.toString());
     EventNotification::notifyIP(EventNotification::IP_OFFLINE, ip);
 }
 
@@ -304,7 +324,7 @@ void IONDataObject::authorizeThing(const Poco::UUID& thingID, bool authorize)
 }
 
 /** return true if at least one mac address is not authorized*/
-bool IONDataObject::thingAuthorized(const Poco::UUID& thingID)
+bool IONDataObject::thingAuthorized(const Poco::UUID & thingID)
 {
     std::string thingidstr(thingID.toString());
     bool notAuth = 0;

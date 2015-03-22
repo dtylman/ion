@@ -24,34 +24,8 @@ Selfy::~Selfy()
 
 void Selfy::reportNetworkConfig()
 {
-    ThingData myThing;
-    getMyThing(myThing);
-
-    DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
-    PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
-    PcapSubsystem::Devices devices;
-    pcap.getAllDevices(devices);
-    IONDataObject ion(data.createSession());
-    for (auto device : devices) {
-        try {
-            MAC mac = device.getMACAddress();
-
-            Poco::Net::IPAddress ip = device.getIPAddress(Poco::Net::IPAddress::IPv4);
-            if (ip.isUnicast()) {
-                IPData ipData(mac, ip, device.pcapName());
-                ion.updateIP(ipData, myThing);
-            }
-            ip = device.getIPAddress(Poco::Net::IPAddress::IPv6);
-            if (ip.isUnicast()) {
-                IPData ipData(mac, ip, device.pcapName());
-                ion.updateIP(ipData, myThing);
-            }
-        }
-        catch (Poco::Exception& ex) {
-            _logger.error(ex.displayText());
-        }
-    }
-
+    updateMyThing();
+    updateMyAddresses();
 }
 
 void Selfy::findRouters()
@@ -80,9 +54,9 @@ void Selfy::findRouters()
     }
 }
 
-void Selfy::getMyThing(ThingData& mything)
+void Selfy::updateMyThing()
 {
-
+    ThingData mything;
     PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
     PcapSubsystem::Devices devices;
     pcap.getAllDevices(devices);
@@ -103,4 +77,33 @@ void Selfy::getMyThing(ThingData& mything)
     mything.setName(config.getString("system.nodeName"));
     mything.setOS(config.getString("system.osName"));
     mything.setType("Computer");
+    ion.setThing(mything, true);
+}
+
+void Selfy::updateMyAddresses()
+{
+    DataSubsystem& data = Poco::Util::Application::instance().getSubsystem<DataSubsystem>();
+    PcapSubsystem& pcap = Poco::Util::Application::instance().getSubsystem<PcapSubsystem>();
+    PcapSubsystem::Devices devices;
+    pcap.getAllDevices(devices);
+    IONDataObject ion(data.createSession());
+    for (auto device : devices) {
+        try {
+            MAC mac = device.getMACAddress();
+
+            Poco::Net::IPAddress ip = device.getIPAddress(Poco::Net::IPAddress::IPv4);
+            if (ip.isUnicast()) {
+                IPData ipData(mac, ip, device.pcapName());
+                ion.setOnline(ipData);
+            }
+            ip = device.getIPAddress(Poco::Net::IPAddress::IPv6);
+            if (ip.isUnicast()) {
+                IPData ipData(mac, ip, device.pcapName());
+                ion.setOnline(ipData);
+            }
+        }
+        catch (Poco::Exception& ex) {
+            _logger.error(ex.displayText());
+        }
+    }
 }
