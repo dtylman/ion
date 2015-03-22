@@ -21,7 +21,8 @@ public:
     void reportNetworkConfig();
     void findRouters();
 private:
-    void getMyThing(ThingData& mything);
+    void updateMyThing();
+    void updateMyAddresses();
     Poco::Logger& _logger;
 };
 
