@@ -90,7 +90,7 @@ void TrafficPage::renderRow(std::ostream& output, Poco::Data::RecordSet & rs)
                 output << Poco::format("<a href=%s?type=domain&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizedTrafficPage::Link, value);
             }
             else if (columnName == "ip") {
-                output << Poco::format("<a href=%s?ip=%s><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a> ", WhoisPage::Link, value);
+                output << Poco::format("<a href=%s?query=%s><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a> ", WhoisPage::Link, value);
                 output << Poco::format("<a href=%s?type=ip&value=%s><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></a> ", AuthorizedTrafficPage::Link, value);
             }
             else if (columnName == "process") {

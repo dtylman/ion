@@ -8,7 +8,6 @@
 #ifndef WHOIS_H
 #define	WHOIS_H
 
-#include <Poco/Net/IPAddress.h>
 #include <string>
 #include <sstream>
 #include <Poco/Logger.h>
@@ -18,12 +17,10 @@ class Whois
 public:
     Whois();
     virtual ~Whois();
-    void query(const std::string& hostName);
-    void query(const Poco::Net::IPAddress& ip);
-
+    void query(const std::string& host);
     std::stringstream& record();
 private:
-    std::string getServer(const std::string& domain);
+    std::string query(const std::string& query, const std::string& server);
     std::stringstream _record;
     Poco::Logger& _logger;
 };
