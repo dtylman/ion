@@ -24,8 +24,8 @@ Selfy::~Selfy()
 
 void Selfy::reportNetworkConfig()
 {
-    updateMyThing();
-    updateMyAddresses();
+	updateMyAddresses();
+    updateMyThing();    
 }
 
 void Selfy::findRouters()
@@ -77,6 +77,7 @@ void Selfy::updateMyThing()
     mything.setName(config.getString("system.nodeName"));
     mything.setOS(config.getString("system.osName"));
     mything.setType("Computer");
+	mything.setDesc("ION machine");
     ion.setThing(mything, true);
 }
 
@@ -87,20 +88,15 @@ void Selfy::updateMyAddresses()
     PcapSubsystem::Devices devices;
     pcap.getAllDevices(devices);
     IONDataObject ion(data.createSession());
+	IPData ipData;
     for (auto device : devices) {
-        try {
-            MAC mac = device.getMACAddress();
-
-            Poco::Net::IPAddress ip = device.getIPAddress(Poco::Net::IPAddress::IPv4);
-            if (ip.isUnicast()) {
-                IPData ipData(mac, ip, device.pcapName());
-                ion.setOnline(ipData);
-            }
-            ip = device.getIPAddress(Poco::Net::IPAddress::IPv6);
-            if (ip.isUnicast()) {
-                IPData ipData(mac, ip, device.pcapName());
-                ion.setOnline(ipData);
-            }
+        try {            			
+			ipData.setMAC(device.getMACAddress());
+			ipData.setIface(device.pcapName());
+			ipData.setIP(device.getIPAddress(Poco::Net::IPAddress::IPv4));
+			ion.setOnline(ipData);
+			ipData.setIP(device.getIPAddress(Poco::Net::IPAddress::IPv6));
+			ion.setOnline(ipData);            
         }
         catch (Poco::Exception& ex) {
             _logger.error(ex.displayText());
