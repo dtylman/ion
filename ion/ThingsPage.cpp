@@ -16,6 +16,8 @@
 #include <Poco/Data/RecordSet.h>
 #include <Poco/Util/Application.h>
 #include <Poco/Format.h>
+#include <Poco/File.h>
+#include <Poco/Path.h>
 
 using namespace Poco::Data::Keywords;
 
@@ -106,10 +108,14 @@ void ThingsPage::renderRow(std::ostream& output, Poco::Data::RecordSet& rs)
         if (columnName != "id") {
             output << "<td>";
             if (!rs[i].isEmpty()) {
+                std::string value = rs[i].toString();
+                if (columnName == "type") {
+                    renderIcon(output, value);
+                }
                 if (columnName == "auth") {
                     output << Poco::format("<a href='%s?%s=%s&%s=%s'>", Link, ParamAction, ActionToggleAuth, ParamThingID, rs["id"].toString());
                 }
-                output << rs[i].toString();
+                output << value;
                 if (columnName == "auth") {
                     output << "</a>";
                 }
@@ -189,6 +195,24 @@ void ThingsPage::handleParams(Poco::Net::HTTPServerRequest& request)
         }
         else if (action == ActionDelete) {
             handleDelete(request);
+        }
+    }
+}
+
+void ThingsPage::renderIcon(std::ostream& output, const std::string& type)
+{
+    if (!type.empty()) {
+        Poco::Path imageFile = Poco::Util::Application::instance().config().getString("application.dir");
+        imageFile.pushDirectory("web");
+        imageFile.pushDirectory("images");
+        imageFile.pushDirectory("things");
+        imageFile.setBaseName(Poco::toLower(type));
+        imageFile.setExtension("png");
+        if (Poco::File(imageFile).exists()) {
+            output << Poco::format("<img src='images/things/%s.png' /> ", Poco::toLower(type), type);
+        }
+        else {
+            output << "<img src='images/things/box.png' /> ";
         }
     }
 }

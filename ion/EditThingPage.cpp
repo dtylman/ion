@@ -28,6 +28,11 @@ EditThingPage::EditThingPage()
     _types.push_back("Phone");
     _types.push_back("Router");
     _types.push_back("Computer");
+    _types.push_back("Gadget");
+    _types.push_back("Keyboard");
+    _types.push_back("Toy");
+    _types.push_back("Streamer");
+    _types.push_back("TV");
     _vendors.push_back("Microsoft");
     _vendors.push_back("Google");
     _vendors.push_back("Samsung");

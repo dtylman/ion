@@ -40,6 +40,7 @@ private:
     void handleDelete(Poco::Net::HTTPServerRequest& request);
     void renderTable(std::ostream& output);
     void renderRow(std::ostream& output, Poco::Data::RecordSet& rs);
+    void renderIcon(std::ostream& output, const std::string& type);
 };
 
 #endif	/* DEVICESREQUESTHANDLER_H */
