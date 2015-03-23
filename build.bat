@@ -17,7 +17,7 @@ cd %WORKSPACE%
 call msbuild ion.sln /p:Configuration=Release
 
 cd %WORKSPACE%\Release
-call dbtool.exe /overwrite /oui=%WORKSPACE%\dbtool\oui.txt /db=%WORKSPACE%\Release\ion.db
+call dbtool.exe /overwrite /oui=%WORKSPACE%\dbtool\oui.txt /svs=%WORKSPACE%\dbtool\service-names-port-numbers.csv /db=%WORKSPACE%\Release\ion.db
 
 cd %WORKSPACE%\inst\win
 call "c:\Program Files (x86)\Inno Setup 5\Compil32.exe" /cc ion.iss
