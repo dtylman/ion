@@ -117,12 +117,11 @@ bool IONDataObject::getThing(const Poco::UUID& thingID, ThingData & data)
 }
 
 bool IONDataObject::getThing(const IPData& ip, ThingData& thing)
-{	
-	if (!getThing(ip.thingID(), thing))
-	{
-		return getThingByMAC(ip.mac(), thing);
-	}
-	return true;
+{
+    if (!getThing(ip.thingID(), thing)) {
+        return getThingByMAC(ip.mac(), thing);
+    }
+    return true;
 }
 
 void IONDataObject::findIPs(IPData::Container & container)
@@ -165,18 +164,18 @@ void IONDataObject::setRouter(const Poco::Net::IPAddress& ip, const MAC& mac, co
         return;
     }
     std::string macstr = mac.toString();
-    std::string ipstr = ip.toString();	
+    std::string ipstr = ip.toString();
     _session << "DELETE FROM ip WHERE mac=? and ip!=?", use(macstr), use(ipstr), now;
-	_session << "DELETE FROM thing WHERE id NOT IN (SELECT thingid FROM ip)", now;
+    _session << "DELETE FROM thing WHERE id NOT IN (SELECT thingid FROM ip)", now;
     int famnum = getFamNum(ip.family());
-    _session << "INSERT INTO router (mac, family) VALUES (?,?)", use(macstr), use(famnum), now;        	
-	ThingData routerThing;
-	getThingByMAC(mac, routerThing);
-	routerThing.setType("Router");	
+    _session << "INSERT INTO router (mac, family) VALUES (?,?)", use(macstr), use(famnum), now;
+    ThingData routerThing;
+    getThingByMAC(mac, routerThing);
+    routerThing.setType("Router");
     IPData address(mac, ip, device);
-	address.setThingID(routerThing.uuid());    
+    address.setThingID(routerThing.uuid());
     setThing(routerThing, true);
-	setOnline(address, true); 
+    setOnline(address, true);
 }
 
 void IONDataObject::setOnline(IPData & data, bool ignoreRouterMAC)
@@ -185,20 +184,22 @@ void IONDataObject::setOnline(IPData & data, bool ignoreRouterMAC)
         return;
     }
     ScopedTransaciton transaction(_session);
-	if ( (!ignoreRouterMAC) && (isRouter(data.mac(), data.ip().family()))) {
+    if ((!ignoreRouterMAC) && (isRouter(data.mac(), data.ip().family()))) {
         return;
     }
     ThingData thing;
 
-    if (!getThing(data, thing)) {        
-        thing.setDesc(Poco::format("First seen with IP %s", data.ip().toString()));
+    if (!getThing(data, thing)) {
+        if (!data.ip().isWildcard()) {
+            thing.setDesc(Poco::format("First seen with IP %s", data.ip().toString()));
+        }
         setThing(thing, true);
     }
-	data.setThingID(thing.uuid());
+    data.setThingID(thing.uuid());
     bool exists = ipExists(data);
     bool online = false;
     if (exists) {
-        online = ipOnline(data);
+        online = isOnline(data);
     }
     _session << "INSERT OR REPLACE INTO ip (mac ,ip ,last_seen , iface , thingid) VALUES (?,?,?,?,?)", use(data), now;
     if (!exists) {
@@ -219,7 +220,7 @@ bool IONDataObject::ipExists(const IPData& data)
     return exists;
 }
 
-bool IONDataObject::ipOnline(const IPData& data)
+bool IONDataObject::isOnline(const IPData& data)
 {
     bool online = false;
     std::string ipstr = data.ip().toString();
@@ -229,11 +230,11 @@ bool IONDataObject::ipOnline(const IPData& data)
     Poco::Timestamp achshav;
     achshav -= interval;
     std::time_t offlineTime = achshav.epochTime();
-	_session << "SELECT 1 FROM ip WHERE mac=? AND ip=? AND thingid=? AND last_seen>?", use(macstr), use(ipstr), use(thingid), use(offlineTime), into(online), now;
+    _session << "SELECT 1 FROM ip WHERE mac=? AND ip=? AND thingid=? AND last_seen>?", use(macstr), use(ipstr), use(thingid), use(offlineTime), into(online), now;
     return online;
 }
 
-void IONDataObject::ipOffline(const IPData& data)
+void IONDataObject::setOffline(const IPData& data)
 {
     onIPOffline(data);
 }

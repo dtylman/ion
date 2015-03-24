@@ -64,7 +64,7 @@ void Solicitator::solicitateOnline()
         }
         if (!pong) {
             _logger.debug("No reply from %s", data.toString());
-            ion.ipOffline(data);
+            ion.setOffline(data);
         }
         else {
             _logger.debug("Pong from %s", data.toString());

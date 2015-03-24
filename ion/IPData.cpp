@@ -73,7 +73,7 @@ bool IPData::ignore() const
     if (!_mac.isUnicast()) {
         return true;
     }
-    if (!_ip.isUnicast()) {
+    if ((_ip.isBroadcast()) || (_ip.isMulticast())) {
         return true;
     }
     if (Poco::Util::Application::instance().config().getBool("ion.ignoreLinkLocal", true)) {
