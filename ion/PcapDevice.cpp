@@ -62,13 +62,11 @@ const PcapIfaceAddress::Container& PcapDevice::addresses()
 }
 
 MAC PcapDevice::getMACAddress() const
-{	
-	for (auto iface : Poco::Net::NetworkInterface::map(false,false))
-	{
-		if (iface.second.displayName() == systemName())
-		{
-			return iface.second.macAddress();
-		}
-	}
-	throw Poco::NotFoundException("Can't find mac address");
+{
+    for (auto iface : Poco::Net::NetworkInterface::map(false, false)) {
+        if (iface.second.displayName() == systemName()) {
+            return iface.second.macAddress();
+        }
+    }
+    throw Poco::NotFoundException(Poco::format("Can't find mac address for %s", pcapName()));
 }
