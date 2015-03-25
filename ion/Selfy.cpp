@@ -42,7 +42,8 @@ void Selfy::findRouters()
             Poco::Net::IPAddress deviceIP = pcapDevice.getIPAddress(Poco::Net::IPAddress::IPv4);
             Injector injector(pcapDevice.pcapName(), deviceIP);
             Arping arping(injector, gwIP);
-            if (arping.ping()) {
+            _logger.debug("Looking for router mac for %s", gwIP.toString());
+            if (arping.ping(5, Poco::Timespan::SECONDS * 3)) {
                 const MAC& gwMAC = arping.targetMAC();
                 _logger.information("Adding router %s %s Gw IP %s mac %s", pcapDevice.pcapName(), deviceIP.toString(), gwIP.toString(), gwMAC.toString());
                 ion.setRouter(gwIP, gwMAC, pcapDevice.pcapName());

@@ -36,9 +36,11 @@ EditThingPage::EditThingPage()
     _vendors.push_back("Microsoft");
     _vendors.push_back("Google");
     _vendors.push_back("Samsung");
+    _vendors.push_back("Apple");
     _os.push_back("Linux");
     _os.push_back("Windows");
     _os.push_back("Android");
+    _os.push_back("IOS");
 }
 
 EditThingPage::~EditThingPage()

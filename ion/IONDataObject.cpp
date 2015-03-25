@@ -196,6 +196,10 @@ void IONDataObject::setOnline(IPData & data, bool ignoreRouterMAC)
         setThing(thing, true);
     }
     data.setThingID(thing.uuid());
+    if (!data.ip().isWildcard()) {
+        std::string macstr = data.mac().toString();
+        _session << "DELETE FROM ip WHERE mac=? AND ip='0.0.0.0' OR ip='::0.0.0.0'", use(macstr), now;
+    }
     bool exists = ipExists(data);
     bool online = false;
     if (exists) {
