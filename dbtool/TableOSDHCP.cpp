@@ -22,9 +22,9 @@ void TableOSDHCP::create()
     _session << "CREATE TABLE os_dhcp (vendor TEXT NOT NULL, hostname TEXT NOT NULL, os TEXT NOT NULL)", now;
     _session << "CREATE UNIQUE INDEX pk_os_dhcp on os_dhcp (vendor ASC, hostname ASC)", now;
 
-    insert("MSFT 5.0", "*", "microsoft windows");
-    insert("dhcpcd*", "android*", "google android");
-    insert("*", "*iPhone", "apple iphone");
+    insert("MSFT 5.0", "*", "Windows");
+    insert("dhcpcd*", "android*", "Android");
+    insert("*", "*iPhone", "IOS");
 }
 
 void TableOSDHCP::insert(const std::string vendor, const std::string& hostname, const std::string& os)
