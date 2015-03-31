@@ -10,14 +10,15 @@
 ScopedTransaciton::ScopedTransaciton(Poco::Data::Session& session) : _session(session),
 _logger(Poco::Logger::get("ScopedTransaciton"))
 {
-    if (!_session.isTransaction()) {
+    if (!_transaction) {
         _session << "BEGIN IMMEDIATE";
+        _transaction = true;
     }
 }
 
 ScopedTransaciton::~ScopedTransaciton()
 {
-    if (_session.isTransaction()) {
+    if (_transaction)
         try {
             _session.commit();
         }
@@ -25,6 +26,6 @@ ScopedTransaciton::~ScopedTransaciton()
             _logger.error(ex.displayText());
             _session.rollback();
         }
-    }
 }
+
 
