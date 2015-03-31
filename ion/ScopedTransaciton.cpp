@@ -6,12 +6,13 @@
  */
 
 #include "ScopedTransaciton.h"
+using namespace Poco::Data::Keywords;
 
 ScopedTransaciton::ScopedTransaciton(Poco::Data::Session& session) : _session(session),
 _logger(Poco::Logger::get("ScopedTransaciton"))
 {
     if (!_transaction) {
-        _session << "BEGIN IMMEDIATE";
+        _session << "BEGIN IMMEDIATE", now;
         _transaction = true;
     }
 }
