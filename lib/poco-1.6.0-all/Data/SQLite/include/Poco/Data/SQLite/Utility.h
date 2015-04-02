@@ -106,6 +106,8 @@ public:
 		/// See http://www.sqlite.org/threadsafe.html for details.
 		/// 
 		/// Returns true if succesful
+	static bool isAutoCommit(const Session& session);
+		// returns true if auto-commit mode
 
 	static int getThreadMode();
 		/// Returns the thread mode.
