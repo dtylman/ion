@@ -6,20 +6,20 @@
  */
 
 #include "ScopedTransaciton.h"
+#include <Poco/Data/SQLite/Utility.h>
 using namespace Poco::Data::Keywords;
 
 ScopedTransaciton::ScopedTransaciton(Poco::Data::Session& session) : _session(session),
 _logger(Poco::Logger::get("ScopedTransaciton"))
 {
-    if (!_transaction) {
+    if (Poco::Data::SQLite::Utility::isAutoCommit(_session)) {
         _session << "BEGIN IMMEDIATE", now;
-        _transaction = true;
     }
 }
 
 ScopedTransaciton::~ScopedTransaciton()
 {
-    if (_transaction)
+    if (!Poco::Data::SQLite::Utility::isAutoCommit(_session))
         try {
             _session.commit();
         }

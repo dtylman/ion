@@ -243,6 +243,12 @@ bool Utility::fileToMemory(sqlite3* pInMemory, const std::string& fileName)
 	return SQLITE_OK == rc;
 }
 
+bool Utility::isAutoCommit(const Session& session)
+{
+	sqlite3* db = dbHandle(session);
+	poco_check_ptr(db);
+	return (sqlite3_get_autocommit(db)!=0);
+}
 
 bool Utility::memoryToFile(const std::string& fileName, sqlite3* pInMemory)
 {

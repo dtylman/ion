@@ -17,7 +17,6 @@ public:
     ScopedTransaciton(Poco::Data::Session& session);
     virtual ~ScopedTransaciton();
 private:
-    bool _transaction = false;
     Poco::Data::Session& _session;
     Poco::Logger& _logger;
 };
